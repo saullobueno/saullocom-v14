@@ -17,8 +17,8 @@ export default function Header() {
         </div>
         <div className="title">
           <p>
-            Olá, me chamo Saullo, sou graduado em <br />
-            Produção Multimídia e atuo na web como...
+            Olá! Me chamo Saullo. Sou graduado em <br />
+            Produção Multimídia e atuo como...
           </p>
           <h1 className="title-vertical">
             DESEN

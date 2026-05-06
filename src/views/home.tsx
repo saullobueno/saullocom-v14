@@ -1,9 +1,16 @@
 import portData from '../data/portfolio.json';
-
 import Header from '../components/header';
 import Section from '../components/section';
 import Footer from '../components/footer';
-import ModalView from '../components/modal';
+
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import Counter from "yet-another-react-lightbox/plugins/counter";
+import "yet-another-react-lightbox/plugins/counter.css";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
+import { useState } from 'react';
 
 import { MdEmail } from 'react-icons/md';
 import {
@@ -19,6 +26,14 @@ import Stack03 from '../assets/imageStack03.jpg';
 import Stack04 from '../assets/imageStack04.jpg';
 
 export default function Home() {
+  const [index, setIndex] = useState(-1);
+
+  const slides = portData.map((port) => ({
+    src: port.image.slice(0, -4) + '-g.jpg',
+    title: port.title,
+    description: port.description,
+  }));
+
   return (
     <>
       <Header />
@@ -27,8 +42,8 @@ export default function Home() {
         <Section background="#333" textColor="#E34040">
           <h1>MINEIRO DA GEMA</h1>
           <h2>
-            Morei no interior até os 12 anos em uma cidadezinha chamada Pingo
-            D'Água e ganhei o primeiro computador logo ao mudar para a capital.
+            Até os 12 anos, morei no interior de Minas Gerais, em uma pequena cidade chamada Pingo D'Água.
+            Ganhei meu primeiro computador logo que me mudei para a capital, iniciando minha paixão por tecnologia.
           </h2>
           <div className="columns">
             <div>
@@ -41,22 +56,15 @@ export default function Home() {
               />
             </div>
             <div>
-              <h3>Um pouco sobre mim: </h3>
+              <h3>Um pouco sobre mim</h3>
               <p>
-                Gostava de desenhar e esculpir desde criança. Ganhei o primeiro
-                computador aos 13 anos, tomei gosto pela tecnologia e fiz cursos
-                na área. Conheci as primeiras versões do Windows e brincava de
-                fazer interfaces digitais no Power Point.
+                Desde criança, sempre gostei de desenhar e esculpir. Ganhei meu primeiro computador aos 13 anos e logo me apaixonei por tecnologia. Comecei explorando as primeiras versões do Windows e já criava interfaces digitais usando o PowerPoint.
               </p>
               <p>
-                Após o colégio fiz diversos cursos voltados para desenvolvimento
-                e design. Trabalhei com web em diversas empresas e me graduei em
-                2012.
+                Após o colégio, realizei diversos cursos de desenvolvimento e design. Atuei em várias empresas da área web e me graduei em 2012.
               </p>
               <p>
-                Sempre gostei do lado cliente no desenvolvimento web e, com o
-                "boom" do JavaScript em 2015, passei a curtir também as regras
-                de negócio por trás dos sistemas.
+                Sempre tive afinidade com o front-end e, com a ascensão do JavaScript em 2015, passei a me interessar também pelas regras de negócio e arquitetura de sistemas.
               </p>
             </div>
             <div>
@@ -79,23 +87,20 @@ export default function Home() {
         </Section>
 
         <Section background="#333" textColor="#e2a342">
-          <h1 style={{ textAlign: 'center' }}>QUE MANJA DE</h1>
+          <h1 style={{ textAlign: 'center' }}>EXPERTISE TÉCNICA</h1>
           <h2 style={{ textAlign: 'center' }}>
-            Comecei como webdesigner e designer Gráfico, me dediquei a área web,
-            me tornei desenvolvedor front-end e venho focando em desenvolvimento
-            full stack.
+            Iniciei minha trajetória como web designer e designer gráfico. Posteriormente, especializei-me no desenvolvimento front-end e hoje foco em soluções Full Stack.
           </h2>
 
           <div className="columns">
             <div>
               <h3>Design</h3>
               <p>
-                Trabalho a criação da identidade visual e design de interfaces
-                focada na experiência do usuário.
+                Criação de identidades visuais e design de interfaces focados na experiência do usuário (UX/UI).
                 <br />
                 <small>
                   <em>
-                    Ferramentas: Figma, Adobe XD, Photoshop e Illustrator.
+                    Ferramentas: Figma, Photoshop, Illustrator e Storybook.
                   </em>
                 </small>
               </p>
@@ -107,30 +112,22 @@ export default function Home() {
 
               <h3>Back-end</h3>
               <p>
-                Desenvolvimento em Node.js aplicando os conceitos de API REST,
-                autenticação JWT, componentes de envio de emails, filas, bancos
-                não relacionais e relacionamentos avançados no SQL.
+                Desenvolvimento de sistemas escaláveis em Node.js com TypeScript, aplicando conceitos de arquitetura limpa, SOLID, APIs RESTful e GraphQL. Gestão de dados com ORMs modernos e bancos de dados SQL/NoSQL.
                 <br />
                 <small>
                   <em>
-                    Ferramentas: Node.js, Express, Nodemon, Insomnia,
-                    PostgreSQL, Sequelize, Sucrase, Docker, ESLint, Prettier,
-                    Bcrypt, JWT, MongoDB, date-fns, Mongoose, Nodemailer, Redis,
-                    Bee Queue, Sentry, DotEnv, entre outras.
+                    Ferramentas: Node.js, TypeScript, Fastify/Express, PostgreSQL, Prisma/Drizzle, Docker, Redis e MongoDB.
                   </em>
                 </small>
               </p>
 
               <h3>Front-End</h3>
               <p>
-                Projetos ReactJS responsivos e componentizados, com consumo de
-                API e arquitetura Flux com Redux.
+                Criação de SPAs e aplicações web de alta performance com React e TypeScript. Foco em componentização avançada, gestão de estado eficiente e interfaces responsivas.
                 <br />
                 <small>
                   <em>
-                    Ferramentas: React Router DOM, ESLint, Prettier, Styled
-                    Components, Axios, PropTypes, React Hooks, Redux, Redux
-                    Saga, Redux Persist, Immer, Polished, Yup
+                    Ferramentas: React, TypeScript, Vite, Zustand, TanStack Query, Styled Components e Tailwind CSS.
                   </em>
                 </small>
               </p>
@@ -178,29 +175,21 @@ export default function Home() {
             <div>
               <h3>Mobile</h3>
               <p>
-                Desenvolvimento com React Native para apps Android e iOS
-                utilizando conceitos de navegação, arquitetura FLux estilização,
-                consumo de API e acessibilidade.
+                Desenvolvimento mobile multiplataforma com React Native e Expo. Implementação de fluxos complexos de navegação, offline-first e alta fidelidade visual.
                 <br />
                 <small>
                   <em>
-                    Ferramentas: ReactNavigation, Styled Components, Axios,
-                    Redux, Redux Saga, React Hooks, Reactotron, Async Storage,
-                    React Native, Gesture Handler
+                    Ferramentas: React Native, Expo, TypeScript, React Navigation e Reanimated.
                   </em>
                 </small>
               </p>
-              <h3>Testes e Deploy</h3>
+              <h3>Qualidade e CI/CD</h3>
               <p>
-                Aplicações com testes automatizados com TDD no Node.js. No
-                deploy com as melhores práticas, serviços de hospedagem e
-                integração contínua. Publicação no Google Play Store e Apple
-                Store com CodePush para a entrega contínua.
+                Garantia de qualidade através de testes automatizados e automação de deploy. Uso de integração contínua para entregas rápidas e seguras em ambiente de produção.
                 <br />
                 <small>
                   <em>
-                    Ferramentas: Jest, Faker, Supertest, DigitalOcean, GitHub,
-                    PM2, Buddy, etc.
+                    Ferramentas: Vitest/Jest, Playwright, GitHub Actions, Docker e ambientes Cloud (AWS/DigitalOcean).
                   </em>
                 </small>
               </p>
@@ -212,16 +201,13 @@ export default function Home() {
                 <SVGJest width={50} height={50} />
               </div> */}
 
-              <h3>Patterns e Segurança Node.js</h3>
+              <h3>Arquitetura e Performance</h3>
               <p>
-                Patterns e melhores práticas para garantir a mantenabilidade e
-                performance no código. Proteção contra ataques, limite de
-                acessos indesejados e dependências atualizadas.
+                Aplicação de Design Patterns e melhores práticas para garantir a escalabilidade e performance do código. Foco em segurança (OWASP), SEO e manutenibilidade a longo prazo.
                 <br />
                 <small>
                   <em>
-                    Ferramentas: Cache, Service Pattern, CORS, Express Brute,
-                    Express Rate Limit e Helmet.
+                    Ferramentas: Clean Architecture, SOLID, Design Patterns e Performance Optimization.
                   </em>
                 </small>
               </p>
@@ -242,11 +228,9 @@ export default function Home() {
         </Section>
 
         <Section background="#333" textColor="#00B259">
-          <h1>SABE FAZER</h1>
+          <h1>O QUE FAÇO</h1>
           <h2>
-            Sou capaz de participar de um projeto web do início à entrega. Do
-            design ao desenvolvimento das regras de negócio por trás do sistema,
-            até a navegação front end e mobile.
+            Tenho expertise para atuar em todas as etapas de um projeto digital: desde a concepção do design e identidade visual até o desenvolvimento do back-end, front-end e mobile.
           </h2>
 
           <div className="columns">
@@ -256,12 +240,9 @@ export default function Home() {
                 style={{ float: 'left', margin: '0 2em 1rem 0' }}
               /> */}
               <div>
-                <h3>Identidade Visual </h3>
+                <h3>Identidade Visual</h3>
                 <p>
-                  Criação do conjunto de elementos formais que representam
-                  visualmente um nome, ideia, produto, empresa, instituição ou
-                  serviço. Entre eles: logo, paleta de cores, tipografias,
-                  manual, papelaria, etc.
+                  Desenvolvimento da identidade visual completa: logos, paletas de cores, tipografias, manuais de marca e materiais de papelaria.
                 </p>
               </div>
               {/* <FaPaintBrush
@@ -269,22 +250,16 @@ export default function Home() {
                 style={{ float: 'left', margin: '0 2rem 1rem 0' }}
               /> */}
               <div>
-                <h3>Design de Interface </h3>
+                <h3>Design de Interface</h3>
                 <p>
-                  Criação visual de websites, aplicações, sistemas, softwares e
-                  aplicativos móveis com o foco na experiência dos utilizadores
-                  e sua interação.
+                  Design de interfaces para websites, sistemas e aplicativos, sempre com foco na usabilidade e na interação do usuário (UX/UI).
                 </p>
               </div>
 
               <div>
-                <h3>Web </h3>
+                <h3>Web</h3>
                 <p>
-                  Desenvolvimento de websites, hotsites, landing pages,
-                  sistemas, dashboards, Progressive Web Apps, Single Page
-                  Application e Plataformas SaaS, com código limpo, semântico,
-                  boas práticas, componentizado, responsivo e escalonável, com
-                  integração e entrega contínua.
+                  Desenvolvimento de websites, landing pages, sistemas complexos, dashboards e PWAs, utilizando código limpo, semântico e escalonável, seguindo as melhores práticas do mercado.
                 </p>
               </div>
             </div>
@@ -298,23 +273,16 @@ export default function Home() {
                 style={{ float: 'left', margin: '0 2rem 1rem 0' }}
               /> */}
               <div>
-                <h3>API </h3>
+                <h3>API</h3>
                 <p>
-                  Desenvolvimento backend das regras de negócio por trás de
-                  projetos que disponibilizam APIs para sistemas e web sites,
-                  realizado em Node.js com Express ou AdonisJS, com banco de
-                  dados em MongoDB com Mongoose, PostgreSQL com Sequelize e
-                  filas com Redis, além de Docker para os containers.
+                  Desenvolvimento back-end robusto em Node.js (Express/AdonisJS), utilizando bancos de dados como PostgreSQL e MongoDB, sistemas de filas com Redis e containerização com Docker.
                 </p>
               </div>
 
               <div>
-                <h3>Aplicativo Mobile </h3>
+                <h3>Aplicativo Mobile</h3>
                 <p>
-                  Desenvolvimento de aplicativos para smartphones e outros
-                  dispositivos móveis publicado nas stores tanto para Android no
-                  Google Play quanto para IOS no Apple Store, de forma nativa em
-                  um único projeto dutlizando ReactNative.
+                  Desenvolvimento de aplicativos híbridos e nativos com React Native, publicados nas lojas Google Play e App Store.
                 </p>
               </div>
             </div>
@@ -336,42 +304,47 @@ export default function Home() {
         </Section>
 
         <Section background="#333" textColor="#0085B2">
-          <h1>E JÁ FEZ</h1>
+          <h1>PORTFÓLIO</h1>
           <h2>
-            Trabalhos realizados nos mais variados segmentos. Projetos online,
-            offline, identidade visual e papelaria. Suporte, atualização e
-            manutenção em todos os projetos realizados.
+            Portfólio diversificado com projetos on-line e off-line, identidades visuais e suporte contínuo para manutenção e atualizações.
           </h2>
 
           <p></p>
 
           <div className="gallery">
             {portData.map((port, key) => (
-              <>
-                <a href={'#' + port.slug}>
-                  <img
-                    src={port.image}
-                    key={key}
-                    width="auto"
-                    height="auto"
-                    alt={port.slug}
-                    className="portfolio-mini"
-                  />
-                </a>
-                <ModalView
-                  imagemodal={port.image.slice(0, -4) + '-g.jpg'}
-                  slug={port.slug}
-                ></ModalView>
-              </>
+              <a
+                key={key}
+                href="#!"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIndex(key);
+                }}
+              >
+                <img
+                  src={port.image}
+                  width="auto"
+                  height="auto"
+                  alt={port.slug}
+                  className="portfolio-mini"
+                />
+              </a>
             ))}
           </div>
+
+          <Lightbox
+            index={index}
+            slides={slides}
+            open={index >= 0}
+            close={() => setIndex(-1)}
+            plugins={[Zoom, Counter, Thumbnails]}
+          />
         </Section>
 
         <Section background="#333" textColor="#7159c1">
-          <h1>FALA CMG</h1>
+          <h1>CONTATO</h1>
           <h2>
-            Tem uma ideia nova? Quer concretizar algum projeto em mente? Entre
-            em contato e vamos conversar. Tire dúvidas e solicite orçamento:
+            Tem um projeto em mente ou uma ideia para tirar do papel? Vamos conversar! Entre em contato para tirar dúvidas ou solicitar um orçamento:
           </h2>
 
           <div className="columns">

@@ -2,8 +2,10 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 1280px;
-  height: 100%;
-  margin: 8rem auto;
+  min-height: 100%;
+  margin: 0 auto;
+  padding: 8rem 0;
+  text-align: center;
 
   @media (max-width: 1280px) {
     width: calc(100% - 2rem);
@@ -14,9 +16,10 @@ export const Container = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 2rem;
+    justify-items: center;
   }
-  div.columns > div:first-child {
-    text-align: right;
+  div.columns > div {
+    text-align: center;
   }
   .gallery {
     display: grid;
@@ -38,8 +41,8 @@ export const Container = styled.div`
       grid-template-columns: 1fr 1fr;
       grid-gap: 2rem;
     }
-    div.columns > div:first-child {
-      text-align: left;
+    div.columns > div {
+      text-align: center;
     }
   }
 
@@ -51,6 +54,10 @@ export const Container = styled.div`
     }
   }
 
+  img {
+    display: block;
+    margin: 0 auto;
+  }
   svg {
     margin: 10px;
   }

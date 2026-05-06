@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import imageHome from '../../assets/image-home.jpg';
 
 export const Container = styled.div`
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   background: url(${imageHome}), linear-gradient(45deg, #e2a342, #0059b2),
@@ -61,12 +61,13 @@ export const Content = styled.div`
 
   div.title {
     text-align: center;
+      margin-top: 60px;
     h1 {
       padding: 1rem 0;
       line-height: 80%;
       font-size: 10rem;
       color: #fff;
-      text-align: left;
+      text-align: center;
       margin: 0;
     }
     h1.title-vertical {
