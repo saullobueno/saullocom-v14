@@ -39,7 +39,7 @@ export default function Home() {
       <Header />
 
       <main>
-        <Section background="#333" textColor="#E34040">
+        <Section textColor="#E34040">
           <h1>MINEIRO DA GEMA</h1>
           <h2>
             Até os 12 anos, morei no interior de Minas Gerais, em uma pequena cidade chamada Pingo D'Água.
@@ -86,7 +86,7 @@ export default function Home() {
           </div>
         </Section>
 
-        <Section background="#333" textColor="#e2a342">
+        <Section textColor="#e2a342">
           <h1 style={{ textAlign: 'center' }}>EXPERTISE TÉCNICA</h1>
           <h2 style={{ textAlign: 'center' }}>
             Iniciei minha trajetória como web designer e designer gráfico. Posteriormente, especializei-me no desenvolvimento front-end e hoje foco em soluções Full Stack.
@@ -227,7 +227,7 @@ export default function Home() {
           </div>
         </Section>
 
-        <Section background="#333" textColor="#00B259">
+        <Section textColor="#00B259">
           <h1>O QUE FAÇO</h1>
           <h2>
             Tenho expertise para atuar em todas as etapas de um projeto digital: desde a concepção do design e identidade visual até o desenvolvimento do back-end, front-end e mobile.
@@ -303,7 +303,7 @@ export default function Home() {
           </div>
         </Section>
 
-        <Section background="#333" textColor="#0085B2">
+        <Section textColor="#0085B2">
           <h1>PORTFÓLIO</h1>
           <h2>
             Portfólio diversificado com projetos on-line e off-line, identidades visuais e suporte contínuo para manutenção e atualizações.
@@ -341,7 +341,7 @@ export default function Home() {
           />
         </Section>
 
-        <Section background="#333" textColor="#7159c1">
+        <Section textColor="#7159c1">
           <h1>CONTATO</h1>
           <h2>
             Tem um projeto em mente ou uma ideia para tirar do papel? Vamos conversar! Entre em contato para tirar dúvidas ou solicitar um orçamento:
