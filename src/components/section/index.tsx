@@ -12,6 +12,7 @@ export default function Section({ background, textColor, children }: SectionProp
   return (
     <Container
       style={{
+        backgroundColor: background,
         color: textColor,
       }}
     >
