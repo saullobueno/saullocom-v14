@@ -1,4 +1,5 @@
 import portData from '../data/portfolio.json';
+import { featuredProjects } from '../data/featuredProjects';
 import Header from '../components/header';
 import Section from '../components/section';
 import Footer from '../components/footer';
@@ -17,7 +18,10 @@ import {
   FaLinkedin,
   FaWhatsappSquare,
   FaGithubSquare,
-  FaDribbbleSquare,
+  FaGithub,
+  FaExternalLinkAlt,
+  FaChevronDown,
+  FaChevronUp,
 } from 'react-icons/fa';
 
 import Stack01 from '../assets/imageStack01.jpg';
@@ -27,6 +31,7 @@ import Stack04 from '../assets/imageStack04.jpg';
 
 export default function Home() {
   const [index, setIndex] = useState(-1);
+  const [showAllLegacy, setShowAllLegacy] = useState(false);
 
   const slides = portData.map((port) => ({
     src: port.image.slice(0, -4) + '-g.jpg',
@@ -306,30 +311,101 @@ export default function Home() {
         <Section textColor="#0085B2">
           <h1>PORTFÓLIO</h1>
           <h2>
-            Portfólio diversificado com projetos on-line e off-line, identidades visuais e suporte contínuo para manutenção e atualizações.
+            Aplicações web modernas, arquiteturas com inteligência artificial, engenharia de software full-stack e sistemas de alta performance.
           </h2>
 
-          <p></p>
+          <div className="featured-projects-grid">
+            {featuredProjects.map((project) => (
+              <div className="featured-card" key={project.slug}>
+                <div className="featured-image-container">
+                  <img src={project.image} alt={project.title} />
+                </div>
+                <div className="featured-content">
+                  <h3 className="featured-title">{project.title}</h3>
+                  <div className="featured-subtitle">{project.subtitle}</div>
+                  <p className="featured-description">{project.description}</p>
 
-          <div className="gallery">
-            {portData.map((port, key) => (
-              <a
-                key={key}
-                href="#!"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIndex(key);
-                }}
-              >
-                <img
-                  src={port.image}
-                  width="auto"
-                  height="auto"
-                  alt={port.slug}
-                  className="portfolio-mini"
-                />
-              </a>
+                  <ul className="featured-highlights">
+                    {project.highlights.map((highlight, i) => (
+                      <li key={i}>{highlight}</li>
+                    ))}
+                  </ul>
+
+                  <div className="featured-stack">
+                    {project.stack.map((tech, i) => (
+                      <span className="stack-badge" key={i}>
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="featured-actions">
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-action btn-github"
+                    >
+                      <FaGithub size={18} /> Repositório GitHub
+                    </a>
+                    {project.demoUrl && (
+                      <a
+                        href={project.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-action btn-demo"
+                      >
+                        <FaExternalLinkAlt size={14} /> Demo ao Vivo
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
             ))}
+          </div>
+
+          <div className="legacy-portfolio-section">
+            <h3 className="legacy-heading">Projetos Legados</h3>
+            <p className="legacy-subheading">
+              Histórico de identidades visuais, websites institucionais e projetos desenvolvidos ao longo da carreira.
+            </p>
+
+            <div className="gallery">
+              {(showAllLegacy ? portData : portData.slice(0, 4)).map((port, key) => (
+                <a
+                  key={key}
+                  href="#!"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIndex(key);
+                  }}
+                >
+                  <img
+                    src={port.image}
+                    width="auto"
+                    height="auto"
+                    alt={port.slug}
+                    className="portfolio-mini"
+                  />
+                </a>
+              ))}
+            </div>
+
+            <button
+              type="button"
+              className="legacy-toggle-btn"
+              onClick={() => setShowAllLegacy(!showAllLegacy)}
+            >
+              {showAllLegacy ? (
+                <>
+                  <FaChevronUp size={14} /> Recolher legados
+                </>
+              ) : (
+                <>
+                  <FaChevronDown size={14} /> Ver todos os legados (+{portData.length - 4} projetos)
+                </>
+              )}
+            </button>
           </div>
 
           <Lightbox
@@ -357,28 +433,74 @@ export default function Home() {
                 style={{ marginBottom: '1rem' }}
               />
             </div>
-            <div>
-              <p className="center-horizontal">
-                <MdEmail size={50} /> saullo@saullo.com
-              </p>
+            <div className="contact-column">
+              <div className="contact-item">
+                <a
+                  href="mailto:saullobueno@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="contact-icon-link"
+                >
+                  <MdEmail size={40} />
+                </a>
+                <div className="contact-text">
+                  <a href="mailto:saullobueno@gmail.com">saullobueno@gmail.com</a>
+                  <a href="mailto:saullo@saullo.com">saullo@saullo.com</a>
+                </div>
+              </div>
 
-              <p className="center-horizontal">
-                <FaWhatsappSquare size={50} /> 31 98827.3818
-              </p>
+              <div className="contact-item">
+                <a
+                  href="https://wa.me/351932382207"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="contact-icon-link"
+                >
+                  <FaWhatsappSquare size={40} />
+                </a>
+                <div className="contact-text">
+                  <a
+                    href="https://wa.me/351932382207"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    +351 932 382 207
+                  </a>
+                  <a
+                    href="https://wa.me/5531988273818"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    +55 31 98827.3818
+                  </a>
+                </div>
+              </div>
             </div>
 
-            <div>
-              <p className="center-horizontal">
-                <FaLinkedin size={50} /> linkedin.com/in/saullobueno
-              </p>
+            <div className="contact-column">
+              <div className="contact-item">
+                <a
+                  href="https://linkedin.com/in/saullobueno"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="contact-link-wrapper"
+                >
+                  <FaLinkedin size={40} />
+                  <span>linkedin.com/in/saullobueno</span>
+                </a>
+              </div>
 
-              <p className="center-horizontal">
-                <FaGithubSquare size={50} /> github.com/saullobueno
-              </p>
-
-              <p className="center-horizontal">
-                <FaDribbbleSquare size={50} /> dribbble.com/saullobueno
-              </p>
+              <div className="contact-item">
+                <a
+                  href="https://github.com/saullobueno"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="contact-link-wrapper"
+                >
+                  <FaGithubSquare size={40} />
+                  <span>github.com/saullobueno</span>
+                </a>
+              </div>
             </div>
           </div>
         </Section>

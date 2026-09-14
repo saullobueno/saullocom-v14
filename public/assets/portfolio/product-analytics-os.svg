@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <!-- Root Background: Website dark gray #1a1a1a -->
+  <rect width="1200" height="675" fill="#1a1a1a"/>
+  
+  <!-- Top Navigation Bar (#262626) -->
+  <rect x="0" y="0" width="1200" height="56" fill="#262626" stroke="#333333" stroke-width="1"/>
+  <rect x="24" y="16" width="24" height="24" rx="6" fill="#8b5cf6"/>
+  <path d="M30 32 L34 22 L38 28 L44 18" stroke="#ffffff" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <text x="56" y="34" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="700" fill="#f5f5f5">Product Analytics OS</text>
+
+  <rect x="300" y="14" width="300" height="28" rx="6" fill="#1a1a1a" stroke="#333333" stroke-width="1"/>
+  <text x="315" y="33" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#a3a3a3">📅 Range: Last 30 Days • Device: All</text>
+
+  <rect x="1050" y="14" width="126" height="28" rx="6" fill="#8b5cf6"/>
+  <text x="1065" y="33" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#ffffff">+ Add Dashboard</text>
+
+  <!-- Left Sidebar (#262626) -->
+  <rect x="0" y="56" width="220" height="619" fill="#262626" stroke="#333333" stroke-width="1"/>
+  
+  <rect x="12" y="72" width="196" height="36" rx="6" fill="#8b5cf6" opacity="0.15"/>
+  <text x="24" y="95" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#a78bfa">📈 Product Health</text>
+  <text x="24" y="135" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500" fill="#a3a3a3">🤖 AI Analyst</text>
+  <text x="24" y="175" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500" fill="#a3a3a3">🔍 Event Explorer</text>
+  <text x="24" y="215" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500" fill="#a3a3a3">🔻 Funnels</text>
+  <text x="24" y="255" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500" fill="#a3a3a3">🔄 Retention &amp; Cohorts</text>
+  <text x="24" y="295" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500" fill="#a3a3a3">📊 Segmentation</text>
+  <text x="24" y="335" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500" fill="#a3a3a3">⚡ Realtime Feed</text>
+
+  <!-- Main Content Area -->
+  <text x="245" y="98" font-family="Inter, system-ui, sans-serif" font-size="22" font-weight="700" fill="#f5f5f5">Product Health Overview</text>
+  <text x="245" y="120" font-family="Inter, system-ui, sans-serif" font-size="13" fill="#a3a3a3">Synthetic dataset analytics • DAU, Activation Funnel, Cohorts &amp; Anomaly Detection</text>
+
+  <!-- Metric Cards -->
+  <!-- Card 1: DAU -->
+  <rect x="245" y="140" width="210" height="90" rx="10" fill="#262626" stroke="#333333" stroke-width="1"/>
+  <text x="265" y="165" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a3a3a3">Daily Active Users</text>
+  <text x="265" y="200" font-family="Inter, system-ui, sans-serif" font-size="26" font-weight="700" fill="#f5f5f5">48.2k</text>
+  <rect x="390" y="180" width="50" height="20" rx="10" fill="#10b981" opacity="0.2"/>
+  <text x="398" y="194" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="700" fill="#34d399">+8.4%</text>
+
+  <!-- Card 2: Activation Rate -->
+  <rect x="475" y="140" width="210" height="90" rx="10" fill="#262626" stroke="#333333" stroke-width="1"/>
+  <text x="495" y="165" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a3a3a3">Activation Rate</text>
+  <text x="495" y="200" font-family="Inter, system-ui, sans-serif" font-size="26" font-weight="700" fill="#a78bfa">68.4%</text>
+
+  <!-- Card 3: D30 Retention -->
+  <rect x="705" y="140" width="210" height="90" rx="10" fill="#262626" stroke="#333333" stroke-width="1"/>
+  <text x="725" y="165" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a3a3a3">D30 Retention</text>
+  <text x="725" y="200" font-family="Inter, system-ui, sans-serif" font-size="26" font-weight="700" fill="#38bdf8">42.1%</text>
+
+  <!-- Card 4: Churn -->
+  <rect x="935" y="140" width="240" height="90" rx="10" fill="#262626" stroke="#333333" stroke-width="1"/>
+  <text x="955" y="165" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a3a3a3">Monthly Churn</text>
+  <text x="955" y="200" font-family="Inter, system-ui, sans-serif" font-size="26" font-weight="700" fill="#f87171">1.8%</text>
+  <rect x="1070" y="180" width="90" height="20" rx="10" fill="#10b981" opacity="0.2"/>
+  <text x="1080" y="194" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="700" fill="#34d399">-0.4% MoM</text>
+
+  <!-- AI Analyst Banner -->
+  <rect x="245" y="250" width="930" height="80" rx="10" fill="#311042" stroke="#8b5cf6" stroke-width="1"/>
+  <circle cx="275" cy="290" r="16" fill="#8b5cf6"/>
+  <text x="267" y="296" font-family="Inter, system-ui, sans-serif" font-size="16" fill="#ffffff">🤖</text>
+  <text x="305" y="280" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#f3e8ff">AI Analyst Insight • "Why did conversion drop this week?"</text>
+  <text x="305" y="302" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#ddd6fe">Primary Factor: Android v2.4 checkout screen latency anomaly (+340ms) • Confidence Level: 94.2%</text>
+
+  <!-- Funnel Chart & Cohort Matrix Grid -->
+  <!-- User Journey Funnel -->
+  <rect x="245" y="355" width="450" height="295" rx="10" fill="#262626" stroke="#333333" stroke-width="1"/>
+  <text x="265" y="385" font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="700" fill="#f5f5f5">Activation Funnel (User Journey)</text>
+
+  <!-- Funnel Bars -->
+  <rect x="265" y="415" width="410" height="32" rx="4" fill="#8b5cf6"/>
+  <text x="280" y="436" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#ffffff">1. Visit Landing (100% - 48,200)</text>
+
+  <rect x="265" y="460" width="320" height="32" rx="4" fill="#7c3aed"/>
+  <text x="280" y="481" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#ffffff">2. Sign Up (78.1% - 37,640)</text>
+
+  <rect x="265" y="505" width="240" height="32" rx="4" fill="#6d28d9"/>
+  <text x="280" y="526" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#ffffff">3. Create Project (58.5% - 28,200)</text>
+
+  <rect x="265" y="550" width="180" height="32" rx="4" fill="#5b21b6"/>
+  <text x="280" y="571" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#ffffff">4. Invite Team (44.2% - 21,300)</text>
+
+  <!-- Cohort Heatmap Grid -->
+  <rect x="715" y="355" width="460" height="295" rx="10" fill="#262626" stroke="#333333" stroke-width="1"/>
+  <text x="735" y="385" font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="700" fill="#f5f5f5">Retention Heatmap (Cohort Matrix)</text>
+  
+  <text x="735" y="420" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#a3a3a3">Cohort</text>
+  <text x="830" y="420" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#a3a3a3">Day 1</text>
+  <text x="910" y="420" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#a3a3a3">Day 7</text>
+  <text x="990" y="420" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#a3a3a3">Day 14</text>
+  <text x="1070" y="420" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#a3a3a3">Day 30</text>
+
+  <!-- Row 1 -->
+  <text x="735" y="455" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#e5e5e5">Week 34</text>
+  <rect x="820" y="438" width="60" height="26" rx="4" fill="#5b21b6"/><text x="835" y="455" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="700" fill="#ffffff">84%</text>
+  <rect x="900" y="438" width="60" height="26" rx="4" fill="#6d28d9"/><text x="915" y="455" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="700" fill="#ffffff">62%</text>
+  <rect x="980" y="438" width="60" height="26" rx="4" fill="#7c3aed"/><text x="995" y="455" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="700" fill="#ffffff">48%</text>
+  <rect x="1060" y="438" width="60" height="26" rx="4" fill="#8b5cf6"/><text x="1075" y="455" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="700" fill="#ffffff">42%</text>
+
+  <!-- Row 2 -->
+  <text x="735" y="495" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#e5e5e5">Week 35</text>
+  <rect x="820" y="478" width="60" height="26" rx="4" fill="#5b21b6"/><text x="835" y="495" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="700" fill="#ffffff">86%</text>
+  <rect x="900" y="478" width="60" height="26" rx="4" fill="#6d28d9"/><text x="915" y="495" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="700" fill="#ffffff">64%</text>
+  <rect x="980" y="478" width="60" height="26" rx="4" fill="#7c3aed"/><text x="995" y="495" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="700" fill="#ffffff">51%</text>
+  <rect x="1060" y="478" width="60" height="26" rx="4" fill="#8b5cf6"/><text x="1075" y="495" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="700" fill="#ffffff">44%</text>
+
+  <!-- Row 3 -->
+  <text x="735" y="535" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#e5e5e5">Week 36</text>
+  <rect x="820" y="518" width="60" height="26" rx="4" fill="#5b21b6"/><text x="835" y="535" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="700" fill="#ffffff">89%</text>
+  <rect x="900" y="518" width="60" height="26" rx="4" fill="#6d28d9"/><text x="915" y="535" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="700" fill="#ffffff">68%</text>
+  <rect x="980" y="518" width="60" height="26" rx="4" fill="#7c3aed"/><text x="995" y="535" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="700" fill="#ffffff">54%</text>
+  <rect x="1060" y="518" width="60" height="26" rx="4" fill="#4c1d95"/><text x="1075" y="535" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="700" fill="#ffffff">46%</text>
+</svg>

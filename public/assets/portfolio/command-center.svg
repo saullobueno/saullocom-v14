@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <!-- Root Background: Website dark mode base (#1a1a1a) -->
+  <rect width="1200" height="675" fill="#1a1a1a"/>
+  
+  <!-- Top Navigation Bar (#141414) -->
+  <rect x="0" y="0" width="1200" height="56" fill="#141414" stroke="#333333" stroke-width="1"/>
+  <rect x="24" y="16" width="24" height="24" rx="6" fill="#0284c7"/>
+  <circle cx="36" cy="28" r="6" fill="#38bdf8"/>
+  <text x="56" y="34" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="700" fill="#f9fafb">Command Center</text>
+
+  <!-- Ctrl+K Command Palette Badge -->
+  <rect x="260" y="14" width="220" height="28" rx="6" fill="#262626" stroke="#333333" stroke-width="1"/>
+  <text x="275" y="32" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#9ca3af">🔍 Search devices... <tspan fill="#0284c7" font-weight="700">Ctrl+K</tspan></text>
+
+  <rect x="1040" y="14" width="136" height="28" rx="14" fill="#0284c7" opacity="0.2" stroke="#38bdf8" stroke-width="1"/>
+  <circle cx="1055" cy="28" r="6" fill="#38bdf8"/>
+  <text x="1068" y="32" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" fill="#38bdf8">1,420 IoT Nodes</text>
+
+  <!-- Left Sidebar (#141414) -->
+  <rect x="0" y="56" width="220" height="619" fill="#141414" stroke="#333333" stroke-width="1"/>
+  
+  <rect x="12" y="72" width="196" height="36" rx="6" fill="#0284c7" opacity="0.15"/>
+  <text x="24" y="95" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#38bdf8">🗺️ Map &amp; Clustering</text>
+  <text x="24" y="135" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500" fill="#9ca3af">⏮️ Event Replay</text>
+  <text x="24" y="175" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500" fill="#9ca3af">📋 Virtualized Table</text>
+  <text x="24" y="215" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500" fill="#9ca3af">⚠️ Active Alerts (4)</text>
+  <text x="24" y="255" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500" fill="#9ca3af">📊 Telemetry ECharts</text>
+  <text x="24" y="295" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500" fill="#9ca3af">⚙️ Operations Settings</text>
+
+  <!-- MapLibre Map Canvas Simulation (#141414) -->
+  <rect x="220" y="56" width="660" height="420" fill="#141414" stroke="#333333" stroke-width="1"/>
+  
+  <!-- Map Grid Routes & Map Graphics -->
+  <path d="M 250 120 L 450 180 L 650 140 L 850 260" stroke="#333333" stroke-width="8" fill="none"/>
+  <path d="M 320 380 L 520 280 L 720 360 L 820 180" stroke="#333333" stroke-width="6" fill="none"/>
+
+  <!-- Map Pins & Cluster Bubbles -->
+  <!-- Cluster 1 -->
+  <circle cx="380" cy="160" r="22" fill="#0284c7" opacity="0.3"/>
+  <circle cx="380" cy="160" r="14" fill="#0284c7"/>
+  <text x="372" y="165" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="800" fill="#ffffff">412</text>
+
+  <!-- Cluster 2 -->
+  <circle cx="620" cy="220" r="26" fill="#10b981" opacity="0.3"/>
+  <circle cx="620" cy="220" r="16" fill="#10b981"/>
+  <text x="611" y="225" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="800" fill="#ffffff">890</text>
+
+  <!-- Alert Pin (Red) -->
+  <circle cx="500" cy="310" r="18" fill="#ef4444" opacity="0.4"/>
+  <circle cx="500" cy="310" r="10" fill="#ef4444"/>
+  <text x="496" y="314" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="800" fill="#ffffff">⚠️</text>
+
+  <!-- Map Overlay HUD -->
+  <rect x="235" y="70" width="220" height="36" rx="6" fill="#262626" stroke="#333333" stroke-width="1"/>
+  <text x="250" y="93" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#f9fafb">Region: EU-West (Rotterdam)</text>
+
+  <!-- Event Replay Control Bar at Bottom of Map -->
+  <rect x="220" y="476" width="660" height="60" fill="#141414" stroke="#333333" stroke-width="1"/>
+  <circle cx="250" cy="506" r="16" fill="#0284c7"/>
+  <text x="245" y="511" font-family="Inter, system-ui, sans-serif" font-size="14" fill="#ffffff">▶</text>
+  <text x="280" y="500" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" fill="#f9fafb">Event Replay Mode (Deterministic Time Travel)</text>
+  <text x="280" y="518" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#38bdf8">10:32 AM ───────●───────────────────── 10:45 AM (Speed: 2x)</text>
+
+  <!-- Right Panel: ECharts Telemetry & Virtualized Table -->
+  <rect x="880" y="56" width="320" height="619" fill="#141414" stroke="#333333" stroke-width="1"/>
+  
+  <text x="900" y="90" font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="700" fill="#f9fafb">Realtime Telemetry (ECharts)</text>
+
+  <!-- Gauge Chart Box -->
+  <rect x="900" y="105" width="280" height="150" rx="8" fill="#262626" stroke="#333333" stroke-width="1"/>
+  <circle cx="1040" cy="180" r="50" fill="none" stroke="#333333" stroke-width="10"/>
+  <path d="M 990 180 A 50 50 0 0 1 1075 145" fill="none" stroke="#38bdf8" stroke-width="10" stroke-linecap="round"/>
+  <text x="1025" y="185" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="800" fill="#f9fafb">94.2%</text>
+  <text x="1005" y="202" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#9ca3af">Network Uptime</text>
+
+  <!-- Virtualized Table Section -->
+  <text x="900" y="285" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#f9fafb">Devices (TanStack Table)</text>
+
+  <!-- Table Header -->
+  <rect x="900" y="300" width="280" height="26" fill="#333333"/>
+  <text x="910" y="317" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="700" fill="#9ca3af">DEVICE ID</text>
+  <text x="1000" y="317" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="700" fill="#9ca3af">STATUS</text>
+  <text x="1100" y="317" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="700" fill="#9ca3af">LATENCY</text>
+
+  <!-- Row 1 -->
+  <rect x="900" y="330" width="280" height="32" fill="#262626"/>
+  <text x="910" y="350" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="600" fill="#e5e7eb">sensor-nl-841</text>
+  <rect x="1000" y="337" width="55" height="18" rx="9" fill="#10b981" opacity="0.2"/>
+  <text x="1010" y="350" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="700" fill="#34d399">ONLINE</text>
+  <text x="1100" y="350" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#38bdf8">12ms</text>
+
+  <!-- Row 2 (Alert) -->
+  <rect x="900" y="365" width="280" height="32" fill="#311010"/>
+  <text x="910" y="385" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="600" fill="#f87171">gateway-de-102</text>
+  <rect x="1000" y="372" width="55" height="18" rx="9" fill="#ef4444" opacity="0.2"/>
+  <text x="1010" y="385" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="700" fill="#f87171">ALERT</text>
+  <text x="1100" y="385" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#f87171">340ms</text>
+
+  <!-- Bottom Timeline Section -->
+  <rect x="220" y="540" width="660" height="135" fill="#141414" stroke="#333333" stroke-width="1"/>
+  <text x="240" y="565" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#f9fafb">Realtime Event Stream Log</text>
+  <text x="240" y="590" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#34d399">10:45:12 [INFO] gateway-de-102 emitted telemetry payload (battery: 98%, temp: 24.2°C)</text>
+  <text x="240" y="610" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#f87171">10:45:08 [WARN] sensor-nl-841 latency threshold exceeded (&gt; 300ms)</text>
+  <text x="240" y="630" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#60a5fa">10:45:01 [INFO] MSW WebSocket broadcasted state sync to 1,420 connected clients</text>
+</svg>
