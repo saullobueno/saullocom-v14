@@ -66,9 +66,9 @@ export const featuredProjects: FeaturedProject[] = [
     ],
     githubUrl: 'https://github.com/saullobueno/fieldops',
     demoUrl: 'https://fieldops-platformweb.vercel.app',
-    demoUrlLabel: 'FieldOps Web',
+    demoUrlLabel: 'Demo Web',
     demoMobileUrl: 'https://fieldops-mobile.vercel.app',
-    demoMobileUrlLabel: 'FieldOps Técnico (Mobile)',
+    demoMobileUrlLabel: 'Demo Técnico Mobile',
     image: '/assets/portfolio/fieldops.svg',
   },
   {

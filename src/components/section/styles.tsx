@@ -131,6 +131,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: 7.5rem;
+    margin-top: 5.5rem;
     margin-bottom: 7rem;
     text-align: left;
   }
@@ -143,7 +144,7 @@ export const Container = styled.div`
     border: none;
     box-shadow: none;
     padding: 0;
-    align-items: center;
+    align-items: flex-start;
 
     @media (max-width: 960px) {
       grid-template-columns: 1fr;
@@ -282,19 +283,18 @@ export const Container = styled.div`
   .legacy-portfolio-section {
     margin-top: 4rem;
     padding-top: 3rem;
-    border-top: 1px dashed rgba(255, 255, 255, 0.15);
     text-align: center;
 
     h3.legacy-heading {
       font-size: 1.6rem;
-      color: #fff;
+      color: #0085B2;
       margin-bottom: 0.5rem;
       text-align: center;
     }
 
     p.legacy-subheading {
       font-size: 1rem;
-      color: #888;
+      color: #0085B2;
       margin-bottom: 2rem;
       text-align: center;
     }
