@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <!-- Root Background: Dark gray #1a1a1a -->
+  <rect width="1200" height="675" fill="#1a1a1a"/>
+  
+  <!-- Top Navigation Bar (#262626) -->
+  <rect x="0" y="0" width="1200" height="56" fill="#262626" stroke="#333333" stroke-width="1"/>
+  <rect x="24" y="14" width="28" height="28" rx="6" fill="#0284c7"/>
+  <path d="M38 20 L44 30 L32 30 Z" fill="#38bdf8"/>
+  <circle cx="38" cy="25" r="3" fill="#ffffff"/>
+  <text x="60" y="34" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="700" fill="#f5f5f5">FieldOps</text>
+  <text x="145" y="34" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500" fill="#38bdf8">Field Service &amp; Smart Dispatch</text>
+  
+  <rect x="400" y="14" width="300" height="28" rx="6" fill="#1a1a1a" stroke="#333333" stroke-width="1"/>
+  <text x="415" y="33" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#a3a3a3">Search work orders, technicians, routes (Ctrl+K)...</text>
+  
+  <rect x="1030" y="14" width="146" height="28" rx="14" fill="#0284c7" opacity="0.2" stroke="#0284c7" stroke-width="1"/>
+  <circle cx="1045" cy="28" r="5" fill="#38bdf8"/>
+  <text x="1058" y="32" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#38bdf8">pnpm Turborepo</text>
+
+  <!-- Left Sidebar (#262626) -->
+  <rect x="0" y="56" width="220" height="619" fill="#262626" stroke="#333333" stroke-width="1"/>
+  
+  <!-- Nav Items -->
+  <rect x="12" y="72" width="196" height="36" rx="6" fill="#0284c7" opacity="0.15"/>
+  <text x="24" y="95" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#38bdf8">🗺️ Dispatch &amp; Map</text>
+  
+  <text x="24" y="135" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500" fill="#a3a3a3">📋 Work Orders (OS)</text>
+  <text x="24" y="175" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500" fill="#a3a3a3">👷 Techs (PWA Offline)</text>
+  <text x="24" y="215" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500" fill="#a3a3a3">🤖 AI Operations Copilot</text>
+  <text x="24" y="255" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500" fill="#a3a3a3">📍 Route Optimizer</text>
+  <text x="24" y="295" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500" fill="#a3a3a3">📊 SLA &amp; Telemetry</text>
+  <text x="24" y="335" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500" fill="#a3a3a3">⚙️ Monorepo Settings</text>
+
+  <!-- Main Content Area -->
+  <text x="245" y="98" font-family="Inter, system-ui, sans-serif" font-size="22" font-weight="700" fill="#f5f5f5">Field Service Operations</text>
+  <text x="245" y="120" font-family="Inter, system-ui, sans-serif" font-size="13" fill="#a3a3a3">Real-time dispatch, PWA offline sync for field technicians &amp; AI copilot assistance</text>
+
+  <!-- Metric Cards -->
+  <!-- Card 1 -->
+  <rect x="245" y="140" width="210" height="90" rx="10" fill="#262626" stroke="#333333" stroke-width="1"/>
+  <text x="265" y="165" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a3a3a3">Active Work Orders (OS)</text>
+  <text x="265" y="200" font-family="Inter, system-ui, sans-serif" font-size="26" font-weight="700" fill="#f5f5f5">38</text>
+  <rect x="375" y="180" width="65" height="20" rx="10" fill="#0284c7" opacity="0.2"/>
+  <text x="383" y="194" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="700" fill="#38bdf8">12 Active</text>
+
+  <!-- Card 2 -->
+  <rect x="475" y="140" width="210" height="90" rx="10" fill="#262626" stroke="#333333" stroke-width="1"/>
+  <text x="495" y="165" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a3a3a3">Field Technicians</text>
+  <text x="495" y="200" font-family="Inter, system-ui, sans-serif" font-size="26" font-weight="700" fill="#38bdf8">16</text>
+  <rect x="585" y="180" width="85" height="20" rx="10" fill="#22c55e" opacity="0.2"/>
+  <text x="593" y="194" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="700" fill="#4ade80">14 PWA Online</text>
+
+  <!-- Card 3 -->
+  <rect x="705" y="140" width="210" height="90" rx="10" fill="#262626" stroke="#333333" stroke-width="1"/>
+  <text x="725" y="165" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a3a3a3">SLA Compliance</text>
+  <text x="725" y="200" font-family="Inter, system-ui, sans-serif" font-size="26" font-weight="700" fill="#4ade80">98.4%</text>
+  <text x="825" y="194" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#a3a3a3">+2.1%</text>
+
+  <!-- Card 4 -->
+  <rect x="935" y="140" width="240" height="90" rx="10" fill="#262626" stroke="#333333" stroke-width="1"/>
+  <text x="955" y="165" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a3a3a3">AI Copilot Assists</text>
+  <text x="955" y="200" font-family="Inter, system-ui, sans-serif" font-size="26" font-weight="700" fill="#c084fc">114</text>
+  <rect x="1055" y="180" width="105" height="20" rx="10" fill="#a855f7" opacity="0.2"/>
+  <text x="1063" y="194" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="700" fill="#c084fc">Auto-Triage Active</text>
+
+  <!-- Section 1: Dispatch & Work Order List -->
+  <text x="245" y="260" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="700" fill="#f5f5f5">Live Work Orders (OS)</text>
+
+  <!-- OS Item 1 (Active) -->
+  <rect x="245" y="275" width="610" height="110" rx="10" fill="#262626" stroke="#0284c7" stroke-width="1.5"/>
+  <circle cx="270" cy="305" r="8" fill="#38bdf8"/>
+  <text x="288" y="310" font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="700" fill="#f5f5f5">OS #4092 — Maintenance &amp; Transformer Inspection</text>
+  <rect x="735" y="295" width="105" height="22" rx="11" fill="#0284c7" opacity="0.2"/>
+  <text x="748" y="310" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="700" fill="#38bdf8">In Progress</text>
+  
+  <text x="265" y="340" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#a3a3a3">Technician: Carlos Mendes • Route: Sector B-14 • ETA: 12 min</text>
+  <line x1="265" y1="355" x2="835" y2="355" stroke="#333333" stroke-width="1"/>
+  <text x="265" y="373" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#38bdf8">PWA Offline Mode: Cached checklist &amp; schematic loaded locally</text>
+
+  <!-- OS Item 2 -->
+  <rect x="245" y="400" width="610" height="110" rx="10" fill="#262626" stroke="#333333" stroke-width="1"/>
+  <circle cx="270" cy="430" r="8" fill="#eab308"/>
+  <text x="288" y="435" font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="700" fill="#f5f5f5">OS #4091 — Fiber Optic Line Repair</text>
+  <rect x="735" y="420" width="105" height="22" rx="11" fill="#eab308" opacity="0.2"/>
+  <text x="752" y="435" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="700" fill="#fde047">En Route</text>
+
+  <text x="265" y="465" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#a3a3a3">Technician: Ana Ramos • Location: Node #88 • Offline Sync: Synced 2m ago</text>
+  <line x1="265" y1="480" x2="835" y2="480" stroke="#333333" stroke-width="1"/>
+  <text x="265" y="498" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#a3a3a3">Next Task: Splicing measurement &amp; photo attachment upload</text>
+
+  <!-- OS Item 3 -->
+  <rect x="245" y="525" width="610" height="125" rx="10" fill="#262626" stroke="#333333" stroke-width="1"/>
+  <circle cx="270" cy="555" r="8" fill="#22c55e"/>
+  <text x="288" y="560" font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="700" fill="#f5f5f5">OS #4090 — High-Voltage Substation Audit</text>
+  <rect x="735" y="545" width="105" height="22" rx="11" fill="#22c55e" opacity="0.2"/>
+  <text x="752" y="560" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="700" fill="#4ade80">Completed</text>
+  <text x="265" y="590" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#a3a3a3">Technician: Roberto Lima • Report generated automatically via AI Copilot</text>
+
+  <!-- Right Drawer: AI Copilot & Offline Sync Engine -->
+  <rect x="875" y="260" width="300" height="390" rx="10" fill="#262626" stroke="#0284c7" stroke-width="1.5"/>
+  
+  <rect x="875" y="260" width="300" height="45" rx="10" fill="#0369a1"/>
+  <circle cx="898" cy="282" r="10" fill="#38bdf8"/>
+  <text x="893" y="287" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#ffffff">🤖</text>
+  <text x="918" y="287" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#ffffff">AI Field Copilot &amp; PWA Sync</text>
+
+  <!-- AI Suggestion Box 1 -->
+  <rect x="890" y="320" width="270" height="95" rx="8" fill="#1a1a1a" stroke="#0284c7" stroke-width="1"/>
+  <text x="902" y="340" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#38bdf8">⚡ Route Optimization Suggestion</text>
+  <text x="902" y="360" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#e5e5e5">"Reorder OS #4092 before OS #4095. Saves 18 mins of traffic delay in Zone 4."</text>
+  <rect x="902" y="375" width="110" height="24" rx="4" fill="#0284c7"/>
+  <text x="912" y="391" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="700" fill="#ffffff">Apply Route</text>
+
+  <!-- AI Diagnostic Box 2 -->
+  <rect x="890" y="430" width="270" height="110" rx="8" fill="#1a1a1a" stroke="#a855f7" stroke-width="1"/>
+  <text x="902" y="450" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#c084fc">🔍 Offline Diagnostic Assistant</text>
+  <text x="902" y="470" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#e5e5e5">"Code E-402 matched in local vector DB. Step 1: Check fuse F-12 resistor."</text>
+  <rect x="902" y="495" width="246" height="28" rx="4" fill="#3b0764" stroke="#a855f7" stroke-width="1"/>
+  <text x="925" y="513" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="600" fill="#e9d5ff">Cached Manual Attached</text>
+
+  <!-- Offline Status Box -->
+  <rect x="890" y="555" width="270" height="80" rx="8" fill="#0f172a" stroke="#333333" stroke-width="1"/>
+  <circle cx="908" cy="575" r="5" fill="#22c55e"/>
+  <text x="920" y="579" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="700" fill="#4ade80">PWA IndexedDB Sync Engine</text>
+  <text x="902" y="600" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#a3a3a3">• 0 Offline Conflict Errors</text>
+  <text x="902" y="618" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#a3a3a3">• Auto-sync on network reconnect active</text>
+</svg>

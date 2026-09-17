@@ -39,6 +39,32 @@ export const featuredProjects: FeaturedProject[] = [
     image: '/assets/portfolio/nexus-developer-platform.svg',
   },
   {
+    slug: 'fieldops',
+    title: 'FieldOps',
+    subtitle: 'Plataforma de Operações de Serviços em Campo',
+    description:
+      'Plataforma completa para gestão, despacho e execução de serviços em campo. Conta com roteamento inteligente de equipes, gestão de ordens de serviço (OS), suporte PWA para técnicos operarem offline e um Copiloto de IA integrado para auxílio operacional e diagnósticos em tempo real.',
+    highlights: [
+      'Monorepo pnpm / Turborepo de nível enterprise com Next.js e NestJS',
+      'Despacho inteligente e gestão em tempo real de ordens de serviço (OS)',
+      'Suporte a técnicos em campo com funcionamento offline (PWA) e sincronização automática',
+      'Copiloto de IA integrado para apoio operacional, diagnósticos técnicos e triagem',
+    ],
+    stack: [
+      'Next.js 16',
+      'NestJS 12',
+      'React 19',
+      'TypeScript',
+      'PostgreSQL',
+      'PWA / Offline First',
+      'Vercel AI SDK',
+      'Tailwind CSS v4',
+      'Turborepo',
+    ],
+    githubUrl: 'https://github.com/saullobueno/fieldops',
+    image: '/assets/portfolio/fieldops.svg',
+  },
+  {
     slug: 'product-analytics-os',
     title: 'Product Analytics OS',
     subtitle: 'Plataforma de Analytics & AI Insights',
