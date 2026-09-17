@@ -221,7 +221,17 @@ export default function Home() {
                         rel="noopener noreferrer"
                         className="btn-action btn-demo"
                       >
-                        <FaExternalLinkAlt size={14} /> Demo ao Vivo
+                        <FaExternalLinkAlt size={14} /> {project.demoUrlLabel || 'Demo ao Vivo'}
+                      </a>
+                    )}
+                    {project.demoMobileUrl && (
+                      <a
+                        href={project.demoMobileUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-action btn-demo"
+                      >
+                        <FaExternalLinkAlt size={14} /> {project.demoMobileUrlLabel || 'Demo Mobile'}
                       </a>
                     )}
                   </div>

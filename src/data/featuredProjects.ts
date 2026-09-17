@@ -7,6 +7,9 @@ export interface FeaturedProject {
   stack: string[];
   githubUrl: string;
   demoUrl?: string;
+  demoUrlLabel?: string;
+  demoMobileUrl?: string;
+  demoMobileUrlLabel?: string;
   image: string;
 }
 
@@ -62,7 +65,10 @@ export const featuredProjects: FeaturedProject[] = [
       'Turborepo',
     ],
     githubUrl: 'https://github.com/saullobueno/fieldops',
-    demoUrl: 'https://fieldops-rho.vercel.app',
+    demoUrl: 'https://fieldops-platformweb.vercel.app',
+    demoUrlLabel: 'FieldOps Web',
+    demoMobileUrl: 'https://fieldops-mobile.vercel.app',
+    demoMobileUrlLabel: 'FieldOps Técnico (Mobile)',
     image: '/assets/portfolio/fieldops.svg',
   },
   {
