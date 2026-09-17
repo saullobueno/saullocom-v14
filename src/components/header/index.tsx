@@ -17,8 +17,8 @@ export default function Header() {
         </div>
         <div className="title">
           <p>
-            Olá! Me chamo Saullo. Sou graduado em <br />
-            Produção Multimídia e atuo como...
+            Olá! Sou o Saullo. Graduado em <br />
+            Produção Multimídia, atuo como...
           </p>
           <h1 className="title-vertical">
             DESEN
@@ -36,7 +36,7 @@ export default function Header() {
             <br />
             FULL STACK
           </h1>
-          <p>Design UI/UX, Node.js, React e React Native</p>
+          <p>UI/UX Design • Node.js • React • React Native</p>
         </div>
       </Content>
     </Container>

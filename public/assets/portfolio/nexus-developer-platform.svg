@@ -104,7 +104,7 @@
   <text x="902" y="415" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="600" fill="#e9d5ff">Copilot: High database lock detected.</text>
   <text x="902" y="433" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#d8b4fe">Action requested: rollback_deployment</text>
   <rect x="902" y="445" width="246" height="36" rx="6" fill="#a855f7"/>
-  <text x="940" y="468" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" fill="#ffffff">Approve Rollback (Human-in-loop)</text>
+  <text x="1025" y="467" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">Approve Rollback (Human-in-the-Loop)</text>
 
   <!-- Observability Chart Box -->
   <rect x="245" y="460" width="610" height="190" rx="10" fill="#262626" stroke="#333333" stroke-width="1"/>

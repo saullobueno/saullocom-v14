@@ -25,8 +25,8 @@
   <text x="24" y="95" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#38bdf8">🗺️ Dispatch &amp; Map</text>
   
   <text x="24" y="135" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500" fill="#a3a3a3">📋 Work Orders (OS)</text>
-  <text x="24" y="175" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500" fill="#a3a3a3">👷 Techs (PWA Offline)</text>
-  <text x="24" y="215" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500" fill="#a3a3a3">🤖 AI Operations Copilot</text>
+  <text x="24" y="175" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500" fill="#a3a3a3">👷 Techs (PWA)</text>
+  <text x="24" y="215" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500" fill="#a3a3a3">🤖 AI Ops Copilot</text>
   <text x="24" y="255" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500" fill="#a3a3a3">📍 Route Optimizer</text>
   <text x="24" y="295" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500" fill="#a3a3a3">📊 SLA &amp; Telemetry</text>
   <text x="24" y="335" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500" fill="#a3a3a3">⚙️ Monorepo Settings</text>
@@ -60,8 +60,8 @@
   <rect x="935" y="140" width="240" height="90" rx="10" fill="#262626" stroke="#333333" stroke-width="1"/>
   <text x="955" y="165" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a3a3a3">AI Copilot Assists</text>
   <text x="955" y="200" font-family="Inter, system-ui, sans-serif" font-size="26" font-weight="700" fill="#c084fc">114</text>
-  <rect x="1055" y="180" width="105" height="20" rx="10" fill="#a855f7" opacity="0.2"/>
-  <text x="1063" y="194" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="700" fill="#c084fc">Auto-Triage Active</text>
+  <rect x="1050" y="180" width="115" height="20" rx="10" fill="#a855f7" opacity="0.2"/>
+  <text x="1058" y="194" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="700" fill="#c084fc">Auto-Triage Active</text>
 
   <!-- Section 1: Dispatch & Work Order List -->
   <text x="245" y="260" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="700" fill="#f5f5f5">Live Work Orders (OS)</text>
@@ -107,16 +107,22 @@
   <!-- AI Suggestion Box 1 -->
   <rect x="890" y="320" width="270" height="95" rx="8" fill="#1a1a1a" stroke="#0284c7" stroke-width="1"/>
   <text x="902" y="340" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#38bdf8">⚡ Route Optimization Suggestion</text>
-  <text x="902" y="360" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#e5e5e5">"Reorder OS #4092 before OS #4095. Saves 18 mins of traffic delay in Zone 4."</text>
-  <rect x="902" y="375" width="110" height="24" rx="4" fill="#0284c7"/>
-  <text x="912" y="391" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="700" fill="#ffffff">Apply Route</text>
+  <text x="902" y="357" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#e5e5e5">
+    <tspan x="902" dy="0">"Reorder OS #4092 before OS #4095.</tspan>
+    <tspan x="902" dy="15">Saves 18 mins delay in Zone 4."</tspan>
+  </text>
+  <rect x="902" y="382" width="110" height="22" rx="4" fill="#0284c7"/>
+  <text x="912" y="397" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="700" fill="#ffffff">Apply Route</text>
 
   <!-- AI Diagnostic Box 2 -->
   <rect x="890" y="430" width="270" height="110" rx="8" fill="#1a1a1a" stroke="#a855f7" stroke-width="1"/>
   <text x="902" y="450" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#c084fc">🔍 Offline Diagnostic Assistant</text>
-  <text x="902" y="470" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#e5e5e5">"Code E-402 matched in local vector DB. Step 1: Check fuse F-12 resistor."</text>
-  <rect x="902" y="495" width="246" height="28" rx="4" fill="#3b0764" stroke="#a855f7" stroke-width="1"/>
-  <text x="925" y="513" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="600" fill="#e9d5ff">Cached Manual Attached</text>
+  <text x="902" y="467" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#e5e5e5">
+    <tspan x="902" dy="0">"Code E-402 matched in vector DB.</tspan>
+    <tspan x="902" dy="15">Step 1: Check fuse F-12 resistor."</tspan>
+  </text>
+  <rect x="902" y="498" width="246" height="28" rx="4" fill="#3b0764" stroke="#a855f7" stroke-width="1"/>
+  <text x="1025" y="516" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="600" fill="#e9d5ff" text-anchor="middle">Cached Manual Attached</text>
 
   <!-- Offline Status Box -->
   <rect x="890" y="555" width="270" height="80" rx="8" fill="#0f172a" stroke="#333333" stroke-width="1"/>

@@ -66,7 +66,7 @@
   <text x="632" y="174" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#a7f3d0">GroqCloud AI Automated Ticket Triage (openai/gpt-oss-120b)</text>
   
   <text x="605" y="200" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#d1fae5">• Sentiment: Frustrated (-0.82) | Category: API Billing Fault | Priority: High</text>
-  <text x="605" y="220" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#d1fae5">• RAG Knowledge Base Match: "Fix 500 errors by rotating STRIPE_SECRET_KEY in settings"</text>
+  <text x="605" y="220" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#d1fae5">• RAG Match: "Fix 500 errors by rotating STRIPE_SECRET_KEY in settings"</text>
   
   <rect x="605" y="235" width="220" height="32" rx="6" fill="#10b981"/>
   <text x="620" y="256" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" fill="#ffffff">Apply AI Suggested Reply</text>
@@ -77,7 +77,10 @@
   <text x="604" y="350" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" fill="#ffffff">S</text>
   <text x="635" y="348" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#f5f5f5">Stripe Customer Tech</text>
   <text x="760" y="348" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#a3a3a3">10:38 AM</text>
-  <text x="605" y="380" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#e5e5e5">"Our checkout endpoint is returning HTTP 500 when processing customer credit cards. Can you check if the webhook signature key expired?"</text>
+  <text x="605" y="375" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#e5e5e5">
+    <tspan x="605" dy="0">"Our checkout endpoint is returning HTTP 500 when processing customer credit cards.</tspan>
+    <tspan x="605" dy="18">Can you check if the webhook signature key expired?"</tspan>
+  </text>
 
   <!-- Internal Agent Reply Box -->
   <rect x="585" y="460" width="590" height="180" rx="10" fill="#1a1a1a" stroke="#333333" stroke-width="1"/>
@@ -85,5 +88,5 @@
   <line x1="605" y1="505" x2="1155" y2="505" stroke="#333333" stroke-width="1"/>
   <text x="605" y="535" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#34d399">"Hello! Our AI triage identified the issue in the webhook secret configuration..."</text>
   <rect x="1050" y="590" width="110" height="36" rx="6" fill="#10b981"/>
-  <text x="1070" y="613" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" fill="#ffffff">Send Reply</text>
+  <text x="1105" y="613" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">Send Reply</text>
 </svg>

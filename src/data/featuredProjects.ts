@@ -62,6 +62,7 @@ export const featuredProjects: FeaturedProject[] = [
       'Turborepo',
     ],
     githubUrl: 'https://github.com/saullobueno/fieldops',
+    demoUrl: 'https://fieldops-rho.vercel.app',
     image: '/assets/portfolio/fieldops.svg',
   },
   {

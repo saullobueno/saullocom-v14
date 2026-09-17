@@ -17,6 +17,7 @@ export const Container = styled.div`
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 2rem;
     justify-items: center;
+    align-items: center;
   }
   div.columns > div {
     text-align: center;
@@ -40,6 +41,7 @@ export const Container = styled.div`
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-gap: 2rem;
+      align-items: center;
     }
     div.columns > div {
       text-align: center;
@@ -128,8 +130,8 @@ export const Container = styled.div`
   .featured-projects-grid {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
-    margin-bottom: 5rem;
+    gap: 7.5rem;
+    margin-bottom: 7rem;
     text-align: left;
   }
 
@@ -137,24 +139,16 @@ export const Container = styled.div`
     display: grid;
     grid-template-columns: 1.1fr 1fr;
     gap: 2.5rem;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    padding: 2rem;
-    overflow: hidden;
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
     align-items: center;
-
-    &:hover {
-      transform: translateY(-4px);
-      border-color: rgba(0, 133, 178, 0.4);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-    }
 
     @media (max-width: 960px) {
       grid-template-columns: 1fr;
       gap: 1.5rem;
-      padding: 1.5rem;
+      padding: 0;
     }
   }
 
@@ -162,7 +156,6 @@ export const Container = styled.div`
     width: 100%;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     background: #111;
 
     img {
@@ -170,11 +163,6 @@ export const Container = styled.div`
       height: auto;
       display: block;
       object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    &:hover img {
-      transform: scale(1.03);
     }
   }
 

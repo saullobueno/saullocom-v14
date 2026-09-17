@@ -16,7 +16,7 @@
   <text x="532" y="32" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#e2e8f0">↩ ↪ zundo</text>
 
   <rect x="1040" y="14" width="136" height="28" rx="6" fill="#6366f1"/>
-  <text x="1058" y="33" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" fill="#ffffff">▶ Execute Workflow</text>
+  <text x="1108" y="32" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">▶ Execute Workflow</text>
 
   <!-- Left Sidebar (Node Palette) -->
   <rect x="0" y="56" width="220" height="619" fill="#141414" stroke="#333333" stroke-width="1"/>

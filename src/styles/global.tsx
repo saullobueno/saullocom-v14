@@ -25,9 +25,9 @@ export default createGlobalStyle`
   }
 
   body, input, button {
-    font: 16px 'Roboto', sans-serif;
+    font: 18px 'Roboto', sans-serif;
     @media (max-width: 880px) {
-    font: 14px 'Roboto', sans-serif;
+    font: 15px 'Roboto', sans-serif;
 
     }
   }

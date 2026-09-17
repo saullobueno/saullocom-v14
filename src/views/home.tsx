@@ -45,10 +45,9 @@ export default function Home() {
 
       <main>
         <Section textColor="#E34040">
-          <h1>MINEIRO DA GEMA</h1>
+          <h1>MINHA TRAJETÓRIA</h1>
           <h2>
-            Até os 12 anos, morei no interior de Minas Gerais, em uma pequena cidade chamada Pingo D'Água.
-            Ganhei meu primeiro computador logo que me mudei para a capital, iniciando minha paixão por tecnologia.
+            Descobri a paixão pela tecnologia ao me mudar para a capital e ter acesso ao meu primeiro computador, iniciando uma jornada de constante evolução.
           </h2>
           <div className="columns">
             <div>
@@ -57,36 +56,23 @@ export default function Home() {
                 width="100%"
                 height="auto"
                 alt="Foto Saullo"
-                style={{ marginBottom: '1rem' }}
               />
             </div>
             <div>
-              <h3>Um pouco sobre mim</h3>
               <p>
-                Desde criança, sempre gostei de desenhar e esculpir. Ganhei meu primeiro computador aos 13 anos e logo me apaixonei por tecnologia. Comecei explorando as primeiras versões do Windows e já criava interfaces digitais usando o PowerPoint.
+                Nascido em Pingo D'Água (MG) e criado em Belo Horizonte, desenvolvi minha paixão pela tecnologia e pelo design desde a adolescência, criando minhas primeiras interfaces digitais.
               </p>
               <p>
-                Após o colégio, realizei diversos cursos de desenvolvimento e design. Atuei em várias empresas da área web e me graduei em 2012.
-              </p>
-              <p>
-                Sempre tive afinidade com o front-end e, com a ascensão do JavaScript em 2015, passei a me interessar também pelas regras de negócio e arquitetura de sistemas.
+                Graduei-me em Produção Multimídia em 2012 e atuei em diversas empresas do setor, evoluindo do design gráfico e front-end para a engenharia de software Full Stack.
               </p>
             </div>
             <div>
               <p>
-                <strong>Principais características interpessoais:</strong>
+                Profissional focado em resultados, unindo postura colaborativa, aprendizado contínuo e forte senso de organização.
               </p>
-              <ul>
-                <li>Ama o que faz</li>
-                <li>Busca aprender mais o tempo todo</li>
-                <li>Gosta de compartilhar o que sabe</li>
-                <li>Satisfação em colaborar com a equipe</li>
-                <li>Senso organizacional natural</li>
-                <li>Respeita quem compartilha o mesmo ambiente</li>
-                <li>Persistente em resolver problemas que aparecem</li>
-                <li>Caçador de detalhes que fazem a diferença</li>
-              </ul>
-              <p>E procurando aprender e evoluir mais...</p>
+              <p>
+                Atuação com persistência na resolução de problemas complexos, atenção aos detalhes e compromisso com a qualidade em cada entrega.
+              </p>
             </div>
           </div>
         </Section>
@@ -94,140 +80,48 @@ export default function Home() {
         <Section textColor="#e2a342">
           <h1 style={{ textAlign: 'center' }}>EXPERTISE TÉCNICA</h1>
           <h2 style={{ textAlign: 'center' }}>
-            Iniciei minha trajetória como web designer e designer gráfico. Posteriormente, especializei-me no desenvolvimento front-end e hoje foco em soluções Full Stack.
+            Trajetória construída no design e UI/UX, consolidada no desenvolvimento front-end e especializada em engenharia de software Full Stack.
           </h2>
 
           <div className="columns">
             <div>
-              <h3>Design</h3>
+              <h3>Design & UI/UX</h3>
               <p>
-                Criação de identidades visuais e design de interfaces focados na experiência do usuário (UX/UI).
-                <br />
-                <small>
-                  <em>
-                    Ferramentas: Figma, Photoshop, Illustrator e Storybook.
-                  </em>
-                </small>
+                Concepção de interfaces intuitivas e identidades visuais focadas em usabilidade e experiência do usuário.
               </p>
-              {/* <div className="icons">
-                <SVGPhotoshop width={50} height={50} />
-                <SVGAdobeXD width={50} height={50} />
-                <SVGIllustrator width={50} height={50} />
-              </div> */}
 
               <h3>Back-end</h3>
               <p>
-                Desenvolvimento de sistemas escaláveis em Node.js com TypeScript, aplicando conceitos de arquitetura limpa, SOLID, APIs RESTful e GraphQL. Gestão de dados com ORMs modernos e bancos de dados SQL/NoSQL.
-                <br />
-                <small>
-                  <em>
-                    Ferramentas: Node.js, TypeScript, Fastify/Express, PostgreSQL, Prisma/Drizzle, Docker, Redis e MongoDB.
-                  </em>
-                </small>
+                Desenvolvimento de APIs e serviços escaláveis com foco em Clean Architecture e princípios SOLID.
               </p>
 
               <h3>Front-End</h3>
               <p>
-                Criação de SPAs e aplicações web de alta performance com React e TypeScript. Foco em componentização avançada, gestão de estado eficiente e interfaces responsivas.
-                <br />
-                <small>
-                  <em>
-                    Ferramentas: React, TypeScript, Vite, Zustand, TanStack Query, Styled Components e Tailwind CSS.
-                  </em>
-                </small>
+                Criação de SPAs e aplicações web de alta performance com componentes reutilizáveis e telas responsivas.
               </p>
-              {/* <div className="icons">
-                <FaNodeJs size={50} />
-                <SVGExpressJS width={50} height={50} />
-                <DiMongodb size={50} />
-                <SVGMongoose width={50} height={50} />
-                <DiPostgresql size={50} />
-                <SVGSequelize width={50} height={50} />
-                <DiRedis size={50} />
-                <FaDocker size={50} />
-                <SVGAdonis width={50} height={50} />
-              </div> */}
             </div>
             <div>
-              {/* <div className="icons">
-                <FaHtml5 size={50} />
-                <FaCss3Alt size={50} />
-                <FaBootstrap size={50} />
-                <SVGStyled width={50} height={50} />
-                <FaJs size={50} />
-                <SVGES6 width={50} height={50} />
-                <FaReact size={50} />
-                <SVGRedux width={50} height={50} />
-                <SVGReduxSaga width={50} height={50} />
-              </div> */}
-
               <img
                 src={Stack02}
                 width="100%"
                 height="auto"
                 alt="Foto Saullo"
-                style={{ marginBottom: '1rem' }}
               />
-
-              {/* <div className="icons">
-                <SVGStyled width={50} height={50} />
-                <FaJs size={50} />
-                <FaReact size={50} />
-                <SVGRedux width={50} height={50} />
-                <SVGReduxSaga width={50} height={50} />
-              </div> */}
             </div>
             <div>
               <h3>Mobile</h3>
               <p>
-                Desenvolvimento mobile multiplataforma com React Native e Expo. Implementação de fluxos complexos de navegação, offline-first e alta fidelidade visual.
-                <br />
-                <small>
-                  <em>
-                    Ferramentas: React Native, Expo, TypeScript, React Navigation e Reanimated.
-                  </em>
-                </small>
+                Desenvolvimento de aplicativos móveis multiplataforma com alta fidelidade visual e performance.
               </p>
-              <h3>Qualidade e CI/CD</h3>
+              <h3>Qualidade & CI/CD</h3>
               <p>
-                Garantia de qualidade através de testes automatizados e automação de deploy. Uso de integração contínua para entregas rápidas e seguras em ambiente de produção.
-                <br />
-                <small>
-                  <em>
-                    Ferramentas: Vitest/Jest, Playwright, GitHub Actions, Docker e ambientes Cloud (AWS/DigitalOcean).
-                  </em>
-                </small>
+                Testes automatizados e pipelines de integração contínua para entregas rápidas e seguras.
               </p>
-              {/* <div className="icons">
-                <FaJs size={50} />
-                <SVGES6 width={50} height={50} />
-                <FaReact size={50} />
-                <FaGithub size={50} />
-                <SVGJest width={50} height={50} />
-              </div> */}
 
-              <h3>Arquitetura e Performance</h3>
+              <h3>Arquitetura & Performance</h3>
               <p>
-                Aplicação de Design Patterns e melhores práticas para garantir a escalabilidade e performance do código. Foco em segurança (OWASP), SEO e manutenibilidade a longo prazo.
-                <br />
-                <small>
-                  <em>
-                    Ferramentas: Clean Architecture, SOLID, Design Patterns e Performance Optimization.
-                  </em>
-                </small>
+                Aplicação de boas práticas de software para garantir segurança, SEO e alta manutenibilidade.
               </p>
-              {/*<div className="icons">
-                <FaJs size={50} />
-                <SVGES6 width={50} height={50} />
-                <FaNodeJs size={50} />
-                <SVGExpressJS width={50} height={50} />
-                <FaReact size={50} />
-                <FaGithub size={50} />
-
-                 <SVGPWA width={50} height={50} />
-                <SVGNext width={50} height={50} />
-                <SVGSaaS width={50} height={50} />
-              </div> */}
             </div>
           </div>
         </Section>
@@ -235,74 +129,46 @@ export default function Home() {
         <Section textColor="#00B259">
           <h1>O QUE FAÇO</h1>
           <h2>
-            Tenho expertise para atuar em todas as etapas de um projeto digital: desde a concepção do design e identidade visual até o desenvolvimento do back-end, front-end e mobile.
+            Domínio completo do ciclo de vida de produtos digitais: da concepção de UI/UX e identidade visual ao desenvolvimento Full Stack e mobile.
           </h2>
 
           <div className="columns">
             <div style={{ textAlign: 'left' }}>
-              {/* <FaImage
-                size={50}
-                style={{ float: 'left', margin: '0 2em 1rem 0' }}
-              /> */}
               <div>
-                <h3>Identidade Visual</h3>
+                <h3>Design & UI/UX</h3>
                 <p>
-                  Desenvolvimento da identidade visual completa: logos, paletas de cores, tipografias, manuais de marca e materiais de papelaria.
-                </p>
-              </div>
-              {/* <FaPaintBrush
-                size={50}
-                style={{ float: 'left', margin: '0 2rem 1rem 0' }}
-              /> */}
-              <div>
-                <h3>Design de Interface</h3>
-                <p>
-                  Design de interfaces para websites, sistemas e aplicativos, sempre com foco na usabilidade e na interação do usuário (UX/UI).
+                  Criação de marcas, identidades visuais e interfaces intuitivas para plataformas web e aplicativos móveis.
                 </p>
               </div>
 
               <div>
-                <h3>Web</h3>
+                <h3>Aplicações Web</h3>
                 <p>
-                  Desenvolvimento de websites, landing pages, sistemas complexos, dashboards e PWAs, utilizando código limpo, semântico e escalonável, seguindo as melhores práticas do mercado.
+                  Desenvolvimento de ecossistemas web, dashboards e landing pages com código limpo, rápido e escalável.
                 </p>
               </div>
             </div>
             <div>
-              {/* <MdWeb
-                size={50}
-                style={{ float: 'left', margin: '0 2rem 1rem 0' }}
-              /> */}
-              {/* <FaDatabase
-                size={50}
-                style={{ float: 'left', margin: '0 2rem 1rem 0' }}
-              /> */}
               <div>
-                <h3>API</h3>
+                <h3>APIs & Back-end</h3>
                 <p>
-                  Desenvolvimento back-end robusto em Node.js (Express/AdonisJS), utilizando bancos de dados como PostgreSQL e MongoDB, sistemas de filas com Redis e containerização com Docker.
+                  Construção de serviços back-end eficientes, modelagem de dados, mensageria e containerização de aplicações.
                 </p>
               </div>
 
               <div>
-                <h3>Aplicativo Mobile</h3>
+                <h3>Aplicações Mobile</h3>
                 <p>
-                  Desenvolvimento de aplicativos híbridos e nativos com React Native, publicados nas lojas Google Play e App Store.
+                  Desenvolvimento e publicação de aplicativos móveis para ecossistemas iOS e Android.
                 </p>
               </div>
             </div>
             <div>
-              {/* <FaMobileAlt
-                size={50}
-                style={{ float: 'left', margin: '0 2rem 1rem 0' }}
-              /> */}
-
               <img
                 src={Stack03}
                 width="100%"
                 height="auto"
                 alt="Foto Saullo"
-                style={{ marginBottom: '1rem' }}
               />
             </div>
           </div>
@@ -311,7 +177,7 @@ export default function Home() {
         <Section textColor="#0085B2">
           <h1>PORTFÓLIO</h1>
           <h2>
-            Aplicações web modernas, arquiteturas com inteligência artificial, engenharia de software full-stack e sistemas de alta performance.
+            Engenharia de software Full Stack, sistemas web modernos, soluções integradas a Inteligência Artificial e aplicações de alta performance.
           </h2>
 
           <div className="featured-projects-grid">
@@ -367,7 +233,7 @@ export default function Home() {
           <div className="legacy-portfolio-section">
             <h3 className="legacy-heading">Projetos Legados</h3>
             <p className="legacy-subheading">
-              Histórico de identidades visuais, websites institucionais e projetos desenvolvidos ao longo da carreira.
+              Histórico de identidades visuais, plataformas institucionais e projetos desenvolvidos ao longo da trajetória profissional.
             </p>
 
             <div className="gallery">
@@ -420,7 +286,7 @@ export default function Home() {
         <Section textColor="#7159c1">
           <h1>CONTATO</h1>
           <h2>
-            Tem um projeto em mente ou uma ideia para tirar do papel? Vamos conversar! Entre em contato para tirar dúvidas ou solicitar um orçamento:
+            Tem um projeto para desenvolver, deseja contratar meus serviços ou quer conversar sobre oportunidades? Vamos conversar:
           </h2>
 
           <div className="columns">
@@ -507,7 +373,7 @@ export default function Home() {
       </main>
 
       <Footer>
-        <p>Copyright © saullo.com</p>
+        <p>© saullo.com • Todos os direitos reservados</p>
       </Footer>
     </>
   );

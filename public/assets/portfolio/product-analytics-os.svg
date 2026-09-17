@@ -12,7 +12,7 @@
   <text x="315" y="33" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#a3a3a3">📅 Range: Last 30 Days • Device: All</text>
 
   <rect x="1050" y="14" width="126" height="28" rx="6" fill="#8b5cf6"/>
-  <text x="1065" y="33" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#ffffff">+ Add Dashboard</text>
+  <text x="1113" y="32" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#ffffff" text-anchor="middle">+ Add Dashboard</text>
 
   <!-- Left Sidebar (#262626) -->
   <rect x="0" y="56" width="220" height="619" fill="#262626" stroke="#333333" stroke-width="1"/>
