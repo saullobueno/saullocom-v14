@@ -1,3 +1,54 @@
+// FieldOps
+import fieldopsInicio from '../assets/portfolio/fieldops-platform/inicio.png';
+import fieldopsDespacho from '../assets/portfolio/fieldops-platform/despacho.png';
+import fieldopsOrdens from '../assets/portfolio/fieldops-platform/ordens.png';
+import fieldopsRelatorios from '../assets/portfolio/fieldops-platform/relatorios.png';
+import fieldopsCopiloto from '../assets/portfolio/fieldops-platform/copiloto.png';
+
+// Nexus Developer Platform
+import nexusDashboard from '../assets/portfolio/nexus-developer-platform/dashboard.jpeg';
+
+// Product Analytics OS
+import analyticsDashboards from '../assets/portfolio/product-analytics-os/dashboards.png';
+import analyticsProductHealth from '../assets/portfolio/product-analytics-os/product-health.png';
+import analyticsEventExplorer from '../assets/portfolio/product-analytics-os/event-explorer.png';
+import analyticsFunnels from '../assets/portfolio/product-analytics-os/funnels.png';
+import analyticsRetention from '../assets/portfolio/product-analytics-os/retention.png';
+import analyticsCohorts from '../assets/portfolio/product-analytics-os/cohorts.png';
+import analyticsSegmentation from '../assets/portfolio/product-analytics-os/segmentation.png';
+import analyticsUserJourney from '../assets/portfolio/product-analytics-os/user-journey.png';
+import analyticsFeatureAdoption from '../assets/portfolio/product-analytics-os/feature-adoption.png';
+import analyticsRealtime from '../assets/portfolio/product-analytics-os/realtime.png';
+import analyticsAiAnalyst from '../assets/portfolio/product-analytics-os/ai-analyst.png';
+import analyticsLogin from '../assets/portfolio/product-analytics-os/login.png';
+
+// AI Customer Operations Platform
+import aiOpsInbox from '../assets/portfolio/ai-customer-operations-platform/03-inbox-dark.png';
+import aiOpsLanding from '../assets/portfolio/ai-customer-operations-platform/01-landing-dark.png';
+import aiOpsSignIn from '../assets/portfolio/ai-customer-operations-platform/02-sign-in-dark.png';
+import aiOpsTicketDetail from '../assets/portfolio/ai-customer-operations-platform/04-ticket-detail-dark.png';
+import aiOpsKnowledgeBase from '../assets/portfolio/ai-customer-operations-platform/05-knowledge-base-dark.png';
+import aiOpsAnalytics from '../assets/portfolio/ai-customer-operations-platform/06-analytics-dark.png';
+import aiOpsBilling from '../assets/portfolio/ai-customer-operations-platform/07-billing-dark.png';
+import aiOpsMembers from '../assets/portfolio/ai-customer-operations-platform/08-members-dark.png';
+import aiOpsTicketLight from '../assets/portfolio/ai-customer-operations-platform/ticket.jpeg';
+
+// Command Center
+import commandDashboardDark from '../assets/portfolio/command-center/dashboard-dark.png';
+import commandDeviceDetail from '../assets/portfolio/command-center/device-detail.png';
+import commandEventReplay from '../assets/portfolio/command-center/event-replay.png';
+import commandLogin from '../assets/portfolio/command-center/login.png';
+import commandDashboardLight from '../assets/portfolio/command-center/dashboard-light.png';
+
+// AI Workflow Studio
+import workflowEditorDark from '../assets/portfolio/ai-workflow-studio/workflow-editor-dark.png';
+import workflowListDark from '../assets/portfolio/ai-workflow-studio/workflow-list-dark.png';
+import workflowCopilotDark from '../assets/portfolio/ai-workflow-studio/copilot-dark.png';
+import workflowExecutionHistoryDark from '../assets/portfolio/ai-workflow-studio/execution-history-dark.png';
+import workflowLoginDark from '../assets/portfolio/ai-workflow-studio/login-dark.png';
+import workflowFlowLight from '../assets/portfolio/ai-workflow-studio/flow.jpeg';
+import workflowListLight from '../assets/portfolio/ai-workflow-studio/workflow-list-light.png';
+
 export interface FeaturedProject {
   slug: string;
   title: string;
@@ -10,37 +61,10 @@ export interface FeaturedProject {
   demoUrlLabel?: string;
   demoMobileUrl?: string;
   demoMobileUrlLabel?: string;
-  image: string;
+  images: string[];
 }
 
 export const featuredProjects: FeaturedProject[] = [
-  {
-    slug: 'nexus-developer-platform',
-    title: 'Nexus Developer Platform',
-    subtitle: 'Internal Developer Portal (IDP) Production-Grade',
-    description:
-      'Portal do Desenvolvedor completo de nível enterprise com catálogo de serviços, deployments, gestão de incidentes, observabilidade (logs, traces, métricas), feature flags, pipelines de CI/CD, integrações em tempo real via SSE e um AI Engineering Copilot com tool calling e aprovação humana explícita.',
-    highlights: [
-      '20 fases de implementação arquitetural documentadas com 19 ADRs',
-      'AI Engineering Copilot com 16 tools reais e human-in-the-loop',
-      'Adapters reais para GitHub, Sentry, Grafana e Slack com fallback automático',
-      'Observabilidade avançada com gráficos ECharts e waterfall de traces',
-    ],
-    stack: [
-      'Next.js 16',
-      'React 19',
-      'TypeScript',
-      'NestJS 12',
-      'Drizzle ORM',
-      'PostgreSQL',
-      'Vercel AI SDK v7',
-      'Tailwind CSS v4',
-      'Turborepo',
-    ],
-    githubUrl: 'https://github.com/saullobueno/nexus-developer-platform',
-    demoUrl: 'https://nexus-developer-platform-rho.vercel.app',
-    image: '/assets/portfolio/nexus-developer-platform.svg',
-  },
   {
     slug: 'fieldops',
     title: 'FieldOps',
@@ -66,17 +90,44 @@ export const featuredProjects: FeaturedProject[] = [
     ],
     githubUrl: 'https://github.com/saullobueno/fieldops',
     demoUrl: 'https://fieldops-platformweb.vercel.app',
-    demoUrlLabel: 'Demo Web',
+    demoUrlLabel: 'Demo',
     demoMobileUrl: 'https://fieldops-mobile.vercel.app',
     demoMobileUrlLabel: 'Demo Técnico Mobile',
-    image: '/assets/portfolio/fieldops.svg',
+    images: [fieldopsInicio, fieldopsDespacho, fieldopsOrdens, fieldopsRelatorios, fieldopsCopiloto],
+  },
+  {
+    slug: 'nexus-developer-platform',
+    title: 'Nexus Developer Platform',
+    subtitle: 'Portal interno (IDP) para catálogo de serviços, deploys e incidentes',
+    description:
+      'Portal interno de desenvolvedor (IDP): um só lugar onde times de engenharia acompanham catálogo de serviços, deployments, incidentes e observabilidade (logs, traces e métricas) de toda a operação. Inclui feature flags, pipelines de CI/CD, integrações reais com GitHub, Sentry, Grafana e Slack (com fallback automático para modo demo) e um AI Engineering Copilot com tool calling real que só age após aprovação humana explícita.',
+    highlights: [
+      '20 fases de implementação arquitetural documentadas com 19 ADRs',
+      'AI Engineering Copilot com 16 tools reais e human-in-the-loop',
+      'Adapters reais para GitHub, Sentry, Grafana e Slack com fallback automático',
+      'Observabilidade avançada com gráficos ECharts e waterfall de traces',
+    ],
+    stack: [
+      'Next.js 16',
+      'React 19',
+      'TypeScript',
+      'NestJS 12',
+      'Drizzle ORM',
+      'PostgreSQL',
+      'Vercel AI SDK v7',
+      'Tailwind CSS v4',
+      'Turborepo',
+    ],
+    githubUrl: 'https://github.com/saullobueno/nexus-developer-platform',
+    demoUrl: 'https://nexus-developer-platform-rho.vercel.app',
+    images: [nexusDashboard],
   },
   {
     slug: 'product-analytics-os',
     title: 'Product Analytics OS',
-    subtitle: 'Plataforma de Analytics & AI Insights',
+    subtitle: 'Ferramenta de product analytics para medir o uso de um produto digital',
     description:
-      'Plataforma de Product Analytics estilo PostHog/Mixpanel/Amplitude focada em UX avançada. Conta com métricas de Product Health (DAU, Retenção, Funil de Ativação, Churn), motor determinístico de dados sintéticos, widgets customizáveis em drag & drop e um AI Analyst que diagnostica causas-raiz de variações em métricas com evidências reais.',
+      'Ferramenta de product analytics (no estilo PostHog, Mixpanel e Amplitude): um painel onde é possível acompanhar como as pessoas usam um produto digital, com métricas de DAU, retenção, funil de ativação e churn, dashboards customizáveis em drag-and-drop e análises de cohort, funil e jornada do usuário. Tem também um AI Analyst que explica automaticamente variações nessas métricas, como "por que a conversão caiu essa semana?", com causa-raiz e evidências calculadas a partir do próprio dataset.',
     highlights: [
       'AI Analyst estatístico com diagnóstico de causa-raiz e evidências calculadas',
       'Dashboards customizáveis com drag-and-drop (dnd-kit) e persistência',
@@ -95,14 +146,27 @@ export const featuredProjects: FeaturedProject[] = [
     ],
     githubUrl: 'https://github.com/saullobueno/product-analytics-os',
     demoUrl: 'https://product-analytics-os.vercel.app',
-    image: '/assets/portfolio/product-analytics-os.svg',
+    images: [
+      analyticsDashboards,
+      analyticsProductHealth,
+      analyticsEventExplorer,
+      analyticsFunnels,
+      analyticsRetention,
+      analyticsCohorts,
+      analyticsSegmentation,
+      analyticsUserJourney,
+      analyticsFeatureAdoption,
+      analyticsRealtime,
+      analyticsAiAnalyst,
+      analyticsLogin,
+    ],
   },
   {
     slug: 'ai-customer-operations-platform',
     title: 'AI Customer Operations Platform',
-    subtitle: 'Atendimento B2B Multi-Tenant com IA',
+    subtitle: 'Plataforma de atendimento ao cliente (B2B) com triagem automática por IA',
     description:
-      'Plataforma de atendimento B2B multi-tenant que combina inbox no estilo Intercom/Linear com inteligência artificial generativa. Realiza triagem automática de tickets por sentimento e severidade com GroqCloud LLM, busca RAG em Base de Conhecimento, processamento assíncrono em fila BullMQ e disparo de e-mails de convite e notificação via Resend.',
+      'Plataforma de atendimento ao cliente para empresas (B2B): um inbox de suporte, no estilo Intercom + Linear, onde os tickets chegam, são organizados e respondidos por uma equipe, com suporte a múltiplas empresas na mesma instância (multi-tenant). A IA participa do fluxo de verdade — classifica cada ticket por sentimento e prioridade, busca contexto na base de conhecimento via RAG e sugere uma resposta usando GroqCloud.',
     highlights: [
       'Arquitetura multi-tenant nativa com RBAC e isolamento de organizações',
       'Triagem automática com IA (GroqCloud LLM) e RAG em base de conhecimento',
@@ -122,14 +186,24 @@ export const featuredProjects: FeaturedProject[] = [
     ],
     githubUrl: 'https://github.com/saullobueno/ai-customer-operations-platform',
     demoUrl: 'https://ai-customer-operations-platform-gamma.vercel.app',
-    image: '/assets/portfolio/ai-customer-operations-platform.svg',
+    images: [
+      aiOpsInbox,
+      aiOpsLanding,
+      aiOpsSignIn,
+      aiOpsTicketDetail,
+      aiOpsKnowledgeBase,
+      aiOpsAnalytics,
+      aiOpsBilling,
+      aiOpsMembers,
+      aiOpsTicketLight,
+    ],
   },
   {
     slug: 'command-center',
     title: 'Command Center',
-    subtitle: 'IoT Operations & Real-Time Dashboard',
+    subtitle: 'Central de operações em tempo real para uma frota de dispositivos IoT',
     description:
-      'Centro de operações em tempo real para monitoramento de milhares de dispositivos IoT simulados. Apresenta mapa interativo de alta performance (MapLibre GL com clustering), alertas ao vivo, telemetria em gráficos ECharts, tabela virtualizada (TanStack Table), Command Palette (Ctrl+K) e modo Event Replay determinístico para reprodução de incidentes históricos.',
+      'Central de operações para monitorar em tempo real milhares de dispositivos IoT simulados num mapa interativo (MapLibre GL) com clustering, alertas ao vivo e telemetria em gráficos ECharts. Traz uma tabela virtualizada para lidar com grandes volumes, um Command Palette (Ctrl+K) para localizar qualquer dispositivo e um modo Event Replay que reproduz de forma determinística o estado da operação numa janela de tempo escolhida.',
     highlights: [
       'Mapa interativo de alta performance com MapLibre GL e clustering',
       'Event Replay determinístico para viagens no tempo e análise de incidentes',
@@ -150,14 +224,20 @@ export const featuredProjects: FeaturedProject[] = [
     ],
     githubUrl: 'https://github.com/saullobueno/command-center',
     demoUrl: 'https://command-center-ten-umber.vercel.app',
-    image: '/assets/portfolio/command-center.svg',
+    images: [
+      commandDashboardDark,
+      commandDeviceDetail,
+      commandEventReplay,
+      commandLogin,
+      commandDashboardLight,
+    ],
   },
   {
     slug: 'ai-workflow-studio',
     title: 'AI Workflow Studio',
-    subtitle: 'Editor Visual de Workflows de IA',
+    subtitle: 'Editor visual no-code para montar workflows de automação com IA',
     description:
-      'Editor visual no-code/low-code para construção de fluxos de automação com IA (estilo n8n). Oferece canvas infinito com zoom/pan/minimap (React Flow), 5 tipos de nodes interativos, undo/redo (zundo), validação Zod compartilhada, modo de execução simulado com gráfico de duração e inspeção de payloads no Monaco Editor, além de AI Copilot que gera fluxos a partir de prompts em português.',
+      'Editor visual no-code para montar workflows de automação com IA (gatilhos → classificação → condições → ações), inspirado no n8n. Tem canvas infinito com zoom/pan/minimap (React Flow), 5 tipos de node configuráveis, execução simulada com log por node e gráfico de duração, JSON Inspector no Monaco Editor, e um AI Copilot que monta o workflow inteiro a partir de um pedido em português.',
     highlights: [
       'Canvas infinito interativo com React Flow e zoom/pan/minimap',
       'AI Copilot (Vercel AI SDK + Groq) para geração de workflows via linguagem natural',
@@ -179,6 +259,14 @@ export const featuredProjects: FeaturedProject[] = [
     ],
     githubUrl: 'https://github.com/saullobueno/ai-workflow-studio',
     demoUrl: 'https://ai-workflow-studio-phi.vercel.app',
-    image: '/assets/portfolio/ai-workflow-studio.svg',
+    images: [
+      workflowEditorDark,
+      workflowListDark,
+      workflowCopilotDark,
+      workflowExecutionHistoryDark,
+      workflowLoginDark,
+      workflowFlowLight,
+      workflowListLight,
+    ],
   },
 ];

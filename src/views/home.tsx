@@ -3,6 +3,7 @@ import { featuredProjects } from '../data/featuredProjects';
 import Header from '../components/header';
 import Section from '../components/section';
 import Footer from '../components/footer';
+import ProjectGallery from '../components/projectGallery';
 
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
@@ -32,12 +33,18 @@ import Stack04 from '../assets/imageStack04.jpg';
 export default function Home() {
   const [index, setIndex] = useState(-1);
   const [showAllLegacy, setShowAllLegacy] = useState(false);
+  const [projectGallery, setProjectGallery] = useState<{ slug: string; index: number } | null>(
+    null
+  );
 
   const slides = portData.map((port) => ({
     src: port.image.slice(0, -4) + '-g.jpg',
     title: port.title,
     description: port.description,
   }));
+
+  const activeProject = featuredProjects.find((project) => project.slug === projectGallery?.slug);
+  const projectSlides = (activeProject?.images ?? []).map((src) => ({ src }));
 
   return (
     <>
@@ -183,12 +190,20 @@ export default function Home() {
           <div className="featured-projects-grid">
             {featuredProjects.map((project) => (
               <div className="featured-card" key={project.slug}>
-                <div className="featured-image-container">
-                  <img src={project.image} alt={project.title} />
-                </div>
-                <div className="featured-content">
+                <div className="featured-header">
                   <h3 className="featured-title">{project.title}</h3>
                   <div className="featured-subtitle">{project.subtitle}</div>
+                </div>
+
+                <ProjectGallery
+                  images={project.images}
+                  title={project.title}
+                  onOpenImage={(imageIndex) =>
+                    setProjectGallery({ slug: project.slug, index: imageIndex })
+                  }
+                />
+
+                <div className="featured-body">
                   <p className="featured-description">{project.description}</p>
 
                   <ul className="featured-highlights">
@@ -212,7 +227,7 @@ export default function Home() {
                       rel="noopener noreferrer"
                       className="btn-action btn-github"
                     >
-                      <FaGithub size={18} /> Repositório GitHub
+                      <FaGithub size={18} /> GitHub
                     </a>
                     {project.demoUrl && (
                       <a
@@ -221,7 +236,7 @@ export default function Home() {
                         rel="noopener noreferrer"
                         className="btn-action btn-demo"
                       >
-                        <FaExternalLinkAlt size={14} /> {project.demoUrlLabel || 'Demo ao Vivo'}
+                        <FaExternalLinkAlt size={14} /> {project.demoUrlLabel || 'Demo'}
                       </a>
                     )}
                     {project.demoMobileUrl && (
@@ -239,6 +254,14 @@ export default function Home() {
               </div>
             ))}
           </div>
+
+          <Lightbox
+            index={projectGallery?.index ?? 0}
+            slides={projectSlides}
+            open={projectGallery !== null}
+            close={() => setProjectGallery(null)}
+            plugins={[Zoom, Counter, Thumbnails]}
+          />
 
           <div className="legacy-portfolio-section">
             <h3 className="legacy-heading">Projetos Legados</h3>
