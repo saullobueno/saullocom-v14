@@ -1,3 +1,17 @@
+// Forge
+import forgeProjetos from '../assets/portfolio/forge-ai-software-factory/03-projetos-dark.png';
+import forgeProjetoDetalhe from '../assets/portfolio/forge-ai-software-factory/05-projeto-detalhe-dark.png';
+import forgeTimeline from '../assets/portfolio/forge-ai-software-factory/09-execucao-timeline-dark.png';
+import forgeAprovacao from '../assets/portfolio/forge-ai-software-factory/10-execucao-aprovacao-dark.png';
+import forgeExplorador from '../assets/portfolio/forge-ai-software-factory/07-codigo-explorador-dark.png';
+import forgeDiff from '../assets/portfolio/forge-ai-software-factory/08-codigo-diff-dark.png';
+import forgeAprovacoes from '../assets/portfolio/forge-ai-software-factory/11-aprovacoes-dark.png';
+import forgeUsoIa from '../assets/portfolio/forge-ai-software-factory/12-uso-ia-dark.png';
+import forgePlayground from '../assets/portfolio/forge-ai-software-factory/13-playground-scorecard-dark.png';
+import forgeAuditoria from '../assets/portfolio/forge-ai-software-factory/14-auditoria-dark.png';
+import forgeLogin from '../assets/portfolio/forge-ai-software-factory/01-login-dark.png';
+import forgeDetalheLight from '../assets/portfolio/forge-ai-software-factory/16-projeto-detalhe-light.png';
+
 // FieldOps
 import fieldopsInicio from '../assets/portfolio/fieldops-platform/inicio.png';
 import fieldopsDespacho from '../assets/portfolio/fieldops-platform/despacho.png';
@@ -65,6 +79,50 @@ export interface FeaturedProject {
 }
 
 export const featuredProjects: FeaturedProject[] = [
+  {
+    slug: 'forge-ai-software-factory',
+    title: 'Forge',
+    subtitle: 'Fábrica de Software com IA',
+    description:
+      'Plataforma onde agentes de IA recebem tarefas de engenharia, propõem mudanças em código de verdade e só as aplicam depois da aprovação de uma pessoa. A timeline da execução (planejar, inspecionar, implementar, testar e revisar) atualiza ao vivo via SSE, e o patch aprovado é aplicado numa cópia isolada do repositório. Conta com RBAC multi-tenant, trilha de auditoria completa, observabilidade com OpenTelemetry e controle de custo de IA.',
+    highlights: [
+      'Humano no controle: escritas de código da IA ficam aguardando aprovação de tech lead/admin',
+      'Multi-tenant com RBAC validado no backend e provider de IA trocável (mock, Groq, Gemini, Anthropic)',
+      'RAG com indexação de arquivos reais, ranking híbrido e defesa contra prompt injection',
+      'Observabilidade OpenTelemetry, CI com budgets de bundle, testes e2e e auditoria de acessibilidade',
+    ],
+    stack: [
+      'Next.js 16',
+      'NestJS',
+      'React 19',
+      'TypeScript',
+      'PostgreSQL',
+      'Drizzle ORM',
+      'BullMQ / Redis',
+      'OpenTelemetry',
+      'Vercel AI SDK',
+      'Monaco Editor',
+      'Playwright',
+      'Tailwind CSS',
+      'Turborepo',
+    ],
+    githubUrl: 'https://github.com/saullobueno/forge-ai-software-factory',
+    demoUrl: 'https://forge-ai-software-factory.vercel.app',
+    images: [
+      forgeProjetos,
+      forgeProjetoDetalhe,
+      forgeTimeline,
+      forgeAprovacao,
+      forgeExplorador,
+      forgeDiff,
+      forgeAprovacoes,
+      forgeUsoIa,
+      forgePlayground,
+      forgeAuditoria,
+      forgeLogin,
+      forgeDetalheLight,
+    ],
+  },
   {
     slug: 'fieldops',
     title: 'FieldOps',
