@@ -194,6 +194,8 @@ export const featuredProjects: FeaturedProject[] = [
       'AI Engineering Copilot com 16 tools reais e human-in-the-loop',
       'Adapters reais para GitHub, Sentry, Grafana e Slack com fallback automático',
       'Observabilidade avançada com gráficos ECharts e waterfall de traces',
+      'Feature flags (boolean, percentual, por usuário/organização e por regras) e pipelines Build → Testes → Segurança → Deploy',
+      'Realtime via SSE com toasts de deploys, incidentes e execuções de IA, e KPIs por time (uptime, MTTR, frequência de deploy)',
     ],
     stack: [
       'Next.js 16',
