@@ -119,12 +119,12 @@ export const featuredProjects: FeaturedProject[] = [
     githubUrl: 'https://github.com/saullobueno/forge-ai-software-factory',
     demoUrl: 'https://forge-ai-software-factory.vercel.app',
     images: [
+      forgeDiff,
       forgeProjetos,
       forgeProjetoDetalhe,
       forgeTimeline,
       forgeAprovacao,
       forgeExplorador,
-      forgeDiff,
       forgeAprovacoes,
       forgeUsoIa,
       forgePlayground,
