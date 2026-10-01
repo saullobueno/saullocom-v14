@@ -28,7 +28,19 @@ import fieldopsRelatorios from '../assets/portfolio/fieldops-platform/relatorios
 import fieldopsCopiloto from '../assets/portfolio/fieldops-platform/copiloto.png';
 
 // Nexus Developer Platform
-import nexusDashboard from '../assets/portfolio/nexus-developer-platform/dashboard.jpeg';
+import nexusDashboard from '../assets/portfolio/nexus-developer-platform/dashboard.png';
+import nexusCatalogo from '../assets/portfolio/nexus-developer-platform/catalog.png';
+import nexusServiceDetail from '../assets/portfolio/nexus-developer-platform/service-detail.png';
+import nexusDeployments from '../assets/portfolio/nexus-developer-platform/deployments.png';
+import nexusIncidents from '../assets/portfolio/nexus-developer-platform/incidents.png';
+import nexusObservability from '../assets/portfolio/nexus-developer-platform/observability.png';
+import nexusFeatureFlags from '../assets/portfolio/nexus-developer-platform/feature-flags.png';
+import nexusPipelines from '../assets/portfolio/nexus-developer-platform/pipelines.png';
+import nexusAiCopilot from '../assets/portfolio/nexus-developer-platform/ai-copilot.png';
+import nexusReports from '../assets/portfolio/nexus-developer-platform/reports.png';
+import nexusTeams from '../assets/portfolio/nexus-developer-platform/teams.png';
+import nexusSettings from '../assets/portfolio/nexus-developer-platform/settings.png';
+import nexusLogin from '../assets/portfolio/nexus-developer-platform/login.png';
 
 // Product Analytics OS
 import analyticsDashboards from '../assets/portfolio/product-analytics-os/dashboards.png';
@@ -196,7 +208,21 @@ export const featuredProjects: FeaturedProject[] = [
     ],
     githubUrl: 'https://github.com/saullobueno/nexus-developer-platform',
     demoUrl: 'https://nexus-developer-platform-rho.vercel.app',
-    images: [nexusDashboard],
+    images: [
+      nexusDashboard,
+      nexusCatalogo,
+      nexusServiceDetail,
+      nexusDeployments,
+      nexusIncidents,
+      nexusObservability,
+      nexusFeatureFlags,
+      nexusPipelines,
+      nexusAiCopilot,
+      nexusReports,
+      nexusTeams,
+      nexusSettings,
+      nexusLogin,
+    ],
   },
   {
     slug: 'product-analytics-os',
