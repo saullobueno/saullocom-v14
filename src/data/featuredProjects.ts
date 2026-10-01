@@ -11,6 +11,14 @@ import forgePlayground from '../assets/portfolio/forge-ai-software-factory/13-pl
 import forgeAuditoria from '../assets/portfolio/forge-ai-software-factory/14-auditoria-dark.png';
 import forgeLogin from '../assets/portfolio/forge-ai-software-factory/01-login-dark.png';
 import forgeDetalheLight from '../assets/portfolio/forge-ai-software-factory/16-projeto-detalhe-light.png';
+import forgeTarefas from '../assets/portfolio/forge-ai-software-factory/19-tarefas-kanban-dark.png';
+import forgeBusca from '../assets/portfolio/forge-ai-software-factory/20-busca-global-dark.png';
+import forgeDatasets from '../assets/portfolio/forge-ai-software-factory/21-playground-datasets-dark.png';
+import forgeConta from '../assets/portfolio/forge-ai-software-factory/22-minha-conta-dark.png';
+import forgeUsuarios from '../assets/portfolio/forge-ai-software-factory/23-configuracoes-usuarios-dark.png';
+import forgePapeis from '../assets/portfolio/forge-ai-software-factory/24-configuracoes-papeis-dark.png';
+import forgePoliticas from '../assets/portfolio/forge-ai-software-factory/25-configuracoes-politicas-dark.png';
+import forgeAgentes from '../assets/portfolio/forge-ai-software-factory/26-configuracoes-agentes-dark.png';
 
 // FieldOps
 import fieldopsInicio from '../assets/portfolio/fieldops-platform/inicio.png';
@@ -84,12 +92,14 @@ export const featuredProjects: FeaturedProject[] = [
     title: 'Forge',
     subtitle: 'Fábrica de Software com IA',
     description:
-      'Plataforma onde agentes de IA recebem tarefas de engenharia, propõem mudanças em código de verdade e só as aplicam depois da aprovação de uma pessoa. A timeline da execução (planejar, inspecionar, implementar, testar e revisar) atualiza ao vivo via SSE, e o patch aprovado é aplicado numa cópia isolada do repositório. Conta com RBAC multi-tenant, trilha de auditoria completa, observabilidade com OpenTelemetry e controle de custo de IA.',
+      'Plataforma onde agentes de IA recebem tarefas de engenharia, propõem mudanças em código de verdade e só as aplicam depois da aprovação de uma pessoa. A timeline da execução (planejar, inspecionar, implementar, testar e revisar) atualiza ao vivo via SSE, e o patch aprovado é aplicado numa cópia isolada do repositório. Conta com RBAC multi-tenant, trilha de auditoria completa, observabilidade com OpenTelemetry e controle de custo de IA. Inclui ainda tarefas em Kanban, busca global, administração de usuários, papéis, políticas e agentes, e segurança com sessões revogáveis e 2FA.',
     highlights: [
       'Humano no controle: escritas de código da IA ficam aguardando aprovação de tech lead/admin',
-      'Multi-tenant com RBAC validado no backend e provider de IA trocável (mock, Groq, Gemini, Anthropic)',
+      'Multi-tenant com RBAC validado no backend, políticas de ferramentas e agentes configuráveis por organização',
+      'IA por projeto (mock, Groq, Gemini, Anthropic) com streaming ao vivo e datasets versionados no Playground',
       'RAG com indexação de arquivos reais, ranking híbrido e defesa contra prompt injection',
-      'Observabilidade OpenTelemetry, CI com budgets de bundle, testes e2e e auditoria de acessibilidade',
+      'Tarefas em Kanban com dependências, busca global (Ctrl+K), notificações e convites de uso único',
+      'Sessões revogáveis, 2FA TOTP, observabilidade OpenTelemetry, CI com budgets de bundle e testes e2e',
     ],
     stack: [
       'Next.js 16',
@@ -119,6 +129,14 @@ export const featuredProjects: FeaturedProject[] = [
       forgeUsoIa,
       forgePlayground,
       forgeAuditoria,
+      forgeTarefas,
+      forgeBusca,
+      forgeDatasets,
+      forgeUsuarios,
+      forgePapeis,
+      forgePoliticas,
+      forgeAgentes,
+      forgeConta,
       forgeLogin,
       forgeDetalheLight,
     ],
