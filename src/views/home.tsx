@@ -1,47 +1,39 @@
-import { legacyProjects as portData } from '../data/legacyProjects';
+import { lazy, Suspense, useState } from 'react';
+import { MdEmail } from 'react-icons/md';
+import { FaGithubSquare, FaLinkedin, FaWhatsappSquare } from 'react-icons/fa';
+
 import { featuredProjects } from '../data/featuredProjects';
 import Header from '../components/header';
-import Section from '../components/section';
+import Section, {
+  Columns,
+  DecorativeImage,
+  SectionLead,
+  SectionTitle,
+  SubTitle,
+  Text,
+} from '../components/section';
 import Footer from '../components/footer';
-import ProjectGallery from '../components/projectGallery';
-
-import Lightbox from "yet-another-react-lightbox";
-import "yet-another-react-lightbox/styles.css";
-import Zoom from "yet-another-react-lightbox/plugins/zoom";
-import Counter from "yet-another-react-lightbox/plugins/counter";
-import "yet-another-react-lightbox/plugins/counter.css";
-import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
-import "yet-another-react-lightbox/plugins/thumbnails.css";
-import { useState } from 'react';
-
-import { MdEmail } from 'react-icons/md';
-import {
-  FaLinkedin,
-  FaWhatsappSquare,
-  FaGithubSquare,
-  FaGithub,
-  FaExternalLinkAlt,
-  FaChevronDown,
-  FaChevronUp,
-} from 'react-icons/fa';
+import FeaturedCard from '../components/featuredCard';
+import LegacyGallery from '../components/legacyGallery';
 
 import Stack01 from '../assets/imageStack01.avif';
 import Stack02 from '../assets/imageStack02.avif';
 import Stack03 from '../assets/imageStack03.avif';
 import Stack04 from '../assets/imageStack04.avif';
 
+const ImageLightbox = lazy(() => import('../components/lightbox'));
+
+const contactItem = 'mb-6 flex w-full items-center gap-3 text-left';
+const contactIcon =
+  'flex shrink-0 items-center justify-center text-inherit no-underline transition-opacity hover:opacity-80';
+const contactLink =
+  'flex items-center gap-3 text-inherit no-underline transition-opacity hover:underline hover:opacity-80';
+const contactText = 'leading-[1.6] text-inherit no-underline transition-opacity hover:underline hover:opacity-80';
+
 export default function Home() {
-  const [index, setIndex] = useState(-1);
-  const [showAllLegacy, setShowAllLegacy] = useState(false);
   const [projectGallery, setProjectGallery] = useState<{ slug: string; index: number } | null>(
     null
   );
-
-  const slides = portData.map((port) => ({
-    src: port.imageLarge,
-    title: port.title,
-    description: port.description,
-  }));
 
   const activeProject = featuredProjects.find((project) => project.slug === projectGallery?.slug);
   const projectSlides = (activeProject?.images ?? []).map((src) => ({ src }));
@@ -50,15 +42,15 @@ export default function Home() {
     <>
       <Header />
 
-      <main>
-        <Section textColor="#FF6B6B">
-          <h2 className="section-title">MINHA TRAJETÓRIA</h2>
-          <p className="section-lead">
+      <main className="p-0">
+        <Section tone="text-trajetoria">
+          <SectionTitle>MINHA TRAJETÓRIA</SectionTitle>
+          <SectionLead>
             Descobri a paixão pela tecnologia ao me mudar para a capital e ter acesso ao meu primeiro computador, iniciando uma jornada de constante evolução.
-          </p>
-          <div className="columns">
+          </SectionLead>
+          <Columns>
             <div>
-              <img
+              <DecorativeImage
                 src={Stack01}
                 width={720}
                 height={720}
@@ -69,49 +61,49 @@ export default function Home() {
               />
             </div>
             <div>
-              <p>
+              <Text>
                 Nascido em Pingo D'Água (MG) e criado em Belo Horizonte, desenvolvi minha paixão pela tecnologia e pelo design desde a adolescência, criando minhas primeiras interfaces digitais.
-              </p>
-              <p>
+              </Text>
+              <Text>
                 Graduei-me em Produção Multimídia em 2012 e atuei em diversas empresas do setor, evoluindo do design gráfico e front-end para a engenharia de software Full Stack.
-              </p>
+              </Text>
             </div>
             <div>
-              <p>
+              <Text>
                 Profissional focado em resultados, unindo postura colaborativa, aprendizado contínuo e forte senso de organização.
-              </p>
-              <p>
+              </Text>
+              <Text>
                 Atuação com persistência na resolução de problemas complexos, atenção aos detalhes e compromisso com a qualidade em cada entrega.
-              </p>
+              </Text>
             </div>
-          </div>
+          </Columns>
         </Section>
 
-        <Section textColor="#e2a342">
-          <h2 className="section-title">EXPERTISE TÉCNICA</h2>
-          <p className="section-lead">
+        <Section tone="text-expertise">
+          <SectionTitle>EXPERTISE TÉCNICA</SectionTitle>
+          <SectionLead>
             Trajetória construída no design e UI/UX, consolidada no desenvolvimento front-end e especializada em engenharia de software Full Stack.
-          </p>
+          </SectionLead>
 
-          <div className="columns">
+          <Columns>
             <div>
-              <h3>Design & UI/UX</h3>
-              <p>
+              <SubTitle>Design & UI/UX</SubTitle>
+              <Text>
                 Concepção de interfaces intuitivas e identidades visuais focadas em usabilidade e experiência do usuário.
-              </p>
+              </Text>
 
-              <h3>Back-end</h3>
-              <p>
+              <SubTitle>Back-end</SubTitle>
+              <Text>
                 Desenvolvimento de APIs e serviços escaláveis com foco em Clean Architecture e princípios SOLID.
-              </p>
+              </Text>
 
-              <h3>Front-End</h3>
-              <p>
+              <SubTitle>Front-End</SubTitle>
+              <Text>
                 Criação de SPAs e aplicações web de alta performance com componentes reutilizáveis e telas responsivas.
-              </p>
+              </Text>
             </div>
             <div>
-              <img
+              <DecorativeImage
                 src={Stack02}
                 width={540}
                 height={1079}
@@ -122,62 +114,62 @@ export default function Home() {
               />
             </div>
             <div>
-              <h3>Mobile</h3>
-              <p>
+              <SubTitle>Mobile</SubTitle>
+              <Text>
                 Desenvolvimento de aplicativos móveis multiplataforma com alta fidelidade visual e performance.
-              </p>
-              <h3>Qualidade & CI/CD</h3>
-              <p>
+              </Text>
+              <SubTitle>Qualidade & CI/CD</SubTitle>
+              <Text>
                 Testes automatizados e pipelines de integração contínua para entregas rápidas e seguras.
-              </p>
+              </Text>
 
-              <h3>Arquitetura & Performance</h3>
-              <p>
+              <SubTitle>Arquitetura & Performance</SubTitle>
+              <Text>
                 Aplicação de boas práticas de software para garantir segurança, SEO e alta manutenibilidade.
-              </p>
+              </Text>
             </div>
-          </div>
+          </Columns>
         </Section>
 
-        <Section textColor="#00B259">
-          <h2 className="section-title">O QUE FAÇO</h2>
-          <p className="section-lead">
+        <Section tone="text-oque-faco">
+          <SectionTitle>O QUE FAÇO</SectionTitle>
+          <SectionLead>
             Domínio completo do ciclo de vida de produtos digitais: da concepção de UI/UX e identidade visual ao desenvolvimento Full Stack e mobile.
-          </p>
+          </SectionLead>
 
-          <div className="columns">
-            <div style={{ textAlign: 'left' }}>
+          <Columns>
+            <div>
               <div>
-                <h3>Design & UI/UX</h3>
-                <p>
+                <SubTitle>Design & UI/UX</SubTitle>
+                <Text>
                   Criação de marcas, identidades visuais e interfaces intuitivas para plataformas web e aplicativos móveis.
-                </p>
+                </Text>
               </div>
 
               <div>
-                <h3>Aplicações Web</h3>
-                <p>
+                <SubTitle>Aplicações Web</SubTitle>
+                <Text>
                   Desenvolvimento de ecossistemas web, dashboards e landing pages com código limpo, rápido e escalável.
-                </p>
+                </Text>
               </div>
             </div>
             <div>
               <div>
-                <h3>APIs & Back-end</h3>
-                <p>
+                <SubTitle>APIs & Back-end</SubTitle>
+                <Text>
                   Construção de serviços back-end eficientes, modelagem de dados, mensageria e containerização de aplicações.
-                </p>
+                </Text>
               </div>
 
               <div>
-                <h3>Aplicações Mobile</h3>
-                <p>
+                <SubTitle>Aplicações Mobile</SubTitle>
+                <Text>
                   Desenvolvimento e publicação de aplicativos móveis para ecossistemas iOS e Android.
-                </p>
+                </Text>
               </div>
             </div>
             <div>
-              <img
+              <DecorativeImage
                 src={Stack03}
                 width={540}
                 height={720}
@@ -187,154 +179,48 @@ export default function Home() {
                 alt="Mão afastando com cuidado um bloco de uma torre de madeira, em tons esverdeados"
               />
             </div>
-          </div>
+          </Columns>
         </Section>
 
-        <Section textColor="#2BA8D6">
-          <h2 className="section-title">PORTFÓLIO</h2>
-          <p className="section-lead">
+        <Section tone="text-portfolio">
+          <SectionTitle>PORTFÓLIO</SectionTitle>
+          <SectionLead>
             Engenharia de software Full Stack, sistemas web modernos, soluções integradas a Inteligência Artificial e aplicações de alta performance.
-          </p>
+          </SectionLead>
 
-          <div className="featured-projects-grid">
+          <div className="mt-22 mb-28 flex flex-col gap-30 text-left">
             {featuredProjects.map((project) => (
-              <div className="featured-card" key={project.slug}>
-                <div className="featured-header">
-                  <h3 className="featured-title">{project.title}</h3>
-                  <div className="featured-subtitle">{project.subtitle}</div>
-                </div>
-
-                <ProjectGallery
-                  images={project.images}
-                  title={project.title}
-                  onOpenImage={(imageIndex) =>
-                    setProjectGallery({ slug: project.slug, index: imageIndex })
-                  }
-                />
-
-                <div className="featured-body">
-                  <p className="featured-description">{project.description}</p>
-
-                  <ul className="featured-highlights">
-                    {project.highlights.map((highlight) => (
-                      <li key={highlight}>{highlight}</li>
-                    ))}
-                  </ul>
-
-                  <div className="featured-stack">
-                    {project.stack.map((tech) => (
-                      <span className="stack-badge" key={tech}>
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="featured-actions">
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-action btn-github"
-                    >
-                      <FaGithub size={18} /> GitHub
-                    </a>
-                    {project.demoUrl && (
-                      <a
-                        href={project.demoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn-action btn-demo"
-                      >
-                        <FaExternalLinkAlt size={14} /> {project.demoUrlLabel || 'Demo'}
-                      </a>
-                    )}
-                    {project.demoMobileUrl && (
-                      <a
-                        href={project.demoMobileUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn-action btn-demo"
-                      >
-                        <FaExternalLinkAlt size={14} /> {project.demoMobileUrlLabel || 'Demo Mobile'}
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
+              <FeaturedCard
+                key={project.slug}
+                project={project}
+                onOpenImage={(imageIndex) => setProjectGallery({ slug: project.slug, index: imageIndex })}
+              />
             ))}
           </div>
 
-          <Lightbox
-            index={projectGallery?.index ?? 0}
-            slides={projectSlides}
-            open={projectGallery !== null}
-            close={() => setProjectGallery(null)}
-            plugins={[Zoom, Counter, Thumbnails]}
-          />
+          {projectGallery !== null && (
+            <Suspense fallback={null}>
+              <ImageLightbox
+                open
+                index={projectGallery.index}
+                slides={projectSlides}
+                onClose={() => setProjectGallery(null)}
+              />
+            </Suspense>
+          )}
 
-          <div className="legacy-portfolio-section">
-            <h3 className="legacy-heading">Projetos Legados</h3>
-            <p className="legacy-subheading">
-              Histórico de identidades visuais, plataformas institucionais e projetos desenvolvidos ao longo da trajetória profissional.
-            </p>
-
-            <div className="gallery">
-              {(showAllLegacy ? portData : portData.slice(0, 4)).map((port, key) => (
-                <button
-                  key={port.slug}
-                  type="button"
-                  className="gallery-item"
-                  aria-label={`Ampliar projeto ${port.title}`}
-                  onClick={() => setIndex(key)}
-                >
-                  <img
-                    src={port.image}
-                    width={port.width}
-                    height={port.height}
-                    loading="lazy"
-                    decoding="async"
-                    alt={port.title}
-                    className="portfolio-mini"
-                  />
-                </button>
-              ))}
-            </div>
-
-            <button
-              type="button"
-              className="legacy-toggle-btn"
-              onClick={() => setShowAllLegacy(!showAllLegacy)}
-            >
-              {showAllLegacy ? (
-                <>
-                  <FaChevronUp size={14} /> Recolher legados
-                </>
-              ) : (
-                <>
-                  <FaChevronDown size={14} /> Ver todos os legados (+{portData.length - 4} projetos)
-                </>
-              )}
-            </button>
-          </div>
-
-          <Lightbox
-            index={index}
-            slides={slides}
-            open={index >= 0}
-            close={() => setIndex(-1)}
-            plugins={[Zoom, Counter, Thumbnails]}
-          />
+          <LegacyGallery />
         </Section>
 
-        <Section textColor="#9d85e8">
-          <h2 className="section-title">CONTATO</h2>
-          <p className="section-lead">
+        <Section tone="text-contato">
+          <SectionTitle>CONTATO</SectionTitle>
+          <SectionLead>
             Tem um projeto para desenvolver, deseja contratar meus serviços ou quer conversar sobre oportunidades? Vamos conversar:
-          </p>
+          </SectionLead>
 
-          <div className="columns">
+          <Columns>
             <div>
-              <img
+              <DecorativeImage
                 src={Stack04}
                 width={720}
                 height={720}
@@ -344,76 +230,68 @@ export default function Home() {
                 style={{ width: '100%', height: 'auto', marginBottom: '1rem' }}
               />
             </div>
-            <div className="contact-column">
-              <div className="contact-item">
-                <a
-                  href="mailto:saullobueno@gmail.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="contact-icon-link"
-                >
+            <div className="flex w-full flex-col items-start justify-start !text-left">
+              <div className={contactItem}>
+                <a href="mailto:saullobueno@gmail.com" className={contactIcon} aria-label="Enviar e-mail">
                   <MdEmail size={40} />
                 </a>
-                <div className="contact-text">
-                  <a href="mailto:saullobueno@gmail.com">saullobueno@gmail.com</a>
-                  <a href="mailto:saullo@saullo.com">saullo@saullo.com</a>
+                <div className="flex flex-col items-start text-left">
+                  <a href="mailto:saullobueno@gmail.com" className={contactText}>
+                    saullobueno@gmail.com
+                  </a>
+                  <a href="mailto:saullo@saullo.com" className={contactText}>
+                    saullo@saullo.com
+                  </a>
                 </div>
               </div>
 
-              <div className="contact-item">
+              <div className={contactItem}>
                 <a
                   href="https://wa.me/351932382207"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="contact-icon-link"
+                  className={contactIcon}
+                  aria-label="Conversar no WhatsApp"
                 >
                   <FaWhatsappSquare size={40} />
                 </a>
-                <div className="contact-text">
-                  <a
-                    href="https://wa.me/351932382207"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                <div className="flex flex-col items-start text-left">
+                  <a href="https://wa.me/351932382207" target="_blank" rel="noopener noreferrer" className={contactText}>
                     +351 932 382 207
                   </a>
-                  <a
-                    href="https://wa.me/5531988273818"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <a href="https://wa.me/5531988273818" target="_blank" rel="noopener noreferrer" className={contactText}>
                     +55 31 98827.3818
                   </a>
                 </div>
               </div>
             </div>
 
-            <div className="contact-column">
-              <div className="contact-item">
+            <div className="flex w-full flex-col items-start justify-start !text-left">
+              <div className={contactItem}>
                 <a
                   href="https://linkedin.com/in/saullobueno"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="contact-link-wrapper"
+                  className={contactLink}
                 >
-                  <FaLinkedin size={40} />
+                  <FaLinkedin size={40} className="shrink-0" />
                   <span>linkedin.com/in/saullobueno</span>
                 </a>
               </div>
 
-              <div className="contact-item">
+              <div className={contactItem}>
                 <a
                   href="https://github.com/saullobueno"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="contact-link-wrapper"
+                  className={contactLink}
                 >
-                  <FaGithubSquare size={40} />
+                  <FaGithubSquare size={40} className="shrink-0" />
                   <span>github.com/saullobueno</span>
                 </a>
               </div>
             </div>
-          </div>
+          </Columns>
         </Section>
       </main>
 

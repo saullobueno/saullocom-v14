@@ -1,32 +1,81 @@
-:root {
-  --bg: #1a1a1a;
-  --bg-footer: #292929;
-  --text: rgba(255, 255, 255, 0.87);
-  --focus-ring: #64d2ff;
+@import 'tailwindcss';
 
-  color-scheme: dark;
-  color: var(--text);
-  background-color: var(--bg);
+/* Breakpoints espelham os do CSS original (que usava max-width: 1280/960/880/520). */
+@theme {
+  --font-sans: 'Roboto Variable', system-ui, sans-serif;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --color-bg: #1a1a1a;
+  --color-footer: #292929;
+
+  /* Cores de secao (todas com contraste AA sobre --color-bg) */
+  --color-trajetoria: #ff6b6b;
+  --color-expertise: #e2a342;
+  --color-oque-faco: #00b259;
+  --color-portfolio: #2ba8d6;
+  --color-contato: #9d85e8;
+
+  --color-accent: #2ba8d6;
+  --color-accent-strong: #006e99;
+  --color-accent-strong-hover: #005f82;
+  --color-badge: #64d2ff;
+  --color-focus: #64d2ff;
+
+  --breakpoint-sm: 521px;
+  --breakpoint-md: 881px;
+  --breakpoint-lg: 961px;
+  --breakpoint-xl: 1281px;
+
+  --animate-hue: hue-rotate 7s linear infinite;
+  @keyframes hue-rotate {
+    from {
+      filter: hue-rotate(0);
+    }
+    to {
+      filter: hue-rotate(360deg);
+    }
+  }
 }
 
-body {
-  margin: 0;
-  width: 100%;
-  min-height: 100vh;
-}
+@layer base {
+  :root {
+    color-scheme: dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: var(--color-bg);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-#root {
-  max-width: 100%;
-}
+  html,
+  body,
+  #root {
+    width: 100%;
+    min-height: 100%;
+    background: var(--color-bg);
+  }
 
-:focus-visible {
-  outline: 2px solid var(--focus-ring);
-  outline-offset: 3px;
+  body {
+    min-height: 100vh;
+    font-family: var(--font-sans);
+    font-size: 18px;
+    line-height: normal;
+  }
+
+  @media (max-width: 880px) {
+    body {
+      font-size: 15px;
+    }
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 3px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
