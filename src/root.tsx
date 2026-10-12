@@ -12,7 +12,7 @@ import imageHome from './assets/image-home.avif';
 import type { Route } from './+types/root';
 import './index.css';
 
-const SITE = 'https://www.saullo.com';
+const SITE = 'https://saullo.com';
 const TITULO = 'Saullo Bueno | Desenvolvedor Full Stack & UI/UX Designer';
 const DESCRICAO =
   'Portfólio de Saullo Bueno, desenvolvedor Full Stack e UI/UX Designer. Node.js, React, React Native e soluções com Inteligência Artificial.';
