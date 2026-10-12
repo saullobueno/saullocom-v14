@@ -62,3 +62,13 @@ Para incluir um novo projeto:
 3. Adicione um objeto à lista `featuredProjects` com `slug`, `title`, `subtitle`, `description`, `highlights`, `stack`, `githubUrl`, `demoUrl` (opcional) e `images`.
 
 A ordem da lista é a ordem exibida no site.
+
+## Deploy (Vercel)
+
+O site é estático: `vercel.json` aponta a saída para `build/client` e define o comando de build (`npm run build`). O que ele configura:
+
+- **Cabeçalhos de segurança** em todas as rotas: CSP, HSTS, `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy` e `Permissions-Policy`. A CSP mantém `'unsafe-inline'` em `script-src` e `style-src` porque o React Router injeta scripts de hidratação no HTML.
+- **Cache imutável** (1 ano) para `/assets/*`, que têm hash no nome.
+- **404 real**: o `postbuild` copia o fallback de SPA para `404.html`, que a Vercel serve com status 404 para qualquer caminho inexistente.
+
+`npm test` aplica os cabeçalhos do `vercel.json` nas respostas e falha se a CSP bloquear algum recurso.
