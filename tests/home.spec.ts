@@ -42,3 +42,18 @@ test('lightbox abre ao clicar na imagem de um projeto', async ({ page }) => {
   await page.keyboard.press('Escape');
   await expect(page.getByRole('dialog')).toHaveCount(0);
 });
+
+test('HTML pre-renderizado traz o conteudo sem JavaScript', async ({ browser }) => {
+  const contexto = await browser.newContext({ javaScriptEnabled: false });
+  const page = await contexto.newPage();
+  await page.goto('/');
+  await expect(page.getByRole('heading', { name: 'MINHA TRAJETÓRIA' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Forge' })).toBeVisible();
+  await contexto.close();
+});
+
+test('rota inexistente mostra a pagina 404', async ({ page }) => {
+  await page.goto('/nao-existe');
+  await expect(page.getByRole('heading', { name: '404' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Voltar para o início' })).toBeVisible();
+});

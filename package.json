@@ -4,13 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "react-router dev",
+    "build": "react-router build",
+    "preview": "sirv build/client --port 4173 --single __spa-fallback.html",
     "lint": "eslint .",
-    "preview": "vite preview",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "typecheck": "tsc -b",
+    "typecheck": "react-router typegen && tsc -b",
     "test": "playwright test"
   },
   "dependencies": {
@@ -18,13 +18,16 @@
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "react-icons": "^5.7.0",
-    "react-router-dom": "^7.18.4",
-    "yet-another-react-lightbox": "^3.32.2"
+    "react-router": "^8.4.0",
+    "yet-another-react-lightbox": "^3.32.2",
+    "isbot": "^5"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
     "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.64.0",
+    "@react-router/dev": "^8.4.0",
+    "@react-router/node": "^8.4.0",
     "@rolldown/plugin-babel": "^0.2.4",
     "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^24.19.2",
@@ -36,9 +39,11 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.7",
     "globals": "^17.13.0",
+    "isbot": "^5.2.2",
     "prettier": "^3.9.10",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "sharp": "^0.35.5",
+    "sirv-cli": "^3.0.1",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.71.2",

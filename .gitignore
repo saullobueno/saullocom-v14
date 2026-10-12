@@ -27,3 +27,7 @@ dist-ssr
 .telas
 test-results
 playwright-report
+
+# React Router
+/build
+/.react-router

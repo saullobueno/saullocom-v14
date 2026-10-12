@@ -9,7 +9,7 @@ export default defineConfig({
     reducedMotion: 'reduce',
   },
   webServer: {
-    command: 'npm run preview -- --port 4173',
+    command: 'npm run preview',
     url: 'http://localhost:4173',
     reuseExistingServer: true,
   },

@@ -16,15 +16,15 @@ Site pessoal e portfólio de **Saullo Bueno**, desenvolvedor Full Stack (UI/UX D
 
 ## Tecnologias
 
-React 19.3 (com React Compiler) · TypeScript 6 · Vite 8 · Tailwind CSS v4 · react-icons · [yet-another-react-lightbox](https://yet-another-react-lightbox.com/) · Playwright + axe-core (testes) · Prettier · ESLint 10
+React 19.3 (com React Compiler) · React Router 8 (modo framework, SSG) · TypeScript 6 · Vite 8 · Tailwind CSS v4 · react-icons · [yet-another-react-lightbox](https://yet-another-react-lightbox.com/) · Playwright + axe-core (testes) · Prettier · ESLint 10
 
 ## Como rodar
 
 ```bash
 npm install
 npm run dev       # servidor de desenvolvimento
-npm run build     # typecheck + build de produção em dist/
-npm run preview   # serve o build localmente
+npm run build     # build de produção com HTML pré-renderizado (SSG) em build/client/
+npm run preview   # serve build/client em http://localhost:4173
 npm run lint      # ESLint
 npm run format     # Prettier
 npm test           # testes e2e (Playwright + axe): exige npm run build antes
@@ -44,14 +44,16 @@ src/
   data/
     featuredProjects.ts     Projetos em destaque (veja abaixo)
     portfolio.json          Trabalhos anteriores (sites de clientes)
-  views/home.tsx            Página única, com todas as seções
-  routes/                   Configuração de rotas
+  root.tsx                  Layout HTML, metas (SEO/Open Graph/JSON-LD) e ErrorBoundary
+  routes.ts                 Tabela de rotas do React Router
+  routes/home.tsx           Página única, com todas as seções
+  routes/not-found.tsx      Rota coringa (404)
   styles/                   Estilos globais
 ```
 
 ## Como adicionar um projeto em destaque
 
-Os projetos em destaque ficam em `src/data/featuredProjects.ts`, um arquivo TypeScript com a lista `featuredProjects` e a interface `FeaturedProject`. Ele foi criado junto com a reformulação da seção de portfólio (commit `8e7cd08`) e é lido diretamente por `src/views/home.tsx`: não é gerado automaticamente nem vem de nenhuma biblioteca.
+Os projetos em destaque ficam em `src/data/featuredProjects.ts`, um arquivo TypeScript com a lista `featuredProjects` e a interface `FeaturedProject`. Ele foi criado junto com a reformulação da seção de portfólio (commit `8e7cd08`) e é lido diretamente por `src/routes/home.tsx`: não é gerado automaticamente nem vem de nenhuma biblioteca.
 
 Para incluir um novo projeto:
 
