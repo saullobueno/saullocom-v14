@@ -181,7 +181,13 @@ export const featuredProjects: FeaturedProject[] = [
     demoUrlLabel: 'Demo',
     demoMobileUrl: 'https://fieldops-mobile.vercel.app',
     demoMobileUrlLabel: 'Demo Técnico Mobile',
-    images: [fieldopsInicio, fieldopsDespacho, fieldopsOrdens, fieldopsRelatorios, fieldopsCopiloto],
+    images: [
+      fieldopsInicio,
+      fieldopsDespacho,
+      fieldopsOrdens,
+      fieldopsRelatorios,
+      fieldopsCopiloto,
+    ],
   },
   {
     slug: 'nexus-developer-platform',

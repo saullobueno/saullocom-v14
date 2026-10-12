@@ -37,7 +37,7 @@ export default function ProjectGallery({ images, title, onOpenImage }: ProjectGa
           src={hero}
           alt={title}
           loading="lazy"
-          className="block h-auto w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+          className="block aspect-[16/10] h-auto w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
         />
       </button>
 
@@ -55,7 +55,7 @@ export default function ProjectGallery({ images, title, onOpenImage }: ProjectGa
           )}
 
           <div
-            className="flex snap-x snap-mandatory gap-[0.6rem] overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            className="flex snap-x snap-mandatory [scrollbar-width:none] gap-[0.6rem] overflow-x-auto [&::-webkit-scrollbar]:hidden"
             ref={trackRef}
           >
             {thumbnails.map((src, i) => (
@@ -63,7 +63,7 @@ export default function ProjectGallery({ images, title, onOpenImage }: ProjectGa
                 key={src}
                 type="button"
                 data-thumb
-                className="basis-[calc((100%-1.2rem)/3)] shrink-0 grow-0 cursor-zoom-in snap-start overflow-hidden rounded-lg border border-white/12 bg-[#111] p-0 leading-[0] transition hover:-translate-y-0.5 hover:border-[#0085b2] max-[520px]:basis-[calc((100%-0.6rem)/2)]"
+                className="shrink-0 grow-0 basis-[calc((100%-1.2rem)/3)] cursor-zoom-in snap-start overflow-hidden rounded-lg border border-white/12 bg-[#111] p-0 leading-[0] transition hover:-translate-y-0.5 hover:border-[#0085b2] max-[520px]:basis-[calc((100%-0.6rem)/2)]"
                 onClick={() => onOpenImage(i + 1)}
                 aria-label={`Ampliar captura ${i + 2} de ${title}`}
               >

@@ -16,7 +16,7 @@ Site pessoal e portfólio de **Saullo Bueno**, desenvolvedor Full Stack (UI/UX D
 
 ## Tecnologias
 
-React 19 · TypeScript · Vite · styled-components · React Router · react-icons · [yet-another-react-lightbox](https://yet-another-react-lightbox.com/) · Axios
+React 19.3 (com React Compiler) · TypeScript 6 · Vite 8 · Tailwind CSS v4 · react-icons · [yet-another-react-lightbox](https://yet-another-react-lightbox.com/) · Playwright + axe-core (testes) · Prettier · ESLint 10
 
 ## Como rodar
 
@@ -26,6 +26,8 @@ npm run dev       # servidor de desenvolvimento
 npm run build     # typecheck + build de produção em dist/
 npm run preview   # serve o build localmente
 npm run lint      # ESLint
+npm run format     # Prettier
+npm test           # testes e2e (Playwright + axe): exige npm run build antes
 ```
 
 ## Estrutura

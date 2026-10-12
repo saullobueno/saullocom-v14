@@ -25,3 +25,5 @@ dist-ssr
 
 # Screenshots de regressao visual
 .telas
+test-results
+playwright-report

@@ -49,7 +49,7 @@ export default function LegacyGallery() {
 
       <button
         type="button"
-        className="mt-8 inline-flex items-center gap-2 rounded-[30px] border border-[rgba(0,133,178,0.3)] bg-[rgba(0,133,178,0.1)] px-8 py-[0.8rem] text-base font-semibold text-portfolio transition [&_svg]:m-2.5 hover:-translate-y-0.5 hover:border-[#0085b2] hover:bg-[rgba(0,133,178,0.25)] hover:text-white"
+        className="mt-8 inline-flex items-center gap-2 rounded-[30px] border border-[rgba(0,133,178,0.3)] bg-[rgba(0,133,178,0.1)] px-8 py-[0.8rem] text-base font-semibold text-portfolio transition hover:-translate-y-0.5 hover:border-[#0085b2] hover:bg-[rgba(0,133,178,0.25)] hover:text-white [&_svg]:m-2.5"
         onClick={() => setShowAll(!showAll)}
         aria-expanded={showAll}
       >
@@ -59,7 +59,8 @@ export default function LegacyGallery() {
           </>
         ) : (
           <>
-            <FaChevronDown size={14} /> Ver todos os legados (+{legacyProjects.length - VISIVEIS} projetos)
+            <FaChevronDown size={14} /> Ver todos os legados (+{legacyProjects.length - VISIVEIS}{' '}
+            projetos)
           </>
         )}
       </button>

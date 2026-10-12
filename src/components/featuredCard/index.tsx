@@ -62,7 +62,12 @@ export default function FeaturedCard({ project, onOpenImage }: FeaturedCardProps
             </a>
           )}
           {project.demoMobileUrl && (
-            <a href={project.demoMobileUrl} target="_blank" rel="noopener noreferrer" className={demo}>
+            <a
+              href={project.demoMobileUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={demo}
+            >
               <FaExternalLinkAlt size={14} /> {project.demoMobileUrlLabel || 'Demo Mobile'}
             </a>
           )}

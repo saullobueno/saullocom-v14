@@ -37,7 +37,10 @@ for (const item of portfolio) {
   const jpgLarge = path.join(pasta, `${base}-g.jpg`);
   if (!fs.existsSync(jpgLarge)) continue;
 
-  const thumb = await paraAvif(jpgLarge, path.join(pasta, `${base}.avif`), { largura: THUMB_W, qualidade: 55 });
+  const thumb = await paraAvif(jpgLarge, path.join(pasta, `${base}.avif`), {
+    largura: THUMB_W,
+    qualidade: 55,
+  });
   await paraAvif(jpgLarge, path.join(pasta, `${base}-g.avif`), { largura: LARGE_W, qualidade: 58 });
   if (fs.existsSync(jpgThumb)) antes += fs.statSync(jpgThumb).size;
 
@@ -63,4 +66,6 @@ for (const p of arquivos('src/assets')) {
   fs.rmSync(p);
 }
 
-console.log(`antes: ${kb(antes)} KB  depois: ${kb(depois)} KB  (-${Math.round((1 - depois / antes) * 100)}%)`);
+console.log(
+  `antes: ${kb(antes)} KB  depois: ${kb(depois)} KB  (-${Math.round((1 - depois / antes) * 100)}%)`,
+);

@@ -8,7 +8,10 @@ const url = process.argv[3] ?? 'http://localhost:4173/';
 fs.mkdirSync(saida, { recursive: true });
 
 const browser = await chromium.launch({ channel: 'chrome' });
-for (const [nome, width, height] of [['desktop', 1440, 900], ['mobile', 390, 844]]) {
+for (const [nome, width, height] of [
+  ['desktop', 1440, 900],
+  ['mobile', 390, 844],
+]) {
   const ctx = await browser.newContext({ viewport: { width, height }, reducedMotion: 'reduce' });
   const page = await ctx.newPage();
   await page.goto(url, { waitUntil: 'networkidle' });
@@ -23,7 +26,12 @@ for (const [nome, width, height] of [['desktop', 1440, 900], ['mobile', 390, 844
   await page.waitForLoadState('networkidle');
   await page.waitForTimeout(500);
   await page.screenshot({ path: `${saida}/${nome}.png`, fullPage: true });
-  console.log(nome, await page.evaluate(() => `${document.documentElement.scrollWidth}x${document.documentElement.scrollHeight}`));
+  console.log(
+    nome,
+    await page.evaluate(
+      () => `${document.documentElement.scrollWidth}x${document.documentElement.scrollHeight}`,
+    ),
+  );
   await ctx.close();
 }
 await browser.close();
