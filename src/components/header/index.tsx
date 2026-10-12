@@ -20,7 +20,8 @@ export default function Header() {
             Olá! Sou o Saullo. Graduado em <br />
             Produção Multimídia, atuo como...
           </p>
-          <h1 className="title-vertical">
+          <h1 className="sr-only">Desenvolvedor Full Stack</h1>
+          <div className="display title-vertical" aria-hidden="true">
             DESEN
             <br />
             VOLVE
@@ -30,12 +31,12 @@ export default function Header() {
             FULL
             <br />
             STACK
-          </h1>
-          <h1 className="title-horizontal">
+          </div>
+          <div className="display title-horizontal" aria-hidden="true">
             DESENVOLVEDOR
             <br />
             FULL STACK
-          </h1>
+          </div>
           <p>UI/UX Design • Node.js • React • React Native</p>
         </div>
       </Content>

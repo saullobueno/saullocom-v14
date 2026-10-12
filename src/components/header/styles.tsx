@@ -9,7 +9,9 @@ export const Container = styled.div`
     linear-gradient(135deg, #e34040, #00b259);
   background-size: cover;
   background-blend-mode: hard-light;
-  animation: hue-rotate 7s linear infinite;
+  @media (prefers-reduced-motion: no-preference) {
+    animation: hue-rotate 7s linear infinite;
+  }
   @media (max-width: 880px) {
     align-items: initial;
     justify-content: initial;
@@ -62,7 +64,8 @@ export const Content = styled.div`
   div.title {
     text-align: center;
       margin-top: 60px;
-    h1 {
+    .display {
+      font-weight: 700;
       padding: 1rem 0;
       line-height: 80%;
       font-size: 10rem;
@@ -70,10 +73,10 @@ export const Content = styled.div`
       text-align: center;
       margin: 0;
     }
-    h1.title-vertical {
+    .title-vertical {
       display: block;
     }
-    h1.title-horizontal {
+    .title-horizontal {
       display: none;
     }
     p {
@@ -82,16 +85,16 @@ export const Content = styled.div`
     }
 
     @media (max-width: 880px) {
-      h1 {
+      .display {
         line-height: 80%;
         font-size: 2rem;
         color: #fff;
         text-align: center !important;
       }
-      h1.title-vertical {
+      .title-vertical {
         display: none;
       }
-      h1.title-horizontal {
+      .title-horizontal {
         display: block;
       }
       p {

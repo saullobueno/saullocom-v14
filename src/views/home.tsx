@@ -51,18 +51,18 @@ export default function Home() {
       <Header />
 
       <main>
-        <Section textColor="#E34040">
-          <h1>MINHA TRAJETÓRIA</h1>
-          <h2>
+        <Section textColor="#FF6B6B">
+          <h2 className="section-title">MINHA TRAJETÓRIA</h2>
+          <p className="section-lead">
             Descobri a paixão pela tecnologia ao me mudar para a capital e ter acesso ao meu primeiro computador, iniciando uma jornada de constante evolução.
-          </h2>
+          </p>
           <div className="columns">
             <div>
               <img
                 src={Stack01}
                 width="100%"
                 height="auto"
-                alt="Foto Saullo"
+                alt="Criança sentada no chão empilhando blocos de madeira, em tons sépia"
               />
             </div>
             <div>
@@ -85,10 +85,10 @@ export default function Home() {
         </Section>
 
         <Section textColor="#e2a342">
-          <h1 style={{ textAlign: 'center' }}>EXPERTISE TÉCNICA</h1>
-          <h2 style={{ textAlign: 'center' }}>
+          <h2 className="section-title">EXPERTISE TÉCNICA</h2>
+          <p className="section-lead">
             Trajetória construída no design e UI/UX, consolidada no desenvolvimento front-end e especializada em engenharia de software Full Stack.
-          </h2>
+          </p>
 
           <div className="columns">
             <div>
@@ -112,7 +112,7 @@ export default function Home() {
                 src={Stack02}
                 width="100%"
                 height="auto"
-                alt="Foto Saullo"
+                alt="Torre alta de blocos de madeira equilibrada sobre uma mesa clara"
               />
             </div>
             <div>
@@ -134,10 +134,10 @@ export default function Home() {
         </Section>
 
         <Section textColor="#00B259">
-          <h1>O QUE FAÇO</h1>
-          <h2>
+          <h2 className="section-title">O QUE FAÇO</h2>
+          <p className="section-lead">
             Domínio completo do ciclo de vida de produtos digitais: da concepção de UI/UX e identidade visual ao desenvolvimento Full Stack e mobile.
-          </h2>
+          </p>
 
           <div className="columns">
             <div style={{ textAlign: 'left' }}>
@@ -175,17 +175,17 @@ export default function Home() {
                 src={Stack03}
                 width="100%"
                 height="auto"
-                alt="Foto Saullo"
+                alt="Mão afastando com cuidado um bloco de uma torre de madeira, em tons esverdeados"
               />
             </div>
           </div>
         </Section>
 
-        <Section textColor="#0085B2">
-          <h1>PORTFÓLIO</h1>
-          <h2>
+        <Section textColor="#2BA8D6">
+          <h2 className="section-title">PORTFÓLIO</h2>
+          <p className="section-lead">
             Engenharia de software Full Stack, sistemas web modernos, soluções integradas a Inteligência Artificial e aplicações de alta performance.
-          </h2>
+          </p>
 
           <div className="featured-projects-grid">
             {featuredProjects.map((project) => (
@@ -207,14 +207,14 @@ export default function Home() {
                   <p className="featured-description">{project.description}</p>
 
                   <ul className="featured-highlights">
-                    {project.highlights.map((highlight, i) => (
-                      <li key={i}>{highlight}</li>
+                    {project.highlights.map((highlight) => (
+                      <li key={highlight}>{highlight}</li>
                     ))}
                   </ul>
 
                   <div className="featured-stack">
-                    {project.stack.map((tech, i) => (
-                      <span className="stack-badge" key={i}>
+                    {project.stack.map((tech) => (
+                      <span className="stack-badge" key={tech}>
                         {tech}
                       </span>
                     ))}
@@ -271,22 +271,21 @@ export default function Home() {
 
             <div className="gallery">
               {(showAllLegacy ? portData : portData.slice(0, 4)).map((port, key) => (
-                <a
-                  key={key}
-                  href="#!"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIndex(key);
-                  }}
+                <button
+                  key={port.slug}
+                  type="button"
+                  className="gallery-item"
+                  aria-label={`Ampliar projeto ${port.title}`}
+                  onClick={() => setIndex(key)}
                 >
                   <img
                     src={port.image}
                     width="auto"
                     height="auto"
-                    alt={port.slug}
+                    alt={port.title}
                     className="portfolio-mini"
                   />
-                </a>
+                </button>
               ))}
             </div>
 
@@ -316,11 +315,11 @@ export default function Home() {
           />
         </Section>
 
-        <Section textColor="#7159c1">
-          <h1>CONTATO</h1>
-          <h2>
+        <Section textColor="#9d85e8">
+          <h2 className="section-title">CONTATO</h2>
+          <p className="section-lead">
             Tem um projeto para desenvolver, deseja contratar meus serviços ou quer conversar sobre oportunidades? Vamos conversar:
-          </h2>
+          </p>
 
           <div className="columns">
             <div>
@@ -328,7 +327,7 @@ export default function Home() {
                 src={Stack04}
                 width="100%"
                 height="auto"
-                alt="Foto Saullo"
+                alt="Mão de pessoa de terno colocando um bloco de madeira no topo de uma torre, em tons arroxeados"
                 style={{ marginBottom: '1rem' }}
               />
             </div>

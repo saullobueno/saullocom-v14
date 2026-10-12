@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 import { Container } from './styles';
 
 import logo from '@/assets/logo-vertical.png';
@@ -5,7 +7,7 @@ import logo from '@/assets/logo-vertical.png';
 interface FooterProps {
   background?: string;
   textColor?: string;
-  children?: any;
+  children?: ReactNode;
 }
 
 export default function Footer({ background, textColor, children }: FooterProps) {

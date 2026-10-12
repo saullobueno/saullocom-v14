@@ -33,6 +33,13 @@ export const Container = styled.div`
       grid-template-columns: 1fr 1fr;
     }
   }
+  .gallery-item {
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: zoom-in;
+    line-height: 0;
+  }
   .portfolio-mini {
     width: 100%;
   }
@@ -226,7 +233,7 @@ export const Container = styled.div`
     }
 
     &:hover {
-      border-color: #0085b2;
+      border-color: #2BA8D6;
       transform: translateY(-2px);
     }
 
@@ -277,7 +284,7 @@ export const Container = styled.div`
 
     .featured-subtitle {
       font-size: 1.05rem;
-      color: #0085B2;
+      color: #2BA8D6;
       font-weight: 500;
       text-align: left;
     }
@@ -314,7 +321,7 @@ export const Container = styled.div`
 
         &::before {
           content: '▹';
-          color: #0085B2;
+          color: #2BA8D6;
           font-size: 1rem;
           line-height: 1;
         }
@@ -366,9 +373,9 @@ export const Container = styled.div`
         }
 
         &.btn-demo {
-          background: #0085B2;
+          background: #006e99;
           color: #fff;
-          border: 1px solid #0085B2;
+          border: 1px solid #006e99;
 
           &:hover {
             background: #00a4dc;
@@ -387,14 +394,14 @@ export const Container = styled.div`
 
     h3.legacy-heading {
       font-size: 1.6rem;
-      color: #0085B2;
+      color: #2BA8D6;
       margin-bottom: 0.5rem;
       text-align: center;
     }
 
     p.legacy-subheading {
       font-size: 1rem;
-      color: #0085B2;
+      color: #2BA8D6;
       margin-bottom: 2rem;
       text-align: center;
     }
@@ -406,7 +413,7 @@ export const Container = styled.div`
       margin-top: 2rem;
       padding: 0.8rem 2rem;
       background: rgba(0, 133, 178, 0.1);
-      color: #0085B2;
+      color: #2BA8D6;
       border: 1px solid rgba(0, 133, 178, 0.3);
       border-radius: 30px;
       font-size: 1rem;
@@ -417,7 +424,7 @@ export const Container = styled.div`
       &:hover {
         background: rgba(0, 133, 178, 0.25);
         color: #fff;
-        border-color: #0085B2;
+        border-color: #2BA8D6;
         transform: translateY(-2px);
       }
     }

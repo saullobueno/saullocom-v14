@@ -6,12 +6,7 @@ export default createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
-    outline: 0;
     box-sizing: border-box;
-  }
-
-  *:focus {
-    outline: 0;
   }
 
   html, body, #root {
@@ -25,9 +20,9 @@ export default createGlobalStyle`
   }
 
   body, input, button {
-    font: 18px 'Roboto', sans-serif;
+    font: 18px 'Roboto Variable', system-ui, sans-serif;
     @media (max-width: 880px) {
-    font: 15px 'Roboto', sans-serif;
+    font: 15px 'Roboto Variable', system-ui, sans-serif;
 
     }
   }
@@ -36,13 +31,13 @@ export default createGlobalStyle`
     padding: 0;
   }
 
-  h1 {
+  h1, .section-title {
     font-size: 8rem;
     line-height: 80%;
     margin-bottom:2rem;
     text-align: center;
   }
-  h2{
+  h2, .section-lead {
     font-size: 2rem;
     line-height:140%;
     margin-bottom:2rem;
@@ -64,10 +59,10 @@ export default createGlobalStyle`
   }
 
   @media (max-width: 880px) {
-    h1 {
+    h1, .section-title {
       font-size: 4rem;
     }
-    h2{
+    h2, .section-lead {
       font-size: 1.4rem;
       line-height:100%;
     }
@@ -91,5 +86,14 @@ export default createGlobalStyle`
 }
   button {
     cursor: pointer;
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
   }
 `;
