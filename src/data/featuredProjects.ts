@@ -1,87 +1,87 @@
 // Forge
-import forgeProjetos from '../assets/portfolio/forge-ai-software-factory/03-projetos-dark.png';
-import forgeProjetoDetalhe from '../assets/portfolio/forge-ai-software-factory/05-projeto-detalhe-dark.png';
-import forgeTimeline from '../assets/portfolio/forge-ai-software-factory/09-execucao-timeline-dark.png';
-import forgeAprovacao from '../assets/portfolio/forge-ai-software-factory/10-execucao-aprovacao-dark.png';
-import forgeExplorador from '../assets/portfolio/forge-ai-software-factory/07-codigo-explorador-dark.png';
-import forgeDiff from '../assets/portfolio/forge-ai-software-factory/08-codigo-diff-dark.png';
-import forgeAprovacoes from '../assets/portfolio/forge-ai-software-factory/11-aprovacoes-dark.png';
-import forgeUsoIa from '../assets/portfolio/forge-ai-software-factory/12-uso-ia-dark.png';
-import forgePlayground from '../assets/portfolio/forge-ai-software-factory/13-playground-scorecard-dark.png';
-import forgeAuditoria from '../assets/portfolio/forge-ai-software-factory/14-auditoria-dark.png';
-import forgeLogin from '../assets/portfolio/forge-ai-software-factory/01-login-dark.png';
-import forgeDetalheLight from '../assets/portfolio/forge-ai-software-factory/16-projeto-detalhe-light.png';
-import forgeTarefas from '../assets/portfolio/forge-ai-software-factory/19-tarefas-kanban-dark.png';
-import forgeBusca from '../assets/portfolio/forge-ai-software-factory/20-busca-global-dark.png';
-import forgeDatasets from '../assets/portfolio/forge-ai-software-factory/21-playground-datasets-dark.png';
-import forgeConta from '../assets/portfolio/forge-ai-software-factory/22-minha-conta-dark.png';
-import forgeUsuarios from '../assets/portfolio/forge-ai-software-factory/23-configuracoes-usuarios-dark.png';
-import forgePapeis from '../assets/portfolio/forge-ai-software-factory/24-configuracoes-papeis-dark.png';
-import forgePoliticas from '../assets/portfolio/forge-ai-software-factory/25-configuracoes-politicas-dark.png';
-import forgeAgentes from '../assets/portfolio/forge-ai-software-factory/26-configuracoes-agentes-dark.png';
+import forgeProjetos from '../assets/portfolio/forge-ai-software-factory/03-projetos-dark.avif';
+import forgeProjetoDetalhe from '../assets/portfolio/forge-ai-software-factory/05-projeto-detalhe-dark.avif';
+import forgeTimeline from '../assets/portfolio/forge-ai-software-factory/09-execucao-timeline-dark.avif';
+import forgeAprovacao from '../assets/portfolio/forge-ai-software-factory/10-execucao-aprovacao-dark.avif';
+import forgeExplorador from '../assets/portfolio/forge-ai-software-factory/07-codigo-explorador-dark.avif';
+import forgeDiff from '../assets/portfolio/forge-ai-software-factory/08-codigo-diff-dark.avif';
+import forgeAprovacoes from '../assets/portfolio/forge-ai-software-factory/11-aprovacoes-dark.avif';
+import forgeUsoIa from '../assets/portfolio/forge-ai-software-factory/12-uso-ia-dark.avif';
+import forgePlayground from '../assets/portfolio/forge-ai-software-factory/13-playground-scorecard-dark.avif';
+import forgeAuditoria from '../assets/portfolio/forge-ai-software-factory/14-auditoria-dark.avif';
+import forgeLogin from '../assets/portfolio/forge-ai-software-factory/01-login-dark.avif';
+import forgeDetalheLight from '../assets/portfolio/forge-ai-software-factory/16-projeto-detalhe-light.avif';
+import forgeTarefas from '../assets/portfolio/forge-ai-software-factory/19-tarefas-kanban-dark.avif';
+import forgeBusca from '../assets/portfolio/forge-ai-software-factory/20-busca-global-dark.avif';
+import forgeDatasets from '../assets/portfolio/forge-ai-software-factory/21-playground-datasets-dark.avif';
+import forgeConta from '../assets/portfolio/forge-ai-software-factory/22-minha-conta-dark.avif';
+import forgeUsuarios from '../assets/portfolio/forge-ai-software-factory/23-configuracoes-usuarios-dark.avif';
+import forgePapeis from '../assets/portfolio/forge-ai-software-factory/24-configuracoes-papeis-dark.avif';
+import forgePoliticas from '../assets/portfolio/forge-ai-software-factory/25-configuracoes-politicas-dark.avif';
+import forgeAgentes from '../assets/portfolio/forge-ai-software-factory/26-configuracoes-agentes-dark.avif';
 
 // FieldOps
-import fieldopsInicio from '../assets/portfolio/fieldops-platform/inicio.png';
-import fieldopsDespacho from '../assets/portfolio/fieldops-platform/despacho.png';
-import fieldopsOrdens from '../assets/portfolio/fieldops-platform/ordens.png';
-import fieldopsRelatorios from '../assets/portfolio/fieldops-platform/relatorios.png';
-import fieldopsCopiloto from '../assets/portfolio/fieldops-platform/copiloto.png';
+import fieldopsInicio from '../assets/portfolio/fieldops-platform/inicio.avif';
+import fieldopsDespacho from '../assets/portfolio/fieldops-platform/despacho.avif';
+import fieldopsOrdens from '../assets/portfolio/fieldops-platform/ordens.avif';
+import fieldopsRelatorios from '../assets/portfolio/fieldops-platform/relatorios.avif';
+import fieldopsCopiloto from '../assets/portfolio/fieldops-platform/copiloto.avif';
 
 // Nexus Developer Platform
-import nexusDashboard from '../assets/portfolio/nexus-developer-platform/dashboard.png';
-import nexusCatalogo from '../assets/portfolio/nexus-developer-platform/catalog.png';
-import nexusServiceDetail from '../assets/portfolio/nexus-developer-platform/service-detail.png';
-import nexusDeployments from '../assets/portfolio/nexus-developer-platform/deployments.png';
-import nexusIncidents from '../assets/portfolio/nexus-developer-platform/incidents.png';
-import nexusObservability from '../assets/portfolio/nexus-developer-platform/observability.png';
-import nexusFeatureFlags from '../assets/portfolio/nexus-developer-platform/feature-flags.png';
-import nexusPipelines from '../assets/portfolio/nexus-developer-platform/pipelines.png';
-import nexusAiCopilot from '../assets/portfolio/nexus-developer-platform/ai-copilot.png';
-import nexusReports from '../assets/portfolio/nexus-developer-platform/reports.png';
-import nexusTeams from '../assets/portfolio/nexus-developer-platform/teams.png';
-import nexusSettings from '../assets/portfolio/nexus-developer-platform/settings.png';
-import nexusLogin from '../assets/portfolio/nexus-developer-platform/login.png';
+import nexusDashboard from '../assets/portfolio/nexus-developer-platform/dashboard.avif';
+import nexusCatalogo from '../assets/portfolio/nexus-developer-platform/catalog.avif';
+import nexusServiceDetail from '../assets/portfolio/nexus-developer-platform/service-detail.avif';
+import nexusDeployments from '../assets/portfolio/nexus-developer-platform/deployments.avif';
+import nexusIncidents from '../assets/portfolio/nexus-developer-platform/incidents.avif';
+import nexusObservability from '../assets/portfolio/nexus-developer-platform/observability.avif';
+import nexusFeatureFlags from '../assets/portfolio/nexus-developer-platform/feature-flags.avif';
+import nexusPipelines from '../assets/portfolio/nexus-developer-platform/pipelines.avif';
+import nexusAiCopilot from '../assets/portfolio/nexus-developer-platform/ai-copilot.avif';
+import nexusReports from '../assets/portfolio/nexus-developer-platform/reports.avif';
+import nexusTeams from '../assets/portfolio/nexus-developer-platform/teams.avif';
+import nexusSettings from '../assets/portfolio/nexus-developer-platform/settings.avif';
+import nexusLogin from '../assets/portfolio/nexus-developer-platform/login.avif';
 
 // Product Analytics OS
-import analyticsDashboards from '../assets/portfolio/product-analytics-os/dashboards.png';
-import analyticsProductHealth from '../assets/portfolio/product-analytics-os/product-health.png';
-import analyticsEventExplorer from '../assets/portfolio/product-analytics-os/event-explorer.png';
-import analyticsFunnels from '../assets/portfolio/product-analytics-os/funnels.png';
-import analyticsRetention from '../assets/portfolio/product-analytics-os/retention.png';
-import analyticsCohorts from '../assets/portfolio/product-analytics-os/cohorts.png';
-import analyticsSegmentation from '../assets/portfolio/product-analytics-os/segmentation.png';
-import analyticsUserJourney from '../assets/portfolio/product-analytics-os/user-journey.png';
-import analyticsFeatureAdoption from '../assets/portfolio/product-analytics-os/feature-adoption.png';
-import analyticsRealtime from '../assets/portfolio/product-analytics-os/realtime.png';
-import analyticsAiAnalyst from '../assets/portfolio/product-analytics-os/ai-analyst.png';
-import analyticsLogin from '../assets/portfolio/product-analytics-os/login.png';
+import analyticsDashboards from '../assets/portfolio/product-analytics-os/dashboards.avif';
+import analyticsProductHealth from '../assets/portfolio/product-analytics-os/product-health.avif';
+import analyticsEventExplorer from '../assets/portfolio/product-analytics-os/event-explorer.avif';
+import analyticsFunnels from '../assets/portfolio/product-analytics-os/funnels.avif';
+import analyticsRetention from '../assets/portfolio/product-analytics-os/retention.avif';
+import analyticsCohorts from '../assets/portfolio/product-analytics-os/cohorts.avif';
+import analyticsSegmentation from '../assets/portfolio/product-analytics-os/segmentation.avif';
+import analyticsUserJourney from '../assets/portfolio/product-analytics-os/user-journey.avif';
+import analyticsFeatureAdoption from '../assets/portfolio/product-analytics-os/feature-adoption.avif';
+import analyticsRealtime from '../assets/portfolio/product-analytics-os/realtime.avif';
+import analyticsAiAnalyst from '../assets/portfolio/product-analytics-os/ai-analyst.avif';
+import analyticsLogin from '../assets/portfolio/product-analytics-os/login.avif';
 
 // AI Customer Operations Platform
-import aiOpsInbox from '../assets/portfolio/ai-customer-operations-platform/03-inbox-dark.png';
-import aiOpsLanding from '../assets/portfolio/ai-customer-operations-platform/01-landing-dark.png';
-import aiOpsSignIn from '../assets/portfolio/ai-customer-operations-platform/02-sign-in-dark.png';
-import aiOpsTicketDetail from '../assets/portfolio/ai-customer-operations-platform/04-ticket-detail-dark.png';
-import aiOpsKnowledgeBase from '../assets/portfolio/ai-customer-operations-platform/05-knowledge-base-dark.png';
-import aiOpsAnalytics from '../assets/portfolio/ai-customer-operations-platform/06-analytics-dark.png';
-import aiOpsBilling from '../assets/portfolio/ai-customer-operations-platform/07-billing-dark.png';
-import aiOpsMembers from '../assets/portfolio/ai-customer-operations-platform/08-members-dark.png';
-import aiOpsTicketLight from '../assets/portfolio/ai-customer-operations-platform/ticket.jpeg';
+import aiOpsInbox from '../assets/portfolio/ai-customer-operations-platform/03-inbox-dark.avif';
+import aiOpsLanding from '../assets/portfolio/ai-customer-operations-platform/01-landing-dark.avif';
+import aiOpsSignIn from '../assets/portfolio/ai-customer-operations-platform/02-sign-in-dark.avif';
+import aiOpsTicketDetail from '../assets/portfolio/ai-customer-operations-platform/04-ticket-detail-dark.avif';
+import aiOpsKnowledgeBase from '../assets/portfolio/ai-customer-operations-platform/05-knowledge-base-dark.avif';
+import aiOpsAnalytics from '../assets/portfolio/ai-customer-operations-platform/06-analytics-dark.avif';
+import aiOpsBilling from '../assets/portfolio/ai-customer-operations-platform/07-billing-dark.avif';
+import aiOpsMembers from '../assets/portfolio/ai-customer-operations-platform/08-members-dark.avif';
+import aiOpsTicketLight from '../assets/portfolio/ai-customer-operations-platform/ticket.avif';
 
 // Command Center
-import commandDashboardDark from '../assets/portfolio/command-center/dashboard-dark.png';
-import commandDeviceDetail from '../assets/portfolio/command-center/device-detail.png';
-import commandEventReplay from '../assets/portfolio/command-center/event-replay.png';
-import commandLogin from '../assets/portfolio/command-center/login.png';
-import commandDashboardLight from '../assets/portfolio/command-center/dashboard-light.png';
+import commandDashboardDark from '../assets/portfolio/command-center/dashboard-dark.avif';
+import commandDeviceDetail from '../assets/portfolio/command-center/device-detail.avif';
+import commandEventReplay from '../assets/portfolio/command-center/event-replay.avif';
+import commandLogin from '../assets/portfolio/command-center/login.avif';
+import commandDashboardLight from '../assets/portfolio/command-center/dashboard-light.avif';
 
 // AI Workflow Studio
-import workflowEditorDark from '../assets/portfolio/ai-workflow-studio/workflow-editor-dark.png';
-import workflowListDark from '../assets/portfolio/ai-workflow-studio/workflow-list-dark.png';
-import workflowCopilotDark from '../assets/portfolio/ai-workflow-studio/copilot-dark.png';
-import workflowExecutionHistoryDark from '../assets/portfolio/ai-workflow-studio/execution-history-dark.png';
-import workflowLoginDark from '../assets/portfolio/ai-workflow-studio/login-dark.png';
-import workflowFlowLight from '../assets/portfolio/ai-workflow-studio/flow.jpeg';
-import workflowListLight from '../assets/portfolio/ai-workflow-studio/workflow-list-light.png';
+import workflowEditorDark from '../assets/portfolio/ai-workflow-studio/workflow-editor-dark.avif';
+import workflowListDark from '../assets/portfolio/ai-workflow-studio/workflow-list-dark.avif';
+import workflowCopilotDark from '../assets/portfolio/ai-workflow-studio/copilot-dark.avif';
+import workflowExecutionHistoryDark from '../assets/portfolio/ai-workflow-studio/execution-history-dark.avif';
+import workflowLoginDark from '../assets/portfolio/ai-workflow-studio/login-dark.avif';
+import workflowFlowLight from '../assets/portfolio/ai-workflow-studio/flow.avif';
+import workflowListLight from '../assets/portfolio/ai-workflow-studio/workflow-list-light.avif';
 
 export interface FeaturedProject {
   slug: string;
@@ -181,7 +181,13 @@ export const featuredProjects: FeaturedProject[] = [
     demoUrlLabel: 'Demo',
     demoMobileUrl: 'https://fieldops-mobile.vercel.app',
     demoMobileUrlLabel: 'Demo Técnico Mobile',
-    images: [fieldopsInicio, fieldopsDespacho, fieldopsOrdens, fieldopsRelatorios, fieldopsCopiloto],
+    images: [
+      fieldopsInicio,
+      fieldopsDespacho,
+      fieldopsOrdens,
+      fieldopsRelatorios,
+      fieldopsCopiloto,
+    ],
   },
   {
     slug: 'nexus-developer-platform',

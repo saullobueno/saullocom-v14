@@ -7,6 +7,9 @@ interface ProjectGalleryProps {
   onOpenImage: (index: number) => void;
 }
 
+const navButton =
+  'flex w-8 shrink-0 items-center justify-center rounded-lg bg-white/6 p-0 text-white transition hover:bg-[rgba(0,133,178,0.25)] [&_svg]:pointer-events-none [&_svg]:shrink-0';
+
 export default function ProjectGallery({ images, title, onOpenImage }: ProjectGalleryProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [hero, ...thumbnails] = images;
@@ -15,7 +18,7 @@ export default function ProjectGallery({ images, title, onOpenImage }: ProjectGa
     const track = trackRef.current;
     if (!track) return;
 
-    const thumb = track.querySelector<HTMLElement>('.project-thumb');
+    const thumb = track.querySelector<HTMLElement>('[data-thumb]');
     const gap = 10;
     const step = thumb ? thumb.offsetWidth + gap : track.clientWidth;
 
@@ -23,22 +26,27 @@ export default function ProjectGallery({ images, title, onOpenImage }: ProjectGa
   };
 
   return (
-    <div className="project-gallery">
+    <div className="flex flex-col gap-3 [grid-area:gallery]">
       <button
         type="button"
-        className="project-gallery-hero"
+        className="group block w-full cursor-zoom-in overflow-hidden rounded-xl bg-[#111] p-0 leading-[0]"
         onClick={() => onOpenImage(0)}
         aria-label={`Ampliar imagem principal de ${title}`}
       >
-        <img src={hero} alt={title} loading="lazy" />
+        <img
+          src={hero}
+          alt={title}
+          loading="lazy"
+          className="block aspect-[16/10] h-auto w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
+        />
       </button>
 
       {thumbnails.length > 0 && (
-        <div className="project-thumbnails">
+        <div className="flex items-stretch gap-2">
           {thumbnails.length > 3 && (
             <button
               type="button"
-              className="thumb-nav thumb-nav-prev"
+              className={navButton}
               aria-label="Ver miniaturas anteriores"
               onClick={() => scrollThumbnails(-1)}
             >
@@ -46,16 +54,25 @@ export default function ProjectGallery({ images, title, onOpenImage }: ProjectGa
             </button>
           )}
 
-          <div className="project-thumbnails-track" ref={trackRef}>
+          <div
+            className="flex snap-x snap-mandatory [scrollbar-width:none] gap-[0.6rem] overflow-x-auto [&::-webkit-scrollbar]:hidden"
+            ref={trackRef}
+          >
             {thumbnails.map((src, i) => (
               <button
                 key={src}
                 type="button"
-                className="project-thumb"
+                data-thumb
+                className="shrink-0 grow-0 basis-[calc((100%-1.2rem)/3)] cursor-zoom-in snap-start overflow-hidden rounded-lg border border-white/12 bg-[#111] p-0 leading-[0] transition hover:-translate-y-0.5 hover:border-[#0085b2] max-[520px]:basis-[calc((100%-0.6rem)/2)]"
                 onClick={() => onOpenImage(i + 1)}
                 aria-label={`Ampliar captura ${i + 2} de ${title}`}
               >
-                <img src={src} alt={`${title} - captura de tela`} loading="lazy" />
+                <img
+                  src={src}
+                  alt={`${title} - captura de tela`}
+                  loading="lazy"
+                  className="block aspect-[16/10] w-full object-cover"
+                />
               </button>
             ))}
           </div>
@@ -63,7 +80,7 @@ export default function ProjectGallery({ images, title, onOpenImage }: ProjectGa
           {thumbnails.length > 3 && (
             <button
               type="button"
-              className="thumb-nav thumb-nav-next"
+              className={navButton}
               aria-label="Ver próximas miniaturas"
               onClick={() => scrollThumbnails(1)}
             >

@@ -1,18 +1,19 @@
-import react from '@vitejs/plugin-react'
-import { fileURLToPath } from "url";
-import { defineConfig } from "vite";
-import svgr from 'vite-plugin-svgr'
+import babel from '@rolldown/plugin-babel';
+import { reactRouter } from '@react-router/dev/vite';
+import tailwindcss from '@tailwindcss/vite';
+import { reactCompilerPreset } from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), svgr(),],
+  plugins: [
+    tailwindcss(),
+    reactRouter(),
+    // React Compiler: memoizacao automatica em build (dispensa useMemo/useCallback/memo manuais)
+    babel({ presets: [reactCompilerPreset()] }),
+  ],
   resolve: {
-    alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url))
-    }
+    // usa os "paths" do tsconfig (alias "@/")
+    tsconfigPaths: true,
   },
-  optimizeDeps: {
-    exclude: ['js-big-decimal']
-  },
-  base: "/"
 });
