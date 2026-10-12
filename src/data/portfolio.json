@@ -1,317 +1,452 @@
 [
   {
-    "image": "/assets/portfolio/portfolio-web-widecycling.jpg",
+    "image": "/assets/portfolio/portfolio-web-widecycling.avif",
     "slug": "widecycling",
     "title": "Wide Cycling Ciclismo Indoor",
     "description": "Empresa formadora de treinadores de ciclismo indoor.",
-    "job": "Design de interface, desenvolvimento front-end e back-end (gerenciador de cadastros)."
+    "job": "Design de interface, desenvolvimento front-end e back-end (gerenciador de cadastros).",
+    "imageLarge": "/assets/portfolio/portfolio-web-widecycling-g.avif",
+    "width": 640,
+    "height": 2021
   },
   {
-    "image": "/assets/portfolio/portfolio-web-zoomcomunicacao.jpg",
+    "image": "/assets/portfolio/portfolio-web-zoomcomunicacao.avif",
     "slug": "zoomcomunicacao",
     "title": "Zoom Comunicação e Marketing Digital",
     "description": "Agência especializada em comunicação e marketing digital.",
-    "job": "Criação da interface e desenvolvimento frontend."
+    "job": "Criação da interface e desenvolvimento frontend.",
+    "imageLarge": "/assets/portfolio/portfolio-web-zoomcomunicacao-g.avif",
+    "width": 640,
+    "height": 1696
   },
   {
-    "image": "/assets/portfolio/portfolio-web-bigrafica.jpg",
+    "image": "/assets/portfolio/portfolio-web-bigrafica.avif",
     "slug": "bigrafica",
     "title": "Bigráfica Editora",
     "description": "Gráfica localizada em Belo Horizonte",
-    "job": "Criação da interface."
+    "job": "Criação da interface.",
+    "imageLarge": "/assets/portfolio/portfolio-web-bigrafica-g.avif",
+    "width": 640,
+    "height": 1156
   },
   {
-    "image": "/assets/portfolio/portfolio-web-espacodivine.jpg",
+    "image": "/assets/portfolio/portfolio-web-espacodivine.avif",
     "slug": "espacodivine",
     "title": "Espaço Divine Eventos",
     "description": "Espaço para eventos diversos com vários ambientes.",
-    "job": "Desenvolvimento frontend do website e backend do gerenciador de cadastros."
+    "job": "Desenvolvimento frontend do website e backend do gerenciador de cadastros.",
+    "imageLarge": "/assets/portfolio/portfolio-web-espacodivine-g.avif",
+    "width": 640,
+    "height": 1769
   },
   {
-    "image": "/assets/portfolio/portfolio-web-mahdi.jpg",
+    "image": "/assets/portfolio/portfolio-web-mahdi.avif",
     "slug": "mahdi",
     "title": "Mahdi Pilates e Estética",
     "description": "Clínica de pilates e estética localizada em Belo Horizonte.",
-    "job": "Criação da interface e desenvolvimento frontend."
+    "job": "Criação da interface e desenvolvimento frontend.",
+    "imageLarge": "/assets/portfolio/portfolio-web-mahdi-g.avif",
+    "width": 640,
+    "height": 2021
   },
   {
-    "image": "/assets/portfolio/portfolio-web-quintaimperial.jpg",
+    "image": "/assets/portfolio/portfolio-web-quintaimperial.avif",
     "slug": "quintaimperial",
     "title": "Condomínio Quinta Imperial",
     "description": "Empreendimento residencial.",
-    "job": "Design de interface, desenvolvimento front-end e back-end (gerenciador de cadastros)."
+    "job": "Design de interface, desenvolvimento front-end e back-end (gerenciador de cadastros).",
+    "imageLarge": "/assets/portfolio/portfolio-web-quintaimperial-g.avif",
+    "width": 640,
+    "height": 2055
   },
   {
-    "image": "/assets/portfolio/portfolio-web-imovelnumclique.jpg",
+    "image": "/assets/portfolio/portfolio-web-imovelnumclique.avif",
     "slug": "imovelnumclique",
     "title": "Imóvel Num Clique",
     "description": "Website especializado em divulgação de vendas de empreendimentos em lançamento, construção e prontos para morar.",
-    "job": "Criação da interface."
+    "job": "Criação da interface.",
+    "imageLarge": "/assets/portfolio/portfolio-web-imovelnumclique-g.avif",
+    "width": 640,
+    "height": 800
   },
   {
-    "image": "/assets/portfolio/portfolio-web-mca.jpg",
+    "image": "/assets/portfolio/portfolio-web-mca.avif",
     "slug": "mca",
     "title": "MCA - Morus Corporate",
     "description": "Empresa especializada em investimentos imobiliários.",
-    "job": "Criação da interface e desenvolvimento frontend."
+    "job": "Criação da interface e desenvolvimento frontend.",
+    "imageLarge": "/assets/portfolio/portfolio-web-mca-g.avif",
+    "width": 640,
+    "height": 569
   },
   {
-    "image": "/assets/portfolio/portfolio-web-parrilla.jpg",
+    "image": "/assets/portfolio/portfolio-web-parrilla.avif",
     "slug": "parrilla",
     "title": "Parrilla Urbana",
     "description": "Restaurante localizado no bairro Savassi em Belo Horizonte.",
-    "job": "Criação da interface."
+    "job": "Criação da interface.",
+    "imageLarge": "/assets/portfolio/portfolio-web-parrilla-g.avif",
+    "width": 640,
+    "height": 505
   },
   {
-    "image": "/assets/portfolio/portfolio-web-sandiegoitauna.jpg",
+    "image": "/assets/portfolio/portfolio-web-sandiegoitauna.avif",
     "slug": "sandiegoitauna",
     "title": "San Diego Suítes Itaúna",
     "description": "Hotel localizado na Pampulha em Belo Horizonte.",
-    "job": "Desenvolvimento frontend do website e backend do gerenciador de cadastros."
+    "job": "Desenvolvimento frontend do website e backend do gerenciador de cadastros.",
+    "imageLarge": "/assets/portfolio/portfolio-web-sandiegoitauna-g.avif",
+    "width": 640,
+    "height": 512
   },
   {
-    "image": "/assets/portfolio/portfolio-web-selectcar.jpg",
+    "image": "/assets/portfolio/portfolio-web-selectcar.avif",
     "slug": "selectcar",
     "title": "Select Car",
     "description": "Loja especializada em compra e venda de carros de luxo.",
-    "job": "Criação da interface."
+    "job": "Criação da interface.",
+    "imageLarge": "/assets/portfolio/portfolio-web-selectcar-g.avif",
+    "width": 640,
+    "height": 360
   },
   {
-    "image": "/assets/portfolio/portfolio-web-talent.jpg",
+    "image": "/assets/portfolio/portfolio-web-talent.avif",
     "slug": "talent",
     "title": "Talent Empreendimentos Exclusivos",
     "description": "Construtora especializada em empreendimentos exclusivos.",
-    "job": "Desenvolvimento frontend do website e backend do gerenciador de cadastros."
+    "job": "Desenvolvimento frontend do website e backend do gerenciador de cadastros.",
+    "imageLarge": "/assets/portfolio/portfolio-web-talent-g.avif",
+    "width": 640,
+    "height": 360
   },
   {
-    "image": "/assets/portfolio/portfolio-web-terraateto.jpg",
+    "image": "/assets/portfolio/portfolio-web-terraateto.avif",
     "slug": "terraateto",
     "title": "Terra a Teto Engenharia",
     "description": "Construtora especializada em empreendimentos residencias, comerciais e obras públicas.",
-    "job": "Design de interface, desenvolvimento front-end e back-end (gerenciador de cadastros)."
+    "job": "Design de interface, desenvolvimento front-end e back-end (gerenciador de cadastros).",
+    "imageLarge": "/assets/portfolio/portfolio-web-terraateto-g.avif",
+    "width": 640,
+    "height": 998
   },
   {
-    "image": "/assets/portfolio/portfolio-web-terravista.jpg",
+    "image": "/assets/portfolio/portfolio-web-terravista.avif",
     "slug": "terravista",
     "title": "Terra Vista Tênis Park",
     "description": "Empreendimento residencial.",
-    "job": "Design de interface, desenvolvimento front-end e back-end (gerenciador de cadastros)."
+    "job": "Design de interface, desenvolvimento front-end e back-end (gerenciador de cadastros).",
+    "imageLarge": "/assets/portfolio/portfolio-web-terravista-g.avif",
+    "width": 640,
+    "height": 404
   },
   {
-    "image": "/assets/portfolio/portfolio-web-valedosipes.jpg",
+    "image": "/assets/portfolio/portfolio-web-valedosipes.avif",
     "slug": "valedosipes",
     "title": "Vale dos Ipês Residencial",
     "description": "Empreendimento residencial.",
-    "job": "Desenvolvimento frontend do website e backend do gerenciador de cadastros."
+    "job": "Desenvolvimento frontend do website e backend do gerenciador de cadastros.",
+    "imageLarge": "/assets/portfolio/portfolio-web-valedosipes-g.avif",
+    "width": 640,
+    "height": 640
   },
   {
-    "image": "/assets/portfolio/portfolio-web-villabergamo.jpg",
+    "image": "/assets/portfolio/portfolio-web-villabergamo.avif",
     "slug": "villabergamo",
     "title": "Residencial Villa Bergamo",
     "description": "Empreendimento residencial.",
-    "job": "Design de interface, desenvolvimento front-end e back-end (gerenciador de cadastros)."
+    "job": "Design de interface, desenvolvimento front-end e back-end (gerenciador de cadastros).",
+    "imageLarge": "/assets/portfolio/portfolio-web-villabergamo-g.avif",
+    "width": 640,
+    "height": 384
   },
   {
-    "image": "/assets/portfolio/portfolio-web-aec.jpg",
+    "image": "/assets/portfolio/portfolio-web-aec.avif",
     "slug": "aec",
     "title": "AeC Relacionamento com Responsabilidade",
     "description": "Empresa de outsourcing nas áreas de Contact Center, Consultoria, Software e Gestão em Saúde.",
-    "job": "Criação da interface e desenvolvimento frontend do website."
+    "job": "Criação da interface e desenvolvimento frontend do website.",
+    "imageLarge": "/assets/portfolio/portfolio-web-aec-g.avif",
+    "width": 640,
+    "height": 640
   },
   {
-    "image": "/assets/portfolio/portfolio-web-alfredogomes.jpg",
+    "image": "/assets/portfolio/portfolio-web-alfredogomes.avif",
     "slug": "alfredogomes",
     "title": "Alfredo Gomes - Sociedade de Advogados",
     "description": "Equipe de advogados multidisciplinar, para o adequado atendimento em diversas áreas.",
-    "job": "Criação da interface e desenvolvimento frontend do website."
+    "job": "Criação da interface e desenvolvimento frontend do website.",
+    "imageLarge": "/assets/portfolio/portfolio-web-alfredogomes-g.avif",
+    "width": 640,
+    "height": 416
   },
   {
-    "image": "/assets/portfolio/portfolio-web-alternativa.jpg",
+    "image": "/assets/portfolio/portfolio-web-alternativa.avif",
     "slug": "alternativa",
     "title": "Cartão Social Alternativa Para Todos",
     "description": "Rede de Franquia, que visa atender a uma demanda infinita de serviços em saúde, bem estar, cultura e qualidade de vida.",
-    "job": "Criação da interface e desenvolvimento frontend do website."
+    "job": "Criação da interface e desenvolvimento frontend do website.",
+    "imageLarge": "/assets/portfolio/portfolio-web-alternativa-g.avif",
+    "width": 640,
+    "height": 666
   },
   {
-    "image": "/assets/portfolio/portfolio-web-andreiafranco.jpg",
+    "image": "/assets/portfolio/portfolio-web-andreiafranco.avif",
     "slug": "andreiafranco",
     "title": "Andreia Franco Delícias Gourmet",
     "description": "Empresa especializada em salgados.",
-    "job": "Criação da interface."
+    "job": "Criação da interface.",
+    "imageLarge": "/assets/portfolio/portfolio-web-andreiafranco-g.avif",
+    "width": 640,
+    "height": 1067
   },
   {
-    "image": "/assets/portfolio/portfolio-web-antares.jpg",
+    "image": "/assets/portfolio/portfolio-web-antares.avif",
     "slug": "antares",
     "title": "Antares Mudanças Internacionais",
     "description": "Empresa especializada no transporte internacional de mudanças desacompanhadas cobrindo qualquer cidade do Brasil para o exterior, vice-versa e entre países diferentes.",
-    "job": "Criação da interface."
+    "job": "Criação da interface.",
+    "imageLarge": "/assets/portfolio/portfolio-web-antares-g.avif",
+    "width": 640,
+    "height": 488
   },
   {
-    "image": "/assets/portfolio/portfolio-web-bbc.jpg",
+    "image": "/assets/portfolio/portfolio-web-bbc.avif",
     "slug": "bbc",
     "title": "BBC - Betim Business Center",
     "description": "Empreendimento comercial.",
-    "job": "Design de interface, desenvolvimento front-end e back-end (gerenciador de cadastros)."
+    "job": "Design de interface, desenvolvimento front-end e back-end (gerenciador de cadastros).",
+    "imageLarge": "/assets/portfolio/portfolio-web-bbc-g.avif",
+    "width": 640,
+    "height": 506
   },
   {
-    "image": "/assets/portfolio/portfolio-web-bluetower.jpg",
+    "image": "/assets/portfolio/portfolio-web-bluetower.avif",
     "slug": "bluetower",
     "title": "Blue Tower Business Center",
     "description": "Empreendimento comercial.",
-    "job": "Design de interface, desenvolvimento front-end e back-end (gerenciador de cadastros)."
+    "job": "Design de interface, desenvolvimento front-end e back-end (gerenciador de cadastros).",
+    "imageLarge": "/assets/portfolio/portfolio-web-bluetower-g.avif",
+    "width": 640,
+    "height": 360
   },
   {
-    "image": "/assets/portfolio/portfolio-web-bosquedelvita.jpg",
+    "image": "/assets/portfolio/portfolio-web-bosquedelvita.avif",
     "slug": "bosquedelvita",
     "title": "Residencial Bosque Del Vita",
     "description": "Empreendimento residencial.",
-    "job": "Design de interface, desenvolvimento front-end e back-end (gerenciador de cadastros)."
+    "job": "Design de interface, desenvolvimento front-end e back-end (gerenciador de cadastros).",
+    "imageLarge": "/assets/portfolio/portfolio-web-bosquedelvita-g.avif",
+    "width": 640,
+    "height": 576
   },
   {
-    "image": "/assets/portfolio/portfolio-web-casamais.jpg",
+    "image": "/assets/portfolio/portfolio-web-casamais.avif",
     "slug": "casamais",
     "title": "Casa Mais Construtora",
     "description": "Construtora localizada em Belo Horizonte.",
-    "job": "Desenvolvimento frontend do website e backend do gerenciador de cadastros."
+    "job": "Desenvolvimento frontend do website e backend do gerenciador de cadastros.",
+    "imageLarge": "/assets/portfolio/portfolio-web-casamais-g.avif",
+    "width": 640,
+    "height": 906
   },
   {
-    "image": "/assets/portfolio/portfolio-web-cmengenharia.jpg",
+    "image": "/assets/portfolio/portfolio-web-cmengenharia.avif",
     "slug": "cmengenharia",
     "title": "CM Engenharia",
     "description": "Construtora localizada em Belo Horizonte.",
-    "job": "Criação da interface e desenvolvimento frontend."
+    "job": "Criação da interface e desenvolvimento frontend.",
+    "imageLarge": "/assets/portfolio/portfolio-web-cmengenharia-g.avif",
+    "width": 640,
+    "height": 698
   },
   {
-    "image": "/assets/portfolio/portfolio-web-crear.jpg",
+    "image": "/assets/portfolio/portfolio-web-crear.avif",
     "slug": "crear",
     "title": "Crear Soluções em Engenharia",
     "description": "Empresa especializada em soluções em engenharia.",
-    "job": "Criação da interface e desenvolvimento frontend."
+    "job": "Criação da interface e desenvolvimento frontend.",
+    "imageLarge": "/assets/portfolio/portfolio-web-crear-g.avif",
+    "width": 640,
+    "height": 906
   },
   {
-    "image": "/assets/portfolio/portfolio-web-deisebarbosa.jpg",
+    "image": "/assets/portfolio/portfolio-web-deisebarbosa.avif",
     "slug": "deisebarbosa",
     "title": "Dr. Deise Barbosa Psiquiatria",
     "description": "Clínica psiquiatra.",
-    "job": "Criação da interface."
+    "job": "Criação da interface.",
+    "imageLarge": "/assets/portfolio/portfolio-web-deisebarbosa-g.avif",
+    "width": 640,
+    "height": 800
   },
   {
-    "image": "/assets/portfolio/portfolio-web-fiderlog.jpg",
+    "image": "/assets/portfolio/portfolio-web-fiderlog.avif",
     "slug": "fiderlog",
     "title": "Fiderlog Cargas Urgentes",
     "description": "Empresa especializadas em encomendas expressas.",
-    "job": "Criação da interface e desenvolvimento frontend."
+    "job": "Criação da interface e desenvolvimento frontend.",
+    "imageLarge": "/assets/portfolio/portfolio-web-fiderlog-g.avif",
+    "width": 640,
+    "height": 640
   },
   {
-    "image": "/assets/portfolio/portfolio-web-godofredogoncalves.jpg",
+    "image": "/assets/portfolio/portfolio-web-godofredogoncalves.avif",
     "slug": "godofredogoncalves",
     "title": "Residencial Godofredo Gonçalves",
     "description": "Empreendimento residencial.",
-    "job": "Design de interface, desenvolvimento front-end e back-end (gerenciador de cadastros)."
+    "job": "Design de interface, desenvolvimento front-end e back-end (gerenciador de cadastros).",
+    "imageLarge": "/assets/portfolio/portfolio-web-godofredogoncalves-g.avif",
+    "width": 640,
+    "height": 400
   },
   {
-    "image": "/assets/portfolio/portfolio-web-greenvillage.jpg",
+    "image": "/assets/portfolio/portfolio-web-greenvillage.avif",
     "slug": "greenvillage",
     "title": "Condomínio Green Village",
     "description": "Empreendimento residencial.",
-    "job": "Design de interface, desenvolvimento front-end e back-end (gerenciador de cadastros)."
+    "job": "Design de interface, desenvolvimento front-end e back-end (gerenciador de cadastros).",
+    "imageLarge": "/assets/portfolio/portfolio-web-greenvillage-g.avif",
+    "width": 640,
+    "height": 400
   },
   {
-    "image": "/assets/portfolio/portfolio-web-guaiu.jpg",
+    "image": "/assets/portfolio/portfolio-web-guaiu.avif",
     "slug": "guaiu",
     "title": "Guaiú Eco Village",
     "description": "Empreendimento residencial.",
-    "job": "Criação da interface e desenvolvimento frontend do website."
+    "job": "Criação da interface e desenvolvimento frontend do website.",
+    "imageLarge": "/assets/portfolio/portfolio-web-guaiu-g.avif",
+    "width": 640,
+    "height": 640
   },
   {
-    "image": "/assets/portfolio/portfolio-web-henriqueluthier.jpg",
+    "image": "/assets/portfolio/portfolio-web-henriqueluthier.avif",
     "slug": "henriqueluthier",
     "title": "Henrique Luthier - Oficina de Luthieria",
     "description": "Luthieria localizada em Belo Horizonte",
-    "job": "Criação da interface."
+    "job": "Criação da interface.",
+    "imageLarge": "/assets/portfolio/portfolio-web-henriqueluthier-g.avif",
+    "width": 640,
+    "height": 400
   },
   {
-    "image": "/assets/portfolio/portfolio-web-lafayette.jpg",
+    "image": "/assets/portfolio/portfolio-web-lafayette.avif",
     "slug": "lafayette",
     "title": "Deputado Estadual Lafayette Andrada",
     "description": "Deputado Estadual pelo PSDB",
-    "job": "Criação da interface."
+    "job": "Criação da interface.",
+    "imageLarge": "/assets/portfolio/portfolio-web-lafayette-g.avif",
+    "width": 640,
+    "height": 1024
   },
   {
-    "image": "/assets/portfolio/portfolio-web-liderville.jpg",
+    "image": "/assets/portfolio/portfolio-web-liderville.avif",
     "slug": "liderville",
     "title": "Residencial Lider Ville",
     "description": "Empreendimento residencial.",
-    "job": "Design de interface, desenvolvimento front-end e back-end (gerenciador de cadastros)."
+    "job": "Design de interface, desenvolvimento front-end e back-end (gerenciador de cadastros).",
+    "imageLarge": "/assets/portfolio/portfolio-web-liderville-g.avif",
+    "width": 640,
+    "height": 827
   },
   {
-    "image": "/assets/portfolio/portfolio-web-maritima.jpg",
+    "image": "/assets/portfolio/portfolio-web-maritima.avif",
     "slug": "maritima",
     "title": "Marítima Engenharia",
     "description": "Construtora especilizada em obras residencias e comercais",
-    "job": "Design de interface, desenvolvimento front-end e back-end (gerenciador de cadastros)."
+    "job": "Design de interface, desenvolvimento front-end e back-end (gerenciador de cadastros).",
+    "imageLarge": "/assets/portfolio/portfolio-web-maritima-g.avif",
+    "width": 640,
+    "height": 448
   },
   {
-    "image": "/assets/portfolio/portfolio-web-montesinai.jpg",
+    "image": "/assets/portfolio/portfolio-web-montesinai.avif",
     "slug": "montesinai",
     "title": "Monte Sinai - Clínica de Fisioterapia",
     "description": "Clínica de Fisioterapia localizada em Belo Horizonte.",
-    "job": "Criação da interface e desenvolvimento frontend."
+    "job": "Criação da interface e desenvolvimento frontend.",
+    "imageLarge": "/assets/portfolio/portfolio-web-montesinai-g.avif",
+    "width": 640,
+    "height": 640
   },
   {
-    "image": "/assets/portfolio/portfolio-web-monteville.jpg",
+    "image": "/assets/portfolio/portfolio-web-monteville.avif",
     "slug": "monteville",
     "title": "Residencial Monte Ville",
     "description": "Empreendimento residencial.",
-    "job": "Design de interface, desenvolvimento front-end e back-end (gerenciador de cadastros)."
+    "job": "Design de interface, desenvolvimento front-end e back-end (gerenciador de cadastros).",
+    "imageLarge": "/assets/portfolio/portfolio-web-monteville-g.avif",
+    "width": 640,
+    "height": 1408
   },
   {
-    "image": "/assets/portfolio/portfolio-web-prefisan.jpg",
+    "image": "/assets/portfolio/portfolio-web-prefisan.avif",
     "slug": "prefisan",
     "title": "Prefisan Engenharia",
     "description": "Empresa especializada em soluções em engenharia.",
-    "job": "Criação da interface e desenvolvimento frontend."
+    "job": "Criação da interface e desenvolvimento frontend.",
+    "imageLarge": "/assets/portfolio/portfolio-web-prefisan-g.avif",
+    "width": 640,
+    "height": 296
   },
   {
-    "image": "/assets/portfolio/portfolio-web-proclima.jpg",
+    "image": "/assets/portfolio/portfolio-web-proclima.avif",
     "slug": "proclima",
     "title": "ProClima BH - Ar Condicionado",
     "description": "Empresa especializada em soluções em climatização de ambientes.",
-    "job": "Desenvolvimento frontend do website e backend do gerenciador de cadastros."
+    "job": "Desenvolvimento frontend do website e backend do gerenciador de cadastros.",
+    "imageLarge": "/assets/portfolio/portfolio-web-proclima-g.avif",
+    "width": 640,
+    "height": 542
   },
   {
-    "image": "/assets/portfolio/portfolio-web-quintalzinho.jpg",
+    "image": "/assets/portfolio/portfolio-web-quintalzinho.avif",
     "slug": "quintalzinho",
     "title": "Sítio Quintalzinho",
     "description": "Empresa especializada em hospedagem permanente, temporária e diária para idosos.",
-    "job": "Criação da interface."
+    "job": "Criação da interface.",
+    "imageLarge": "/assets/portfolio/portfolio-web-quintalzinho-g.avif",
+    "width": 640,
+    "height": 515
   },
   {
-    "image": "/assets/portfolio/portfolio-web-reservahorizonte.jpg",
+    "image": "/assets/portfolio/portfolio-web-reservahorizonte.avif",
     "slug": "reservahorizonte",
     "title": "Reserva Horizonte Residence",
     "description": "Empreendimento residencial.",
-    "job": "Design de interface, desenvolvimento front-end e back-end (gerenciador de cadastros)."
+    "job": "Design de interface, desenvolvimento front-end e back-end (gerenciador de cadastros).",
+    "imageLarge": "/assets/portfolio/portfolio-web-reservahorizonte-g.avif",
+    "width": 640,
+    "height": 704
   },
   {
-    "image": "/assets/portfolio/portfolio-web-sandiegoaeroporto.jpg",
+    "image": "/assets/portfolio/portfolio-web-sandiegoaeroporto.avif",
     "slug": "sandiegoaeroporto",
     "title": "San Diego Express Aeroporto Pampulha",
     "description": "Hotel localizado na Pampulha em Belo Horizonte.",
-    "job": "Desenvolvimento frontend do website e backend do gerenciador de cadastros."
+    "job": "Desenvolvimento frontend do website e backend do gerenciador de cadastros.",
+    "imageLarge": "/assets/portfolio/portfolio-web-sandiegoaeroporto-g.avif",
+    "width": 640,
+    "height": 899
   },
   {
-    "image": "/assets/portfolio/portfolio-web-sandiegoexpress.jpg",
+    "image": "/assets/portfolio/portfolio-web-sandiegoexpress.avif",
     "slug": "sandiegoexpress",
     "title": "San Diego Express Aeroporto Pampulha",
     "description": "Hotel localizado na Pampulha em Belo Horizonte.",
-    "job": "Desenvolvimento frontend do website e backend do gerenciador de cadastros."
+    "job": "Desenvolvimento frontend do website e backend do gerenciador de cadastros.",
+    "imageLarge": "/assets/portfolio/portfolio-web-sandiegoexpress-g.avif",
+    "width": 640,
+    "height": 640
   },
   {
-    "image": "/assets/portfolio/portfolio-web-xmore.jpg",
+    "image": "/assets/portfolio/portfolio-web-xmore.avif",
     "slug": "xmore",
     "title": "XMore",
     "description": "Incorporadora e construtora especializada em obras residenciais e comerciais.",
-    "job": "Desenvolvimento frontend do website."
+    "job": "Desenvolvimento frontend do website.",
+    "imageLarge": "/assets/portfolio/portfolio-web-xmore-g.avif",
+    "width": 640,
+    "height": 512
   }
 ]

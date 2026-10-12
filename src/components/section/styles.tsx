@@ -42,6 +42,7 @@ export const Container = styled.div`
   }
   .portfolio-mini {
     width: 100%;
+    height: auto;
   }
   @media (max-width: 880px) {
     div.columns {

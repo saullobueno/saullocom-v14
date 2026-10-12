@@ -25,10 +25,10 @@ import {
   FaChevronUp,
 } from 'react-icons/fa';
 
-import Stack01 from '../assets/imageStack01.jpg';
-import Stack02 from '../assets/imageStack02.jpg';
-import Stack03 from '../assets/imageStack03.jpg';
-import Stack04 from '../assets/imageStack04.jpg';
+import Stack01 from '../assets/imageStack01.avif';
+import Stack02 from '../assets/imageStack02.avif';
+import Stack03 from '../assets/imageStack03.avif';
+import Stack04 from '../assets/imageStack04.avif';
 
 export default function Home() {
   const [index, setIndex] = useState(-1);
@@ -38,7 +38,7 @@ export default function Home() {
   );
 
   const slides = portData.map((port) => ({
-    src: port.image.slice(0, -4) + '-g.jpg',
+    src: port.imageLarge,
     title: port.title,
     description: port.description,
   }));
@@ -60,8 +60,11 @@ export default function Home() {
             <div>
               <img
                 src={Stack01}
-                width="100%"
-                height="auto"
+                width={720}
+                height={720}
+                loading="lazy"
+                decoding="async"
+                style={{ width: '100%', height: 'auto' }}
                 alt="Criança sentada no chão empilhando blocos de madeira, em tons sépia"
               />
             </div>
@@ -110,8 +113,11 @@ export default function Home() {
             <div>
               <img
                 src={Stack02}
-                width="100%"
-                height="auto"
+                width={540}
+                height={1079}
+                loading="lazy"
+                decoding="async"
+                style={{ width: '100%', height: 'auto' }}
                 alt="Torre alta de blocos de madeira equilibrada sobre uma mesa clara"
               />
             </div>
@@ -173,8 +179,11 @@ export default function Home() {
             <div>
               <img
                 src={Stack03}
-                width="100%"
-                height="auto"
+                width={540}
+                height={720}
+                loading="lazy"
+                decoding="async"
+                style={{ width: '100%', height: 'auto' }}
                 alt="Mão afastando com cuidado um bloco de uma torre de madeira, em tons esverdeados"
               />
             </div>
@@ -280,8 +289,10 @@ export default function Home() {
                 >
                   <img
                     src={port.image}
-                    width="auto"
-                    height="auto"
+                    width={port.width}
+                    height={port.height}
+                    loading="lazy"
+                    decoding="async"
                     alt={port.title}
                     className="portfolio-mini"
                   />
@@ -325,10 +336,12 @@ export default function Home() {
             <div>
               <img
                 src={Stack04}
-                width="100%"
-                height="auto"
+                width={720}
+                height={720}
+                loading="lazy"
+                decoding="async"
                 alt="Mão de pessoa de terno colocando um bloco de madeira no topo de uma torre, em tons arroxeados"
-                style={{ marginBottom: '1rem' }}
+                style={{ width: '100%', height: 'auto', marginBottom: '1rem' }}
               />
             </div>
             <div className="contact-column">
