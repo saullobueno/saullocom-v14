@@ -1,8 +1,9 @@
-// Converte as imagens do site para AVIF.
-//  - public/assets/portfolio/portfolio-web-*.jpg e *-g.jpg (projetos legados):
-//    gera <slug>.avif (miniatura 640px) e <slug>-g.avif (lightbox, ate 1920px),
-//    remove os JPGs e atualiza src/data/portfolio.json (image, imageLarge, width, height).
+// Converte as imagens do site para AVIF (sharp).
+//  - src/assets/legacy/portfolio-web-<slug>.jpg + portfolio-web-<slug>-g.jpg (projetos legados):
+//    gera <slug>.avif (miniatura 640px) e <slug>-g.avif (lightbox, ate 1920px), remove os JPGs
+//    e grava width/height da miniatura em src/data/portfolio.json.
 //  - src/assets/**: converte PNG/JPG/JPEG para AVIF e remove o original.
+// Os caminhos finais sao resolvidos pelo Vite (src/data/legacyProjects.ts); nada disso fica em public/.
 // Uso: node scripts/otimizar-imagens.mjs
 import fs from 'node:fs';
 import path from 'node:path';
@@ -25,13 +26,13 @@ async function paraAvif(entrada, saida, { largura, qualidade }) {
   return info;
 }
 
-// 1) Projetos legados (public)
-const pasta = 'public/assets/portfolio';
+// 1) Projetos legados
+const pasta = 'src/assets/legacy';
 const jsonPath = 'src/data/portfolio.json';
 const portfolio = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
 
 for (const item of portfolio) {
-  const base = path.basename(item.image, '.jpg');
+  const base = `portfolio-web-${item.slug}`;
   const jpgThumb = path.join(pasta, `${base}.jpg`);
   const jpgLarge = path.join(pasta, `${base}-g.jpg`);
   if (!fs.existsSync(jpgLarge)) continue;
@@ -40,8 +41,6 @@ for (const item of portfolio) {
   await paraAvif(jpgLarge, path.join(pasta, `${base}-g.avif`), { largura: LARGE_W, qualidade: 58 });
   if (fs.existsSync(jpgThumb)) antes += fs.statSync(jpgThumb).size;
 
-  item.image = `/assets/portfolio/${base}.avif`;
-  item.imageLarge = `/assets/portfolio/${base}-g.avif`;
   item.width = thumb.width;
   item.height = thumb.height;
 

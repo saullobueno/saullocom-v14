@@ -2,7 +2,7 @@
 
 Site pessoal e portfólio de **Saullo Bueno**, desenvolvedor Full Stack (UI/UX Design · Node.js · React · React Native). É uma página única (SPA) que conta minha trajetória, minha expertise técnica e reúne os projetos que já entreguei.
 
-![Página inicial do saullo.com](public/screenshot.jpg)
+![Página inicial do saullo.com](docs/screenshot.jpg)
 
 ## O que tem no site
 
@@ -31,9 +31,12 @@ npm run lint      # ESLint
 ## Estrutura
 
 ```
-public/                     Arquivos estáticos (favicon, screenshot, imagens dos trabalhos anteriores)
+public/                     Somente o que precisa de URL estável: favicon, social.jpg (Open Graph), robots.txt e sitemap.xml
+docs/                       Imagens usadas só no README
+scripts/                    Geração da imagem social e otimização de imagens (AVIF)
 src/
-  assets/                   Imagens do site
+  assets/                   Imagens do site (processadas pelo Vite, com hash e cache imutável)
+    legacy/                 Projetos legados: portfolio-web-<slug>.avif e portfolio-web-<slug>-g.avif
     portfolio/<projeto>/    Screenshots de cada projeto em destaque
   components/               Header, Footer, Section, Modal e ProjectGallery
   data/

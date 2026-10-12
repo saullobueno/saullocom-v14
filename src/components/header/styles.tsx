@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import imageHome from '../../assets/image-home.avif';
 
 export const Container = styled.div`
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  background: url('/image-home.avif'), linear-gradient(45deg, #e2a342, #0059b2),
+  background: url(${imageHome}), linear-gradient(45deg, #e2a342, #0059b2),
     linear-gradient(135deg, #e34040, #00b259);
   background-size: cover;
   background-blend-mode: hard-light;

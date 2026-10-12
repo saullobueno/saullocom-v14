@@ -1,4 +1,4 @@
-import portData from '../data/portfolio.json';
+import { legacyProjects as portData } from '../data/legacyProjects';
 import { featuredProjects } from '../data/featuredProjects';
 import Header from '../components/header';
 import Section from '../components/section';
