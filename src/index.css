@@ -92,14 +92,78 @@
 /* ---- Animacoes guiadas pelo scroll (CSS puro, sem JS) ----
    So rodam em navegadores com scroll-driven animations e sem preferencia por menos movimento;
    nos demais, tudo aparece normalmente. */
-@keyframes reveal {
+/* Vocabulario de revelacoes (aplicado com a classe rv-<nome> + variavel --i para escalonar) */
+@keyframes rv-up {
   from {
     opacity: 0;
-    translate: 0 2rem;
+    translate: 0 2.5rem;
   }
   to {
     opacity: 1;
     translate: 0 0;
+  }
+}
+
+@keyframes rv-left {
+  from {
+    opacity: 0;
+    translate: -3.5rem 0;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes rv-right {
+  from {
+    opacity: 0;
+    translate: 3.5rem 0;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes rv-pop {
+  from {
+    opacity: 0;
+    scale: 0.7;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+/* cortina: a imagem e revelada de baixo para cima */
+@keyframes rv-curtain {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* palavra dos titulos subindo de dentro da mascara (.rv-mask) */
+@keyframes rv-rise {
+  from {
+    translate: 0 118%;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+
+/* fio colorido sob os titulos */
+@keyframes rv-line {
+  from {
+    scale: 0 1;
+  }
+  to {
+    scale: 1 1;
   }
 }
 
@@ -172,10 +236,52 @@
 
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    .reveal {
-      animation: reveal linear both;
+    /* Cada elemento anima enquanto atravessa a borda inferior da tela, em ~280px de rolagem;
+       --i escalona irmaos (cada indice comeca 60px de rolagem depois do anterior). Usar px (e
+       nao %) mantem a duracao igual para elementos altos e baixos. */
+    .rv-up,
+    .rv-left,
+    .rv-right,
+    .rv-pop,
+    .rv-curtain,
+    .rv-line,
+    .rv-rise {
       animation-timeline: view();
-      animation-range: entry 5% entry 45%;
+      animation-fill-mode: both;
+      animation-timing-function: cubic-bezier(0.22, 0.8, 0.3, 1);
+      animation-range: entry calc(var(--i, 0) * var(--passo, 60px)) entry
+        calc(var(--dur, 280px) + var(--i, 0) * var(--passo, 60px));
+    }
+
+    .rv-up {
+      animation-name: rv-up;
+    }
+    .rv-left {
+      animation-name: rv-left;
+    }
+    .rv-right {
+      animation-name: rv-right;
+    }
+    .rv-pop {
+      animation-name: rv-pop;
+    }
+    .rv-curtain {
+      animation-name: rv-curtain;
+      --dur: 420px;
+    }
+    .rv-line {
+      animation-name: rv-line;
+      --dur: 360px;
+    }
+
+    /* a palavra sobe dentro da mascara; a linha do tempo e a da mascara (fixa), nao a da palavra,
+       para o proprio deslocamento nao alterar o progresso */
+    .rv-mask {
+      view-timeline-name: --mascara;
+    }
+    .rv-rise {
+      animation-name: rv-rise;
+      animation-timeline: --mascara;
     }
 
     /* hero: o fundo desce mais devagar que a pagina (camada estendida acima para nunca abrir vao),
