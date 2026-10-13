@@ -5,7 +5,7 @@ import { revelar } from '../reveal';
 
 export default function Footer({ children }: { children?: ReactNode }) {
   return (
-    <footer className="flex items-center justify-center bg-footer">
+    <footer className="relative flex items-center justify-center bg-footer">
       <div {...revelar('up', 0, 'w-full max-w-[1280px] px-8 pt-12 pb-20 text-center')}>
         <img
           src={logo}

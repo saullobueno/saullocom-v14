@@ -5,7 +5,7 @@
   --font-sans: 'Roboto Variable', system-ui, sans-serif;
 
   --color-bg: #1a1a1a;
-  --color-footer: #292929;
+  --color-footer: #0f0f0f;
 
   /* Cores de secao (todas com contraste AA sobre --color-bg) */
   --color-trajetoria: #ff6b6b;
@@ -225,6 +225,16 @@
   }
 }
 
+/* a imagem alta do fundo de codigo sobe ate mostrar o rodape dela (-100% = a altura da propria imagem) */
+@keyframes fundo-codigo {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 0 calc(100vh - 100%);
+  }
+}
+
 @keyframes parallax-img {
   from {
     translate: 0 -7%;
@@ -307,6 +317,12 @@
 
     .parallax-title {
       animation-name: parallax-title;
+    }
+
+    .fundo-codigo-img {
+      animation: fundo-codigo linear both;
+      animation-timeline: scroll(root);
+      will-change: translate;
     }
 
     /* fotos decorativas: ampliadas o bastante (8% por lado) para o deslocamento de 7% nunca

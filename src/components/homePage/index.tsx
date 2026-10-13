@@ -15,6 +15,7 @@ import Section, {
   Text,
 } from '../section';
 import Footer from '../footer';
+import FundoCodigo from '../fundoCodigo';
 import FeaturedCard from '../featuredCard';
 import LegacyGallery from '../legacyGallery';
 import { revelar } from '../reveal';
@@ -49,9 +50,10 @@ function Pagina() {
   return (
     <>
       <Nav />
+      <FundoCodigo />
       <Header />
 
-      <main id="main" tabIndex={-1} className="p-0 outline-none">
+      <main id="main" tabIndex={-1} className="relative p-0 outline-none">
         <Section id="about" tone="text-trajetoria">
           <SectionTitle id="about-title">{t.about.title}</SectionTitle>
           <SectionLead>{t.about.lead}</SectionLead>
