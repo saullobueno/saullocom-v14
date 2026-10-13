@@ -43,7 +43,7 @@ export default function Header() {
         </div>
         <div className="parallax-title mt-[60px] text-center">
           <p className="m-0 text-center text-[1.2rem] leading-[180%] max-md:text-[0.8rem] max-md:leading-[120%]">
-            <Linhas linhas={hero.greeting} />
+            {hero.greeting}
           </p>
           <h1 className="sr-only">{hero.h1}</h1>
           <div className={`${display} block text-[10rem] max-md:hidden`} aria-hidden="true">

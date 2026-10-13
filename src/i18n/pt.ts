@@ -32,7 +32,7 @@ export const pt = {
   },
 
   hero: {
-    greeting: ['Saullo Bueno,', 'da interface ao código, atua como...'],
+    greeting: 'Saullo Bueno, da interface ao código, atua como...',
     h1: 'Desenvolvedor Full Stack',
     verticalWords: ['DESEN', 'VOLVE', 'DOR', 'FULL', 'STACK'],
     horizontalLines: ['DESENVOLVEDOR', 'FULL STACK'],

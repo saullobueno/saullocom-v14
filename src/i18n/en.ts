@@ -31,7 +31,7 @@ export const en: Messages = {
   },
 
   hero: {
-    greeting: ['Saullo Bueno,', 'from interface to code, works as...'],
+    greeting: 'Saullo Bueno, from interface to code, works as...',
     h1: 'Full Stack Developer',
     verticalWords: ['FULL', 'STACK', 'DEVEL', 'OPER'],
     horizontalLines: ['FULL STACK', 'DEVELOPER'],
