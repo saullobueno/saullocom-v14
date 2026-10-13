@@ -42,7 +42,7 @@ export const en: Messages = {
     title: 'MY STORY',
     lead: 'I found my passion for technology after moving to the capital and getting my first computer, which started a journey of constant growth.',
     paragraphs: [
-      "Born in Pingo D'Água (MG, Brazil) and raised in Belo Horizonte, I grew passionate about technology and design as a teenager, building my first digital interfaces.",
+      "Born in Belo Horizonte, Minas Gerais, Brazil, I grew passionate about technology and design as a teenager, building my first digital interfaces.",
       'I graduated in Multimedia Production in 2012 and worked at several companies in the field, evolving from graphic design and front-end into Full Stack software engineering.',
       'A results-driven professional who combines a collaborative attitude, continuous learning and a strong sense of organization.',
       'I stay persistent on complex problems, pay close attention to detail and commit to quality in every delivery.',
