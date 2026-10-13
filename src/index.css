@@ -133,12 +133,84 @@
   display: none;
 }
 
+/* Parallax: deslocamentos relativos ao scroll da pagina (hero) ou ao da propria tela (imagens) */
+@keyframes parallax-bg {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 0 25vh;
+  }
+}
+
+@keyframes parallax-logo {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 0 10vh;
+  }
+}
+
+@keyframes parallax-title {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 0 -5vh;
+  }
+}
+
+@keyframes parallax-img {
+  from {
+    translate: 0 -7%;
+  }
+  to {
+    translate: 0 7%;
+  }
+}
+
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
     .reveal {
       animation: reveal linear both;
       animation-timeline: view();
       animation-range: entry 5% entry 45%;
+    }
+
+    /* hero: o fundo desce mais devagar que a pagina (camada estendida acima para nunca abrir vao),
+       a logo atrasa um pouco e o titulo sobe um pouco mais rapido */
+    .parallax-bg,
+    .parallax-logo,
+    .parallax-title {
+      animation-timeline: scroll(root);
+      animation-range: 0 100vh;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      will-change: translate;
+    }
+
+    .parallax-bg {
+      top: -25vh;
+      animation-name: parallax-bg;
+    }
+
+    .parallax-logo {
+      animation-name: parallax-logo;
+    }
+
+    .parallax-title {
+      animation-name: parallax-title;
+    }
+
+    /* fotos decorativas: ampliadas o bastante (8% por lado) para o deslocamento de 7% nunca
+       deixar a borda da moldura vazia */
+    .parallax-img {
+      scale: 1.16;
+      animation: parallax-img linear both;
+      animation-timeline: view();
+      animation-range: cover;
+      will-change: translate;
     }
 
     .nav-progress {

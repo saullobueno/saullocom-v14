@@ -59,6 +59,11 @@ export function Columns({ children }: { children: ReactNode }) {
   );
 }
 
+// A imagem se move dentro da moldura enquanto rola (ver .parallax-img em index.css)
 export function DecorativeImage(props: ComponentProps<'img'>) {
-  return <img className="mx-auto block" {...props} />;
+  return (
+    <div className="overflow-hidden">
+      <img className="parallax-img mx-auto block" {...props} />
+    </div>
+  );
 }
