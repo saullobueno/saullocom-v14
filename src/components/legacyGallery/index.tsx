@@ -2,6 +2,7 @@ import { lazy, Suspense, useState } from 'react';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 import { legacyProjects } from '../../data/legacyProjects';
+import { useMessages } from '../../i18n';
 
 const ImageLightbox = lazy(() => import('../lightbox'));
 
@@ -14,16 +15,14 @@ const slides = legacyProjects.map((port) => ({
 }));
 
 export default function LegacyGallery() {
+  const { legacy } = useMessages();
   const [index, setIndex] = useState(-1);
   const [showAll, setShowAll] = useState(false);
 
   return (
-    <div className="mt-16 pt-12 text-center">
-      <h3 className="mb-2 text-center text-[1.6rem] text-portfolio">Projetos Legados</h3>
-      <p className="mb-8 text-center text-base text-portfolio">
-        Histórico de identidades visuais, plataformas institucionais e projetos desenvolvidos ao
-        longo da trajetória profissional.
-      </p>
+    <div className="reveal mt-16 pt-12 text-center">
+      <h3 className="mb-2 text-center text-[1.6rem] text-portfolio">{legacy.title}</h3>
+      <p className="mb-8 text-center text-base text-portfolio">{legacy.lead}</p>
 
       <div className="grid grid-cols-4 gap-4 max-xl:grid-cols-3 max-[900px]:grid-cols-2">
         {(showAll ? legacyProjects : legacyProjects.slice(0, VISIVEIS)).map((port, key) => (
@@ -31,7 +30,7 @@ export default function LegacyGallery() {
             key={port.slug}
             type="button"
             className="cursor-zoom-in border-0 bg-transparent p-0 leading-[0]"
-            aria-label={`Ampliar projeto ${port.title}`}
+            aria-label={legacy.enlarge(port.title)}
             onClick={() => setIndex(key)}
           >
             <img
@@ -55,12 +54,11 @@ export default function LegacyGallery() {
       >
         {showAll ? (
           <>
-            <FaChevronUp size={14} /> Recolher legados
+            <FaChevronUp size={14} /> {legacy.collapse}
           </>
         ) : (
           <>
-            <FaChevronDown size={14} /> Ver todos os legados (+{legacyProjects.length - VISIVEIS}{' '}
-            projetos)
+            <FaChevronDown size={14} /> {legacy.showAll(legacyProjects.length - VISIVEIS)}
           </>
         )}
       </button>

@@ -57,3 +57,26 @@ test('rota inexistente mostra a pagina 404', async ({ page }) => {
   await expect(page.getByRole('heading', { name: '404' })).toBeVisible();
   await expect(page.getByRole('link', { name: 'Voltar para o início' })).toBeVisible();
 });
+
+test('icones e manifest estao publicados', async ({ request }) => {
+  for (const caminho of [
+    '/favicon.png',
+    '/apple-touch-icon.png',
+    '/icon-192.png',
+    '/icon-512.png',
+  ]) {
+    const resposta = await request.get(caminho);
+    expect(resposta.status(), caminho).toBe(200);
+    expect(resposta.headers()['content-type'], caminho).toContain('image/png');
+  }
+
+  // o content-type do .ico depende do servidor; confere o cabecalho do arquivo (tipo 1 = icone)
+  const ico = await request.get('/favicon.ico');
+  expect(ico.status()).toBe(200);
+  const bytes = await ico.body();
+  expect([bytes.readUInt16LE(0), bytes.readUInt16LE(2), bytes.readUInt16LE(4)]).toEqual([0, 1, 3]);
+
+  const manifest = await (await request.get('/site.webmanifest')).json();
+  expect(manifest.icons).toHaveLength(2);
+  expect(manifest.short_name).toBe('Saullo Bueno');
+});

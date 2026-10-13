@@ -1,6 +1,8 @@
 import { useRef } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
+import { useMessages } from '../../i18n';
+
 interface ProjectGalleryProps {
   images: string[];
   title: string;
@@ -11,6 +13,7 @@ const navButton =
   'flex w-8 shrink-0 items-center justify-center rounded-lg bg-white/6 p-0 text-white transition hover:bg-[rgba(0,133,178,0.25)] [&_svg]:pointer-events-none [&_svg]:shrink-0';
 
 export default function ProjectGallery({ images, title, onOpenImage }: ProjectGalleryProps) {
+  const { gallery } = useMessages();
   const trackRef = useRef<HTMLDivElement>(null);
   const [hero, ...thumbnails] = images;
 
@@ -31,7 +34,7 @@ export default function ProjectGallery({ images, title, onOpenImage }: ProjectGa
         type="button"
         className="group block w-full cursor-zoom-in overflow-hidden rounded-xl bg-[#111] p-0 leading-[0]"
         onClick={() => onOpenImage(0)}
-        aria-label={`Ampliar imagem principal de ${title}`}
+        aria-label={gallery.enlargeMain(title)}
       >
         <img
           src={hero}
@@ -47,7 +50,7 @@ export default function ProjectGallery({ images, title, onOpenImage }: ProjectGa
             <button
               type="button"
               className={navButton}
-              aria-label="Ver miniaturas anteriores"
+              aria-label={gallery.prev}
               onClick={() => scrollThumbnails(-1)}
             >
               <FaChevronLeft size={14} />
@@ -55,7 +58,7 @@ export default function ProjectGallery({ images, title, onOpenImage }: ProjectGa
           )}
 
           <div
-            className="flex snap-x snap-mandatory [scrollbar-width:none] gap-[0.6rem] overflow-x-auto [&::-webkit-scrollbar]:hidden"
+            className="flex min-w-0 flex-1 snap-x snap-mandatory [scrollbar-width:none] gap-[0.6rem] overflow-x-auto [&::-webkit-scrollbar]:hidden"
             ref={trackRef}
           >
             {thumbnails.map((src, i) => (
@@ -65,11 +68,11 @@ export default function ProjectGallery({ images, title, onOpenImage }: ProjectGa
                 data-thumb
                 className="shrink-0 grow-0 basis-[calc((100%-1.2rem)/3)] cursor-zoom-in snap-start overflow-hidden rounded-lg border border-white/12 bg-[#111] p-0 leading-[0] transition hover:-translate-y-0.5 hover:border-[#0085b2] max-[520px]:basis-[calc((100%-0.6rem)/2)]"
                 onClick={() => onOpenImage(i + 1)}
-                aria-label={`Ampliar captura ${i + 2} de ${title}`}
+                aria-label={gallery.enlargeCapture(i + 2, title)}
               >
                 <img
                   src={src}
-                  alt={`${title} - captura de tela`}
+                  alt={gallery.screenshotAlt(title)}
                   loading="lazy"
                   className="block aspect-[16/10] w-full object-cover"
                 />
@@ -81,7 +84,7 @@ export default function ProjectGallery({ images, title, onOpenImage }: ProjectGa
             <button
               type="button"
               className={navButton}
-              aria-label="Ver próximas miniaturas"
+              aria-label={gallery.next}
               onClick={() => scrollThumbnails(1)}
             >
               <FaChevronRight size={14} />

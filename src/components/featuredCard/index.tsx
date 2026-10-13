@@ -15,7 +15,7 @@ interface FeaturedCardProps {
 
 export default function FeaturedCard({ project, onOpenImage }: FeaturedCardProps) {
   return (
-    <article className="grid grid-cols-[1.1fr_1fr] content-start items-start gap-10 [grid-template-areas:'gallery_header'_'gallery_body'] max-lg:grid-cols-1 max-lg:gap-6 max-lg:[grid-template-areas:'header'_'gallery'_'body']">
+    <article className="reveal grid grid-cols-[1.1fr_1fr] content-start items-start gap-10 [grid-template-areas:'gallery_header'_'gallery_body'] max-lg:grid-cols-1 max-lg:gap-6 max-lg:[grid-template-areas:'header'_'gallery'_'body']">
       <header className="text-left [grid-area:header]">
         <h3 className="mb-[0.2rem] text-left text-[1.8rem] leading-[1.3] font-bold text-white">
           {project.title}

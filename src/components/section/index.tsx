@@ -1,24 +1,31 @@
 import type { ComponentProps, ReactNode } from 'react';
 
 interface SectionProps {
-  /** Cor do texto da secao (token do tema, ex.: 'text-trajetoria') */
+  /** Cor do texto da secao (token do tema, ex.: 'text-about') */
   tone: string;
+  /** Ancora da secao; o titulo precisa ter id `${id}-title` */
+  id: string;
   children: ReactNode;
 }
 
-export default function Section({ tone, children }: SectionProps) {
+export default function Section({ tone, id, children }: SectionProps) {
   return (
-    <div
-      className={`mx-auto w-[1280px] py-32 text-center max-xl:my-8 max-xl:w-[calc(100%-2rem)] ${tone}`}
+    <section
+      id={id}
+      aria-labelledby={`${id}-title`}
+      className={`mx-auto w-[1280px] scroll-mt-16 py-32 text-center max-xl:my-8 max-xl:w-[calc(100%-2rem)] ${tone}`}
     >
       <div>{children}</div>
-    </div>
+    </section>
   );
 }
 
-export function SectionTitle({ children }: { children: ReactNode }) {
+export function SectionTitle({ id, children }: { id: string; children: ReactNode }) {
   return (
-    <h2 className="mb-8 text-center text-[8rem] leading-[80%] font-bold max-md:text-[clamp(2.5rem,12vw,4rem)]">
+    <h2
+      id={id}
+      className="reveal mb-8 text-center text-[8rem] leading-[80%] font-bold max-md:text-[clamp(2.5rem,12vw,4rem)]"
+    >
       {children}
     </h2>
   );
@@ -26,7 +33,7 @@ export function SectionTitle({ children }: { children: ReactNode }) {
 
 export function SectionLead({ children }: { children: ReactNode }) {
   return (
-    <p className="mb-8 text-center text-[2rem] leading-[140%] max-md:text-[1.4rem] max-md:leading-[100%]">
+    <p className="reveal mb-8 text-center text-[2rem] leading-[140%] max-md:text-[1.4rem] max-md:leading-[100%]">
       {children}
     </p>
   );
@@ -46,12 +53,32 @@ export function Text({ className = '', ...props }: ComponentProps<'p'>) {
 
 export function Columns({ children }: { children: ReactNode }) {
   return (
-    <div className="grid grid-cols-3 items-center justify-items-center gap-8 max-md:grid-cols-2 max-[500px]:grid-cols-1 max-[500px]:gap-0 [&>div]:text-center">
+    <div className="reveal grid grid-cols-3 items-center justify-items-center gap-8 max-md:grid-cols-2 max-[500px]:grid-cols-1 max-[500px]:gap-0 [&>div]:text-center">
       {children}
     </div>
   );
 }
 
-export function DecorativeImage(props: ComponentProps<'img'>) {
-  return <img className="mx-auto block" {...props} />;
+// A moldura reserva a proporcao da imagem (aspect-ratio), entao o layout nao muda quando a imagem
+// lazy carrega. A imagem se move dentro dela enquanto rola (ver .parallax-img em index.css).
+export function DecorativeImage({
+  frameClassName = '',
+  className = '',
+  width,
+  height,
+  ...props
+}: ComponentProps<'img'> & { frameClassName?: string }) {
+  return (
+    <div
+      className={`w-full overflow-hidden ${frameClassName}`}
+      style={{ aspectRatio: width && height ? `${width} / ${height}` : undefined }}
+    >
+      <img
+        className={`parallax-img block h-full w-full object-cover ${className}`}
+        width={width}
+        height={height}
+        {...props}
+      />
+    </div>
+  );
 }

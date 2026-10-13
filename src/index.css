@@ -88,3 +88,158 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ---- Animacoes guiadas pelo scroll (CSS puro, sem JS) ----
+   So rodam em navegadores com scroll-driven animations e sem preferencia por menos movimento;
+   nos demais, tudo aparece normalmente. */
+@keyframes reveal {
+  from {
+    opacity: 0;
+    translate: 0 2rem;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* A barra de navegacao entra deslizando na primeira rolagem. visibility sai de hidden
+   para que ela nao receba foco enquanto esta fora da tela. */
+@keyframes nav-in {
+  from {
+    translate: 0 -100%;
+    visibility: hidden;
+  }
+  to {
+    translate: 0 0;
+    visibility: visible;
+  }
+}
+
+.nav-bar {
+  background-color: rgb(26 26 26 / 0.92);
+}
+
+.nav-progress {
+  display: none;
+}
+
+/* Parallax: deslocamentos relativos ao scroll da pagina (hero) ou ao da propria tela (imagens) */
+@keyframes parallax-bg {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 0 25vh;
+  }
+}
+
+@keyframes parallax-logo {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 0 10vh;
+  }
+}
+
+@keyframes parallax-title {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 0 -5vh;
+  }
+}
+
+@keyframes parallax-img {
+  from {
+    translate: 0 -7%;
+  }
+  to {
+    translate: 0 7%;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 45%;
+    }
+
+    /* hero: o fundo desce mais devagar que a pagina (camada estendida acima para nunca abrir vao),
+       a logo atrasa um pouco e o titulo sobe um pouco mais rapido */
+    .parallax-bg,
+    .parallax-logo,
+    .parallax-title {
+      animation-timeline: scroll(root);
+      animation-range: 0 100vh;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      will-change: translate;
+    }
+
+    .parallax-bg {
+      top: -25vh;
+      animation-name: parallax-bg;
+    }
+
+    .parallax-logo {
+      animation-name: parallax-logo;
+    }
+
+    .parallax-title {
+      animation-name: parallax-title;
+    }
+
+    /* fotos decorativas: ampliadas o bastante (8% por lado) para o deslocamento de 7% nunca
+       deixar a borda da moldura vazia */
+    .parallax-img {
+      scale: 1.16;
+      animation: parallax-img linear both;
+      animation-timeline: view();
+      animation-range: cover;
+      will-change: translate;
+    }
+
+    .nav-progress {
+      display: block;
+      background: linear-gradient(90deg, #e2a342, #00b259, #2ba8d6, #9d85e8);
+      animation: progress linear both;
+      animation-timeline: scroll(root);
+    }
+
+    .nav-bar {
+      animation: nav-in linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 120px;
+    }
+
+    /* revelada pelo teclado (primeiro Tab): fica visivel mesmo no topo */
+    .nav-bar[data-teclado] {
+      animation: none;
+      translate: 0 0;
+      visibility: visible;
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* com o Lenis ativo, o scroll-behavior nativo brigaria com a interpolacao dele */
+html.lenis {
+  scroll-behavior: auto;
+}

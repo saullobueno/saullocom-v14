@@ -13,6 +13,12 @@ Site pessoal e portfólio de **Saullo Bueno**, desenvolvedor Full Stack (UI/UX D
   - **Projetos em destaque**: aplicações full stack com IA publicadas e com código aberto (Forge, FieldOps, Nexus Developer Platform, Product Analytics OS, AI Customer Operations Platform, Command Center e AI Workflow Studio). Cada card traz descrição, destaques, stack, links para o GitHub e a demo ao vivo, além de uma galeria de screenshots reais com miniaturas e lightbox com zoom.
   - **Trabalhos anteriores**: sites e identidades criados para clientes, exibidos em lightbox, com opção de "ver mais".
 - **Contato**: e-mail, LinkedIn, WhatsApp e GitHub.
+- **Navegação fixa** com a logo horizontal, âncoras, destaque da seção ativa, barra de progresso de leitura, link "pular para o conteúdo" e botão de contato. Ela só aparece depois da primeira rolagem (deixa a tela inicial livre) e é revelada pelo primeiro Tab para quem usa teclado.
+- **Animações de entrada** guiadas pelo scroll (CSS puro, respeitam `prefers-reduced-motion`).
+- **Rolagem suave** (Lenis, carregado sob demanda): interpola os "degraus" da roda do mouse, o que deixa o parallax perceptível. Fica desligada para quem pediu menos movimento (`prefers-reduced-motion`) e não interfere no zoom do lightbox.
+- **Parallax** em CSS puro (só `translate`/`scale`): o hero tem três camadas (fundo, logo e título em velocidades diferentes) e as fotos decorativas se movem dentro da própria moldura. Só roda em navegadores com scroll-driven animations e sem `prefers-reduced-motion`.
+- **Métricas de acesso** com Vercel Web Analytics (sem cookies), carregado sob demanda e só fora de localhost. Precisa estar ativado no painel da Vercel (Analytics → Enable).
+- **Dois idiomas**: português em `/` e inglês em `/en`, com `hreflang`, canonical e sitemap para cada um.
 
 ## Tecnologias
 
@@ -40,13 +46,14 @@ src/
   assets/                   Imagens do site (processadas pelo Vite, com hash e cache imutável)
     legacy/                 Projetos legados: portfolio-web-<slug>.avif e portfolio-web-<slug>-g.avif
     portfolio/<projeto>/    Screenshots de cada projeto em destaque
-  components/               Header, Footer, Section, Modal e ProjectGallery
+  components/               Nav, Header, Footer, Section, FeaturedCard, ProjectGallery, LegacyGallery, Lightbox e HomePage
   data/
     featuredProjects.ts     Projetos em destaque (veja abaixo)
     portfolio.json          Trabalhos anteriores (sites de clientes)
   root.tsx                  Layout HTML, metas (SEO/Open Graph/JSON-LD) e ErrorBoundary
   routes.ts                 Tabela de rotas do React Router
-  routes/home.tsx           Página única, com todas as seções
+  i18n/                     Textos: pt.ts (fonte da verdade) e en.ts (tipado contra pt), contexto e SEO por idioma
+  routes/home.tsx           Rota / (pt) e routes/home.en.tsx (en): ambas renderizam components/homePage
   routes/not-found.tsx      Rota coringa (404)
   styles/                   Estilos globais
 ```
@@ -72,3 +79,9 @@ O site é estático: `vercel.json` aponta a saída para `build/client` e define 
 - **404 real**: o `postbuild` copia o fallback de SPA para `404.html`, que a Vercel serve com status 404 para qualquer caminho inexistente.
 
 `npm test` aplica os cabeçalhos do `vercel.json` nas respostas e falha se a CSP bloquear algum recurso.
+
+## Como mudar textos e idiomas
+
+- Textos da página: `src/i18n/pt.ts` e `src/i18n/en.ts`. O inglês só compila se tiver as mesmas chaves do português.
+- Textos dos projetos em destaque: português em `src/data/featuredProjects.ts` e inglês em `src/data/featuredProjects.en.ts` (por `slug`).
+- Um novo idioma exige: arquivo de mensagens, entrada em `messages.ts`, rota em `routes.ts`, item em `prerender` (`react-router.config.ts`) e no `sitemap.xml`.
