@@ -9,7 +9,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import sharp from 'sharp';
 
-const MANTER = new Set(['logo-vertical.png', 'favicon.png']);
+const MANTER = new Set(['logo.png', 'logo-marca.png', 'logo-vertical.png', 'favicon.png']);
 const THUMB_W = 640;
 const LARGE_W = 1920;
 

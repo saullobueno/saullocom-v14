@@ -112,12 +112,16 @@
   }
 }
 
-@keyframes nav-bg {
+/* A barra de navegacao entra deslizando na primeira rolagem. visibility sai de hidden
+   para que ela nao receba foco enquanto esta fora da tela. */
+@keyframes nav-in {
   from {
-    background-color: rgb(26 26 26 / 0);
+    translate: 0 -100%;
+    visibility: hidden;
   }
   to {
-    background-color: rgb(26 26 26 / 0.85);
+    translate: 0 0;
+    visibility: visible;
   }
 }
 
@@ -145,9 +149,16 @@
     }
 
     .nav-bar {
-      animation: nav-bg linear both;
+      animation: nav-in linear both;
       animation-timeline: scroll(root);
-      animation-range: 0 400px;
+      animation-range: 0 120px;
+    }
+
+    /* revelada pelo teclado (primeiro Tab): fica visivel mesmo no topo */
+    .nav-bar[data-teclado] {
+      animation: none;
+      translate: 0 0;
+      visibility: visible;
     }
   }
 }

@@ -105,3 +105,59 @@ test.describe('navegacao', () => {
     await expect(page.locator('details')).not.toHaveAttribute('open', '');
   });
 });
+
+test.describe('barra de navegacao aparece ao rolar', () => {
+  // a animacao so existe para quem nao pediu menos movimento
+  test.use({ reducedMotion: 'no-preference' });
+
+  test('escondida no topo e visivel depois de rolar', async ({ page }) => {
+    await page.goto('/');
+    const barra = page.getByRole('navigation', { name: 'Navegação principal' });
+    await expect(barra).toBeHidden();
+    await page.evaluate(() => window.scrollTo(0, 600));
+    await expect(barra).toBeVisible();
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await expect(barra).toBeHidden();
+  });
+
+  test('o primeiro Tab revela a barra no topo e o foco chega nela', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'networkidle' }); // espera a hidratacao registrar o atalho
+    await page.keyboard.press('Tab'); // link "pular para o conteudo"
+    await expect(page.getByRole('navigation', { name: 'Navegação principal' })).toBeVisible();
+    await page.keyboard.press('Tab'); // logo da barra
+    await expect(page.getByRole('link', { name: 'saullo.com' }).first()).toBeFocused();
+  });
+
+  test('a barra usa a logo horizontal', async ({ page }) => {
+    await page.goto('/');
+    await page.evaluate(() => window.scrollTo(0, 600));
+    const logo = page.getByRole('navigation').getByRole('img', { name: 'saullo.com' });
+    await expect(logo).toBeVisible();
+    expect(await logo.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBe(1400);
+  });
+});
+
+test.describe('barra de navegacao cabe em celulares estreitos', () => {
+  for (const caminho of ['/', '/en']) {
+    for (const largura of [320, 360, 390]) {
+      test(`${caminho} em ${largura}px: o botao de menu fica dentro da tela`, async ({ page }) => {
+        await page.setViewportSize({ width: largura, height: 700 });
+        await page.goto(caminho);
+        const menu = page.locator('header details summary');
+        await expect(menu).toBeVisible();
+        const direita = await menu.evaluate((el) => el.getBoundingClientRect().right);
+        expect(direita).toBeLessThanOrEqual(largura);
+      });
+    }
+  }
+
+  test('abaixo de 360px o botao de contato sai da barra, mas o link continua no menu', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 320, height: 700 });
+    await page.goto('/');
+    await expect(page.getByRole('link', { name: 'Vamos conversar' })).toBeHidden();
+    await page.locator('header details summary').click();
+    await expect(page.locator('details').getByRole('link', { name: 'Contato' })).toBeVisible();
+  });
+});

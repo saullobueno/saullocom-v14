@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
+import logo from '@/assets/logo.png';
 import { useI18n } from '../../i18n';
 
 const SECOES = ['about', 'expertise', 'services', 'portfolio', 'contact'] as const;
@@ -11,6 +12,7 @@ export default function Nav() {
   const { t } = useI18n();
   const [ativa, setAtiva] = useState<string>('');
   const menu = useRef<HTMLDetailsElement>(null);
+  const barra = useRef<HTMLElement>(null);
 
   // Destaca no menu a secao que esta cruzando o meio da tela
   useEffect(() => {
@@ -25,6 +27,18 @@ export default function Nav() {
       if (el) observer.observe(el);
     }
     return () => observer.disconnect();
+  }, []);
+
+  // A barra so aparece depois da primeira rolagem (CSS). Quem navega por teclado precisa
+  // alcanca-la no topo: o primeiro Tab a revela e ela fica visivel.
+  useEffect(() => {
+    const aoTeclar = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return;
+      barra.current?.setAttribute('data-teclado', '');
+      window.removeEventListener('keydown', aoTeclar);
+    };
+    window.addEventListener('keydown', aoTeclar);
+    return () => window.removeEventListener('keydown', aoTeclar);
   }, []);
 
   const fechaMenu = () => {
@@ -54,31 +68,40 @@ export default function Nav() {
         {t.nav.skip}
       </a>
 
-      <header className="nav-bar fixed inset-x-0 top-0 z-50 border-b border-white/10 backdrop-blur-md">
+      <header
+        ref={barra}
+        className="nav-bar fixed inset-x-0 top-0 z-50 border-b border-white/10 backdrop-blur-md"
+      >
         <nav
           aria-label={t.nav.label}
-          className="mx-auto flex h-14 max-w-[1280px] items-center justify-between gap-4 px-4"
+          className="mx-auto flex h-14 max-w-[1280px] items-center justify-between gap-3 px-3 md:gap-4 md:px-4"
         >
-          <a href="#top" className="shrink-0 text-lg font-bold tracking-tight text-white">
-            saullo<span className="text-accent">.com</span>
+          <a href="#top" className="shrink-0">
+            <img
+              src={logo}
+              alt="saullo.com"
+              width={174}
+              height={28}
+              className="h-5 w-auto md:h-7"
+            />
           </a>
 
           <div className="hidden items-center gap-1 md:flex">{SECOES.map(link)}</div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 md:gap-2">
             <a
               href={t.switchTo.href}
               hrefLang={idiomaDestino}
               lang={idiomaDestino}
               aria-label={t.switchTo.ariaLabel}
-              className="rounded-md border border-white/20 px-2.5 py-1.5 text-sm font-semibold text-white/80 transition-colors hover:border-white hover:text-white"
+              className="rounded-md border border-white/20 px-2 py-1.5 text-[13px] font-semibold text-white/80 transition-colors hover:border-white hover:text-white md:px-2.5 md:text-sm"
             >
               {t.switchTo.short}
             </a>
             <a
               href="#contact"
               onClick={fechaMenu}
-              className="rounded-md bg-accent-strong px-3.5 py-2 text-sm font-semibold whitespace-nowrap text-white transition-colors hover:bg-accent-strong-hover"
+              className="rounded-md bg-accent-strong px-3 py-2 text-[13px] font-semibold whitespace-nowrap text-white transition-colors hover:bg-accent-strong-hover max-[359px]:hidden md:px-3.5 md:text-sm"
             >
               {t.nav.cta}
             </a>
