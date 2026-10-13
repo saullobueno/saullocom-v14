@@ -43,7 +43,7 @@ export const pt = {
     title: 'MINHA TRAJETÓRIA',
     lead: 'Descobri a paixão pela tecnologia ao me mudar para a capital e ter acesso ao meu primeiro computador, iniciando uma jornada de constante evolução.',
     paragraphs: [
-      "Nascido em Pingo D'Água (MG) e criado em Belo Horizonte, desenvolvi minha paixão pela tecnologia e pelo design desde a adolescência, criando minhas primeiras interfaces digitais.",
+      "Nascido em Belo Horizonte, Minas Gerais, desenvolvi minha paixão pela tecnologia e pelo design desde a adolescência, criando minhas primeiras interfaces digitais.",
       'Graduei-me em Produção Multimídia em 2012 e atuei em diversas empresas do setor, evoluindo do design gráfico e front-end para a engenharia de software Full Stack.',
       'Profissional focado em resultados, unindo postura colaborativa, aprendizado contínuo e forte senso de organização.',
       'Atuação com persistência na resolução de problemas complexos, atenção aos detalhes e compromisso com a qualidade em cada entrega.',
