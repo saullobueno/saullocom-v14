@@ -15,6 +15,7 @@ Site pessoal e portfólio de **Saullo Bueno**, desenvolvedor Full Stack (UI/UX D
 - **Contato**: e-mail, LinkedIn, WhatsApp e GitHub.
 - **Navegação fixa** com a logo horizontal, âncoras, destaque da seção ativa, barra de progresso de leitura, link "pular para o conteúdo" e botão de contato. Ela só aparece depois da primeira rolagem (deixa a tela inicial livre) e é revelada pelo primeiro Tab para quem usa teclado.
 - **Animações de entrada** guiadas pelo scroll (CSS puro, respeitam `prefers-reduced-motion`).
+- **Rolagem suave** (Lenis, carregado sob demanda): interpola os "degraus" da roda do mouse, o que deixa o parallax perceptível. Fica desligada para quem pediu menos movimento (`prefers-reduced-motion`) e não interfere no zoom do lightbox.
 - **Parallax** em CSS puro (só `translate`/`scale`): o hero tem três camadas (fundo, logo e título em velocidades diferentes) e as fotos decorativas se movem dentro da própria moldura. Só roda em navegadores com scroll-driven animations e sem `prefers-reduced-motion`.
 - **Métricas de acesso** com Vercel Web Analytics (sem cookies), carregado sob demanda e só fora de localhost. Precisa estar ativado no painel da Vercel (Analytics → Enable).
 - **Dois idiomas**: português em `/` e inglês em `/en`, com `hreflang`, canonical e sitemap para cada um.

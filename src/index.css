@@ -126,7 +126,7 @@
 }
 
 .nav-bar {
-  background-color: rgb(26 26 26 / 0.85);
+  background-color: rgb(26 26 26 / 0.92);
 }
 
 .nav-progress {
@@ -237,4 +237,9 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+/* com o Lenis ativo, o scroll-behavior nativo brigaria com a interpolacao dele */
+html.lenis {
+  scroll-behavior: auto;
 }

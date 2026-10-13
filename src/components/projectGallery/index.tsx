@@ -58,7 +58,7 @@ export default function ProjectGallery({ images, title, onOpenImage }: ProjectGa
           )}
 
           <div
-            className="flex snap-x snap-mandatory [scrollbar-width:none] gap-[0.6rem] overflow-x-auto [&::-webkit-scrollbar]:hidden"
+            className="flex min-w-0 flex-1 snap-x snap-mandatory [scrollbar-width:none] gap-[0.6rem] overflow-x-auto [&::-webkit-scrollbar]:hidden"
             ref={trackRef}
           >
             {thumbnails.map((src, i) => (

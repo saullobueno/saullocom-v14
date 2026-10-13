@@ -33,11 +33,7 @@ const contactLink =
 const contactText =
   'leading-[1.6] text-inherit no-underline transition-opacity hover:underline hover:opacity-80';
 
-const imagemProps = {
-  loading: 'lazy',
-  decoding: 'async',
-  style: { width: '100%', height: 'auto' },
-} as const;
+const imagemProps = { loading: 'lazy', decoding: 'async' } as const;
 
 function Pagina() {
   const { locale, t } = useI18n();
@@ -59,7 +55,7 @@ function Pagina() {
           <SectionTitle id="about-title">{t.about.title}</SectionTitle>
           <SectionLead>{t.about.lead}</SectionLead>
           <Columns>
-            <div>
+            <div className="w-full">
               <DecorativeImage
                 src={Stack01}
                 width={720}
@@ -92,7 +88,7 @@ function Pagina() {
                 </div>
               ))}
             </div>
-            <div>
+            <div className="w-full">
               <DecorativeImage
                 src={Stack02}
                 width={540}
@@ -133,7 +129,7 @@ function Pagina() {
                 </div>
               ))}
             </div>
-            <div>
+            <div className="w-full">
               <DecorativeImage
                 src={Stack03}
                 width={540}
@@ -180,15 +176,14 @@ function Pagina() {
           <SectionLead>{t.contact.lead}</SectionLead>
 
           <Columns>
-            <div>
+            <div className="w-full">
               <DecorativeImage
                 src={Stack04}
                 width={720}
                 height={720}
                 alt={t.contact.imageAlt}
-                loading="lazy"
-                decoding="async"
-                style={{ width: '100%', height: 'auto', marginBottom: '1rem' }}
+                frameClassName="mb-4"
+                {...imagemProps}
               />
             </div>
             <div className="flex w-full flex-col items-start justify-start !text-left">

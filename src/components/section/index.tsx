@@ -59,11 +59,26 @@ export function Columns({ children }: { children: ReactNode }) {
   );
 }
 
-// A imagem se move dentro da moldura enquanto rola (ver .parallax-img em index.css)
-export function DecorativeImage(props: ComponentProps<'img'>) {
+// A moldura reserva a proporcao da imagem (aspect-ratio), entao o layout nao muda quando a imagem
+// lazy carrega. A imagem se move dentro dela enquanto rola (ver .parallax-img em index.css).
+export function DecorativeImage({
+  frameClassName = '',
+  className = '',
+  width,
+  height,
+  ...props
+}: ComponentProps<'img'> & { frameClassName?: string }) {
   return (
-    <div className="overflow-hidden">
-      <img className="parallax-img mx-auto block" {...props} />
+    <div
+      className={`w-full overflow-hidden ${frameClassName}`}
+      style={{ aspectRatio: width && height ? `${width} / ${height}` : undefined }}
+    >
+      <img
+        className={`parallax-img block h-full w-full object-cover ${className}`}
+        width={width}
+        height={height}
+        {...props}
+      />
     </div>
   );
 }

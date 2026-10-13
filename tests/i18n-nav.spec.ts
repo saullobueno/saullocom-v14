@@ -121,7 +121,9 @@ test.describe('barra de navegacao aparece ao rolar', () => {
   });
 
   test('o primeiro Tab revela a barra no topo e o foco chega nela', async ({ page }) => {
-    await page.goto('/', { waitUntil: 'networkidle' }); // espera a hidratacao registrar o atalho
+    await page.goto('/', { waitUntil: 'networkidle' });
+    // a classe lenis so aparece depois da hidratacao, quando o atalho do Tab ja esta registrado
+    await expect(page.locator('html')).toHaveClass(/lenis/);
     await page.keyboard.press('Tab'); // link "pular para o conteudo"
     await expect(page.getByRole('navigation', { name: 'Navegação principal' })).toBeVisible();
     await page.keyboard.press('Tab'); // logo da barra

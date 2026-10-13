@@ -68,10 +68,7 @@ export default function Nav() {
         {t.nav.skip}
       </a>
 
-      <header
-        ref={barra}
-        className="nav-bar fixed inset-x-0 top-0 z-50 border-b border-white/10 backdrop-blur-md"
-      >
+      <header ref={barra} className="nav-bar fixed inset-x-0 top-0 z-50 border-b border-white/10">
         <nav
           aria-label={t.nav.label}
           className="mx-auto flex h-14 max-w-[1280px] items-center justify-between gap-3 px-3 md:gap-4 md:px-4"

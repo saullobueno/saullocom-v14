@@ -11,6 +11,7 @@ import {
 
 import imageHome from './assets/image-home.avif';
 import WebAnalytics from './components/analytics';
+import SmoothScroll from './components/smoothScroll';
 import { messages, type Locale } from './i18n';
 import type { Route } from './+types/root';
 import './index.css';
@@ -51,6 +52,7 @@ export default function App() {
   return (
     <>
       <Outlet />
+      <SmoothScroll />
       <WebAnalytics />
     </>
   );
