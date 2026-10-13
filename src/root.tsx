@@ -10,6 +10,7 @@ import {
 } from 'react-router';
 
 import imageHome from './assets/image-home.avif';
+import WebAnalytics from './components/analytics';
 import { messages, type Locale } from './i18n';
 import type { Route } from './+types/root';
 import './index.css';
@@ -44,7 +45,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <>
+      <Outlet />
+      <WebAnalytics />
+    </>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

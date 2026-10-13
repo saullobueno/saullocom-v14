@@ -15,6 +15,7 @@ Site pessoal e portfólio de **Saullo Bueno**, desenvolvedor Full Stack (UI/UX D
 - **Contato**: e-mail, LinkedIn, WhatsApp e GitHub.
 - **Navegação fixa** com âncoras, destaque da seção ativa, barra de progresso de leitura, link "pular para o conteúdo" e botão de contato.
 - **Animações de entrada** guiadas pelo scroll (CSS puro, respeitam `prefers-reduced-motion`).
+- **Métricas de acesso** com Vercel Web Analytics (sem cookies), carregado sob demanda e só fora de localhost. Precisa estar ativado no painel da Vercel (Analytics → Enable).
 - **Dois idiomas**: português em `/` e inglês em `/en`, com `hreflang`, canonical e sitemap para cada um.
 
 ## Tecnologias
