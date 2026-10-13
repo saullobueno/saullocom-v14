@@ -31,11 +31,11 @@ export const en: Messages = {
   },
 
   hero: {
-    greeting: ["Hi! I'm Saullo. With a degree in", 'Multimedia Production, I work as...'],
+    greeting: ['Saullo Bueno,', 'from interface to code, works as...'],
     h1: 'Full Stack Developer',
     verticalWords: ['FULL', 'STACK', 'DEVEL', 'OPER'],
     horizontalLines: ['FULL STACK', 'DEVELOPER'],
-    tagline: 'UI/UX Design • Node.js • React • React Native',
+    tagline: 'React • Node.js • UI/UX Design • React Native',
   },
 
   about: {

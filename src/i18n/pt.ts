@@ -32,11 +32,11 @@ export const pt = {
   },
 
   hero: {
-    greeting: ['Olá! Sou o Saullo. Graduado em', 'Produção Multimídia, atuo como...'],
+    greeting: ['Saullo Bueno,', 'da interface ao código, atua como...'],
     h1: 'Desenvolvedor Full Stack',
     verticalWords: ['DESEN', 'VOLVE', 'DOR', 'FULL', 'STACK'],
     horizontalLines: ['DESENVOLVEDOR', 'FULL STACK'],
-    tagline: 'UI/UX Design • Node.js • React • React Native',
+    tagline: 'React • Node.js • UI/UX Design • React Native',
   },
 
   about: {
