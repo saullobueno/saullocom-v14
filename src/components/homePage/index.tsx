@@ -17,6 +17,7 @@ import Section, {
 import Footer from '../footer';
 import FeaturedCard from '../featuredCard';
 import LegacyGallery from '../legacyGallery';
+import { revelar } from '../reveal';
 
 import Stack01 from '../../assets/imageStack01.avif';
 import Stack02 from '../../assets/imageStack02.avif';
@@ -27,7 +28,7 @@ const ImageLightbox = lazy(() => import('../lightbox'));
 
 const contactItem = 'mb-6 flex w-full items-center gap-3 text-left';
 const contactIcon =
-  'flex shrink-0 items-center justify-center text-inherit no-underline transition-opacity hover:opacity-80';
+  'flex shrink-0 items-center justify-center text-inherit no-underline transition hover:scale-110 hover:opacity-80';
 const contactLink =
   'flex items-center gap-3 text-inherit no-underline transition-opacity hover:underline hover:opacity-80';
 const contactText =
@@ -64,11 +65,11 @@ function Pagina() {
                 {...imagemProps}
               />
             </div>
-            <div>
+            <div {...revelar('up', 1)}>
               <Text>{t.about.paragraphs[0]}</Text>
               <Text>{t.about.paragraphs[1]}</Text>
             </div>
-            <div>
+            <div {...revelar('up', 2)}>
               <Text>{t.about.paragraphs[2]}</Text>
               <Text>{t.about.paragraphs[3]}</Text>
             </div>
@@ -81,8 +82,8 @@ function Pagina() {
 
           <Columns>
             <div>
-              {t.expertise.left.map((item) => (
-                <div key={item.title}>
+              {t.expertise.left.map((item, i) => (
+                <div key={item.title} {...revelar('left', i)}>
                   <SubTitle>{item.title}</SubTitle>
                   <Text>{item.text}</Text>
                 </div>
@@ -98,8 +99,8 @@ function Pagina() {
               />
             </div>
             <div>
-              {t.expertise.right.map((item) => (
-                <div key={item.title}>
+              {t.expertise.right.map((item, i) => (
+                <div key={item.title} {...revelar('right', i)}>
                   <SubTitle>{item.title}</SubTitle>
                   <Text>{item.text}</Text>
                 </div>
@@ -114,16 +115,16 @@ function Pagina() {
 
           <Columns>
             <div>
-              {t.services.left.map((item) => (
-                <div key={item.title}>
+              {t.services.left.map((item, i) => (
+                <div key={item.title} {...revelar('left', i)}>
                   <SubTitle>{item.title}</SubTitle>
                   <Text>{item.text}</Text>
                 </div>
               ))}
             </div>
             <div>
-              {t.services.middle.map((item) => (
-                <div key={item.title}>
+              {t.services.middle.map((item, i) => (
+                <div key={item.title} {...revelar('up', i)}>
                   <SubTitle>{item.title}</SubTitle>
                   <Text>{item.text}</Text>
                 </div>
@@ -187,7 +188,7 @@ function Pagina() {
               />
             </div>
             <div className="flex w-full flex-col items-start justify-start !text-left">
-              <div className={contactItem}>
+              <div {...revelar('right', 0, contactItem)}>
                 <a
                   href="mailto:saullobueno@gmail.com"
                   className={contactIcon}
@@ -205,7 +206,7 @@ function Pagina() {
                 </div>
               </div>
 
-              <div className={contactItem}>
+              <div {...revelar('right', 1, contactItem)}>
                 <a
                   href="https://wa.me/351932382207"
                   target="_blank"
@@ -237,7 +238,7 @@ function Pagina() {
             </div>
 
             <div className="flex w-full flex-col items-start justify-start !text-left">
-              <div className={contactItem}>
+              <div {...revelar('right', 1, contactItem)}>
                 <a
                   href="https://linkedin.com/in/saullobueno"
                   target="_blank"
@@ -249,7 +250,7 @@ function Pagina() {
                 </a>
               </div>
 
-              <div className={contactItem}>
+              <div {...revelar('right', 2, contactItem)}>
                 <a
                   href="https://github.com/saullobueno"
                   target="_blank"

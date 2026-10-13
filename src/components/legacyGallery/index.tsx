@@ -3,6 +3,7 @@ import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 import { legacyProjects } from '../../data/legacyProjects';
 import { useMessages } from '../../i18n';
+import { revelar } from '../reveal';
 
 const ImageLightbox = lazy(() => import('../lightbox'));
 
@@ -20,16 +21,20 @@ export default function LegacyGallery() {
   const [showAll, setShowAll] = useState(false);
 
   return (
-    <div className="reveal mt-16 pt-12 text-center">
-      <h3 className="mb-2 text-center text-[1.6rem] text-portfolio">{legacy.title}</h3>
-      <p className="mb-8 text-center text-base text-portfolio">{legacy.lead}</p>
+    <div className="mt-16 pt-12 text-center">
+      <h3 {...revelar('up', 0, 'mb-2 text-center text-[1.6rem] text-portfolio')}>{legacy.title}</h3>
+      <p {...revelar('up', 1, 'mb-8 text-center text-base text-portfolio')}>{legacy.lead}</p>
 
       <div className="grid grid-cols-4 gap-4 max-xl:grid-cols-3 max-[900px]:grid-cols-2">
         {(showAll ? legacyProjects : legacyProjects.slice(0, VISIVEIS)).map((port, key) => (
           <button
             key={port.slug}
             type="button"
-            className="cursor-zoom-in border-0 bg-transparent p-0 leading-[0]"
+            {...revelar(
+              'up',
+              key % 4,
+              'group cursor-zoom-in overflow-hidden border-0 bg-transparent p-0 leading-[0]',
+            )}
             aria-label={legacy.enlarge(port.title)}
             onClick={() => setIndex(key)}
           >
@@ -40,7 +45,7 @@ export default function LegacyGallery() {
               alt={port.title}
               loading="lazy"
               decoding="async"
-              className="mx-auto block h-auto w-full"
+              className="mx-auto block h-auto w-full transition-transform duration-500 group-hover:scale-105"
             />
           </button>
         ))}

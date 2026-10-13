@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 import { useMessages } from '../../i18n';
+import { revelar } from '../reveal';
 
 interface ProjectGalleryProps {
   images: string[];
@@ -29,7 +30,7 @@ export default function ProjectGallery({ images, title, onOpenImage }: ProjectGa
   };
 
   return (
-    <div className="flex flex-col gap-3 [grid-area:gallery]">
+    <div {...revelar('left', 0, 'flex flex-col gap-3 [grid-area:gallery]')}>
       <button
         type="button"
         className="group block w-full cursor-zoom-in overflow-hidden rounded-xl bg-[#111] p-0 leading-[0]"

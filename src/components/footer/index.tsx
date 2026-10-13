@@ -1,11 +1,12 @@
 import type { ReactNode } from 'react';
 
 import logo from '@/assets/logo-vertical.png';
+import { revelar } from '../reveal';
 
 export default function Footer({ children }: { children?: ReactNode }) {
   return (
     <footer className="flex items-center justify-center bg-footer">
-      <div className="w-full max-w-[1280px] px-8 pt-12 pb-20 text-center">
+      <div {...revelar('up', 0, 'w-full max-w-[1280px] px-8 pt-12 pb-20 text-center')}>
         <img
           src={logo}
           alt="Saullo.com"
