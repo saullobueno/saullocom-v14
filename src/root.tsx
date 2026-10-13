@@ -20,7 +20,10 @@ const idiomaDe = (pathname: string): Locale =>
   pathname === '/en' || pathname.startsWith('/en/') ? 'en' : 'pt';
 
 export const links: Route.LinksFunction = () => [
-  { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+  { rel: 'icon', href: '/favicon.ico', sizes: '48x48' },
+  { rel: 'icon', type: 'image/png', href: '/favicon.png', sizes: '64x64' },
+  { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+  { rel: 'manifest', href: '/site.webmanifest' },
   // LCP: o hero e background CSS, entao o navegador so o descobriria depois do CSS
   { rel: 'preload', as: 'image', href: imageHome, type: 'image/avif', fetchPriority: 'high' },
 ];
