@@ -38,7 +38,7 @@ export default function FeaturedCard({ project, onOpenImage }: FeaturedCardProps
               {...revelar(
                 'up',
                 i,
-                "mb-[0.4rem] flex items-start gap-2 text-left text-[0.9rem] text-[#bbb] before:text-base before:leading-none before:text-accent before:content-['▹']",
+                "mb-[0.4rem] flex items-baseline gap-2 text-left text-[0.9rem] text-[#bbb] before:text-base before:leading-none before:text-accent before:content-['▹']",
                 { passo: '40px' },
               )}
             >

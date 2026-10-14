@@ -176,21 +176,22 @@
   }
 }
 
-/* A barra de navegacao entra deslizando na primeira rolagem. visibility sai de hidden
-   para que ela nao receba foco enquanto esta fora da tela. */
-@keyframes nav-in {
-  from {
-    translate: 0 -100%;
-    visibility: hidden;
-  }
-  to {
-    translate: 0 0;
-    visibility: visible;
-  }
-}
-
+/* A barra de navegacao so aparece ao rolar para cima (data-visivel, definido no Nav).
+   visibility hidden evita que ela receba foco enquanto esta fora da tela. */
 .nav-bar {
   background-color: rgb(26 26 26 / 0.92);
+  translate: 0 -100%;
+  visibility: hidden;
+  transition:
+    translate 0.25s ease,
+    visibility 0.25s;
+}
+
+.nav-bar[data-visivel],
+.nav-bar[data-teclado],
+.nav-bar:focus-within {
+  translate: 0 0;
+  visibility: visible;
 }
 
 .nav-progress {
@@ -222,16 +223,6 @@
   }
   to {
     translate: 0 -5vh;
-  }
-}
-
-/* a imagem alta do fundo de codigo sobe ate mostrar o rodape dela (-100% = a altura da propria imagem) */
-@keyframes fundo-codigo {
-  from {
-    translate: 0 0;
-  }
-  to {
-    translate: 0 calc(100vh - 100%);
   }
 }
 
@@ -319,10 +310,125 @@
       animation-name: parallax-title;
     }
 
-    .fundo-codigo-img {
-      animation: fundo-codigo linear both;
-      animation-timeline: scroll(root);
+    /* fotos decorativas: ampliadas o bastante (8% por lado) para o deslocamento de 7% nunca
+       deixar a borda da moldura vazia */
+    .parallax-img {
+      scale: 1.16;
+      animation: parallax-img linear both;
+      animation-timeline: view();
+      animation-range: cover;
       will-change: translate;
+    }
+
+    .nav-progress {
+      display: block;
+      background: linear-gradient(90deg, #e2a342, #00b259, #2ba8d6, #9d85e8);
+      animation: progress linear both;
+      animation-timeline: scroll(root);
+    }
+  }
+}
+
+@keyframes parallax-logo {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 0 10vh;
+  }
+}
+
+@keyframes parallax-title {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 0 -5vh;
+  }
+}
+
+@keyframes parallax-img {
+  from {
+    translate: 0 -7%;
+  }
+  to {
+    translate: 0 7%;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* Cada elemento anima enquanto atravessa a borda inferior da tela, em ~280px de rolagem;
+       --i escalona irmaos (cada indice comeca 60px de rolagem depois do anterior). Usar px (e
+       nao %) mantem a duracao igual para elementos altos e baixos. */
+    .rv-up,
+    .rv-left,
+    .rv-right,
+    .rv-pop,
+    .rv-curtain,
+    .rv-line,
+    .rv-rise {
+      animation-timeline: view();
+      animation-fill-mode: both;
+      animation-timing-function: cubic-bezier(0.22, 0.8, 0.3, 1);
+      animation-range: entry calc(var(--i, 0) * var(--passo, 60px)) entry
+        calc(var(--dur, 280px) + var(--i, 0) * var(--passo, 60px));
+    }
+
+    .rv-up {
+      animation-name: rv-up;
+    }
+    .rv-left {
+      animation-name: rv-left;
+    }
+    .rv-right {
+      animation-name: rv-right;
+    }
+    .rv-pop {
+      animation-name: rv-pop;
+    }
+    .rv-curtain {
+      animation-name: rv-curtain;
+      --dur: 420px;
+    }
+    .rv-line {
+      animation-name: rv-line;
+      --dur: 360px;
+    }
+
+    /* a palavra sobe dentro da mascara; a linha do tempo e a da mascara (fixa), nao a da palavra,
+       para o proprio deslocamento nao alterar o progresso */
+    .rv-mask {
+      view-timeline-name: --mascara;
+    }
+    .rv-rise {
+      animation-name: rv-rise;
+      animation-timeline: --mascara;
+    }
+
+    /* hero: o fundo desce mais devagar que a pagina (camada estendida acima para nunca abrir vao),
+       a logo atrasa um pouco e o titulo sobe um pouco mais rapido */
+    .parallax-bg,
+    .parallax-logo,
+    .parallax-title {
+      animation-timeline: scroll(root);
+      animation-range: 0 100vh;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      will-change: translate;
+    }
+
+    .parallax-bg {
+      top: -25vh;
+      animation-name: parallax-bg;
+    }
+
+    .parallax-logo {
+      animation-name: parallax-logo;
+    }
+
+    .parallax-title {
+      animation-name: parallax-title;
     }
 
     /* fotos decorativas: ampliadas o bastante (8% por lado) para o deslocamento de 7% nunca
@@ -355,6 +461,51 @@
       visibility: visible;
     }
   }
+}
+
+/* Separador discreto entre as secoes do conteudo: fio fino que esmaece nas pontas, no topo de cada
+   secao a partir da segunda (o espacamento da secao deixa o fio no meio do intervalo entre elas) */
+main > section + section {
+  position: relative;
+}
+
+main > section + section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(255 255 255 / 0.14) 20%,
+    rgb(255 255 255 / 0.14) 80%,
+    transparent
+  );
+}
+
+/* Separador menor, no mesmo estilo, entre os projetos em destaque: centralizado no meio do espaco
+   entre um card e o seguinte (metade do gap-30 da lista) */
+.lista-projetos > article + article {
+  position: relative;
+}
+
+.lista-projetos > article + article::before {
+  content: '';
+  position: absolute;
+  top: calc(var(--spacing) * -15);
+  left: 50%;
+  width: min(360px, 60%);
+  height: 1px;
+  translate: -50% 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(255 255 255 / 0.14) 20%,
+    rgb(255 255 255 / 0.14) 80%,
+    transparent
+  );
 }
 
 html {
