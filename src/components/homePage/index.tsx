@@ -15,7 +15,6 @@ import Section, {
   Text,
 } from '../section';
 import Footer from '../footer';
-import FundoCodigo from '../fundoCodigo';
 import FeaturedCard from '../featuredCard';
 import LegacyGallery from '../legacyGallery';
 import { revelar } from '../reveal';
@@ -50,10 +49,9 @@ function Pagina() {
   return (
     <>
       <Nav />
-      <FundoCodigo />
       <Header />
 
-      <main id="main" tabIndex={-1} className="relative p-0 outline-none">
+      <main id="main" tabIndex={-1} className="p-0 outline-none">
         <Section id="about" tone="text-trajetoria">
           <SectionTitle id="about-title">{t.about.title}</SectionTitle>
           <SectionLead>{t.about.lead}</SectionLead>
@@ -85,13 +83,13 @@ function Pagina() {
           <Columns>
             <div>
               {t.expertise.left.map((item, i) => (
-                <div key={item.title} {...revelar('left', i)}>
+                <div key={item.title} {...revelar('left', i, 'mb-6 last:mb-0')}>
                   <SubTitle>{item.title}</SubTitle>
                   <Text>{item.text}</Text>
                 </div>
               ))}
             </div>
-            <div className="w-full">
+            <div className="mx-auto w-full max-w-[260px]">
               <DecorativeImage
                 src={Stack02}
                 width={540}
@@ -102,7 +100,7 @@ function Pagina() {
             </div>
             <div>
               {t.expertise.right.map((item, i) => (
-                <div key={item.title} {...revelar('right', i)}>
+                <div key={item.title} {...revelar('right', i, 'mb-6 last:mb-0')}>
                   <SubTitle>{item.title}</SubTitle>
                   <Text>{item.text}</Text>
                 </div>
@@ -148,7 +146,7 @@ function Pagina() {
           <SectionTitle id="portfolio-title">{t.portfolio.title}</SectionTitle>
           <SectionLead>{t.portfolio.lead}</SectionLead>
 
-          <div className="mt-22 mb-28 flex flex-col gap-30 text-left">
+          <div className="lista-projetos mt-22 mb-28 flex flex-col gap-30 text-left">
             {projects.map((project) => (
               <FeaturedCard
                 key={project.slug}

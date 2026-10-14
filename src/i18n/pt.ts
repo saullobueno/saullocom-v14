@@ -21,11 +21,11 @@ export const pt = {
     label: 'Navegação principal',
     skip: 'Pular para o conteúdo',
     home: 'Início',
-    about: 'Trajetória',
-    expertise: 'Expertise',
-    services: 'O que faço',
-    portfolio: 'Portfólio',
-    contact: 'Contato',
+    about: 'Sobre',
+    expertise: 'Habilidades',
+    services: 'Serviços',
+    portfolio: 'Projetos',
+    contact: 'Contatos',
     cta: 'Vamos conversar',
     menu: 'Menu',
     progress: 'Progresso de leitura da página',
@@ -40,7 +40,7 @@ export const pt = {
   },
 
   about: {
-    title: 'MINHA TRAJETÓRIA',
+    title: 'SOBRE',
     lead: 'Descobri a paixão pela tecnologia ao me mudar para a capital e ter acesso ao meu primeiro computador, iniciando uma jornada de constante evolução.',
     paragraphs: [
       "Nascido em Belo Horizonte, Minas Gerais, desenvolvi minha paixão pela tecnologia e pelo design desde a adolescência, criando minhas primeiras interfaces digitais.",
@@ -52,7 +52,7 @@ export const pt = {
   },
 
   expertise: {
-    title: 'EXPERTISE TÉCNICA',
+    title: 'HABILIDADES',
     lead: 'Trajetória construída no design e UI/UX, consolidada no desenvolvimento front-end e especializada em engenharia de software Full Stack.',
     left: [
       {
@@ -86,7 +86,7 @@ export const pt = {
   },
 
   services: {
-    title: 'O QUE FAÇO',
+    title: 'SERVIÇOS',
     lead: 'Domínio completo do ciclo de vida de produtos digitais: da concepção de UI/UX e identidade visual ao desenvolvimento Full Stack e mobile.',
     left: [
       {
@@ -112,7 +112,7 @@ export const pt = {
   },
 
   portfolio: {
-    title: 'PORTFÓLIO',
+    title: 'PROJETOS',
     lead: 'Engenharia de software Full Stack, sistemas web modernos, soluções integradas a Inteligência Artificial e aplicações de alta performance.',
   },
 
@@ -133,7 +133,7 @@ export const pt = {
   },
 
   contact: {
-    title: 'CONTATO',
+    title: 'CONTATOS',
     lead: 'Tem um projeto para desenvolver, deseja contratar meus serviços ou quer conversar sobre oportunidades? Vamos conversar:',
     imageAlt:
       'Mão de pessoa de terno colocando um bloco de madeira no topo de uma torre, em tons arroxeados',

@@ -20,10 +20,10 @@ export const en: Messages = {
     label: 'Main navigation',
     skip: 'Skip to content',
     home: 'Home',
-    about: 'My story',
-    expertise: 'Expertise',
-    services: 'What I do',
-    portfolio: 'Portfolio',
+    about: 'About',
+    expertise: 'Skills',
+    services: 'Services',
+    portfolio: 'Projects',
     contact: 'Contact',
     cta: "Let's talk",
     menu: 'Menu',
@@ -39,7 +39,7 @@ export const en: Messages = {
   },
 
   about: {
-    title: 'MY STORY',
+    title: 'ABOUT',
     lead: 'I found my passion for technology after moving to the capital and getting my first computer, which started a journey of constant growth.',
     paragraphs: [
       "Born in Belo Horizonte, Minas Gerais, Brazil, I grew passionate about technology and design as a teenager, building my first digital interfaces.",
@@ -51,7 +51,7 @@ export const en: Messages = {
   },
 
   expertise: {
-    title: 'TECHNICAL EXPERTISE',
+    title: 'SKILLS',
     lead: 'A career built on design and UI/UX, consolidated in front-end development and specialized in Full Stack software engineering.',
     left: [
       {
@@ -85,7 +85,7 @@ export const en: Messages = {
   },
 
   services: {
-    title: 'WHAT I DO',
+    title: 'SERVICES',
     lead: 'Full command of the digital product lifecycle: from UI/UX design and visual identity to Full Stack and mobile development.',
     left: [
       {
@@ -111,7 +111,7 @@ export const en: Messages = {
   },
 
   portfolio: {
-    title: 'PORTFOLIO',
+    title: 'PROJECTS',
     lead: 'Full Stack software engineering, modern web systems, AI-integrated solutions and high-performance applications.',
   },
 

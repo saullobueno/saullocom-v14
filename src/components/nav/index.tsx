@@ -29,8 +29,27 @@ export default function Nav() {
     return () => observer.disconnect();
   }, []);
 
-  // A barra so aparece depois da primeira rolagem (CSS). Quem navega por teclado precisa
-  // alcanca-la no topo: o primeiro Tab a revela e ela fica visivel.
+  // A barra so aparece ao rolar para cima (e some ao rolar para baixo ou no topo da pagina)
+  useEffect(() => {
+    let ultimo = window.scrollY;
+    const aoRolar = () => {
+      const atual = window.scrollY;
+      const delta = atual - ultimo;
+      if (Math.abs(delta) < 6) return;
+      ultimo = atual;
+      if (delta < 0 && atual > 0) {
+        barra.current?.setAttribute('data-visivel', '');
+      } else {
+        barra.current?.removeAttribute('data-visivel');
+        if (menu.current) menu.current.open = false;
+      }
+    };
+    window.addEventListener('scroll', aoRolar, { passive: true });
+    return () => window.removeEventListener('scroll', aoRolar);
+  }, []);
+
+  // Quem navega por teclado precisa alcanca-la no topo: o primeiro Tab a revela e ela
+  // fica visivel.
   useEffect(() => {
     const aoTeclar = (e: KeyboardEvent) => {
       if (e.key !== 'Tab') return;
@@ -71,7 +90,7 @@ export default function Nav() {
       <header ref={barra} className="nav-bar fixed inset-x-0 top-0 z-50 border-b border-white/10">
         <nav
           aria-label={t.nav.label}
-          className="mx-auto flex h-14 max-w-[1280px] items-center justify-between gap-3 px-3 md:gap-4 md:px-4"
+          className="flex h-14 w-full items-center justify-between gap-3 px-3 md:grid md:grid-cols-[1fr_auto_1fr] md:gap-4 md:px-6"
         >
           <a href="#top" className="shrink-0">
             <img
@@ -85,7 +104,7 @@ export default function Nav() {
 
           <div className="hidden items-center gap-1 md:flex">{SECOES.map(link)}</div>
 
-          <div className="flex items-center gap-1.5 md:gap-2">
+          <div className="flex items-center gap-1.5 md:justify-self-end md:gap-2">
             <a
               href={t.switchTo.href}
               hrefLang={idiomaDestino}
