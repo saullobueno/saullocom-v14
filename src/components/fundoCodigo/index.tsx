@@ -1,9 +1,4 @@
-// Imagem ativa: textura de papel de jornal, sem conteudo (gerar-fundo-papel.mjs, 1600x7200). Em
-// standby, para voltar a uma delas troque o import abaixo e, se preciso, as medidas da imagem:
-//   '@/assets/fundo-jornal.avif'  pagina de jornal com noticias, 1600x7200 (gerar-fundo-jornal.mjs)
-//   '@/assets/fundo-foto.avif'    foto de escritorio noturno, 1422x2844 (gerar-fundo-foto.mjs)
-//   '@/assets/fundo-doodles.avif' figurinhas, 1600x7200 (gerar-fundo-doodles.mjs)
-//   '@/assets/fundo-codigo.avif'  janelas de IDE, 1600x7200 (gerar-fundo-codigo.mjs)
+// Textura de papel de jornal (gerada por scripts/gerar-fundo-papel.mjs, 1600x7200).
 import fundo from '@/assets/fundo-papel.avif';
 
 // Grao fino do papel: ruido SVG (feTurbulence) repetido sobre a imagem. Fica em CSS porque o AVIF
