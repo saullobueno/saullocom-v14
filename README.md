@@ -6,14 +6,14 @@ Site pessoal e portfólio de **Saullo Bueno**, desenvolvedor Full Stack (UI/UX D
 
 ## O que tem no site
 
-- **Minha trajetória**: origem, formação em Produção Multimídia (2012) e a evolução do design gráfico e front-end para a engenharia de software Full Stack.
-- **Expertise técnica**: design e UI/UX, front-end, back-end, mobile, qualidade e CI/CD, arquitetura e performance.
-- **O que faço**: visão do ciclo completo de um produto digital, da concepção visual ao desenvolvimento.
-- **Portfólio**:
-  - **Projetos em destaque**: aplicações full stack com IA publicadas e com código aberto (Forge, FieldOps, Nexus Developer Platform, Product Analytics OS, AI Customer Operations Platform, Command Center e AI Workflow Studio). Cada card traz descrição, destaques, stack, links para o GitHub e a demo ao vivo, além de uma galeria de screenshots reais com miniaturas e lightbox com zoom.
-  - **Trabalhos anteriores**: sites e identidades criados para clientes, exibidos em lightbox, com opção de "ver mais".
-- **Contato**: e-mail, LinkedIn, WhatsApp e GitHub.
-- **Navegação fixa** com a logo horizontal, âncoras, destaque da seção ativa, barra de progresso de leitura, link "pular para o conteúdo" e botão de contato. Ela só aparece depois da primeira rolagem (deixa a tela inicial livre) e é revelada pelo primeiro Tab para quem usa teclado.
+- **Sobre** (minha trajetória): origem, formação em Produção Multimídia (2012) e a evolução do design gráfico e front-end para a engenharia de software Full Stack.
+- **Habilidades** (expertise técnica): design e UI/UX, front-end, back-end, mobile, qualidade e CI/CD, arquitetura e performance.
+- **Serviços** (o que faço): visão do ciclo completo de um produto digital, da concepção visual ao desenvolvimento.
+- **Projetos** (portfólio):
+  - **Projetos**: aplicações full stack com IA publicadas e com código aberto (Forge, FieldOps, Nexus Developer Platform, Product Analytics OS, AI Customer Operations Platform, Command Center e AI Workflow Studio). Cada card traz descrição, destaques, stack, links para o GitHub e a demo ao vivo, além de uma galeria de screenshots reais com miniaturas e lightbox com zoom.
+  - **Projetos Legados**: sites e identidades criados para clientes, exibidos em lightbox, com opção de "ver mais".
+- **Contatos**: e-mail, LinkedIn, WhatsApp e GitHub.
+- **Navegação fixa** com a logo horizontal, âncoras, destaque da seção ativa, link "pular para o conteúdo" e botão de contato. Ela só aparece ao rolar a página para cima (deixa a leitura livre), tem botão para fechar o menu e é revelada pelo primeiro Tab para quem usa teclado.
 - **Animações de entrada** guiadas pelo scroll (CSS puro, respeitam `prefers-reduced-motion`), com um vocabulário pequeno de movimentos: títulos cujas palavras sobem de uma máscara com um fio colorido embaixo, textos e colunas escalonados, listas que entram pelas laterais, fotos que abrem como cortina e, nos cards de projeto, galeria pela esquerda, texto pela direita e destaques e tecnologias em cascata. São aplicadas com o helper `revelar()` (`src/components/reveal`) e as classes `rv-*` do `src/index.css`.
 - **Rolagem suave** (Lenis, carregado sob demanda): interpola os "degraus" da roda do mouse, o que deixa o parallax perceptível. Fica desligada para quem pediu menos movimento (`prefers-reduced-motion`) e não interfere no zoom do lightbox.
 - **Parallax** em CSS puro (só `translate`/`scale`): o hero tem três camadas (fundo, logo e título em velocidades diferentes) e as fotos decorativas se movem dentro da própria moldura. Só roda em navegadores com scroll-driven animations e sem `prefers-reduced-motion`.

@@ -19,6 +19,7 @@ export const en: Messages = {
   nav: {
     label: 'Main navigation',
     skip: 'Skip to content',
+    hide: 'Close menu',
     home: 'Home',
     about: 'About',
     expertise: 'Skills',

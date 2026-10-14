@@ -20,6 +20,7 @@ export const pt = {
   nav: {
     label: 'Navegação principal',
     skip: 'Pular para o conteúdo',
+    hide: 'Fechar menu',
     home: 'Início',
     about: 'Sobre',
     expertise: 'Habilidades',

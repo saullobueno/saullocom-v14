@@ -11,6 +11,7 @@ const linkBase =
 export default function Nav() {
   const { t } = useI18n();
   const [ativa, setAtiva] = useState<string>('');
+  const [visivel, setVisivel] = useState(false);
   const menu = useRef<HTMLDetailsElement>(null);
   const barra = useRef<HTMLElement>(null);
 
@@ -35,12 +36,22 @@ export default function Nav() {
     const aoRolar = () => {
       const atual = window.scrollY;
       const delta = atual - ultimo;
+      // No topo do hero a barra sempre se oculta (exceto se o foco do teclado estiver nela)
+      if (atual <= 0) {
+        ultimo = atual;
+        setVisivel(false);
+        if (!barra.current?.contains(document.activeElement)) {
+          barra.current?.removeAttribute('data-teclado');
+          if (menu.current) menu.current.open = false;
+        }
+        return;
+      }
       if (Math.abs(delta) < 6) return;
       ultimo = atual;
       if (delta < 0 && atual > 0) {
-        barra.current?.setAttribute('data-visivel', '');
+        setVisivel(true);
       } else {
-        barra.current?.removeAttribute('data-visivel');
+        setVisivel(false);
         if (menu.current) menu.current.open = false;
       }
     };
@@ -54,7 +65,6 @@ export default function Nav() {
     const aoTeclar = (e: KeyboardEvent) => {
       if (e.key !== 'Tab') return;
       barra.current?.setAttribute('data-teclado', '');
-      window.removeEventListener('keydown', aoTeclar);
     };
     window.addEventListener('keydown', aoTeclar);
     return () => window.removeEventListener('keydown', aoTeclar);
@@ -87,7 +97,11 @@ export default function Nav() {
         {t.nav.skip}
       </a>
 
-      <header ref={barra} className="nav-bar fixed inset-x-0 top-0 z-50 border-b border-white/10">
+      <header
+        ref={barra}
+        data-visivel={visivel ? '' : undefined}
+        className="nav-bar fixed inset-x-0 top-0 z-50"
+      >
         <nav
           aria-label={t.nav.label}
           className="flex h-14 w-full items-center justify-between gap-3 px-3 md:grid md:grid-cols-[1fr_auto_1fr] md:gap-4 md:px-6"
@@ -140,9 +154,28 @@ export default function Nav() {
                 {SECOES.map(link)}
               </div>
             </details>
+            <button
+              type="button"
+              onClick={() => {
+                setVisivel(false);
+                barra.current?.removeAttribute('data-teclado');
+                if (menu.current) menu.current.open = false;
+                (document.activeElement as HTMLElement | null)?.blur();
+              }}
+              aria-label={t.nav.hide}
+              className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-md text-white/70 transition-colors hover:text-white"
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M3 3l10 10M13 3L3 13"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </button>
           </div>
         </nav>
-        <div aria-hidden="true" className="nav-progress h-[3px] origin-left" />
       </header>
     </>
   );

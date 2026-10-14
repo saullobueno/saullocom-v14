@@ -167,19 +167,12 @@
   }
 }
 
-@keyframes progress {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
-
 /* A barra de navegacao so aparece ao rolar para cima (data-visivel, definido no Nav).
    visibility hidden evita que ela receba foco enquanto esta fora da tela. */
 .nav-bar {
-  background-color: rgb(26 26 26 / 0.92);
+  background-color: rgb(26 26 26 / 0.7);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   translate: 0 -100%;
   visibility: hidden;
   transition:
@@ -188,14 +181,9 @@
 }
 
 .nav-bar[data-visivel],
-.nav-bar[data-teclado],
-.nav-bar:focus-within {
+.nav-bar[data-teclado] {
   translate: 0 0;
   visibility: visible;
-}
-
-.nav-progress {
-  display: none;
 }
 
 /* Parallax: deslocamentos relativos ao scroll da pagina (hero) ou ao da propria tela (imagens) */
@@ -318,147 +306,6 @@
       animation-timeline: view();
       animation-range: cover;
       will-change: translate;
-    }
-
-    .nav-progress {
-      display: block;
-      background: linear-gradient(90deg, #e2a342, #00b259, #2ba8d6, #9d85e8);
-      animation: progress linear both;
-      animation-timeline: scroll(root);
-    }
-  }
-}
-
-@keyframes parallax-logo {
-  from {
-    translate: 0 0;
-  }
-  to {
-    translate: 0 10vh;
-  }
-}
-
-@keyframes parallax-title {
-  from {
-    translate: 0 0;
-  }
-  to {
-    translate: 0 -5vh;
-  }
-}
-
-@keyframes parallax-img {
-  from {
-    translate: 0 -7%;
-  }
-  to {
-    translate: 0 7%;
-  }
-}
-
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    /* Cada elemento anima enquanto atravessa a borda inferior da tela, em ~280px de rolagem;
-       --i escalona irmaos (cada indice comeca 60px de rolagem depois do anterior). Usar px (e
-       nao %) mantem a duracao igual para elementos altos e baixos. */
-    .rv-up,
-    .rv-left,
-    .rv-right,
-    .rv-pop,
-    .rv-curtain,
-    .rv-line,
-    .rv-rise {
-      animation-timeline: view();
-      animation-fill-mode: both;
-      animation-timing-function: cubic-bezier(0.22, 0.8, 0.3, 1);
-      animation-range: entry calc(var(--i, 0) * var(--passo, 60px)) entry
-        calc(var(--dur, 280px) + var(--i, 0) * var(--passo, 60px));
-    }
-
-    .rv-up {
-      animation-name: rv-up;
-    }
-    .rv-left {
-      animation-name: rv-left;
-    }
-    .rv-right {
-      animation-name: rv-right;
-    }
-    .rv-pop {
-      animation-name: rv-pop;
-    }
-    .rv-curtain {
-      animation-name: rv-curtain;
-      --dur: 420px;
-    }
-    .rv-line {
-      animation-name: rv-line;
-      --dur: 360px;
-    }
-
-    /* a palavra sobe dentro da mascara; a linha do tempo e a da mascara (fixa), nao a da palavra,
-       para o proprio deslocamento nao alterar o progresso */
-    .rv-mask {
-      view-timeline-name: --mascara;
-    }
-    .rv-rise {
-      animation-name: rv-rise;
-      animation-timeline: --mascara;
-    }
-
-    /* hero: o fundo desce mais devagar que a pagina (camada estendida acima para nunca abrir vao),
-       a logo atrasa um pouco e o titulo sobe um pouco mais rapido */
-    .parallax-bg,
-    .parallax-logo,
-    .parallax-title {
-      animation-timeline: scroll(root);
-      animation-range: 0 100vh;
-      animation-timing-function: linear;
-      animation-fill-mode: both;
-      will-change: translate;
-    }
-
-    .parallax-bg {
-      top: -25vh;
-      animation-name: parallax-bg;
-    }
-
-    .parallax-logo {
-      animation-name: parallax-logo;
-    }
-
-    .parallax-title {
-      animation-name: parallax-title;
-    }
-
-    /* fotos decorativas: ampliadas o bastante (8% por lado) para o deslocamento de 7% nunca
-       deixar a borda da moldura vazia */
-    .parallax-img {
-      scale: 1.16;
-      animation: parallax-img linear both;
-      animation-timeline: view();
-      animation-range: cover;
-      will-change: translate;
-    }
-
-    .nav-progress {
-      display: block;
-      background: linear-gradient(90deg, #e2a342, #00b259, #2ba8d6, #9d85e8);
-      animation: progress linear both;
-      animation-timeline: scroll(root);
-    }
-
-    .nav-bar {
-      animation: nav-in linear both;
-      animation-timeline: scroll(root);
-      animation-range: 0 120px;
-    }
-
-    /* revelada pelo teclado (primeiro Tab): fica visivel mesmo no topo */
-    .nav-bar[data-teclado] {
-      animation: none;
-      translate: 0 0;
-      visibility: visible;
     }
   }
 }
