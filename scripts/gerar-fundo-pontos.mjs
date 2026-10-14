@@ -17,8 +17,8 @@ const RAIO_MAX = 1.4; // raio dos pontos nas areas claras
 const TOM_MIN = 70; // cinza dos pontos menores (0-255)
 const TOM_MAX = 125; // cinza dos pontos maiores
 
-const OPACIDADE_LATERAL = 0.6; // intensidade da retícula nas laterais
-const OPACIDADE_CENTRO = 0.15; // intensidade na faixa central
+const OPACIDADE_LATERAL = 0.8; // intensidade da retícula nas laterais
+const OPACIDADE_CENTRO = 0.2; // intensidade na faixa central
 const INICIO_FAIXA = [0.2, 0.36]; // x (0..1) onde a lateral desce ate o centro
 const FIM_FAIXA = [0.64, 0.8]; // x (0..1) onde o centro sobe ate a lateral
 
