@@ -4,7 +4,7 @@ export const en: Messages = {
   lang: 'en',
   ogLocale: 'en_US',
   path: '/en',
-  switchTo: { label: 'Português', short: 'PT', href: '/', ariaLabel: 'Ler este site em português' },
+  language: { label: 'Language' },
 
   meta: {
     title: 'Saullo Bueno | Full Stack Developer & UI/UX Designer',

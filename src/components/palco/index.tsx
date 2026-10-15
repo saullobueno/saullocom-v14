@@ -113,7 +113,12 @@ export default function Palco({ children }: { children: ReactNode }) {
     const aplica = () => {
       alvos.forEach((alvo, i) => {
         if (alvo.classList.contains('cena-hero')) return;
-        alvo.dataset.estado = i < atual ? 'antes' : i > atual ? 'depois' : 'ativa';
+        const estado = i < atual ? 'antes' : i > atual ? 'depois' : 'ativa';
+        // cena que volta a ser a ativa comeca do topo, nao de onde a rolagem interna parou
+        if (estado === 'ativa' && alvo.dataset.estado && alvo.dataset.estado !== 'ativa') {
+          alvo.querySelector<HTMLElement>('.cena-caixa')?.scrollTo({ top: 0, behavior: 'instant' });
+        }
+        alvo.dataset.estado = estado;
         // so a cena atual e as vizinhas sao renderizadas (e carregam suas imagens)
         const perto = Math.abs(i - atual) <= 1;
         alvo.toggleAttribute('data-perto', perto);

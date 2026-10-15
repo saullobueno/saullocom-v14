@@ -87,19 +87,19 @@ export function SectionLead({ children }: { children: ReactNode }) {
 
 export function SubTitle({ children }: { children: ReactNode }) {
   return (
-    <h3 className="mb-[0.2em] text-center text-[1.4em] leading-[150%] font-bold max-md:text-[1.2em]">
+    <h3 className="mb-[0.2em] text-left text-[1.4em] leading-[150%] font-bold max-md:text-[1.2em]">
       {children}
     </h3>
   );
 }
 
 export function Text({ className = '', ...props }: ComponentProps<'p'>) {
-  return <p className={`mb-[0.8em] text-center leading-[165%] ${className}`} {...props} />;
+  return <p className={`mb-[0.8em] text-left leading-[165%] ${className}`} {...props} />;
 }
 
 export function Columns({ children }: { children: ReactNode }) {
   return (
-    <div className="grid grid-cols-3 items-center justify-items-center gap-[1.5em] max-md:grid-cols-2 max-[500px]:grid-cols-1 max-[500px]:gap-0 [&>div]:text-center">
+    <div className="grid grid-cols-3 items-start justify-items-center gap-[1.5em] max-md:grid-cols-2 max-[500px]:grid-cols-1 max-[500px]:gap-0 [&>div]:text-left">
       {children}
     </div>
   );
