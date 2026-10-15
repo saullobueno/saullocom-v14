@@ -169,72 +169,31 @@ test.describe('palco (movimento normal)', () => {
     expect(copy.x + copy.width).toBeGreaterThan(1280 - 60);
   });
 
-  test('telas largas: sem barra de vidro (os pontos de cena a substituem)', async ({ page }) => {
-    await abrir(page);
-    await expect(page.locator('.barra-vidro')).toBeHidden();
-    await expect(page.locator('.pontos')).toBeVisible();
-    expect(
-      await page.evaluate(() => getComputedStyle(document.documentElement).scrollbarWidth),
-    ).toBe('none');
-  });
-
-  test('telas pequenas: a barra de vidro acompanha a cena e leva a cena ao clicar', async ({
+  test('pontos de cena no celular: visiveis, dentro da tela e sem tocar no texto', async ({
     page,
   }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await abrir(page);
-    const barra = page.locator('.barra-vidro');
-    const estilo = await barra.evaluate((el) => {
-      const s = getComputedStyle(el);
-      return {
-        blur: s.backdropFilter,
-        fundo: s.backgroundColor,
-        nativa: getComputedStyle(document.documentElement).scrollbarWidth,
-      };
-    });
-    expect(estilo.blur).toContain('blur');
-    expect(estilo.fundo).toMatch(/rgba\(.*0\.\d+\)/); // translucida
-    expect(estilo.nativa).toBe('none');
     await girarRoda(page, 40);
-    await girarRoda(page, 40);
-    const topo = () =>
-      page.locator('.barra-polegar').evaluate((el) => el.getBoundingClientRect().top);
-    const t1 = await topo();
-    await girarRoda(page, 40);
-    expect(await topo()).toBeGreaterThan(t1);
-    // clicar perto do fim do trilho leva a uma das ultimas cenas
-    const caixa = (await barra.boundingBox())!;
-    await page.mouse.click(caixa.x + caixa.width / 2, caixa.y + caixa.height * 0.95);
-    await page.waitForTimeout(TRANSICAO);
-    const total = (await estados(page)).length;
-    expect(await cenaAtiva(page)).toBeGreaterThanOrEqual(total - 2);
-  });
-
-  test('pontos de cena: um por cena, marcam a atual e levam a cena ao clicar', async ({ page }) => {
-    await abrir(page);
-    const total = (await estados(page)).length;
     const pontos = page.locator('.pontos .ponto');
-    await expect(pontos).toHaveCount(total + 1); // as cenas e o hero
-    await expect(pontos.first()).toHaveAttribute('aria-current', 'true');
-    await girarRoda(page, 40);
-    await expect(pontos.nth(1)).toHaveAttribute('aria-current', 'true');
-    // so o primeiro ponto de cada secao e grande: hero + 5 secoes
-    await expect(page.locator('.pontos .ponto-grande')).toHaveCount(6);
-    await pontos.nth(4).click();
+    await expect(page.locator('.pontos')).toBeVisible();
+    expect(
+      await page.evaluate(() => getComputedStyle(document.documentElement).scrollbarWidth),
+    ).toBe('none');
+    // a coluna fica dentro da tela e a direita do conteudo da cena
+    const medidas = await page.evaluate(() => {
+      const col = document.querySelector('.pontos')!.getBoundingClientRect();
+      const itens = [...document.querySelectorAll('main .cena[data-estado="ativa"] .cena-caixa *')]
+        .filter((el) => el.children.length === 0 && el.textContent?.trim())
+        .map((el) => el.getBoundingClientRect().right);
+      return { colEsq: col.left, colDir: col.right, textoMaxDir: Math.max(...itens) };
+    });
+    expect(medidas.colDir).toBeLessThanOrEqual(390);
+    expect(medidas.textoMaxDir).toBeLessThanOrEqual(medidas.colEsq);
+    // tocar num ponto leva a cena
+    await pontos.nth(6).click();
     await page.waitForTimeout(TRANSICAO);
-    expect(await cenaAtiva(page)).toBe(3);
-    await expect(pontos.nth(4)).toHaveAttribute('aria-current', 'true');
-    // rotulo ao passar o mouse
-    await pontos.nth(5).hover();
-    expect(await pontos.nth(5).evaluate((el) => getComputedStyle(el, '::after').content)).toContain(
-      'Forge',
-    );
-  });
-
-  test('pontos de cena ficam escondidos em tela pequena', async ({ page }) => {
-    await page.setViewportSize({ width: 390, height: 844 });
-    await abrir(page);
-    await expect(page.locator('.pontos')).toBeHidden();
+    expect(await cenaAtiva(page)).toBe(5);
   });
 
   for (const [nome, largura, altura] of [

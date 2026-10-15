@@ -54,35 +54,6 @@ export default function Palco({ children }: { children: ReactNode }) {
       alvo.dataset.ajustada = '';
     };
 
-    // Barra de rolagem de vidro (a nativa fica escondida no palco): acompanha a rolagem e, ao
-    // clicar ou arrastar, leva a cena correspondente
-    const barra = () => document.querySelector<HTMLElement>('.barra-vidro');
-
-    const atualizaBarra = () => {
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      const prog = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
-      raiz.style.setProperty('--prog', prog.toFixed(4));
-    };
-
-    const aoPressionarBarra = (e: PointerEvent) => {
-      const trilho = e.currentTarget as HTMLElement;
-      trilho.setPointerCapture(e.pointerId);
-      const segue = (ev: PointerEvent) => {
-        const r = trilho.getBoundingClientRect();
-        const f = Math.min(0.999, Math.max(0, (ev.clientY - r.top) / r.height));
-        vaiPara(Math.floor(f * alvos.length), true);
-      };
-      segue(e);
-      trilho.addEventListener('pointermove', segue);
-      const solta = () => {
-        trilho.removeEventListener('pointermove', segue);
-        trilho.removeEventListener('pointerup', solta);
-        trilho.removeEventListener('pointercancel', solta);
-      };
-      trilho.addEventListener('pointerup', solta);
-      trilho.addEventListener('pointercancel', solta);
-    };
-
     // Pontos laterais: um por cena (e o hero), maiores no inicio de cada secao
     const pontos = () => document.querySelector<HTMLElement>('.pontos');
 
@@ -180,9 +151,8 @@ export default function Palco({ children }: { children: ReactNode }) {
       else vaiPara(atual + passo);
     };
 
-    // Barra de rolagem arrastada ou dedo deslizando (snap nativo): a cena segue a posicao
+    // Dedo deslizando ou teclado (snap nativo): a cena segue a posicao
     const aoRolar = () => {
-      atualizaBarra();
       if (quadro) return;
       quadro = requestAnimationFrame(() => {
         quadro = 0;
@@ -235,9 +205,6 @@ export default function Palco({ children }: { children: ReactNode }) {
         alvo.querySelector<HTMLElement>('.cena-caixa')?.style.removeProperty('--ajuste');
       }
       pontos()?.replaceChildren();
-      barra()?.removeEventListener('pointerdown', aoPressionarBarra);
-      raiz.style.removeProperty('--prog');
-      raiz.style.removeProperty('--n');
       window.removeEventListener('wheel', aoRodar);
       window.removeEventListener('keydown', aoTeclar);
       window.removeEventListener('scroll', aoRolar);
@@ -256,8 +223,6 @@ export default function Palco({ children }: { children: ReactNode }) {
       alvos = alvosDoPalco();
       montaPontos();
       registrarControle(vaiPara);
-      raiz.style.setProperty('--n', String(alvos.length));
-      barra()?.addEventListener('pointerdown', aoPressionarBarra);
       window.addEventListener('wheel', aoRodar, { passive: false });
       window.addEventListener('keydown', aoTeclar);
       window.addEventListener('scroll', aoRolar, { passive: true });
@@ -276,7 +241,6 @@ export default function Palco({ children }: { children: ReactNode }) {
       });
       atual = mais;
       aplica();
-      atualizaBarra();
       agendaAjuste();
       void document.fonts?.ready.then(agendaAjuste);
     };
@@ -299,9 +263,6 @@ export default function Palco({ children }: { children: ReactNode }) {
       <div aria-hidden="true" className="cena-hero" data-rotulo={t.nav.home} />
       <div aria-hidden="true" className="painel" />
       <nav aria-label={t.nav.scenes} className="pontos" />
-      <div aria-hidden="true" className="barra-vidro">
-        <div className="barra-polegar" />
-      </div>
       {children}
     </main>
   );

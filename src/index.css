@@ -135,7 +135,6 @@
 /* a caixa escura e o ponto de partida do hero so existem no modo palco */
 .painel,
 .pontos,
-.barra-vidro,
 .cena-hero {
   display: none;
 }
@@ -186,62 +185,13 @@ html[data-palco] {
   overscroll-behavior: none;
 }
 
-/* A barra nativa sai do palco: no lugar entra a de vidro, por cima do hero */
+/* A barra nativa sai do palco: no lugar entram os pontos de cena (coluna de vidro) */
 html[data-palco] {
   scrollbar-width: none;
 }
 
 html[data-palco]::-webkit-scrollbar {
   display: none;
-}
-
-html[data-palco] .barra-vidro {
-  position: fixed;
-  top: 0.75rem;
-  right: 4px;
-  bottom: 0.75rem;
-  z-index: 45;
-  display: block;
-  width: 10px;
-  border-radius: 999px;
-  border: 1px solid rgb(255 255 255 / 0.12);
-  background: rgb(255 255 255 / 0.07);
-  backdrop-filter: blur(10px);
-  cursor: pointer;
-  touch-action: none;
-  opacity: var(--painel);
-  transition: opacity 0.4s ease;
-}
-
-html[data-palco] .barra-polegar {
-  --h: max(44px, calc(100% / var(--n, 14)));
-  position: absolute;
-  inset-inline: 0;
-  top: calc((100% - var(--h)) * var(--prog, 0));
-  height: var(--h);
-  border-radius: 999px;
-  border: 1px solid rgb(255 255 255 / 0.3);
-  background: rgb(255 255 255 / 0.28);
-  backdrop-filter: blur(6px);
-  transition: top 0.5s cubic-bezier(0.22, 0.8, 0.3, 1);
-}
-
-html[data-palco] .barra-vidro:hover .barra-polegar {
-  background: rgb(255 255 255 / 0.45);
-}
-
-@media (max-width: 880px) {
-  html[data-palco] .barra-vidro {
-    width: 6px;
-    right: 2px;
-  }
-}
-
-/* telas largas: os pontos de cena ja mostram onde voce esta, entao a barra de vidro sai */
-@media (min-width: 881px) {
-  html[data-palco] .barra-vidro {
-    display: none;
-  }
 }
 
 /* Pontos de cena: coluna de vidro na lateral direita, maiores no inicio de cada secao */
@@ -326,9 +276,40 @@ html[data-palco] .ponto:focus-visible::after {
   translate: 0 -50%;
 }
 
-/* sem espaco lateral em telas pequenas: la valem a barra de vidro e o menu */
+/* celular: coluna mais fina, dentro da caixa, com area de toque maior que o ponto; o texto
+   ganha uma folga a direita para nao encostar nela */
 @media (max-width: 880px) {
   html[data-palco] .pontos {
+    right: 0.6rem;
+    gap: 0.4rem;
+    padding: 0.5rem 0.25rem;
+  }
+
+  html[data-palco] .ponto {
+    width: 5px;
+    height: 5px;
+  }
+
+  html[data-palco] .ponto-grande {
+    width: 8px;
+    height: 8px;
+    margin-top: 0.25rem;
+  }
+
+  html[data-palco] .ponto::before {
+    content: '';
+    position: absolute;
+    inset: -7px -9px;
+  }
+
+  html[data-palco] .cena .cena-caixa {
+    padding-right: 2rem;
+  }
+}
+
+/* sem mouse nao ha hover: o rotulo so existe onde ha ponteiro */
+@media (hover: none) {
+  html[data-palco] .ponto::after {
     display: none;
   }
 }
