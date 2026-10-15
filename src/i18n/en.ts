@@ -137,7 +137,6 @@ export const en: Messages = {
     imageAlt:
       'Hand of a person in a suit placing a wooden block on top of a tower, in purple tones',
     emailAria: 'Send an email',
-    whatsappAria: 'Chat on WhatsApp',
   },
 
   footer: {

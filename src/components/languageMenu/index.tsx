@@ -82,7 +82,7 @@ export default function LanguageMenu() {
               hrefLang={lang}
               lang={lang}
               aria-current={destino === locale ? 'true' : undefined}
-              className="flex items-center gap-2.5 rounded-md px-2.5 py-1.5 text-[0.82rem] font-medium text-white/80 transition-colors hover:bg-white/10 hover:text-white aria-[current]:text-white"
+              className="flex items-center gap-2.5 rounded-md px-2.5 py-1.5 text-[0.82rem] font-medium text-white/80 transition-colors hover:bg-white/10 hover:text-white aria-[current]:bg-white/15 aria-[current]:text-white"
             >
               <Bandeira locale={destino} />
               {nome}
