@@ -28,7 +28,7 @@ export const pt = {
     contact: 'Contatos',
     cta: 'Vamos conversar',
     menu: 'Menu',
-    progress: 'Progresso de leitura da página',
+    scenes: 'Cenas da página',
   },
 
   hero: {

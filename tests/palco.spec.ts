@@ -169,34 +169,66 @@ test.describe('palco (movimento normal)', () => {
     expect(copy.x + copy.width).toBeGreaterThan(1280 - 60);
   });
 
-  test('a barra de vidro acompanha a cena e leva a cena ao clicar', async ({ page }) => {
+  test('pontos de cena no celular: visiveis, dentro da tela e sem tocar no texto', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
     await abrir(page);
-    const barra = page.locator('.barra-vidro');
-    const estilo = await barra.evaluate((el) => {
-      const s = getComputedStyle(el);
-      return {
-        blur: s.backdropFilter,
-        fundo: s.backgroundColor,
-        nativa: getComputedStyle(document.documentElement).scrollbarWidth,
-      };
+    await girarRoda(page, 40);
+    const pontos = page.locator('.pontos .ponto');
+    await expect(page.locator('.pontos')).toBeVisible();
+    expect(
+      await page.evaluate(() => getComputedStyle(document.documentElement).scrollbarWidth),
+    ).toBe('none');
+    // a coluna fica dentro da tela e a direita do conteudo da cena
+    const medidas = await page.evaluate(() => {
+      const col = document.querySelector('.pontos')!.getBoundingClientRect();
+      const itens = [...document.querySelectorAll('main .cena[data-estado="ativa"] .cena-caixa *')]
+        .filter((el) => el.children.length === 0 && el.textContent?.trim())
+        .map((el) => el.getBoundingClientRect().right);
+      return { colEsq: col.left, colDir: col.right, textoMaxDir: Math.max(...itens) };
     });
-    expect(estilo.blur).toContain('blur');
-    expect(estilo.fundo).toMatch(/rgba\(.*0\.\d+\)/); // translucida
-    expect(estilo.nativa).toBe('none');
-    await girarRoda(page, 40);
-    await girarRoda(page, 40);
-    const topo = () =>
-      page.locator('.barra-polegar').evaluate((el) => el.getBoundingClientRect().top);
-    const t1 = await topo();
-    await girarRoda(page, 40);
-    expect(await topo()).toBeGreaterThan(t1);
-    // clicar perto do fim do trilho leva a uma das ultimas cenas
-    const caixa = (await barra.boundingBox())!;
-    await page.mouse.click(caixa.x + caixa.width / 2, caixa.y + caixa.height * 0.95);
+    expect(medidas.colDir).toBeLessThanOrEqual(390);
+    expect(medidas.textoMaxDir).toBeLessThanOrEqual(medidas.colEsq);
+    // tocar num ponto leva a cena
+    await pontos.nth(6).click();
     await page.waitForTimeout(TRANSICAO);
-    const total = (await estados(page)).length;
-    expect(await cenaAtiva(page)).toBeGreaterThanOrEqual(total - 2);
+    expect(await cenaAtiva(page)).toBe(5);
   });
+
+  for (const [nome, largura, altura] of [
+    ['desktop 1440', 1440, 900],
+    ['notebook 1280', 1280, 720],
+    ['tablet 1024', 1024, 768],
+    ['tablet 900', 900, 800],
+  ] as const) {
+    test(`${nome}: a coluna de pontos nao cobre o texto da cena`, async ({ page }) => {
+      await page.setViewportSize({ width: largura, height: altura });
+      await abrir(page);
+      for (let n = 0; n < 6; n++) {
+        await girarRoda(page, 40);
+        // espera todas as transicoes terminarem (entradas escalonadas)
+        await page.evaluate(() =>
+          Promise.all(
+            document
+              .getAnimations()
+              .filter((a) => a instanceof CSSTransition)
+              .map((a) => a.finished),
+          ),
+        );
+        const m = await page.evaluate(() => {
+          const col = document.querySelector('.pontos')!.getBoundingClientRect();
+          const direitas = [
+            ...document.querySelectorAll('main .cena[data-estado="ativa"] .cena-caixa *'),
+          ]
+            .filter((el) => el.children.length === 0 && el.textContent?.trim())
+            .map((el) => el.getBoundingClientRect().right);
+          return { esq: col.left, texto: Math.max(...direitas) };
+        });
+        expect(m.texto, `cena ${n}`).toBeLessThanOrEqual(m.esq);
+      }
+    });
+  }
 
   for (const [nome, largura, altura] of [
     ['desktop', 1440, 900],

@@ -27,7 +27,7 @@ export const en: Messages = {
     contact: 'Contact',
     cta: "Let's talk",
     menu: 'Menu',
-    progress: 'Page reading progress',
+    scenes: 'Page scenes',
   },
 
   hero: {
