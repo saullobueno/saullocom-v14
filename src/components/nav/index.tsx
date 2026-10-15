@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type MouseEvent } from 'react';
 
 import logo from '@/assets/logo.png';
 import { useI18n } from '../../i18n';
+import LanguageMenu from '../languageMenu';
 import { irParaSecao, palcoAtivo } from '../palco/controle';
 
 const SECOES = ['about', 'expertise', 'services', 'portfolio', 'contact'] as const;
@@ -66,20 +67,24 @@ export default function Nav() {
     if (palcoAtivo() && alvo && irParaSecao(alvo)) e.preventDefault();
   };
 
-  const link = (id: (typeof SECOES)[number]) => (
+  const link = (id: (typeof SECOES)[number], suspenso = false) => (
     <a
       key={id}
       href={`#${id}`}
       data-alvo={id}
       onClick={aoClicarLink}
       aria-current={ativa === id ? 'location' : undefined}
-      className={`${linkBase} ${ativa === id ? '!text-white underline decoration-2 underline-offset-8' : ''}`}
+      className={`${linkBase} ${
+        ativa === id
+          ? suspenso
+            ? '!bg-white/15 !text-white'
+            : '!text-white underline decoration-2 underline-offset-8'
+          : ''
+      }`}
     >
       {t.nav[id]}
     </a>
   );
-
-  const idiomaDestino = t.switchTo.href === '/' ? 'pt-BR' : 'en';
 
   return (
     <>
@@ -105,35 +110,28 @@ export default function Nav() {
               alt="saullo.com"
               width={174}
               height={28}
-              className="h-4 w-auto md:h-5"
+              className="h-[18px] w-auto md:h-6"
             />
           </a>
 
-          <div className="hidden items-center gap-1 md:flex">{SECOES.map(link)}</div>
+          <div className="hidden items-center gap-1 md:flex">{SECOES.map((id) => link(id))}</div>
 
           <div className="flex items-center gap-1.5 md:gap-2 md:justify-self-end">
-            <a
-              href={t.switchTo.href}
-              hrefLang={idiomaDestino}
-              lang={idiomaDestino}
-              aria-label={t.switchTo.ariaLabel}
-              className="rounded-md border border-white/20 px-2 py-1 text-[12px] font-semibold text-white/80 transition-colors hover:border-white hover:text-white md:px-2 md:text-[0.8rem]"
-            >
-              {t.switchTo.short}
-            </a>
             <a
               href="#contact"
               data-alvo="contact"
               onClick={aoClicarLink}
-              className="rounded-md bg-accent-strong px-2.5 py-1.5 text-[12px] font-semibold whitespace-nowrap text-white transition-colors hover:bg-accent-strong-hover max-[359px]:hidden md:px-3 md:text-[0.8rem]"
+              className="flex h-8 items-center rounded-md bg-accent-strong px-2.5 text-[12px] font-semibold whitespace-nowrap text-white transition-colors hover:bg-accent-strong-hover max-[359px]:hidden md:px-3 md:text-[0.8rem]"
             >
               {t.nav.cta}
             </a>
 
+            <LanguageMenu />
+
             <details ref={menu} className="relative md:hidden">
               <summary
                 aria-label={t.nav.menu}
-                className="flex h-9 w-9 cursor-pointer list-none items-center justify-center rounded-md border border-white/20 text-white [&::-webkit-details-marker]:hidden"
+                className="flex h-8 w-8 cursor-pointer list-none items-center justify-center rounded-md border border-white/20 text-white [&::-webkit-details-marker]:hidden"
               >
                 <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
                   <path
@@ -145,7 +143,7 @@ export default function Nav() {
                 </svg>
               </summary>
               <div className="absolute right-0 mt-2 flex w-48 flex-col rounded-lg border border-white/15 bg-[#1a1a1a] p-2 shadow-xl">
-                {SECOES.map(link)}
+                {SECOES.map((id) => link(id, true))}
               </div>
             </details>
           </div>

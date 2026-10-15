@@ -4,7 +4,7 @@ export const pt = {
   lang: 'pt-BR',
   ogLocale: 'pt_BR',
   path: '/',
-  switchTo: { label: 'English', short: 'EN', href: '/en', ariaLabel: 'Read this site in English' },
+  language: { label: 'Idioma' },
 
   meta: {
     title: 'Saullo Bueno | Desenvolvedor Full Stack & UI/UX Designer',
