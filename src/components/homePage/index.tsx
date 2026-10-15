@@ -55,7 +55,7 @@ function Pagina() {
 
       <Palco>
         <Section id="about" tone="text-trajetoria">
-          <Cena>
+          <Cena rotulo={t.nav.about}>
             <SectionTitle id="about-title">{t.about.title}</SectionTitle>
             <SectionLead>{t.about.lead}</SectionLead>
             <Columns>
@@ -82,7 +82,7 @@ function Pagina() {
         </Section>
 
         <Section id="expertise" tone="text-expertise">
-          <Cena>
+          <Cena rotulo={t.nav.expertise}>
             <SectionTitle id="expertise-title">{t.expertise.title}</SectionTitle>
             <SectionLead>{t.expertise.lead}</SectionLead>
 
@@ -118,7 +118,7 @@ function Pagina() {
         </Section>
 
         <Section id="services" tone="text-oque-faco">
-          <Cena>
+          <Cena rotulo={t.nav.services}>
             <SectionTitle id="services-title">{t.services.title}</SectionTitle>
             <SectionLead>{t.services.lead}</SectionLead>
 
@@ -154,13 +154,13 @@ function Pagina() {
         </Section>
 
         <Section id="portfolio" tone="text-portfolio">
-          <Cena>
+          <Cena rotulo={t.nav.portfolio}>
             <SectionTitle id="portfolio-title">{t.portfolio.title}</SectionTitle>
             <SectionLead>{t.portfolio.lead}</SectionLead>
           </Cena>
 
           {projects.map((project) => (
-            <Cena key={project.slug}>
+            <Cena key={project.slug} rotulo={project.title}>
               <FeaturedCard
                 project={project}
                 onOpenImage={(imageIndex) =>
@@ -181,13 +181,13 @@ function Pagina() {
             </Suspense>
           )}
 
-          <Cena>
+          <Cena rotulo={t.legacy.title}>
             <LegacyGallery />
           </Cena>
         </Section>
 
         <Section id="contact" tone="text-contato">
-          <Cena>
+          <Cena rotulo={t.nav.contact}>
             <SectionTitle id="contact-title">{t.contact.title}</SectionTitle>
             <SectionLead>{t.contact.lead}</SectionLead>
 

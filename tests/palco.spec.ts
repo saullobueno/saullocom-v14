@@ -198,6 +198,33 @@ test.describe('palco (movimento normal)', () => {
     expect(await cenaAtiva(page)).toBeGreaterThanOrEqual(total - 2);
   });
 
+  test('pontos de cena: um por cena, marcam a atual e levam a cena ao clicar', async ({ page }) => {
+    await abrir(page);
+    const total = (await estados(page)).length;
+    const pontos = page.locator('.pontos .ponto');
+    await expect(pontos).toHaveCount(total + 1); // as cenas e o hero
+    await expect(pontos.first()).toHaveAttribute('aria-current', 'true');
+    await girarRoda(page, 40);
+    await expect(pontos.nth(1)).toHaveAttribute('aria-current', 'true');
+    // so o primeiro ponto de cada secao e grande: hero + 5 secoes
+    await expect(page.locator('.pontos .ponto-grande')).toHaveCount(6);
+    await pontos.nth(4).click();
+    await page.waitForTimeout(TRANSICAO);
+    expect(await cenaAtiva(page)).toBe(3);
+    await expect(pontos.nth(4)).toHaveAttribute('aria-current', 'true');
+    // rotulo ao passar o mouse
+    await pontos.nth(5).hover();
+    expect(await pontos.nth(5).evaluate((el) => getComputedStyle(el, '::after').content)).toContain(
+      'Forge',
+    );
+  });
+
+  test('pontos de cena ficam escondidos em tela pequena', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await abrir(page);
+    await expect(page.locator('.pontos')).toBeHidden();
+  });
+
   for (const [nome, largura, altura] of [
     ['desktop', 1440, 900],
     ['tablet', 768, 1024],

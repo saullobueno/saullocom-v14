@@ -25,9 +25,18 @@ export default function Section({ tone, id, children }: SectionProps) {
 
 // Uma "cena" do palco: reserva uma tela de rolagem e mostra o conteudo no centro enquanto esta
 // ativa (ver Palco e a secao "Palco" de index.css). Sem o palco, e um bloco comum.
-export function Cena({ children, className = '' }: { children: ReactNode; className?: string }) {
+export function Cena({
+  children,
+  className = '',
+  rotulo,
+}: {
+  children: ReactNode;
+  className?: string;
+  /** nome da cena nos pontos de navegacao */
+  rotulo?: string;
+}) {
   return (
-    <div className="cena">
+    <div className="cena" data-rotulo={rotulo}>
       <div className="cena-palco">
         <div className={`cena-caixa ${className}`}>{children}</div>
       </div>
