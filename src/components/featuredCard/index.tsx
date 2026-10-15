@@ -5,7 +5,7 @@ import ProjectGallery from '../projectGallery';
 import { revelar } from '../reveal';
 
 const action =
-  'inline-flex items-center gap-2 rounded-lg border px-[1em] py-[0.45em] text-[0.85em] font-semibold no-underline transition [&_svg]:m-1.5';
+  'inline-flex items-center gap-2 rounded-lg border px-[1em] py-[0.45em] text-[0.85em] font-semibold no-underline transition [&_svg]:m-1.5 max-lg:gap-1 max-lg:px-[0.8em] max-lg:py-[0.3em] max-lg:text-[0.75em] max-lg:[&_svg]:m-1 max-lg:[&_svg]:size-3.5';
 const github = `${action} border-white/20 bg-white/10 text-white hover:border-white hover:bg-white/20`;
 const demo = `${action} border-accent-strong bg-accent-strong text-white hover:border-accent-strong-hover hover:bg-accent-strong-hover`;
 
@@ -65,7 +65,7 @@ export default function FeaturedCard({ project, onOpenImage }: FeaturedCardProps
           ))}
         </div>
 
-        <div {...revelar('up', 0, 'flex flex-wrap gap-[0.8em]')}>
+        <div {...revelar('up', 0, 'flex flex-wrap gap-[0.8em] max-lg:gap-[0.5em]')}>
           <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className={github}>
             <FaGithub size={18} /> GitHub
           </a>

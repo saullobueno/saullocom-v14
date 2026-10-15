@@ -29,6 +29,7 @@ export default function Palco({ children }: { children: ReactNode }) {
     const raiz = document.documentElement;
     const reduz = window.matchMedia('(prefers-reduced-motion: reduce)');
     const baixa = window.matchMedia('(max-height: 499px)');
+    const compacta = window.matchMedia('(max-width: 880px)');
 
     let alvos: HTMLElement[] = [];
     let atual = 0;
@@ -46,12 +47,36 @@ export default function Palco({ children }: { children: ReactNode }) {
       const caixa = alvo.querySelector<HTMLElement>('.cena-caixa');
       if (!caixa) return;
       let escala = 1;
+      caixa.removeAttribute('data-rolavel');
+      caixa.removeAttribute('data-mais');
+      caixa.removeAttribute('data-acima');
       caixa.style.setProperty('--ajuste', '1');
-      while (caixa.scrollHeight > caixa.clientHeight + 1 && escala > 0.55) {
+      // celular e tablet: a fonte e igual em todas as cenas e o que nao couber rola por dentro
+      const encolhe = !compacta.matches;
+      while (encolhe && caixa.scrollHeight > caixa.clientHeight + 1 && escala > 0.55) {
         escala -= 0.04;
         caixa.style.setProperty('--ajuste', escala.toFixed(2));
       }
+      // sobrou conteudo (fonte no minimo, ou sem encolher): a caixa rola por dentro, para nada ficar escondido
+      if (caixa.scrollHeight > caixa.clientHeight + 1) caixa.setAttribute('data-rolavel', '');
+      marcaMais(caixa);
       alvo.dataset.ajustada = '';
+    };
+
+    // Dica de que ha mais conteudo: o CSS esmaece a base (data-mais) e o topo (data-acima) da caixa
+    const marcaMais = (caixa: HTMLElement) => {
+      const rolavel = caixa.hasAttribute('data-rolavel');
+      caixa.toggleAttribute('data-acima', rolavel && caixa.scrollTop > 1);
+      caixa.toggleAttribute(
+        'data-mais',
+        rolavel && caixa.scrollTop + caixa.clientHeight < caixa.scrollHeight - 1,
+      );
+    };
+
+    // scroll nao propaga: a captura no document pega a rolagem de qualquer caixa
+    const aoRolarCaixa = (e: Event) => {
+      const caixa = e.target;
+      if (caixa instanceof HTMLElement && caixa.classList.contains('cena-caixa')) marcaMais(caixa);
     };
 
     // Pontos laterais: um por cena (e o hero), maiores no inicio de cada secao
@@ -123,6 +148,13 @@ export default function Palco({ children }: { children: ReactNode }) {
       if (lista) {
         const podeDescer = lista.scrollTop + lista.clientHeight < lista.scrollHeight - 1;
         const podeSubir = lista.scrollTop > 0;
+        if ((e.deltaY > 0 && podeDescer) || (e.deltaY < 0 && podeSubir)) return;
+      }
+      // caixa que precisou rolar por dentro: mesma regra, e so troca de cena nas pontas
+      const caixa = alvo.closest<HTMLElement>('.cena-caixa[data-rolavel]');
+      if (caixa) {
+        const podeDescer = caixa.scrollTop + caixa.clientHeight < caixa.scrollHeight - 1;
+        const podeSubir = caixa.scrollTop > 0;
         if ((e.deltaY > 0 && podeDescer) || (e.deltaY < 0 && podeSubir)) return;
       }
       if (e.ctrlKey) return; // zoom por pinca
@@ -202,8 +234,13 @@ export default function Palco({ children }: { children: ReactNode }) {
         alvo.removeAttribute('data-estado');
         alvo.removeAttribute('data-perto');
         delete alvo.dataset.ajustada;
-        alvo.querySelector<HTMLElement>('.cena-caixa')?.style.removeProperty('--ajuste');
+        const caixa = alvo.querySelector<HTMLElement>('.cena-caixa');
+        caixa?.style.removeProperty('--ajuste');
+        caixa?.removeAttribute('data-rolavel');
+        caixa?.removeAttribute('data-mais');
+        caixa?.removeAttribute('data-acima');
       }
+      document.removeEventListener('scroll', aoRolarCaixa, true);
       pontos()?.replaceChildren();
       window.removeEventListener('wheel', aoRodar);
       window.removeEventListener('keydown', aoTeclar);
@@ -228,6 +265,7 @@ export default function Palco({ children }: { children: ReactNode }) {
       window.addEventListener('scroll', aoRolar, { passive: true });
       window.addEventListener('resize', aoRedimensionar);
       document.addEventListener('focusin', aoFocar);
+      document.addEventListener('scroll', aoRolarCaixa, { capture: true, passive: true });
 
       // cena em que a pagina ja esta (recarregar no meio, voltar do historico)
       let mais = 0;
