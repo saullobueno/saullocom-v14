@@ -197,6 +197,40 @@ test.describe('palco (movimento normal)', () => {
   });
 
   for (const [nome, largura, altura] of [
+    ['desktop 1440', 1440, 900],
+    ['notebook 1280', 1280, 720],
+    ['tablet 1024', 1024, 768],
+    ['tablet 900', 900, 800],
+  ] as const) {
+    test(`${nome}: a coluna de pontos nao cobre o texto da cena`, async ({ page }) => {
+      await page.setViewportSize({ width: largura, height: altura });
+      await abrir(page);
+      for (let n = 0; n < 6; n++) {
+        await girarRoda(page, 40);
+        // espera todas as transicoes terminarem (entradas escalonadas)
+        await page.evaluate(() =>
+          Promise.all(
+            document
+              .getAnimations()
+              .filter((a) => a instanceof CSSTransition)
+              .map((a) => a.finished),
+          ),
+        );
+        const m = await page.evaluate(() => {
+          const col = document.querySelector('.pontos')!.getBoundingClientRect();
+          const direitas = [
+            ...document.querySelectorAll('main .cena[data-estado="ativa"] .cena-caixa *'),
+          ]
+            .filter((el) => el.children.length === 0 && el.textContent?.trim())
+            .map((el) => el.getBoundingClientRect().right);
+          return { esq: col.left, texto: Math.max(...direitas) };
+        });
+        expect(m.texto, `cena ${n}`).toBeLessThanOrEqual(m.esq);
+      }
+    });
+  }
+
+  for (const [nome, largura, altura] of [
     ['desktop', 1440, 900],
     ['tablet', 768, 1024],
     ['mobile', 390, 844],
