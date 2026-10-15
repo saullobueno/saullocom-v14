@@ -207,8 +207,8 @@ html[data-palco] .pontos {
   padding: 0.7rem 0.4rem;
   translate: 0 -50%;
   border-radius: 999px;
-  border: 1px solid rgb(255 255 255 / 0.12);
-  background: rgb(255 255 255 / 0.06);
+  border: 1px solid rgb(255 255 255 / 0.05);
+  background: rgb(255 255 255 / 0.05);
   backdrop-filter: blur(10px);
 }
 
@@ -217,9 +217,9 @@ html[data-palco] .ponto {
   width: 7px;
   height: 7px;
   padding: 0;
-  border: 1px solid rgb(255 255 255 / 0.35);
+  border: 1px solid rgb(255 255 255 / 0.12);
   border-radius: 999px;
-  background: rgb(255 255 255 / 0.18);
+  background: rgb(255 255 255 / 0.22);
   transition:
     background 0.3s ease,
     scale 0.3s ease,
