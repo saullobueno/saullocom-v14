@@ -16,10 +16,22 @@ export default function Section({ tone, id, children }: SectionProps) {
     <section
       id={id}
       aria-labelledby={`${id}-title`}
-      className={`mx-auto w-[1280px] scroll-mt-16 overflow-x-clip py-32 text-center max-xl:my-8 max-xl:w-[calc(100%-2rem)] ${tone}`}
+      className={`mx-auto w-[1280px] overflow-x-clip py-32 text-center max-xl:my-8 max-xl:w-[calc(100%-2rem)] ${tone}`}
     >
-      <div>{children}</div>
+      {children}
     </section>
+  );
+}
+
+// Uma "cena" do palco: reserva uma tela de rolagem e mostra o conteudo no centro enquanto esta
+// ativa (ver Palco e a secao "Palco" de index.css). Sem o palco, e um bloco comum.
+export function Cena({ children, className = '' }: { children: ReactNode; className?: string }) {
+  return (
+    <div className="cena">
+      <div className="cena-palco">
+        <div className={`cena-caixa ${className}`}>{children}</div>
+      </div>
+    </div>
   );
 }
 
@@ -29,10 +41,7 @@ export function SectionTitle({ id, children }: { id: string; children: string })
   const palavras = children.split(' ');
   return (
     <>
-      <h2
-        id={id}
-        className="mb-6 text-center text-[8rem] leading-[80%] font-bold max-md:text-[clamp(2.5rem,12vw,4rem)]"
-      >
+      <h2 id={id} className="titulo-secao mb-[0.1em] text-center leading-[80%] font-bold">
         {palavras.map((palavra, i) => (
           <Fragment key={`${palavra}-${i}`}>
             {i > 0 && ' '}
@@ -47,7 +56,7 @@ export function SectionTitle({ id, children }: { id: string; children: string })
       {/* fio na cor da secao que se abre sob o titulo */}
       <span
         aria-hidden="true"
-        className="rv-line mx-auto mb-8 block h-1 w-24 rounded-full bg-current"
+        className="rv-line mx-auto mb-[1.2em] block h-1 w-24 rounded-full bg-current"
       />
     </>
   );
@@ -59,7 +68,7 @@ export function SectionLead({ children }: { children: ReactNode }) {
       {...revelar(
         'up',
         1,
-        'mb-8 text-center text-[2rem] leading-[140%] max-md:text-[1.4rem] max-md:leading-[100%]',
+        'mb-[1em] text-center text-[1.9em] leading-[140%] max-md:text-[1.4em] max-md:leading-[110%]',
       )}
     >
       {children}
@@ -69,45 +78,34 @@ export function SectionLead({ children }: { children: ReactNode }) {
 
 export function SubTitle({ children }: { children: ReactNode }) {
   return (
-    <h3 className="mb-[0.2rem] text-center text-[1.4rem] leading-[180%] font-bold max-md:text-[1.2rem]">
+    <h3 className="mb-[0.2em] text-center text-[1.4em] leading-[150%] font-bold max-md:text-[1.2em]">
       {children}
     </h3>
   );
 }
 
 export function Text({ className = '', ...props }: ComponentProps<'p'>) {
-  return <p className={`mb-4 text-center leading-[180%] ${className}`} {...props} />;
+  return <p className={`mb-[0.8em] text-center leading-[165%] ${className}`} {...props} />;
 }
 
 export function Columns({ children }: { children: ReactNode }) {
   return (
-    <div className="grid grid-cols-3 items-center justify-items-center gap-8 max-md:grid-cols-2 max-[500px]:grid-cols-1 max-[500px]:gap-0 [&>div]:text-center">
+    <div className="grid grid-cols-3 items-center justify-items-center gap-[1.5em] max-md:grid-cols-2 max-[500px]:grid-cols-1 max-[500px]:gap-0 [&>div]:text-center">
       {children}
     </div>
   );
 }
 
-// A moldura reserva a proporcao da imagem (aspect-ratio), entao o layout nao muda quando a imagem
-// lazy carrega. A imagem se move dentro dela enquanto rola (.parallax-img) e a moldura se abre
-// como uma cortina quando entra na tela (.rv-curtain).
+// A moldura tem tamanho fixo (frameClassName define altura/proporcao), entao o layout nao muda
+// quando a imagem lazy carrega. A moldura se abre como uma cortina quando a cena entra (.rv-curtain).
 export function DecorativeImage({
   frameClassName = '',
   className = '',
-  width,
-  height,
   ...props
 }: ComponentProps<'img'> & { frameClassName?: string }) {
   return (
-    <div
-      className={`rv-curtain w-full overflow-hidden ${frameClassName}`}
-      style={{ aspectRatio: width && height ? `${width} / ${height}` : undefined }}
-    >
-      <img
-        className={`parallax-img block h-full w-full object-cover ${className}`}
-        width={width}
-        height={height}
-        {...props}
-      />
+    <div className={`rv-curtain overflow-hidden rounded-xl ${frameClassName}`}>
+      <img className={`block h-full w-full object-cover ${className}`} {...props} />
     </div>
   );
 }

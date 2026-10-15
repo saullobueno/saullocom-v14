@@ -41,12 +41,12 @@ export default function ProjectGallery({ images, title, onOpenImage }: ProjectGa
           src={hero}
           alt={title}
           loading="lazy"
-          className="block aspect-[16/10] h-auto w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
+          className="foto-principal block aspect-[16/10] h-auto w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
         />
       </button>
 
       {thumbnails.length > 0 && (
-        <div className="flex items-stretch gap-2">
+        <div className="miniaturas flex items-stretch gap-2">
           {thumbnails.length > 3 && (
             <button
               type="button"

@@ -21,11 +21,13 @@ export default function LegacyGallery() {
   const [showAll, setShowAll] = useState(false);
 
   return (
-    <div className="mt-16 pt-12 text-center">
+    <div className="legacy-galeria mt-16 pt-12 text-center">
       <h3 {...revelar('up', 0, 'mb-2 text-center text-[1.6rem] text-portfolio')}>{legacy.title}</h3>
       <p {...revelar('up', 1, 'mb-8 text-center text-base text-portfolio')}>{legacy.lead}</p>
 
-      <div className="grid grid-cols-4 gap-4 max-xl:grid-cols-3 max-[900px]:grid-cols-2">
+      <div
+        className={`grid grid-cols-4 gap-4 max-xl:grid-cols-3 max-[900px]:grid-cols-2 ${showAll ? 'lista-rolavel' : ''}`}
+      >
         {(showAll ? legacyProjects : legacyProjects.slice(0, VISIVEIS)).map((port, key) => (
           <button
             key={port.slug}
@@ -51,22 +53,24 @@ export default function LegacyGallery() {
         ))}
       </div>
 
-      <button
-        type="button"
-        className="mt-8 inline-flex items-center gap-2 rounded-[30px] border border-[rgba(0,133,178,0.3)] bg-[rgba(0,133,178,0.1)] px-8 py-[0.8rem] text-base font-semibold text-portfolio transition hover:-translate-y-0.5 hover:border-[#0085b2] hover:bg-[rgba(0,133,178,0.25)] hover:text-white [&_svg]:m-2.5"
-        onClick={() => setShowAll(!showAll)}
-        aria-expanded={showAll}
-      >
-        {showAll ? (
-          <>
-            <FaChevronUp size={14} /> {legacy.collapse}
-          </>
-        ) : (
-          <>
-            <FaChevronDown size={14} /> {legacy.showAll(legacyProjects.length - VISIVEIS)}
-          </>
-        )}
-      </button>
+      <div {...revelar('up', 6, 'mt-8')}>
+        <button
+          type="button"
+          className="inline-flex items-center gap-2 rounded-[30px] border border-[rgba(0,133,178,0.3)] bg-[rgba(0,133,178,0.1)] px-8 py-[0.8rem] text-base font-semibold text-portfolio transition hover:-translate-y-0.5 hover:border-[#0085b2] hover:bg-[rgba(0,133,178,0.25)] hover:text-white [&_svg]:m-2.5"
+          onClick={() => setShowAll(!showAll)}
+          aria-expanded={showAll}
+        >
+          {showAll ? (
+            <>
+              <FaChevronUp size={14} /> {legacy.collapse}
+            </>
+          ) : (
+            <>
+              <FaChevronDown size={14} /> {legacy.showAll(legacyProjects.length - VISIVEIS)}
+            </>
+          )}
+        </button>
+      </div>
 
       {index >= 0 && (
         <Suspense fallback={null}>

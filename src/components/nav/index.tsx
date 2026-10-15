@@ -1,12 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type MouseEvent } from 'react';
 
 import logo from '@/assets/logo.png';
 import { useI18n } from '../../i18n';
+import { irParaSecao, palcoAtivo } from '../palco/controle';
 
 const SECOES = ['about', 'expertise', 'services', 'portfolio', 'contact'] as const;
 
 const linkBase =
-  'rounded-md px-3 py-2 text-[0.95rem] font-medium whitespace-nowrap text-white/80 transition-colors hover:text-white';
+  'rounded-md px-2.5 py-1.5 text-[0.82rem] font-medium whitespace-nowrap text-white/80 transition-colors hover:text-white';
 
 export default function Nav() {
   const { t } = useI18n();
@@ -30,31 +31,19 @@ export default function Nav() {
     return () => observer.disconnect();
   }, []);
 
-  // A barra so aparece ao rolar para cima (e some ao rolar para baixo ou no topo da pagina)
+  // A barra aparece depois da primeira rolagem e fica; no topo do hero ela se oculta de novo
   useEffect(() => {
-    let ultimo = window.scrollY;
     const aoRolar = () => {
-      const atual = window.scrollY;
-      const delta = atual - ultimo;
-      // No topo do hero a barra sempre se oculta (exceto se o foco do teclado estiver nela)
-      if (atual <= 0) {
-        ultimo = atual;
-        setVisivel(false);
+      const rolou = window.scrollY > 8;
+      setVisivel(rolou);
+      if (!rolou) {
         if (!barra.current?.contains(document.activeElement)) {
           barra.current?.removeAttribute('data-teclado');
-          if (menu.current) menu.current.open = false;
         }
-        return;
-      }
-      if (Math.abs(delta) < 6) return;
-      ultimo = atual;
-      if (delta < 0 && atual > 0) {
-        setVisivel(true);
-      } else {
-        setVisivel(false);
         if (menu.current) menu.current.open = false;
       }
     };
+    aoRolar();
     window.addEventListener('scroll', aoRolar, { passive: true });
     return () => window.removeEventListener('scroll', aoRolar);
   }, []);
@@ -70,15 +59,19 @@ export default function Nav() {
     return () => window.removeEventListener('keydown', aoTeclar);
   }, []);
 
-  const fechaMenu = () => {
+  // No palco a secao e uma sequencia de cenas: a ancora leva a primeira delas
+  const aoClicarLink = (e: MouseEvent<HTMLAnchorElement>) => {
     if (menu.current) menu.current.open = false;
+    const alvo = e.currentTarget.dataset.alvo;
+    if (palcoAtivo() && alvo && irParaSecao(alvo)) e.preventDefault();
   };
 
   const link = (id: (typeof SECOES)[number]) => (
     <a
       key={id}
       href={`#${id}`}
-      onClick={fechaMenu}
+      data-alvo={id}
+      onClick={aoClicarLink}
       aria-current={ativa === id ? 'location' : undefined}
       className={`${linkBase} ${ativa === id ? '!text-white underline decoration-2 underline-offset-8' : ''}`}
     >
@@ -104,34 +97,35 @@ export default function Nav() {
       >
         <nav
           aria-label={t.nav.label}
-          className="flex h-14 w-full items-center justify-between gap-3 px-3 md:grid md:grid-cols-[1fr_auto_1fr] md:gap-4 md:px-6"
+          className="flex h-12 w-full items-center justify-between gap-3 px-3 md:grid md:grid-cols-[1fr_auto_1fr] md:gap-4 md:px-6"
         >
-          <a href="#top" className="shrink-0">
+          <a href="#top" data-alvo="top" onClick={aoClicarLink} className="shrink-0">
             <img
               src={logo}
               alt="saullo.com"
               width={174}
               height={28}
-              className="h-5 w-auto md:h-7"
+              className="h-4 w-auto md:h-5"
             />
           </a>
 
           <div className="hidden items-center gap-1 md:flex">{SECOES.map(link)}</div>
 
-          <div className="flex items-center gap-1.5 md:justify-self-end md:gap-2">
+          <div className="flex items-center gap-1.5 md:gap-2 md:justify-self-end">
             <a
               href={t.switchTo.href}
               hrefLang={idiomaDestino}
               lang={idiomaDestino}
               aria-label={t.switchTo.ariaLabel}
-              className="rounded-md border border-white/20 px-2 py-1.5 text-[13px] font-semibold text-white/80 transition-colors hover:border-white hover:text-white md:px-2.5 md:text-sm"
+              className="rounded-md border border-white/20 px-2 py-1 text-[12px] font-semibold text-white/80 transition-colors hover:border-white hover:text-white md:px-2 md:text-[0.8rem]"
             >
               {t.switchTo.short}
             </a>
             <a
               href="#contact"
-              onClick={fechaMenu}
-              className="rounded-md bg-accent-strong px-3 py-2 text-[13px] font-semibold whitespace-nowrap text-white transition-colors hover:bg-accent-strong-hover max-[359px]:hidden md:px-3.5 md:text-sm"
+              data-alvo="contact"
+              onClick={aoClicarLink}
+              className="rounded-md bg-accent-strong px-2.5 py-1.5 text-[12px] font-semibold whitespace-nowrap text-white transition-colors hover:bg-accent-strong-hover max-[359px]:hidden md:px-3 md:text-[0.8rem]"
             >
               {t.nav.cta}
             </a>
@@ -154,26 +148,6 @@ export default function Nav() {
                 {SECOES.map(link)}
               </div>
             </details>
-            <button
-              type="button"
-              onClick={() => {
-                setVisivel(false);
-                barra.current?.removeAttribute('data-teclado');
-                if (menu.current) menu.current.open = false;
-                (document.activeElement as HTMLElement | null)?.blur();
-              }}
-              aria-label={t.nav.hide}
-              className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-md text-white/70 transition-colors hover:text-white"
-            >
-              <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
-                <path
-                  d="M3 3l10 10M13 3L3 13"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </button>
           </div>
         </nav>
       </header>

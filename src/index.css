@@ -89,277 +89,382 @@
   }
 }
 
-/* ---- Animacoes guiadas pelo scroll (CSS puro, sem JS) ----
-   So rodam em navegadores com scroll-driven animations e sem preferencia por menos movimento;
-   nos demais, tudo aparece normalmente. */
-/* Vocabulario de revelacoes (aplicado com a classe rv-<nome> + variavel --i para escalonar) */
-@keyframes rv-up {
-  from {
-    opacity: 0;
-    translate: 0 2.5rem;
-  }
-  to {
-    opacity: 1;
-    translate: 0 0;
+/* ---- Barra de rolagem estilo vidro: trilho e polegar translucidos ---- */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(255 255 255 / 0.06);
+  box-shadow: inset 1px 0 0 rgb(255 255 255 / 0.08);
+}
+
+::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.28);
+  background-clip: padding-box;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.25);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(255 255 255 / 0.5);
+  background-clip: padding-box;
+}
+
+/* Firefox: polegar e trilho translucidos (sem blur, que barras nao suportam) */
+@supports not selector(::-webkit-scrollbar) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(255 255 255 / 0.35) rgb(255 255 255 / 0.06);
   }
 }
 
-@keyframes rv-left {
-  from {
-    opacity: 0;
-    translate: -3.5rem 0;
-  }
-  to {
-    opacity: 1;
-    translate: 0 0;
+/* ---- Palco: o hero fica fixo e o conteudo entra e sai em "cenas" ----
+   O componente Palco liga html[data-palco] (so com JS, sem preferencia por menos movimento e com
+   tela alta o bastante). Cada gesto de rolagem (roda, teclado, deslizar o dedo, barra) avanca uma
+   cena inteira: o Palco marca cada .cena com data-estado = antes | ativa | depois e o CSS faz as
+   transicoes por tempo. Sem o palco, a pagina e um fluxo normal de secoes e tudo aparece. */
+
+/* Fluxo normal (sem palco): cenas empilhadas com respiro entre elas */
+.cena + .cena {
+  margin-top: 7rem;
+}
+
+/* a caixa escura e o ponto de partida do hero so existem no modo palco */
+.painel,
+.barra-vidro,
+.cena-hero {
+  display: none;
+}
+
+.titulo-secao {
+  font-size: 8rem;
+}
+
+@media (max-width: 880px) {
+  .titulo-secao {
+    font-size: clamp(2.5rem, 12vw, 4rem);
   }
 }
 
-@keyframes rv-right {
-  from {
-    opacity: 0;
-    translate: 3.5rem 0;
-  }
-  to {
-    opacity: 1;
-    translate: 0 0;
-  }
+.copyright {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  background: var(--color-footer);
+  padding: 2rem 1rem;
+  font-size: 10px;
+  color: #9a9a9a;
 }
 
-@keyframes rv-pop {
-  from {
-    opacity: 0;
-    scale: 0.7;
-  }
-  to {
-    opacity: 1;
-    scale: 1;
-  }
-}
-
-/* cortina: a imagem e revelada de baixo para cima */
-@keyframes rv-curtain {
-  from {
-    clip-path: inset(100% 0 0 0);
-  }
-  to {
-    clip-path: inset(0 0 0 0);
-  }
-}
-
-/* palavra dos titulos subindo de dentro da mascara (.rv-mask) */
-@keyframes rv-rise {
-  from {
-    translate: 0 118%;
-  }
-  to {
-    translate: 0 0;
-  }
-}
-
-/* fio colorido sob os titulos */
-@keyframes rv-line {
-  from {
-    scale: 0 1;
-  }
-  to {
-    scale: 1 1;
-  }
-}
-
-/* A barra de navegacao so aparece ao rolar para cima (data-visivel, definido no Nav).
-   visibility hidden evita que ela receba foco enquanto esta fora da tela. */
 .nav-bar {
   background-color: rgb(26 26 26 / 0.7);
   backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
   translate: 0 -100%;
   visibility: hidden;
   transition:
-    translate 0.25s ease,
-    visibility 0.25s;
+    translate 0.35s ease,
+    visibility 0.35s;
 }
 
+/* A barra aparece depois da primeira rolagem (data-visivel, definido no Nav) ou, para quem usa
+   teclado, no primeiro Tab. visibility hidden evita foco nela enquanto esta fora da tela. */
 .nav-bar[data-visivel],
 .nav-bar[data-teclado] {
   translate: 0 0;
   visibility: visible;
 }
 
-/* Parallax: deslocamentos relativos ao scroll da pagina (hero) ou ao da propria tela (imagens) */
-@keyframes parallax-bg {
-  from {
-    translate: 0 0;
-  }
-  to {
-    translate: 0 25vh;
-  }
+html[data-palco] {
+  --painel: 0;
+  /* a rolagem e conduzida pelo Palco (uma cena por gesto); o snap alinha a barra e o toque */
+  scroll-snap-type: y mandatory;
+  overscroll-behavior: none;
 }
 
-@keyframes parallax-logo {
-  from {
-    translate: 0 0;
-  }
-  to {
-    translate: 0 10vh;
-  }
+/* A barra nativa sai do palco: no lugar entra a de vidro, por cima do hero */
+html[data-palco] {
+  scrollbar-width: none;
 }
 
-@keyframes parallax-title {
-  from {
-    translate: 0 0;
-  }
-  to {
-    translate: 0 -5vh;
-  }
+html[data-palco]::-webkit-scrollbar {
+  display: none;
 }
 
-@keyframes parallax-img {
-  from {
-    translate: 0 -7%;
-  }
-  to {
-    translate: 0 7%;
-  }
+html[data-palco] .barra-vidro {
+  position: fixed;
+  top: 0.75rem;
+  right: 4px;
+  bottom: 0.75rem;
+  z-index: 45;
+  display: block;
+  width: 10px;
+  border-radius: 999px;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  background: rgb(255 255 255 / 0.07);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  touch-action: none;
+  opacity: var(--painel);
+  transition: opacity 0.4s ease;
 }
 
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    /* Cada elemento anima enquanto atravessa a borda inferior da tela, em ~280px de rolagem;
-       --i escalona irmaos (cada indice comeca 60px de rolagem depois do anterior). Usar px (e
-       nao %) mantem a duracao igual para elementos altos e baixos. */
-    .rv-up,
-    .rv-left,
-    .rv-right,
-    .rv-pop,
-    .rv-curtain,
-    .rv-line,
-    .rv-rise {
-      animation-timeline: view();
-      animation-fill-mode: both;
-      animation-timing-function: cubic-bezier(0.22, 0.8, 0.3, 1);
-      animation-range: entry calc(var(--i, 0) * var(--passo, 60px)) entry
-        calc(var(--dur, 280px) + var(--i, 0) * var(--passo, 60px));
-    }
-
-    .rv-up {
-      animation-name: rv-up;
-    }
-    .rv-left {
-      animation-name: rv-left;
-    }
-    .rv-right {
-      animation-name: rv-right;
-    }
-    .rv-pop {
-      animation-name: rv-pop;
-    }
-    .rv-curtain {
-      animation-name: rv-curtain;
-      --dur: 420px;
-    }
-    .rv-line {
-      animation-name: rv-line;
-      --dur: 360px;
-    }
-
-    /* a palavra sobe dentro da mascara; a linha do tempo e a da mascara (fixa), nao a da palavra,
-       para o proprio deslocamento nao alterar o progresso */
-    .rv-mask {
-      view-timeline-name: --mascara;
-    }
-    .rv-rise {
-      animation-name: rv-rise;
-      animation-timeline: --mascara;
-    }
-
-    /* hero: o fundo desce mais devagar que a pagina (camada estendida acima para nunca abrir vao),
-       a logo atrasa um pouco e o titulo sobe um pouco mais rapido */
-    .parallax-bg,
-    .parallax-logo,
-    .parallax-title {
-      animation-timeline: scroll(root);
-      animation-range: 0 100vh;
-      animation-timing-function: linear;
-      animation-fill-mode: both;
-      will-change: translate;
-    }
-
-    .parallax-bg {
-      top: -25vh;
-      animation-name: parallax-bg;
-    }
-
-    .parallax-logo {
-      animation-name: parallax-logo;
-    }
-
-    .parallax-title {
-      animation-name: parallax-title;
-    }
-
-    /* fotos decorativas: ampliadas o bastante (8% por lado) para o deslocamento de 7% nunca
-       deixar a borda da moldura vazia */
-    .parallax-img {
-      scale: 1.16;
-      animation: parallax-img linear both;
-      animation-timeline: view();
-      animation-range: cover;
-      will-change: translate;
-    }
-  }
-}
-
-/* Separador discreto entre as secoes do conteudo: fio fino que esmaece nas pontas, no topo de cada
-   secao a partir da segunda (o espacamento da secao deixa o fio no meio do intervalo entre elas) */
-main > section + section {
-  position: relative;
-}
-
-main > section + section::before {
-  content: '';
+html[data-palco] .barra-polegar {
+  --h: max(44px, calc(100% / var(--n, 14)));
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgb(255 255 255 / 0.14) 20%,
-    rgb(255 255 255 / 0.14) 80%,
-    transparent
-  );
+  inset-inline: 0;
+  top: calc((100% - var(--h)) * var(--prog, 0));
+  height: var(--h);
+  border-radius: 999px;
+  border: 1px solid rgb(255 255 255 / 0.3);
+  background: rgb(255 255 255 / 0.28);
+  backdrop-filter: blur(6px);
+  transition: top 0.5s cubic-bezier(0.22, 0.8, 0.3, 1);
 }
 
-/* Separador menor, no mesmo estilo, entre os projetos em destaque: centralizado no meio do espaco
-   entre um card e o seguinte (metade do gap-30 da lista) */
-.lista-projetos > article + article {
+html[data-palco] .barra-vidro:hover .barra-polegar {
+  background: rgb(255 255 255 / 0.45);
+}
+
+@media (max-width: 880px) {
+  html[data-palco] .barra-vidro {
+    width: 6px;
+    right: 2px;
+  }
+}
+
+/* Hero fixo, do tamanho da tela; o conteudo passa na frente dele */
+html[data-palco] #top {
+  position: fixed;
+  inset: 0;
+  min-height: 0;
+  z-index: 0;
+}
+
+/* o hero recua um pouco quando a caixa escura chega */
+html[data-palco] .hero-conteudo {
+  opacity: calc(1 - var(--painel) * 0.8);
+  scale: calc(1 - var(--painel) * 0.04);
+  transition:
+    opacity 0.7s ease,
+    scale 0.7s ease;
+}
+
+html[data-palco] main {
   position: relative;
+  z-index: 10;
 }
 
-.lista-projetos > article + article::before {
-  content: '';
-  position: absolute;
-  top: calc(var(--spacing) * -15);
-  left: 50%;
-  width: min(360px, 60%);
-  height: 1px;
-  translate: -50% 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgb(255 255 255 / 0.14) 20%,
-    rgb(255 255 255 / 0.14) 80%,
-    transparent
-  );
+html[data-palco] main > section {
+  width: auto;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+}
+
+/* cada cena (e o ponto de partida do hero) reserva uma tela de rolagem, que serve de ancora */
+html[data-palco] .cena,
+html[data-palco] .cena-hero {
+  display: block;
+  height: 100svh;
+  margin-top: 0;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* Caixa escura, translucida e embacada, no centro da tela, na frente do hero */
+html[data-palco] .painel {
+  display: block;
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(1240px, calc(100vw - 1rem));
+  height: min(84svh, 880px);
+  border-radius: 1.5rem;
+  border: 1px solid rgb(255 255 255 / 0.09);
+  background: rgb(8 8 12 / 0.62);
+  backdrop-filter: blur(22px) saturate(1.15);
+  box-shadow: 0 30px 80px rgb(0 0 0 / 0.45);
+  opacity: var(--painel);
+  scale: calc(0.94 + var(--painel) * 0.06);
+  transition:
+    opacity 0.6s ease,
+    scale 0.7s cubic-bezier(0.22, 0.8, 0.3, 1);
+  pointer-events: none;
+}
+
+/* O conteudo da cena fica fixo no centro da tela; a rolagem so troca qual cena esta ativa */
+html[data-palco] .cena-palco {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+html[data-palco] .cena-caixa {
+  --ajuste: 1;
+  display: flex;
+  width: min(1240px, calc(100vw - 1rem));
+  height: min(84svh, 880px);
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(0.75rem, 3svh, 2.5rem) clamp(1rem, 3.5vw, 3.5rem);
+  font-size: calc(clamp(12px, min(1.15vw, 2.2svh), 17px) * var(--ajuste));
+  overflow: clip;
+  /* rede de seguranca: nada de uma cena inativa aparece, nem um pixel (os elementos tambem
+     animam individualmente) */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* so a cena atual e as vizinhas sao renderizadas: as demais nem carregam suas imagens lazy */
+html[data-palco] .cena:not([data-perto]) .cena-palco {
+  content-visibility: hidden;
+}
+
+html[data-palco] .cena[data-estado='ativa'] .cena-caixa {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.4s ease 0.15s;
+}
+
+html[data-palco] .titulo-secao {
+  font-size: clamp(2rem, min(7.5vw, 12svh), 6.5rem);
+}
+
+/* Revelacoes. Cena que ainda vai entrar ("depois") espera abaixo; a que ja saiu ("antes") fica
+   acima. A ativa mostra tudo, escalonado por --i (--atraso e o intervalo entre irmaos). Tudo e
+   estado (nao posicao de rolagem), entao nada fica pela metade. */
+html[data-palco] :is(.rv-up, .rv-left, .rv-right, .rv-pop, .rv-curtain, .rv-line, .rv-rise) {
+  opacity: 0;
+  transition:
+    opacity 0.35s ease,
+    translate 0.45s ease,
+    scale 0.45s ease,
+    clip-path 0.45s ease;
+}
+
+html[data-palco]
+  .cena[data-estado='ativa']
+  :is(.rv-up, .rv-left, .rv-right, .rv-pop, .rv-curtain, .rv-line, .rv-rise) {
+  --espera: calc(0.25s + var(--i, 0) * var(--atraso, 70ms));
+  opacity: 1;
+  translate: 0 0;
+  scale: 1 1;
+  clip-path: inset(0 0 0 0);
+  transition:
+    opacity 0.6s ease var(--espera),
+    translate 0.8s cubic-bezier(0.22, 0.8, 0.3, 1) var(--espera),
+    scale 0.7s cubic-bezier(0.22, 0.8, 0.3, 1) var(--espera),
+    clip-path 0.9s cubic-bezier(0.22, 0.8, 0.3, 1) var(--espera);
+}
+
+html[data-palco] .rv-up {
+  translate: 0 2.5rem;
+}
+html[data-palco] .cena[data-estado='antes'] .rv-up {
+  translate: 0 -2.5rem;
+}
+
+html[data-palco] .rv-left {
+  translate: -4rem 0;
+}
+
+html[data-palco] .rv-right {
+  translate: 4rem 0;
+}
+
+html[data-palco] .rv-pop {
+  scale: 0.7;
+}
+
+html[data-palco] .rv-curtain {
+  clip-path: inset(100% 0 0 0);
+}
+html[data-palco] .cena[data-estado='antes'] .rv-curtain {
+  clip-path: inset(0 0 100% 0);
+}
+
+html[data-palco] .rv-line {
+  scale: 0 1;
+}
+
+html[data-palco] .rv-rise {
+  opacity: 1;
+  translate: 0 118%;
+}
+html[data-palco] .cena[data-estado='antes'] .rv-rise {
+  translate: 0 -118%;
+}
+
+/* telas pequenas: a caixa e baixa, entao a galeria dos projetos mostra so a foto principal */
+@media (max-width: 880px) {
+  html[data-palco] .miniaturas {
+    display: none;
+  }
+
+  html[data-palco] .foto-principal {
+    max-height: 24svh;
+  }
+
+  html[data-palco] .cena-caixa {
+    padding-inline: 0.9rem;
+  }
+}
+
+html[data-palco] .legacy-galeria {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+html[data-palco] .legacy-galeria img {
+  height: min(24svh, 240px);
+}
+
+@media (max-width: 900px) {
+  html[data-palco] .legacy-galeria img {
+    height: min(14svh, 140px);
+  }
+}
+
+html[data-palco] .legacy-galeria img {
+  object-fit: cover;
+  object-position: top;
+}
+
+/* lista expandida de projetos legados: rola dentro da caixa */
+html[data-palco] .lista-rolavel {
+  max-height: 50svh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* No palco, o rodape vira uma linha pequena na base da tela, sobre o hero: autoria na extrema
+   esquerda e copyright na direita, com folga para nao encostar na barra de rolagem de vidro */
+html[data-palco] .copyright {
+  position: fixed;
+  inset-inline: 0.9rem 2.25rem;
+  bottom: 0.5rem;
+  z-index: 40;
+  background: none;
+  padding: 0;
+  color: rgb(255 255 255 / 0.55);
+  text-shadow: 0 1px 3px rgb(0 0 0 / 0.6);
+  pointer-events: none;
+}
+
+/* A barra e totalmente transparente no palco */
+html[data-palco] .nav-bar {
+  background-color: transparent;
+  backdrop-filter: none;
+  text-shadow: 0 1px 6px rgb(0 0 0 / 0.7);
 }
 
 html {
   scroll-behavior: smooth;
-}
-
-/* com o Lenis ativo, o scroll-behavior nativo brigaria com a interpolacao dele */
-html.lenis {
-  scroll-behavior: auto;
 }
