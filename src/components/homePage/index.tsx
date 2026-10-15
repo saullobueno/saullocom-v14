@@ -65,7 +65,7 @@ function Pagina() {
                   width={720}
                   height={720}
                   alt={t.about.imageAlt}
-                  frameClassName="mx-auto aspect-square max-h-[34svh] max-md:max-h-[20svh]"
+                  frameClassName="mx-auto aspect-square max-h-[34svh] max-md:my-4 max-md:max-h-[20svh]"
                   {...imagemProps}
                 />
               </div>
@@ -139,13 +139,13 @@ function Pagina() {
                   </div>
                 ))}
               </div>
-              <div className="w-full">
+              <div className="w-full max-md:col-span-2 max-[500px]:col-span-1">
                 <DecorativeImage
                   src={Stack03}
                   width={540}
                   height={720}
                   alt={t.services.imageAlt}
-                  frameClassName="mx-auto aspect-[3/4] h-[min(40svh,380px)] max-md:hidden"
+                  frameClassName="mx-auto aspect-[3/4] h-[min(40svh,380px)] max-md:my-4 max-md:h-[16svh]"
                   {...imagemProps}
                 />
               </div>
@@ -198,7 +198,7 @@ function Pagina() {
                   width={720}
                   height={720}
                   alt={t.contact.imageAlt}
-                  frameClassName="mx-auto aspect-square max-h-[34svh] max-md:max-h-[20svh]"
+                  frameClassName="mx-auto aspect-square max-h-[34svh] max-md:my-4 max-md:max-h-[20svh]"
                   {...imagemProps}
                 />
               </div>
