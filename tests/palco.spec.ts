@@ -169,7 +169,19 @@ test.describe('palco (movimento normal)', () => {
     expect(copy.x + copy.width).toBeGreaterThan(1280 - 60);
   });
 
-  test('a barra de vidro acompanha a cena e leva a cena ao clicar', async ({ page }) => {
+  test('telas largas: sem barra de vidro (os pontos de cena a substituem)', async ({ page }) => {
+    await abrir(page);
+    await expect(page.locator('.barra-vidro')).toBeHidden();
+    await expect(page.locator('.pontos')).toBeVisible();
+    expect(
+      await page.evaluate(() => getComputedStyle(document.documentElement).scrollbarWidth),
+    ).toBe('none');
+  });
+
+  test('telas pequenas: a barra de vidro acompanha a cena e leva a cena ao clicar', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
     await abrir(page);
     const barra = page.locator('.barra-vidro');
     const estilo = await barra.evaluate((el) => {

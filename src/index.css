@@ -237,6 +237,13 @@ html[data-palco] .barra-vidro:hover .barra-polegar {
   }
 }
 
+/* telas largas: os pontos de cena ja mostram onde voce esta, entao a barra de vidro sai */
+@media (min-width: 881px) {
+  html[data-palco] .barra-vidro {
+    display: none;
+  }
+}
+
 /* Pontos de cena: coluna de vidro na lateral direita, maiores no inicio de cada secao */
 html[data-palco] .pontos {
   position: fixed;
