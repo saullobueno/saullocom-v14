@@ -11,7 +11,6 @@ import {
 
 import imageHome from './assets/image-home.avif';
 import WebAnalytics from './components/analytics';
-import SmoothScroll from './components/smoothScroll';
 import { messages, type Locale } from './i18n';
 import type { Route } from './+types/root';
 import './index.css';
@@ -32,10 +31,17 @@ export const links: Route.LinksFunction = () => [
 export function Layout({ children }: { children: React.ReactNode }) {
   const { pathname } = useLocation();
   return (
-    <html lang={messages[idiomaDe(pathname)].lang}>
+    <html lang={messages[idiomaDe(pathname)].lang} suppressHydrationWarning>
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {/* liga o modo palco antes da primeira pintura (so com JS e sem preferencia por menos movimento) */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&matchMedia('(min-height: 500px)').matches)document.documentElement.setAttribute('data-palco','')",
+          }}
+        />
         <Meta />
         <Links />
       </head>
@@ -52,7 +58,6 @@ export default function App() {
   return (
     <>
       <Outlet />
-      <SmoothScroll />
       <WebAnalytics />
     </>
   );

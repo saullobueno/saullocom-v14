@@ -23,16 +23,15 @@ export default function Header() {
       id="top"
       className="relative flex min-h-screen justify-center overflow-hidden motion-safe:animate-hue max-md:items-start max-md:justify-start"
     >
-      {/* camada de fundo separada para o parallax (ver .parallax-bg em index.css) */}
       <div
         aria-hidden="true"
-        className="parallax-bg absolute inset-0 bg-cover bg-blend-hard-light"
+        className="absolute inset-0 bg-cover bg-blend-hard-light"
         style={{
           backgroundImage: `url(${imageHome}), linear-gradient(45deg, #e2a342, #0059b2), linear-gradient(135deg, #e34040, #00b259)`,
         }}
       />
-      <div className="relative z-10 flex h-full w-full max-w-[1280px] shrink items-center justify-around px-8 text-white max-md:flex-col max-md:justify-around max-md:px-0">
-        <div className="parallax-logo">
+      <div className="hero-conteudo relative z-10 flex h-full w-full max-w-[1280px] shrink items-center justify-around px-8 text-white max-md:flex-col max-md:justify-around max-md:px-0">
+        <div>
           <img
             src={logo}
             alt="Saullo.com"
@@ -41,7 +40,7 @@ export default function Header() {
             className="brightness-[500%] max-[667px]:mt-[100px] max-[667px]:max-h-[200px] max-[667px]:w-auto"
           />
         </div>
-        <div className="parallax-title mt-[60px] text-center">
+        <div className="mt-[60px] text-center">
           <p className="m-0 text-center text-[1.2rem] leading-[180%] max-md:text-[0.8rem] max-md:leading-[120%]">
             {hero.greeting}
           </p>

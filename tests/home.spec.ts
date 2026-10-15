@@ -47,7 +47,7 @@ test('HTML pre-renderizado traz o conteudo sem JavaScript', async ({ browser }) 
   const contexto = await browser.newContext({ javaScriptEnabled: false });
   const page = await contexto.newPage();
   await page.goto('/');
-  await expect(page.getByRole('heading', { name: 'MINHA TRAJETÓRIA' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'SOBRE' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Forge' })).toBeVisible();
   await contexto.close();
 });

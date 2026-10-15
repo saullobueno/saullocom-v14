@@ -34,19 +34,21 @@ test.describe('idiomas', () => {
 
   test('seletor de idioma alterna entre / e /en', async ({ page }) => {
     await page.goto('/');
+    await page.evaluate(() => window.scrollTo(0, 600));
     await page.getByRole('link', { name: 'Read this site in English' }).click();
     await expect(page).toHaveURL(/\/en$/);
-    await expect(page.getByRole('heading', { name: 'MY STORY' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'ABOUT' })).toBeVisible();
+    await page.evaluate(() => window.scrollTo(0, 600));
     await page.getByRole('link', { name: 'Ler este site em português' }).click();
     await expect(page).toHaveURL(/\/$/);
-    await expect(page.getByRole('heading', { name: 'MINHA TRAJETÓRIA' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'SOBRE' })).toBeVisible();
   });
 
   test('/en sem JavaScript traz o conteudo em ingles', async ({ browser }) => {
     const contexto = await browser.newContext({ javaScriptEnabled: false });
     const page = await contexto.newPage();
     await page.goto('/en');
-    await expect(page.getByRole('heading', { name: 'WHAT I DO' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'SERVICES' })).toBeVisible();
     await expect(page.getByText('AI Software Factory')).toBeVisible();
     await contexto.close();
   });
@@ -68,18 +70,20 @@ test.describe('idiomas', () => {
 test.describe('navegacao', () => {
   test('links do menu levam as secoes e marcam a ativa', async ({ page }) => {
     await page.goto('/');
+    await page.evaluate(() => window.scrollTo(0, 600)); // a barra so aparece depois da primeira rolagem
     await page
       .getByRole('navigation', { name: 'Navegação principal' })
-      .getByRole('link', { name: 'Portfólio' })
+      .getByRole('link', { name: 'Projetos' })
       .click();
     await expect(page.locator('#portfolio')).toBeInViewport();
     await expect(
-      page.getByRole('navigation').getByRole('link', { name: 'Portfólio' }),
+      page.getByRole('navigation').getByRole('link', { name: 'Projetos' }),
     ).toHaveAttribute('aria-current', 'location');
   });
 
   test('CTA leva ao contato', async ({ page }) => {
     await page.goto('/');
+    await page.evaluate(() => window.scrollTo(0, 600)); // a barra so aparece depois da primeira rolagem
     await page.getByRole('link', { name: 'Vamos conversar' }).click();
     await expect(page.locator('#contact')).toBeInViewport();
   });
@@ -97,8 +101,9 @@ test.describe('navegacao', () => {
   test('menu mobile abre, navega e fecha', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/');
+    await page.evaluate(() => window.scrollTo(0, 600)); // a barra so aparece depois da primeira rolagem
     await page.getByText('Menu', { exact: true }).or(page.locator('summary')).first().click();
-    const contato = page.locator('details').getByRole('link', { name: 'Contato' });
+    const contato = page.locator('details').getByRole('link', { name: 'Contatos' });
     await expect(contato).toBeVisible();
     await contato.click();
     await expect(page.locator('#contact')).toBeInViewport();
@@ -122,8 +127,8 @@ test.describe('barra de navegacao aparece ao rolar', () => {
 
   test('o primeiro Tab revela a barra no topo e o foco chega nela', async ({ page }) => {
     await page.goto('/', { waitUntil: 'networkidle' });
-    // a classe lenis so aparece depois da hidratacao, quando o atalho do Tab ja esta registrado
-    await expect(page.locator('html')).toHaveClass(/lenis/);
+    // data-palco so aparece depois da hidratacao, quando o atalho do Tab ja esta registrado
+    await expect(page.locator('html')).toHaveAttribute('data-palco', '');
     await page.keyboard.press('Tab'); // link "pular para o conteudo"
     await expect(page.getByRole('navigation', { name: 'Navegação principal' })).toBeVisible();
     await page.keyboard.press('Tab'); // logo da barra
@@ -145,6 +150,7 @@ test.describe('barra de navegacao cabe em celulares estreitos', () => {
       test(`${caminho} em ${largura}px: o botao de menu fica dentro da tela`, async ({ page }) => {
         await page.setViewportSize({ width: largura, height: 700 });
         await page.goto(caminho);
+        await page.evaluate(() => window.scrollTo(0, 600)); // a barra so aparece depois da primeira rolagem
         const menu = page.locator('header details summary');
         await expect(menu).toBeVisible();
         const direita = await menu.evaluate((el) => el.getBoundingClientRect().right);
@@ -158,8 +164,9 @@ test.describe('barra de navegacao cabe em celulares estreitos', () => {
   }) => {
     await page.setViewportSize({ width: 320, height: 700 });
     await page.goto('/');
+    await page.evaluate(() => window.scrollTo(0, 600)); // a barra so aparece depois da primeira rolagem
     await expect(page.getByRole('link', { name: 'Vamos conversar' })).toBeHidden();
     await page.locator('header details summary').click();
-    await expect(page.locator('details').getByRole('link', { name: 'Contato' })).toBeVisible();
+    await expect(page.locator('details').getByRole('link', { name: 'Contatos' })).toBeVisible();
   });
 });

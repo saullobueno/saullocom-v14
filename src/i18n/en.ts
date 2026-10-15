@@ -19,7 +19,6 @@ export const en: Messages = {
   nav: {
     label: 'Main navigation',
     skip: 'Skip to content',
-    hide: 'Close menu',
     home: 'Home',
     about: 'About',
     expertise: 'Skills',
@@ -43,7 +42,7 @@ export const en: Messages = {
     title: 'ABOUT',
     lead: 'I found my passion for technology after moving to the capital and getting my first computer, which started a journey of constant growth.',
     paragraphs: [
-      "Born in Belo Horizonte, Minas Gerais, Brazil, I grew passionate about technology and design as a teenager, building my first digital interfaces.",
+      'Born in Belo Horizonte, Minas Gerais, Brazil, I grew passionate about technology and design as a teenager, building my first digital interfaces.',
       'I graduated in Multimedia Production in 2012 and worked at several companies in the field, evolving from graphic design and front-end into Full Stack software engineering.',
       'A results-driven professional who combines a collaborative attitude, continuous learning and a strong sense of organization.',
       'I stay persistent on complex problems, pay close attention to detail and commit to quality in every delivery.',
@@ -141,7 +140,10 @@ export const en: Messages = {
     whatsappAria: 'Chat on WhatsApp',
   },
 
-  footer: { copyright: '© saullo.com • All rights reserved' },
+  footer: {
+    authorship: '100% original design and code',
+    copyright: '© saullo.com • All rights reserved',
+  },
 
   notFound: {
     heading: '404',
