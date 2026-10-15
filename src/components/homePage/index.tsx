@@ -1,6 +1,6 @@
 import { lazy, Suspense, useState } from 'react';
 import { MdEmail } from 'react-icons/md';
-import { FaGithubSquare, FaLinkedin, FaWhatsappSquare } from 'react-icons/fa';
+import { FaGithubSquare, FaLinkedin } from 'react-icons/fa';
 
 import { getFeaturedProjects } from '../../data/localizedProjects';
 import { LocaleProvider, useI18n, type Locale } from '../../i18n';
@@ -28,7 +28,7 @@ import Stack04 from '../../assets/imageStack04.avif';
 
 const ImageLightbox = lazy(() => import('../lightbox'));
 
-const contactItem = 'mb-6 flex w-full items-center gap-3 text-left';
+const contactItem = 'mb-6 last:mb-0 flex w-full items-center gap-3 text-left';
 const contactIcon =
   'flex shrink-0 items-center justify-center text-inherit no-underline transition hover:scale-110 hover:opacity-80';
 const contactLink =
@@ -202,8 +202,8 @@ function Pagina() {
             <SectionTitle id="contact-title">{t.contact.title}</SectionTitle>
             <SectionLead>{t.contact.lead}</SectionLead>
 
-            <Columns>
-              <div className="w-full">
+            <div className="flex items-center justify-center gap-[3em] max-[500px]:flex-col max-[500px]:gap-0">
+              <div className="shrink-0">
                 <DecorativeImage
                   src={Stack04}
                   width={720}
@@ -213,57 +213,21 @@ function Pagina() {
                   {...imagemProps}
                 />
               </div>
-              <div className="flex w-full flex-col items-start justify-start !text-left">
+              <div className="flex flex-col items-start justify-start !text-left">
                 <div {...revelar('right', 0, contactItem)}>
                   <a
-                    href="mailto:saullobueno@gmail.com"
+                    href="mailto:saullo@saullo.com"
                     className={contactIcon}
                     aria-label={t.contact.emailAria}
                   >
                     <MdEmail size={40} />
                   </a>
                   <div className="flex flex-col items-start text-left">
-                    <a href="mailto:saullobueno@gmail.com" className={contactText}>
-                      saullobueno@gmail.com
-                    </a>
                     <a href="mailto:saullo@saullo.com" className={contactText}>
                       saullo@saullo.com
                     </a>
                   </div>
                 </div>
-
-                <div {...revelar('right', 1, contactItem)}>
-                  <a
-                    href="https://wa.me/351932382207"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={contactIcon}
-                    aria-label={t.contact.whatsappAria}
-                  >
-                    <FaWhatsappSquare size={40} />
-                  </a>
-                  <div className="flex flex-col items-start text-left">
-                    <a
-                      href="https://wa.me/351932382207"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={contactText}
-                    >
-                      +351 932 382 207
-                    </a>
-                    <a
-                      href="https://wa.me/5531988273818"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={contactText}
-                    >
-                      +55 31 98827.3818
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex w-full flex-col items-start justify-start !text-left">
                 <div {...revelar('right', 1, contactItem)}>
                   <a
                     href="https://linkedin.com/in/saullobueno"
@@ -288,7 +252,7 @@ function Pagina() {
                   </a>
                 </div>
               </div>
-            </Columns>
+            </div>
           </Cena>
         </Section>
       </Palco>

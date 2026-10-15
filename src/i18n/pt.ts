@@ -138,7 +138,6 @@ export const pt = {
     imageAlt:
       'Mão de pessoa de terno colocando um bloco de madeira no topo de uma torre, em tons arroxeados',
     emailAria: 'Enviar e-mail',
-    whatsappAria: 'Conversar no WhatsApp',
   },
 
   footer: {
