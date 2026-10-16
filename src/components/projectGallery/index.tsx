@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
+import { LARGURA_MINI, miniaturaDe } from '../../data/miniaturas';
 import { useMessages } from '../../i18n';
 import { revelar } from '../reveal';
 
@@ -39,6 +40,8 @@ export default function ProjectGallery({ images, title, onOpenImage }: ProjectGa
       >
         <img
           src={hero}
+          srcSet={`${miniaturaDe(hero)} ${LARGURA_MINI}w, ${hero} 1440w`}
+          sizes="(max-width: 960px) 92vw, min(34vw, 520px)"
           alt={title}
           loading="lazy"
           className="foto-principal block aspect-[16/10] h-auto w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
@@ -72,7 +75,7 @@ export default function ProjectGallery({ images, title, onOpenImage }: ProjectGa
                 aria-label={gallery.enlargeCapture(i + 2, title)}
               >
                 <img
-                  src={src}
+                  src={miniaturaDe(src)}
                   alt={gallery.screenshotAlt(title)}
                   loading="lazy"
                   className="block aspect-[16/10] w-full object-cover"

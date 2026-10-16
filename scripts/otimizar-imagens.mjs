@@ -3,6 +3,8 @@
 //    gera <slug>.avif (miniatura 640px) e <slug>-g.avif (lightbox, ate 1920px), remove os JPGs
 //    e grava width/height da miniatura em src/data/portfolio.json.
 //  - src/assets/**: converte PNG/JPG/JPEG para AVIF e remove o original.
+//  - src/assets/portfolio/**/<nome>.avif (capturas dos projetos em destaque): gera <nome>-mini.avif
+//    (480px) para as miniaturas da galeria; a imagem cheia fica para a foto principal e o lightbox.
 // Os caminhos finais sao resolvidos pelo Vite (src/data/legacyProjects.ts); nada disso fica em public/.
 // Uso: node scripts/otimizar-imagens.mjs
 import fs from 'node:fs';
@@ -12,6 +14,7 @@ import sharp from 'sharp';
 const MANTER = new Set(['logo.png', 'logo-marca.png', 'logo-vertical.png', 'favicon.png']);
 const THUMB_W = 640;
 const LARGE_W = 1920;
+const MINI_W = 480;
 
 const kb = (n) => Math.round(n / 1024);
 let antes = 0;
@@ -66,6 +69,22 @@ for (const p of arquivos('src/assets')) {
   fs.rmSync(p);
 }
 
-console.log(
-  `antes: ${kb(antes)} KB  depois: ${kb(depois)} KB  (-${Math.round((1 - depois / antes) * 100)}%)`,
-);
+// 3) Miniaturas dos projetos em destaque (so as que ainda nao existem ou estao desatualizadas)
+let miniaturas = 0;
+for (const p of arquivos('src/assets/portfolio')) {
+  if (!p.endsWith('.avif') || p.endsWith('-mini.avif')) continue;
+  const mini = p.replace(/\.avif$/, '-mini.avif');
+  if (fs.existsSync(mini) && fs.statSync(mini).mtimeMs >= fs.statSync(p).mtimeMs) continue;
+  await sharp(p)
+    .resize({ width: MINI_W, withoutEnlargement: true })
+    .avif({ quality: 55, effort: 6 })
+    .toFile(mini);
+  miniaturas++;
+}
+
+if (antes) {
+  console.log(
+    `antes: ${kb(antes)} KB  depois: ${kb(depois)} KB  (-${Math.round((1 - depois / antes) * 100)}%)`,
+  );
+}
+console.log(`miniaturas geradas: ${miniaturas}`);
