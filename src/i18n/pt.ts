@@ -1,9 +1,6 @@
 // Fonte da verdade dos textos do site. O tipo Messages e derivado daqui,
 // entao en.ts so compila se tiver exatamente as mesmas chaves.
 export const pt = {
-  lang: 'pt-BR',
-  ogLocale: 'pt_BR',
-  path: '/',
   language: { label: 'Idioma' },
 
   meta: {
@@ -143,14 +140,6 @@ export const pt = {
   footer: {
     authorship: 'Design e código 100% autorais',
     copyright: '© saullo.com • Todos os direitos reservados',
-  },
-
-  notFound: {
-    heading: '404',
-    text: 'Página não encontrada.',
-    back: 'Voltar para o início',
-    errorHeading: 'Ops!',
-    errorText: 'Ocorreu um erro inesperado.',
   },
 };
 

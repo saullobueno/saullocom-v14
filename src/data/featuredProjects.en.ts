@@ -1,14 +1,7 @@
-// Textos em ingles dos projetos em destaque, indexados por slug.
-// Os campos que nao mudam entre idiomas (stack, links, imagens) ficam em featuredProjects.ts.
-export interface FeaturedProjectText {
-  subtitle: string;
-  description: string;
-  highlights: string[];
-  demoUrlLabel?: string;
-  demoMobileUrlLabel?: string;
-}
+import { comTextos, type FeaturedProjectText } from './featuredProjects';
 
-export const featuredProjectsEn: Record<string, FeaturedProjectText> = {
+// Textos em ingles dos projetos em destaque, indexados por slug (so a rota /en importa este modulo).
+const textosEn: Record<string, FeaturedProjectText> = {
   'forge-ai-software-factory': {
     subtitle: 'AI Software Factory',
     description:
@@ -93,3 +86,5 @@ export const featuredProjectsEn: Record<string, FeaturedProjectText> = {
     ],
   },
 };
+
+export const featuredProjectsEn = comTextos(textosEn);

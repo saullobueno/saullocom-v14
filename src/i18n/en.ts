@@ -1,9 +1,6 @@
 import type { Messages } from './pt';
 
 export const en: Messages = {
-  lang: 'en',
-  ogLocale: 'en_US',
-  path: '/en',
   language: { label: 'Language' },
 
   meta: {
@@ -142,13 +139,5 @@ export const en: Messages = {
   footer: {
     authorship: '100% original design and code',
     copyright: '© saullo.com • All rights reserved',
-  },
-
-  notFound: {
-    heading: '404',
-    text: 'Page not found.',
-    back: 'Back to home',
-    errorHeading: 'Oops!',
-    errorText: 'An unexpected error occurred.',
   },
 };

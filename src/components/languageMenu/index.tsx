@@ -1,10 +1,10 @@
 import { useRef, type ReactNode } from 'react';
 
-import { messages, useI18n, type Locale } from '../../i18n';
+import { locales, useI18n, type Locale } from '../../i18n';
 import { useFechaDetails } from '../details/useFechaDetails';
 
 // Bandeiras em SVG (emoji de bandeira nao aparece no Windows). Para um idioma novo: incluir o
-// locale em messages, a bandeira aqui e o nome em IDIOMAS.
+// locale em locales.ts (com os textos num arquivo proprio), a bandeira aqui e o nome em IDIOMAS.
 const bandeiras: Record<Locale, ReactNode> = {
   pt: (
     <>
@@ -61,7 +61,7 @@ export default function LanguageMenu() {
         {IDIOMAS.map(({ locale: destino, nome, lang }) => (
           <li key={destino}>
             <a
-              href={messages[destino].path}
+              href={locales[destino].path}
               hrefLang={lang}
               lang={lang}
               aria-current={destino === locale ? 'true' : undefined}

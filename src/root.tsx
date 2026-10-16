@@ -11,13 +11,9 @@ import {
 
 import imageHome from './assets/image-home.avif';
 import WebAnalytics from './components/analytics';
-import { messages, type Locale } from './i18n';
+import { idiomaDe, locales } from './i18n/locales';
 import type { Route } from './+types/root';
 import './index.css';
-
-// Idioma pela URL: /en e /en/... em ingles; o resto em portugues
-const idiomaDe = (pathname: string): Locale =>
-  pathname === '/en' || pathname.startsWith('/en/') ? 'en' : 'pt';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'icon', href: '/favicon.ico', sizes: '48x48' },
@@ -31,7 +27,7 @@ export const links: Route.LinksFunction = () => [
 export function Layout({ children }: { children: React.ReactNode }) {
   const { pathname } = useLocation();
   return (
-    <html lang={messages[idiomaDe(pathname)].lang} suppressHydrationWarning>
+    <html lang={locales[idiomaDe(pathname)].lang} suppressHydrationWarning>
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -65,9 +61,8 @@ export default function App() {
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   const { pathname } = useLocation();
-  const t = messages[idiomaDe(pathname)].notFound;
+  const { notFound: t, path: home } = locales[idiomaDe(pathname)];
   const naoEncontrada = isRouteErrorResponse(error) && error.status === 404;
-  const home = idiomaDe(pathname) === 'en' ? '/en' : '/';
   return (
     <main className="mx-auto max-w-3xl px-4 py-32 text-center">
       <h1 className="mb-4 text-6xl font-bold text-white">

@@ -2,8 +2,8 @@ import { lazy, Suspense, useState } from 'react';
 import { MdEmail } from 'react-icons/md';
 import { FaGithubSquare, FaLinkedin } from 'react-icons/fa';
 
-import { getFeaturedProjects } from '../../data/localizedProjects';
-import { LocaleProvider, useI18n, type Locale } from '../../i18n';
+import type { FeaturedProject } from '../../data/featuredProjects';
+import { LocaleProvider, useI18n, type Locale, type Messages } from '../../i18n';
 import Header from '../header';
 import Nav from '../nav';
 import Section, {
@@ -38,9 +38,8 @@ const contactText =
 
 const imagemProps = { loading: 'lazy', decoding: 'async' } as const;
 
-function Pagina() {
-  const { locale, t } = useI18n();
-  const projects = getFeaturedProjects(locale);
+function Pagina({ projects }: { projects: FeaturedProject[] }) {
+  const { t } = useI18n();
   const [projectGallery, setProjectGallery] = useState<{ slug: string; index: number } | null>(
     null,
   );
@@ -265,10 +264,17 @@ function Pagina() {
   );
 }
 
-export default function HomePage({ locale }: { locale: Locale }) {
+interface HomePageProps {
+  locale: Locale;
+  /** textos do idioma (cada rota importa so o seu) */
+  t: Messages;
+  projects: FeaturedProject[];
+}
+
+export default function HomePage({ locale, t, projects }: HomePageProps) {
   return (
-    <LocaleProvider locale={locale}>
-      <Pagina />
+    <LocaleProvider locale={locale} t={t}>
+      <Pagina projects={projects} />
     </LocaleProvider>
   );
 }
