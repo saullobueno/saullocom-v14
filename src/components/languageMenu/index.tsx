@@ -1,6 +1,7 @@
-import { useEffect, useRef, type ReactNode } from 'react';
+import { useRef, type ReactNode } from 'react';
 
 import { messages, useI18n, type Locale } from '../../i18n';
+import { useFechaDetails } from '../details/useFechaDetails';
 
 // Bandeiras em SVG (emoji de bandeira nao aparece no Windows). Para um idioma novo: incluir o
 // locale em messages, a bandeira aqui e o nome em IDIOMAS.
@@ -46,25 +47,7 @@ function Bandeira({ locale }: { locale: Locale }) {
 export default function LanguageMenu() {
   const { locale, t } = useI18n();
   const menu = useRef<HTMLDetailsElement>(null);
-
-  // Fecha ao clicar fora ou com Esc
-  useEffect(() => {
-    const fecha = () => {
-      if (menu.current) menu.current.open = false;
-    };
-    const aoClicar = (e: MouseEvent) => {
-      if (menu.current?.open && !menu.current.contains(e.target as Node)) fecha();
-    };
-    const aoTeclar = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') fecha();
-    };
-    document.addEventListener('click', aoClicar);
-    document.addEventListener('keydown', aoTeclar);
-    return () => {
-      document.removeEventListener('click', aoClicar);
-      document.removeEventListener('keydown', aoTeclar);
-    };
-  }, []);
+  useFechaDetails(menu);
 
   return (
     <details ref={menu} className="relative">

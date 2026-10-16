@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type MouseEvent } from 'react';
 
 import logo from '@/assets/logo.png';
 import { useI18n } from '../../i18n';
+import { useFechaDetails } from '../details/useFechaDetails';
 import LanguageMenu from '../languageMenu';
 import { irParaSecao, palcoAtivo } from '../palco/controle';
 
@@ -16,6 +17,7 @@ export default function Nav() {
   const [visivel, setVisivel] = useState(false);
   const menu = useRef<HTMLDetailsElement>(null);
   const barra = useRef<HTMLElement>(null);
+  useFechaDetails(menu);
 
   // Destaca no menu a secao que esta cruzando o meio da tela
   useEffect(() => {
