@@ -1,7 +1,10 @@
 import { useEffect, type ReactNode } from 'react';
 
 import { useI18n } from '../../i18n';
+import { ajustaCena, limpaCena, marcaMais } from './ajuste';
 import { alvosDoPalco, registrarControle } from './controle';
+import { cenaMaisProxima, podeRolar } from './medidas';
+import { marcaPonto, montaPontos, removePontos } from './pontos';
 
 // Tempo que um gesto de rolagem "trava" os seguintes (a cena nova precisa entrar)
 const TRAVA_MS = 800;
@@ -18,10 +21,14 @@ const teclasDeCena: Record<string, number | 'inicio' | 'fim'> = {
   End: 'fim',
 };
 
+// Elementos que rolam por dentro antes de a roda trocar de cena: a lista expandida de projetos
+// legados e a caixa de uma cena que nao coube
+const ROLAVEIS = ['.lista-rolavel', '.cena-caixa[data-rolavel]'];
+
 // Liga o modo "palco": o hero fica fixo e cada gesto de rolagem avanca (ou volta) uma cena inteira.
 // O estado de cada cena (antes | ativa | depois) vai num atributo e o CSS faz as transicoes; nada
 // aqui re-renderiza o React. Sem JS, com menos movimento ou com tela muito baixa, a pagina segue
-// como um fluxo comum de secoes.
+// como um fluxo comum de secoes. O ajuste das caixas fica em ajuste.ts e os pontos em pontos.ts.
 export default function Palco({ children }: { children: ReactNode }) {
   const { t } = useI18n();
 
@@ -42,72 +49,10 @@ export default function Palco({ children }: { children: ReactNode }) {
 
     const limita = (n: number) => Math.min(alvos.length - 1, Math.max(0, n));
 
-    // Texto grande demais para a caixa: reduz a fonte da cena ate caber (so cenas renderizadas)
-    const ajustaCena = (alvo: HTMLElement) => {
-      const caixa = alvo.querySelector<HTMLElement>('.cena-caixa');
-      if (!caixa) return;
-      let escala = 1;
-      caixa.removeAttribute('data-rolavel');
-      caixa.removeAttribute('data-mais');
-      caixa.removeAttribute('data-acima');
-      caixa.style.setProperty('--ajuste', '1');
-      // celular e tablet: a fonte e igual em todas as cenas e o que nao couber rola por dentro
-      const encolhe = !compacta.matches;
-      while (encolhe && caixa.scrollHeight > caixa.clientHeight + 1 && escala > 0.55) {
-        escala -= 0.04;
-        caixa.style.setProperty('--ajuste', escala.toFixed(2));
-      }
-      // sobrou conteudo (fonte no minimo, ou sem encolher): a caixa rola por dentro, para nada ficar escondido
-      if (caixa.scrollHeight > caixa.clientHeight + 1) caixa.setAttribute('data-rolavel', '');
-      marcaMais(caixa);
-      alvo.dataset.ajustada = '';
-    };
-
-    // Dica de que ha mais conteudo: o CSS esmaece a base (data-mais) e o topo (data-acima) da caixa
-    const marcaMais = (caixa: HTMLElement) => {
-      const rolavel = caixa.hasAttribute('data-rolavel');
-      caixa.toggleAttribute('data-acima', rolavel && caixa.scrollTop > 1);
-      caixa.toggleAttribute(
-        'data-mais',
-        rolavel && caixa.scrollTop + caixa.clientHeight < caixa.scrollHeight - 1,
-      );
-    };
-
     // scroll nao propaga: a captura no document pega a rolagem de qualquer caixa
     const aoRolarCaixa = (e: Event) => {
       const caixa = e.target;
       if (caixa instanceof HTMLElement && caixa.classList.contains('cena-caixa')) marcaMais(caixa);
-    };
-
-    // Pontos laterais: um por cena (e o hero), maiores no inicio de cada secao
-    const pontos = () => document.querySelector<HTMLElement>('.pontos');
-
-    const montaPontos = () => {
-      const lista = pontos();
-      if (!lista) return;
-      lista.replaceChildren(
-        ...alvos.map((alvo, i) => {
-          const ponto = document.createElement('button');
-          const rotulo = alvo.dataset.rotulo ?? '';
-          const inicioDeSecao =
-            !alvo.classList.contains('cena') || alvo.parentElement?.querySelector('.cena') === alvo;
-          ponto.type = 'button';
-          ponto.className = inicioDeSecao ? 'ponto ponto-grande' : 'ponto';
-          ponto.dataset.rotulo = rotulo;
-          ponto.setAttribute('aria-label', rotulo);
-          ponto.addEventListener('click', () => vaiPara(i));
-          return ponto;
-        }),
-      );
-    };
-
-    const marcaPonto = () => {
-      pontos()
-        ?.querySelectorAll('.ponto')
-        .forEach((ponto, i) => {
-          if (i === atual) ponto.setAttribute('aria-current', 'true');
-          else ponto.removeAttribute('aria-current');
-        });
     };
 
     const aplica = () => {
@@ -122,10 +67,11 @@ export default function Palco({ children }: { children: ReactNode }) {
         // so a cena atual e as vizinhas sao renderizadas (e carregam suas imagens)
         const perto = Math.abs(i - atual) <= 1;
         alvo.toggleAttribute('data-perto', perto);
-        if (perto && !('ajustada' in alvo.dataset)) ajustaCena(alvo);
+        // celular e tablet: a fonte nao encolhe, o que nao couber rola por dentro
+        if (perto && !('ajustada' in alvo.dataset)) ajustaCena(alvo, !compacta.matches);
       });
       raiz.style.setProperty('--painel', atual > 0 ? '1' : '0');
-      marcaPonto();
+      marcaPonto(atual);
       raiz.toggleAttribute('data-rolou', atual > 0);
     };
 
@@ -148,19 +94,11 @@ export default function Palco({ children }: { children: ReactNode }) {
     const aoRodar = (e: WheelEvent) => {
       const alvo = e.target as HTMLElement;
       if (alvo.closest('.yarl__root')) return;
-      // lista interna rolavel (projetos legados): rola ela enquanto houver para onde ir
-      const lista = alvo.closest<HTMLElement>('.lista-rolavel');
-      if (lista) {
-        const podeDescer = lista.scrollTop + lista.clientHeight < lista.scrollHeight - 1;
-        const podeSubir = lista.scrollTop > 0;
-        if ((e.deltaY > 0 && podeDescer) || (e.deltaY < 0 && podeSubir)) return;
-      }
-      // caixa que precisou rolar por dentro: mesma regra, e so troca de cena nas pontas
-      const caixa = alvo.closest<HTMLElement>('.cena-caixa[data-rolavel]');
-      if (caixa) {
-        const podeDescer = caixa.scrollTop + caixa.clientHeight < caixa.scrollHeight - 1;
-        const podeSubir = caixa.scrollTop > 0;
-        if ((e.deltaY > 0 && podeDescer) || (e.deltaY < 0 && podeSubir)) return;
+      // dentro de algo que rola por dentro: rola ele enquanto houver para onde ir (so troca de
+      // cena nas pontas)
+      for (const seletor of ROLAVEIS) {
+        const rolavel = alvo.closest<HTMLElement>(seletor);
+        if (rolavel && podeRolar(rolavel, e.deltaY > 0)) return;
       }
       if (e.ctrlKey) return; // zoom por pinca
       e.preventDefault();
@@ -194,11 +132,7 @@ export default function Palco({ children }: { children: ReactNode }) {
       quadro = requestAnimationFrame(() => {
         quadro = 0;
         if (performance.now() < ignoraRolagemAte) return;
-        const y = window.scrollY;
-        let mais = 0;
-        alvos.forEach((alvo, i) => {
-          if (Math.abs(alvo.offsetTop - y) < Math.abs(alvos[mais].offsetTop - y)) mais = i;
-        });
+        const mais = cenaMaisProxima(alvos, window.scrollY);
         if (mais !== atual) {
           atual = mais;
           aplica();
@@ -235,18 +169,9 @@ export default function Palco({ children }: { children: ReactNode }) {
       raiz.removeAttribute('data-palco');
       raiz.removeAttribute('data-rolou');
       raiz.style.removeProperty('--painel');
-      for (const alvo of alvos) {
-        alvo.removeAttribute('data-estado');
-        alvo.removeAttribute('data-perto');
-        delete alvo.dataset.ajustada;
-        const caixa = alvo.querySelector<HTMLElement>('.cena-caixa');
-        caixa?.style.removeProperty('--ajuste');
-        caixa?.removeAttribute('data-rolavel');
-        caixa?.removeAttribute('data-mais');
-        caixa?.removeAttribute('data-acima');
-      }
+      alvos.forEach(limpaCena);
+      removePontos();
       document.removeEventListener('scroll', aoRolarCaixa, true);
-      pontos()?.replaceChildren();
       window.removeEventListener('wheel', aoRodar);
       window.removeEventListener('keydown', aoTeclar);
       window.removeEventListener('scroll', aoRolar);
@@ -263,7 +188,7 @@ export default function Palco({ children }: { children: ReactNode }) {
       ligado = true;
       raiz.setAttribute('data-palco', '');
       alvos = alvosDoPalco();
-      montaPontos();
+      montaPontos(alvos, vaiPara);
       registrarControle(vaiPara);
       window.addEventListener('wheel', aoRodar, { passive: false });
       window.addEventListener('keydown', aoTeclar);
@@ -273,16 +198,7 @@ export default function Palco({ children }: { children: ReactNode }) {
       document.addEventListener('scroll', aoRolarCaixa, { capture: true, passive: true });
 
       // cena em que a pagina ja esta (recarregar no meio, voltar do historico)
-      let mais = 0;
-      alvos.forEach((alvo, i) => {
-        if (
-          Math.abs(alvo.offsetTop - window.scrollY) <
-          Math.abs(alvos[mais].offsetTop - window.scrollY)
-        ) {
-          mais = i;
-        }
-      });
-      atual = mais;
+      atual = cenaMaisProxima(alvos, window.scrollY);
       aplica();
       agendaAjuste();
       void document.fonts?.ready.then(agendaAjuste);
