@@ -190,6 +190,13 @@ test.describe('palco (movimento normal)', () => {
     });
     expect(medidas.colDir).toBeLessThanOrEqual(390);
     expect(medidas.textoMaxDir).toBeLessThanOrEqual(medidas.colEsq);
+    // cada ponto tem area de toque de pelo menos 24x24 (WCAG 2.2, 2.5.8)
+    for (const caixa of await pontos.evaluateAll((els) =>
+      els.map((el) => el.getBoundingClientRect().toJSON() as DOMRect),
+    )) {
+      expect(caixa.width).toBeGreaterThanOrEqual(24);
+      expect(caixa.height).toBeGreaterThanOrEqual(24);
+    }
     // tocar num ponto leva a cena
     await pontos.nth(6).click();
     await page.waitForTimeout(TRANSICAO);
