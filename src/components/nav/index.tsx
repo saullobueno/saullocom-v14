@@ -2,13 +2,14 @@ import { useEffect, useRef, useState, type MouseEvent } from 'react';
 
 import logo from '@/assets/logo.png';
 import { useI18n } from '../../i18n';
+import { useFechaDetails } from '../details/useFechaDetails';
 import LanguageMenu from '../languageMenu';
 import { irParaSecao, palcoAtivo } from '../palco/controle';
 
 const SECOES = ['about', 'expertise', 'services', 'portfolio', 'contact'] as const;
 
 const linkBase =
-  'rounded-md px-2.5 py-1.5 text-[0.82rem] font-medium whitespace-nowrap text-white/80 transition-colors hover:text-white';
+  'rounded-md px-2.5 py-1.5 text-[0.82rem] font-medium whitespace-nowrap transition-colors';
 
 export default function Nav() {
   const { t } = useI18n();
@@ -16,6 +17,7 @@ export default function Nav() {
   const [visivel, setVisivel] = useState(false);
   const menu = useRef<HTMLDetailsElement>(null);
   const barra = useRef<HTMLElement>(null);
+  useFechaDetails(menu);
 
   // Destaca no menu a secao que esta cruzando o meio da tela
   useEffect(() => {
@@ -75,11 +77,11 @@ export default function Nav() {
       onClick={aoClicarLink}
       aria-current={ativa === id ? 'location' : undefined}
       className={`${linkBase} ${
-        ativa === id
-          ? suspenso
-            ? '!bg-white/15 !text-white'
-            : '!text-white underline decoration-2 underline-offset-8'
-          : ''
+        ativa !== id
+          ? 'text-white/80 hover:text-white'
+          : suspenso
+            ? 'bg-white/15 text-white'
+            : 'text-white underline decoration-2 underline-offset-8'
       }`}
     >
       {t.nav[id]}
@@ -121,7 +123,7 @@ export default function Nav() {
               href="#contact"
               data-alvo="contact"
               onClick={aoClicarLink}
-              className="flex h-8 items-center rounded-md bg-accent-strong px-2.5 text-[12px] font-semibold whitespace-nowrap text-white transition-colors hover:bg-accent-strong-hover max-[359px]:hidden md:px-3 md:text-[0.8rem]"
+              className="flex h-8 items-center rounded-md bg-accent-strong px-2.5 text-[12px] font-semibold whitespace-nowrap text-white transition-colors hover:bg-accent-strong-hover max-xs:hidden md:px-3 md:text-[0.8rem]"
             >
               {t.nav.cta}
             </a>
@@ -142,7 +144,7 @@ export default function Nav() {
                   />
                 </svg>
               </summary>
-              <div className="absolute right-0 mt-2 flex w-48 flex-col rounded-lg border border-white/15 bg-[#1a1a1a] p-2 shadow-xl">
+              <div className="absolute right-0 mt-2 flex w-48 flex-col rounded-lg border border-white/15 bg-bg p-2 shadow-xl">
                 {SECOES.map((id) => link(id, true))}
               </div>
             </details>

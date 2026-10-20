@@ -1,9 +1,10 @@
-import { useEffect, useRef, type ReactNode } from 'react';
+import { useRef, type ReactNode } from 'react';
 
-import { messages, useI18n, type Locale } from '../../i18n';
+import { locales, useI18n, type Locale } from '../../i18n';
+import { useFechaDetails } from '../details/useFechaDetails';
 
 // Bandeiras em SVG (emoji de bandeira nao aparece no Windows). Para um idioma novo: incluir o
-// locale em messages, a bandeira aqui e o nome em IDIOMAS.
+// locale em locales.ts (com os textos num arquivo proprio), a bandeira aqui e o nome em IDIOMAS.
 const bandeiras: Record<Locale, ReactNode> = {
   pt: (
     <>
@@ -46,25 +47,7 @@ function Bandeira({ locale }: { locale: Locale }) {
 export default function LanguageMenu() {
   const { locale, t } = useI18n();
   const menu = useRef<HTMLDetailsElement>(null);
-
-  // Fecha ao clicar fora ou com Esc
-  useEffect(() => {
-    const fecha = () => {
-      if (menu.current) menu.current.open = false;
-    };
-    const aoClicar = (e: MouseEvent) => {
-      if (menu.current?.open && !menu.current.contains(e.target as Node)) fecha();
-    };
-    const aoTeclar = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') fecha();
-    };
-    document.addEventListener('click', aoClicar);
-    document.addEventListener('keydown', aoTeclar);
-    return () => {
-      document.removeEventListener('click', aoClicar);
-      document.removeEventListener('keydown', aoTeclar);
-    };
-  }, []);
+  useFechaDetails(menu);
 
   return (
     <details ref={menu} className="relative">
@@ -74,11 +57,11 @@ export default function LanguageMenu() {
       >
         <Bandeira locale={locale} />
       </summary>
-      <ul className="absolute right-0 mt-2 w-40 rounded-lg border border-white/15 bg-[#1a1a1a] p-1 shadow-xl">
+      <ul className="absolute right-0 mt-2 w-40 rounded-lg border border-white/15 bg-bg p-1 shadow-xl">
         {IDIOMAS.map(({ locale: destino, nome, lang }) => (
           <li key={destino}>
             <a
-              href={messages[destino].path}
+              href={locales[destino].path}
               hrefLang={lang}
               lang={lang}
               aria-current={destino === locale ? 'true' : undefined}

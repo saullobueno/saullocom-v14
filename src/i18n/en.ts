@@ -1,9 +1,6 @@
 import type { Messages } from './pt';
 
 export const en: Messages = {
-  lang: 'en',
-  ogLocale: 'en_US',
-  path: '/en',
   language: { label: 'Language' },
 
   meta: {
@@ -136,19 +133,10 @@ export const en: Messages = {
     lead: 'Have a project to build, want to hire my services or talk about opportunities? Let’s talk:',
     imageAlt:
       'Hand of a person in a suit placing a wooden block on top of a tower, in purple tones',
-    emailAria: 'Send an email',
   },
 
   footer: {
     authorship: '100% original design and code',
     copyright: '© saullo.com • All rights reserved',
-  },
-
-  notFound: {
-    heading: '404',
-    text: 'Page not found.',
-    back: 'Back to home',
-    errorHeading: 'Oops!',
-    errorText: 'An unexpected error occurred.',
   },
 };

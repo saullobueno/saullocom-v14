@@ -35,11 +35,13 @@ test.describe('idiomas', () => {
   test('seletor de idioma alterna entre / e /en', async ({ page }) => {
     await page.goto('/');
     await page.evaluate(() => window.scrollTo(0, 600));
-    await page.getByRole('link', { name: 'Read this site in English' }).click();
+    await page.getByLabel('Idioma').click();
+    await page.getByRole('link', { name: 'English' }).click();
     await expect(page).toHaveURL(/\/en$/);
     await expect(page.getByRole('heading', { name: 'ABOUT' })).toBeVisible();
     await page.evaluate(() => window.scrollTo(0, 600));
-    await page.getByRole('link', { name: 'Ler este site em português' }).click();
+    await page.getByLabel('Language').click();
+    await page.getByRole('link', { name: 'Português' }).click();
     await expect(page).toHaveURL(/\/$/);
     await expect(page.getByRole('heading', { name: 'SOBRE' })).toBeVisible();
   });
@@ -102,12 +104,33 @@ test.describe('navegacao', () => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/');
     await page.evaluate(() => window.scrollTo(0, 600)); // a barra so aparece depois da primeira rolagem
-    await page.getByText('Menu', { exact: true }).or(page.locator('summary')).first().click();
-    const contato = page.locator('details').getByRole('link', { name: 'Contatos' });
+    const botao = page.locator('summary[aria-label="Menu"]');
+    const menu = page.locator('details', { has: botao });
+    await botao.click();
+    const contato = menu.getByRole('link', { name: 'Contatos' });
     await expect(contato).toBeVisible();
     await contato.click();
     await expect(page.locator('#contact')).toBeInViewport();
-    await expect(page.locator('details')).not.toHaveAttribute('open', '');
+    await expect(menu).not.toHaveAttribute('open', '');
+  });
+
+  test('menu mobile fecha com Esc e com toque fora', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/');
+    await page.evaluate(() => window.scrollTo(0, 600)); // a barra so aparece depois da primeira rolagem
+    const botao = page.locator('summary[aria-label="Menu"]');
+    const menu = page.locator('details', { has: botao });
+
+    await botao.click();
+    await expect(menu).toHaveAttribute('open', '');
+    await page.keyboard.press('Escape');
+    await expect(menu).not.toHaveAttribute('open', '');
+    await expect(botao).toBeFocused();
+
+    await botao.click();
+    await expect(menu).toHaveAttribute('open', '');
+    await page.locator('main').click({ position: { x: 10, y: 300 } });
+    await expect(menu).not.toHaveAttribute('open', '');
   });
 });
 
@@ -151,7 +174,7 @@ test.describe('barra de navegacao cabe em celulares estreitos', () => {
         await page.setViewportSize({ width: largura, height: 700 });
         await page.goto(caminho);
         await page.evaluate(() => window.scrollTo(0, 600)); // a barra so aparece depois da primeira rolagem
-        const menu = page.locator('header details summary');
+        const menu = page.locator('header summary[aria-label="Menu"]');
         await expect(menu).toBeVisible();
         const direita = await menu.evaluate((el) => el.getBoundingClientRect().right);
         expect(direita).toBeLessThanOrEqual(largura);
@@ -166,7 +189,9 @@ test.describe('barra de navegacao cabe em celulares estreitos', () => {
     await page.goto('/');
     await page.evaluate(() => window.scrollTo(0, 600)); // a barra so aparece depois da primeira rolagem
     await expect(page.getByRole('link', { name: 'Vamos conversar' })).toBeHidden();
-    await page.locator('header details summary').click();
-    await expect(page.locator('details').getByRole('link', { name: 'Contatos' })).toBeVisible();
+    await page.locator('header summary[aria-label="Menu"]').click();
+    await expect(
+      page.locator('header details').getByRole('link', { name: 'Contatos' }),
+    ).toBeVisible();
   });
 });

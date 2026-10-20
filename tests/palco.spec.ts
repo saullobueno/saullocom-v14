@@ -159,8 +159,9 @@ test.describe('palco (movimento normal)', () => {
       };
     });
     expect(c.position).toBe('fixed');
-    expect(c.direita).toBeGreaterThan(24); // folga da barra de rolagem
-    expect(c.direita).toBeLessThan(60);
+    // no palco a barra nativa some (os pontos de cena ficam no lugar): o rodape vai quase ate a borda
+    expect(c.direita).toBeGreaterThan(4);
+    expect(c.direita).toBeLessThan(40);
     expect(c.baixo).toBeLessThan(40);
     const autoria = page.getByText('Design e código 100% autorais');
     await expect(autoria).toBeVisible();
@@ -190,6 +191,13 @@ test.describe('palco (movimento normal)', () => {
     });
     expect(medidas.colDir).toBeLessThanOrEqual(390);
     expect(medidas.textoMaxDir).toBeLessThanOrEqual(medidas.colEsq);
+    // cada ponto tem area de toque de pelo menos 24x24 (WCAG 2.2, 2.5.8)
+    for (const caixa of await pontos.evaluateAll((els) =>
+      els.map((el) => el.getBoundingClientRect().toJSON() as DOMRect),
+    )) {
+      expect(caixa.width).toBeGreaterThanOrEqual(24);
+      expect(caixa.height).toBeGreaterThanOrEqual(24);
+    }
     // tocar num ponto leva a cena
     await pontos.nth(6).click();
     await page.waitForTimeout(TRANSICAO);
@@ -236,7 +244,9 @@ test.describe('palco (movimento normal)', () => {
     ['mobile', 390, 844],
     ['mobile pequeno', 360, 640],
   ] as const) {
-    test(`${nome}: o conteudo cabe na caixa em todas as cenas e nao ha rolagem horizontal`, async ({
+    // Desktop: a fonte encolhe ate tudo caber. Celular e tablet: o que nao cabe rola por dentro da
+    // caixa (data-rolavel), entao nada fica escondido de um jeito ou de outro.
+    test(`${nome}: nada fica escondido na caixa em nenhuma cena e nao ha rolagem horizontal`, async ({
       page,
     }) => {
       await page.setViewportSize({ width: largura, height: altura });
@@ -250,10 +260,16 @@ test.describe('palco (movimento normal)', () => {
           )!;
           return {
             sobra: caixa.scrollHeight - caixa.clientHeight,
+            rolavel:
+              caixa.hasAttribute('data-rolavel') && getComputedStyle(caixa).overflowY === 'auto',
             id: caixa.closest('section')?.id,
           };
         });
-        expect(medida.sobra, `cena ${n} (${medida.id})`).toBeLessThanOrEqual(1);
+        if (largura > 880) {
+          expect(medida.sobra, `cena ${n} (${medida.id})`).toBeLessThanOrEqual(1);
+        } else if (medida.sobra > 1) {
+          expect(medida.rolavel, `cena ${n} (${medida.id}) sobra sem rolar`).toBe(true);
+        }
       }
       expect(
         await page.evaluate(

@@ -37,7 +37,7 @@ export default function Header() {
             alt="Saullo.com"
             width="200"
             height="321"
-            className="brightness-[500%] max-[667px]:mt-[100px] max-[667px]:max-h-[200px] max-[667px]:w-auto"
+            className="brightness-[500%] max-md:mt-[100px] max-md:max-h-[200px] max-md:w-auto"
           />
         </div>
         <div className="mt-[60px] text-center">

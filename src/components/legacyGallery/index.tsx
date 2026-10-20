@@ -26,7 +26,7 @@ export default function LegacyGallery() {
       <p {...revelar('up', 1, 'mb-8 text-center text-base text-portfolio')}>{legacy.lead}</p>
 
       <div
-        className={`grid grid-cols-4 gap-4 max-xl:grid-cols-3 max-[900px]:grid-cols-2 ${showAll ? 'lista-rolavel' : ''}`}
+        className={`grid grid-cols-4 gap-4 max-xl:grid-cols-3 max-md:grid-cols-2 ${showAll ? 'lista-rolavel' : ''}`}
       >
         {(showAll ? legacyProjects : legacyProjects.slice(0, VISIVEIS)).map((port, key) => (
           <button
@@ -56,7 +56,7 @@ export default function LegacyGallery() {
       <div {...revelar('up', 6, 'mt-8')}>
         <button
           type="button"
-          className="inline-flex items-center gap-2 rounded-[30px] border border-[rgba(0,133,178,0.3)] bg-[rgba(0,133,178,0.1)] px-8 py-[0.8rem] text-base font-semibold text-portfolio transition hover:-translate-y-0.5 hover:border-[#0085b2] hover:bg-[rgba(0,133,178,0.25)] hover:text-white [&_svg]:m-2.5"
+          className="inline-flex items-center gap-2 rounded-[30px] border border-brand/30 bg-brand/10 px-8 py-[0.8rem] text-base font-semibold text-portfolio transition hover:-translate-y-0.5 hover:border-brand hover:bg-brand/25 hover:text-white [&_svg]:m-2.5"
           onClick={() => setShowAll(!showAll)}
           aria-expanded={showAll}
         >

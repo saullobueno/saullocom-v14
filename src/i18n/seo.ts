@@ -1,18 +1,18 @@
-import { messages, type Locale } from './index';
+import { locales, type Locale, type Messages } from './index';
 
 export const SITE = 'https://saullo.com';
 
-const urlDe = (locale: Locale) => `${SITE}${messages[locale].path}`;
+const urlDe = (locale: Locale) => `${SITE}${locales[locale].path}`;
 
-export function buildMeta(locale: Locale) {
-  const t = messages[locale];
+export function buildMeta(locale: Locale, t: Messages) {
+  const { lang, ogLocale } = locales[locale];
   return [
     { title: t.meta.title },
     { name: 'description', content: t.meta.description },
     { name: 'theme-color', content: '#1a1a1a' },
     { property: 'og:type', content: 'website' },
-    { property: 'og:locale', content: t.ogLocale },
-    { property: 'og:locale:alternate', content: messages[locale === 'pt' ? 'en' : 'pt'].ogLocale },
+    { property: 'og:locale', content: ogLocale },
+    { property: 'og:locale:alternate', content: locales[locale === 'pt' ? 'en' : 'pt'].ogLocale },
     { property: 'og:site_name', content: 'Saullo Bueno' },
     { property: 'og:title', content: t.meta.title },
     { property: 'og:description', content: t.meta.ogDescription },
@@ -29,7 +29,7 @@ export function buildMeta(locale: Locale) {
         name: 'Saullo Bueno',
         url: urlDe(locale),
         jobTitle: t.meta.jobTitle,
-        inLanguage: t.lang,
+        inLanguage: lang,
         sameAs: ['https://github.com/saullobueno', 'https://linkedin.com/in/saullobueno'],
       },
     },

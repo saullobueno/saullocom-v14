@@ -1,8 +1,18 @@
 import type { ReactNode } from 'react';
 
 import { I18nContext } from './context';
-import { messages, type Locale } from './messages';
+import type { Locale } from './locales';
+import type { Messages } from './pt';
 
-export function LocaleProvider({ locale, children }: { locale: Locale; children: ReactNode }) {
-  return <I18nContext value={{ locale, t: messages[locale] }}>{children}</I18nContext>;
+// Os textos chegam da rota (cada rota importa so o proprio idioma)
+export function LocaleProvider({
+  locale,
+  t,
+  children,
+}: {
+  locale: Locale;
+  t: Messages;
+  children: ReactNode;
+}) {
+  return <I18nContext value={{ locale, t }}>{children}</I18nContext>;
 }

@@ -85,9 +85,17 @@ export function SectionLead({ children }: { children: ReactNode }) {
   );
 }
 
-export function SubTitle({ children }: { children: ReactNode }) {
+export function SubTitle({
+  children,
+  className = '',
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
   return (
-    <h3 className="mb-[0.2em] text-left text-[1.4em] leading-[150%] font-bold max-md:text-[1.2em]">
+    <h3
+      className={`mb-[0.2em] text-left text-[1.4em] leading-[150%] font-bold max-md:text-[1.2em] ${className}`}
+    >
       {children}
     </h3>
   );
@@ -99,7 +107,7 @@ export function Text({ className = '', ...props }: ComponentProps<'p'>) {
 
 export function Columns({ children }: { children: ReactNode }) {
   return (
-    <div className="grid grid-cols-3 items-start justify-items-center gap-[1.5em] max-md:grid-cols-2 max-[500px]:grid-cols-1 max-[500px]:gap-0 [&>div]:text-left">
+    <div className="grid grid-cols-3 items-start justify-items-center gap-[1.5em] max-md:grid-cols-2 max-sm:grid-cols-1 max-sm:gap-0 [&>div]:text-left">
       {children}
     </div>
   );
@@ -110,11 +118,18 @@ export function Columns({ children }: { children: ReactNode }) {
 export function DecorativeImage({
   frameClassName = '',
   className = '',
+  loading = 'lazy',
+  decoding = 'async',
   ...props
 }: ComponentProps<'img'> & { frameClassName?: string }) {
   return (
     <div className={`rv-curtain overflow-hidden rounded-xl ${frameClassName}`}>
-      <img className={`block h-full w-full object-cover ${className}`} {...props} />
+      <img
+        className={`block h-full w-full object-cover ${className}`}
+        loading={loading}
+        decoding={decoding}
+        {...props}
+      />
     </div>
   );
 }
