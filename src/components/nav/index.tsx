@@ -9,7 +9,7 @@ import { irParaSecao, palcoAtivo } from '../palco/controle';
 const SECOES = ['about', 'expertise', 'services', 'portfolio', 'contact'] as const;
 
 const linkBase =
-  'rounded-md px-2.5 py-1.5 text-[0.82rem] font-medium whitespace-nowrap text-white/80 transition-colors hover:text-white';
+  'rounded-md px-2.5 py-1.5 text-[0.82rem] font-medium whitespace-nowrap transition-colors';
 
 export default function Nav() {
   const { t } = useI18n();
@@ -77,11 +77,11 @@ export default function Nav() {
       onClick={aoClicarLink}
       aria-current={ativa === id ? 'location' : undefined}
       className={`${linkBase} ${
-        ativa === id
-          ? suspenso
-            ? '!bg-white/15 !text-white'
-            : '!text-white underline decoration-2 underline-offset-8'
-          : ''
+        ativa !== id
+          ? 'text-white/80 hover:text-white'
+          : suspenso
+            ? 'bg-white/15 text-white'
+            : 'text-white underline decoration-2 underline-offset-8'
       }`}
     >
       {t.nav[id]}
@@ -144,7 +144,7 @@ export default function Nav() {
                   />
                 </svg>
               </summary>
-              <div className="absolute right-0 mt-2 flex w-48 flex-col rounded-lg border border-white/15 bg-[#1a1a1a] p-2 shadow-xl">
+              <div className="absolute right-0 mt-2 flex w-48 flex-col rounded-lg border border-white/15 bg-bg p-2 shadow-xl">
                 {SECOES.map((id) => link(id, true))}
               </div>
             </details>

@@ -43,7 +43,7 @@ export default function Contact() {
               frameClassName="mx-auto aspect-square h-[34svh] max-md:my-4 max-md:h-[20svh]"
             />
           </div>
-          <ul className="flex flex-col items-start justify-start !text-left">
+          <ul className="flex flex-col items-start justify-start text-left">
             {CONTATOS.map(({ href, texto, Icone }, i) => {
               const externo = href.startsWith('http');
               return (

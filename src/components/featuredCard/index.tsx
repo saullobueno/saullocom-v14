@@ -29,7 +29,7 @@ export default function FeaturedCard({ project, onOpenImage }: FeaturedCardProps
       <ProjectGallery images={project.images} title={project.title} onOpenImage={onOpenImage} />
 
       <div className="flex flex-col text-left [grid-area:body]">
-        <p {...revelar('up', 0, 'mb-[0.9em] text-left text-[0.9em] leading-[1.5] text-[#ccc]')}>
+        <p {...revelar('up', 0, 'mb-[0.9em] text-left text-[0.9em] leading-[1.5] text-muted')}>
           {project.description}
         </p>
 
@@ -40,7 +40,7 @@ export default function FeaturedCard({ project, onOpenImage }: FeaturedCardProps
               {...revelar(
                 'up',
                 i,
-                "mb-[0.3em] flex items-baseline gap-2 text-left text-[0.85em] leading-[1.4] text-[#bbb] before:text-base before:leading-none before:text-accent before:content-['▹']",
+                "mb-[0.3em] flex items-baseline gap-2 text-left text-[0.85em] leading-[1.4] text-subtle before:text-base before:leading-none before:text-accent before:content-['▹']",
                 { atraso: '45ms' },
               )}
             >
@@ -56,7 +56,7 @@ export default function FeaturedCard({ project, onOpenImage }: FeaturedCardProps
               {...revelar(
                 'pop',
                 i,
-                'rounded-[20px] border border-[rgba(0,133,178,0.3)] bg-[rgba(0,133,178,0.15)] px-[0.65em] py-[0.15em] text-[0.8em] font-medium text-badge',
+                'rounded-[20px] border border-brand/30 bg-brand/15 px-[0.65em] py-[0.15em] text-[0.8em] font-medium text-badge',
                 { atraso: '25ms' },
               )}
             >

@@ -15,6 +15,13 @@
   --color-portfolio: #2ba8d6;
   --color-contato: #9d85e8;
 
+  /* textos secundarios dos cards, azul das bordas e selos (usado com opacidade: brand/30) e fundo
+     das molduras das capturas */
+  --color-muted: #ccc;
+  --color-subtle: #bbb;
+  --color-brand: #0085b2;
+  --color-surface: #111;
+
   --color-accent: #2ba8d6;
   --color-accent-strong: #006e99;
   --color-accent-strong-hover: #005f82;

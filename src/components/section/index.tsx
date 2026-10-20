@@ -85,9 +85,17 @@ export function SectionLead({ children }: { children: ReactNode }) {
   );
 }
 
-export function SubTitle({ children }: { children: ReactNode }) {
+export function SubTitle({
+  children,
+  className = '',
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
   return (
-    <h3 className="mb-[0.2em] text-left text-[1.4em] leading-[150%] font-bold max-md:text-[1.2em]">
+    <h3
+      className={`mb-[0.2em] text-left text-[1.4em] leading-[150%] font-bold max-md:text-[1.2em] ${className}`}
+    >
       {children}
     </h3>
   );

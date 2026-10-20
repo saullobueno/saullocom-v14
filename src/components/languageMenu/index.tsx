@@ -57,7 +57,7 @@ export default function LanguageMenu() {
       >
         <Bandeira locale={locale} />
       </summary>
-      <ul className="absolute right-0 mt-2 w-40 rounded-lg border border-white/15 bg-[#1a1a1a] p-1 shadow-xl">
+      <ul className="absolute right-0 mt-2 w-40 rounded-lg border border-white/15 bg-bg p-1 shadow-xl">
         {IDIOMAS.map(({ locale: destino, nome, lang }) => (
           <li key={destino}>
             <a

@@ -12,7 +12,7 @@ interface ProjectGalleryProps {
 }
 
 const navButton =
-  'flex w-8 shrink-0 items-center justify-center rounded-lg bg-white/6 p-0 text-white transition hover:bg-[rgba(0,133,178,0.25)] [&_svg]:pointer-events-none [&_svg]:shrink-0';
+  'flex w-8 shrink-0 items-center justify-center rounded-lg bg-white/6 p-0 text-white transition hover:bg-brand/25 [&_svg]:pointer-events-none [&_svg]:shrink-0';
 
 export default function ProjectGallery({ images, title, onOpenImage }: ProjectGalleryProps) {
   const { gallery } = useMessages();
@@ -34,7 +34,7 @@ export default function ProjectGallery({ images, title, onOpenImage }: ProjectGa
     <div {...revelar('left', 0, 'flex flex-col gap-3 [grid-area:gallery]')}>
       <button
         type="button"
-        className="group block w-full cursor-zoom-in overflow-hidden rounded-xl bg-[#111] p-0 leading-[0]"
+        className="group block w-full cursor-zoom-in overflow-hidden rounded-xl bg-surface p-0 leading-[0]"
         onClick={() => onOpenImage(0)}
         aria-label={gallery.enlargeMain(title)}
       >
@@ -70,7 +70,7 @@ export default function ProjectGallery({ images, title, onOpenImage }: ProjectGa
                 key={src}
                 type="button"
                 data-thumb
-                className="shrink-0 grow-0 basis-[calc((100%-1.2rem)/3)] cursor-zoom-in snap-start overflow-hidden rounded-lg border border-white/12 bg-[#111] p-0 leading-[0] transition hover:-translate-y-0.5 hover:border-[#0085b2] max-sm:basis-[calc((100%-0.6rem)/2)]"
+                className="shrink-0 grow-0 basis-[calc((100%-1.2rem)/3)] cursor-zoom-in snap-start overflow-hidden rounded-lg border border-white/12 bg-surface p-0 leading-[0] transition hover:-translate-y-0.5 hover:border-brand max-sm:basis-[calc((100%-0.6rem)/2)]"
                 onClick={() => onOpenImage(i + 1)}
                 aria-label={gallery.enlargeCapture(i + 2, title)}
               >

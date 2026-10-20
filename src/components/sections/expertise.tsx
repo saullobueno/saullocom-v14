@@ -20,11 +20,12 @@ export default function Expertise() {
         <SectionLead>{expertise.lead}</SectionLead>
 
         <Columns>
-          <div className="w-full md:[&_*]:!text-right">
+          {/* desktop: a coluna da esquerda alinha a direita, encostada na imagem */}
+          <div className="w-full">
             {expertise.left.map((item, i) => (
               <div key={item.title} {...revelar('left', i, 'mb-6 last:mb-0')}>
-                <SubTitle>{item.title}</SubTitle>
-                <Text>{item.text}</Text>
+                <SubTitle className="md:text-right">{item.title}</SubTitle>
+                <Text className="md:text-right">{item.text}</Text>
               </div>
             ))}
           </div>
