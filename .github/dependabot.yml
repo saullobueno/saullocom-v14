@@ -14,6 +14,10 @@ updates:
       # typescript-eslint ainda nao suporta TypeScript 7 (revisar quando suportar)
       - dependency-name: typescript
         update-types: [version-update:semver-major]
+      # os tipos acompanham o Node em uso (.nvmrc); subir o major dos tipos sem subir o Node
+      # descreve APIs que o runtime nao tem
+      - dependency-name: '@types/node'
+        update-types: [version-update:semver-major]
 
   - package-ecosystem: github-actions
     directory: /
