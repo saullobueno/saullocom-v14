@@ -9,6 +9,17 @@ const globais = Object.fromEntries(
   config.headers.find((h) => h.source === '/(.*)')!.headers.map(({ key, value }) => [key, value]),
 );
 
+test('HTML gerado tem CSP por hash para os scripts inline, sem unsafe-inline', async ({ page }) => {
+  for (const caminho of ['/', '/en', '/pagina-que-nao-existe']) {
+    await page.goto(caminho);
+    const csp = await page
+      .locator('meta[http-equiv="Content-Security-Policy"]')
+      .getAttribute('content');
+    expect(csp, caminho).toMatch(/^script-src 'self'( 'sha256-[A-Za-z0-9+/=]+')+$/);
+  }
+  expect(globais['Strict-Transport-Security']).toMatch(/max-age=\d{8,}/);
+});
+
 test('CSP do vercel.json nao bloqueia recursos nem os lightboxes', async ({ page }) => {
   await page.route('**/*', async (route) => {
     try {
