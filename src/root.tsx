@@ -9,6 +9,8 @@ import {
   useLocation,
 } from 'react-router';
 
+import robotoLatin from '@fontsource-variable/roboto/files/roboto-latin-wght-normal.woff2?url';
+
 import imageHome from './assets/image-home.avif';
 import WebAnalytics from './components/analytics';
 import { idiomaDe, locales } from './i18n/locales';
@@ -22,6 +24,9 @@ export const links: Route.LinksFunction = () => [
   { rel: 'manifest', href: '/site.webmanifest' },
   // LCP: o hero e background CSS, entao o navegador so o descobriria depois do CSS
   { rel: 'preload', as: 'image', href: imageHome, type: 'image/avif', fetchPriority: 'high' },
+  // a fonte tambem so seria descoberta depois do CSS: o subset latino (o unico que o site usa)
+  // ja comeca a baixar junto, e a troca de fonte some no primeiro carregamento
+  { rel: 'preload', as: 'font', href: robotoLatin, type: 'font/woff2', crossOrigin: 'anonymous' },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
