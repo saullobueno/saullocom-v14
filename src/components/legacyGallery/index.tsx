@@ -26,7 +26,7 @@ export default function LegacyGallery() {
       <p {...revelar('up', 1, 'mb-8 text-center text-base text-portfolio')}>{legacy.lead}</p>
 
       <div
-        className={`grid grid-cols-4 gap-4 max-xl:grid-cols-3 max-[900px]:grid-cols-2 ${showAll ? 'lista-rolavel' : ''}`}
+        className={`grid grid-cols-4 gap-4 max-xl:grid-cols-3 max-md:grid-cols-2 ${showAll ? 'lista-rolavel' : ''}`}
       >
         {(showAll ? legacyProjects : legacyProjects.slice(0, VISIVEIS)).map((port, key) => (
           <button

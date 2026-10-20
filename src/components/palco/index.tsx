@@ -36,6 +36,7 @@ export default function Palco({ children }: { children: ReactNode }) {
     const raiz = document.documentElement;
     const reduz = window.matchMedia('(prefers-reduced-motion: reduce)');
     const baixa = window.matchMedia('(max-height: 499px)');
+    // mesmo limite do --breakpoint-md (index.css): abaixo dele e celular/tablet
     const compacta = window.matchMedia('(max-width: 880px)');
 
     let alvos: HTMLElement[] = [];

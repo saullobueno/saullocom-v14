@@ -33,7 +33,7 @@ export default function Contact() {
         <SectionTitle id="contact-title">{contact.title}</SectionTitle>
         <SectionLead>{contact.lead}</SectionLead>
 
-        <div className="flex items-center justify-center gap-[3em] max-[500px]:flex-col max-[500px]:gap-0">
+        <div className="flex items-center justify-center gap-[3em] max-sm:flex-col max-sm:gap-0">
           <div className="shrink-0">
             <DecorativeImage
               src={Stack04}

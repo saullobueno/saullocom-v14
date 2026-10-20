@@ -70,7 +70,7 @@ export default function ProjectGallery({ images, title, onOpenImage }: ProjectGa
                 key={src}
                 type="button"
                 data-thumb
-                className="shrink-0 grow-0 basis-[calc((100%-1.2rem)/3)] cursor-zoom-in snap-start overflow-hidden rounded-lg border border-white/12 bg-[#111] p-0 leading-[0] transition hover:-translate-y-0.5 hover:border-[#0085b2] max-[520px]:basis-[calc((100%-0.6rem)/2)]"
+                className="shrink-0 grow-0 basis-[calc((100%-1.2rem)/3)] cursor-zoom-in snap-start overflow-hidden rounded-lg border border-white/12 bg-[#111] p-0 leading-[0] transition hover:-translate-y-0.5 hover:border-[#0085b2] max-sm:basis-[calc((100%-0.6rem)/2)]"
                 onClick={() => onOpenImage(i + 1)}
                 aria-label={gallery.enlargeCapture(i + 2, title)}
               >

@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 
-/* Breakpoints espelham os do CSS original (que usava max-width: 1280/960/880/520). */
+/* Breakpoints do site: use os variantes (max-xs, max-sm, max-md...) e, no CSS, theme(--breakpoint-*),
+   em vez de valores soltos. md (881px) separa celular/tablet do desktop. */
 @theme {
   --font-sans: 'Roboto Variable', system-ui, sans-serif;
 
@@ -20,6 +21,7 @@
   --color-badge: #64d2ff;
   --color-focus: #64d2ff;
 
+  --breakpoint-xs: 360px;
   --breakpoint-sm: 521px;
   --breakpoint-md: 881px;
   --breakpoint-lg: 961px;
@@ -62,7 +64,7 @@
     line-height: normal;
   }
 
-  @media (max-width: 880px) {
+  @media (width < theme(--breakpoint-md)) {
     body {
       font-size: 15px;
     }
@@ -143,7 +145,7 @@
   font-size: 8rem;
 }
 
-@media (max-width: 880px) {
+@media (width < theme(--breakpoint-md)) {
   .titulo-secao {
     font-size: clamp(2.5rem, 12vw, 4rem);
   }
@@ -293,14 +295,14 @@ html[data-palco] .ponto:focus-visible::after {
 }
 
 /* desktop: folga a direita para o texto nao passar por baixo da coluna (que e maior aqui) */
-@media (min-width: 881px) {
+@media (width >= theme(--breakpoint-md)) {
   html[data-palco] .cena .cena-caixa {
     padding-right: max(4rem, 3.5vw);
   }
 }
 
 /* celular: bolinhas menores e coluna sem folga lateral (o botao de 24px ja e a area de toque) */
-@media (max-width: 880px) {
+@media (width < theme(--breakpoint-md)) {
   html[data-palco] .pontos {
     right: 0.4rem;
     padding: 0.3rem 0;
@@ -523,7 +525,7 @@ html[data-palco] .cena[data-estado='antes'] .rv-rise {
 }
 
 /* telas pequenas: a caixa e baixa, entao a galeria dos projetos mostra so a foto principal */
-@media (max-width: 880px) {
+@media (width < theme(--breakpoint-md)) {
   html[data-palco] .miniaturas {
     display: none;
   }
@@ -557,7 +559,7 @@ html[data-palco] .legacy-galeria img {
   height: min(24svh, 240px);
 }
 
-@media (max-width: 900px) {
+@media (width < theme(--breakpoint-md)) {
   html[data-palco] .legacy-galeria img {
     height: min(14svh, 140px);
   }

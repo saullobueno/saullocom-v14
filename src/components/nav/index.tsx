@@ -123,7 +123,7 @@ export default function Nav() {
               href="#contact"
               data-alvo="contact"
               onClick={aoClicarLink}
-              className="flex h-8 items-center rounded-md bg-accent-strong px-2.5 text-[12px] font-semibold whitespace-nowrap text-white transition-colors hover:bg-accent-strong-hover max-[359px]:hidden md:px-3 md:text-[0.8rem]"
+              className="flex h-8 items-center rounded-md bg-accent-strong px-2.5 text-[12px] font-semibold whitespace-nowrap text-white transition-colors hover:bg-accent-strong-hover max-xs:hidden md:px-3 md:text-[0.8rem]"
             >
               {t.nav.cta}
             </a>

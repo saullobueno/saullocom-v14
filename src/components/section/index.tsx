@@ -99,7 +99,7 @@ export function Text({ className = '', ...props }: ComponentProps<'p'>) {
 
 export function Columns({ children }: { children: ReactNode }) {
   return (
-    <div className="grid grid-cols-3 items-start justify-items-center gap-[1.5em] max-md:grid-cols-2 max-[500px]:grid-cols-1 max-[500px]:gap-0 [&>div]:text-left">
+    <div className="grid grid-cols-3 items-start justify-items-center gap-[1.5em] max-md:grid-cols-2 max-sm:grid-cols-1 max-sm:gap-0 [&>div]:text-left">
       {children}
     </div>
   );
