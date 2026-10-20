@@ -208,7 +208,7 @@ function Pagina({ projects }: { projects: FeaturedProject[] }) {
                   width={720}
                   height={720}
                   alt={t.contact.imageAlt}
-                  frameClassName="mx-auto aspect-square max-h-[34svh] max-md:my-4 max-md:max-h-[20svh]"
+                  frameClassName="mx-auto aspect-square h-[34svh] max-md:my-4 max-md:h-[20svh]"
                   {...imagemProps}
                 />
               </div>
