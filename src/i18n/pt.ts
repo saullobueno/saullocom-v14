@@ -134,7 +134,6 @@ export const pt = {
     lead: 'Tem um projeto para desenvolver, deseja contratar meus serviços ou quer conversar sobre oportunidades? Vamos conversar:',
     imageAlt:
       'Mão de pessoa de terno colocando um bloco de madeira no topo de uma torre, em tons arroxeados',
-    emailAria: 'Enviar e-mail',
   },
 
   footer: {

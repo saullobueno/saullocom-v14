@@ -110,11 +110,18 @@ export function Columns({ children }: { children: ReactNode }) {
 export function DecorativeImage({
   frameClassName = '',
   className = '',
+  loading = 'lazy',
+  decoding = 'async',
   ...props
 }: ComponentProps<'img'> & { frameClassName?: string }) {
   return (
     <div className={`rv-curtain overflow-hidden rounded-xl ${frameClassName}`}>
-      <img className={`block h-full w-full object-cover ${className}`} {...props} />
+      <img
+        className={`block h-full w-full object-cover ${className}`}
+        loading={loading}
+        decoding={decoding}
+        {...props}
+      />
     </div>
   );
 }

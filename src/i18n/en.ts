@@ -133,7 +133,6 @@ export const en: Messages = {
     lead: 'Have a project to build, want to hire my services or talk about opportunities? Let’s talk:',
     imageAlt:
       'Hand of a person in a suit placing a wooden block on top of a tower, in purple tones',
-    emailAria: 'Send an email',
   },
 
   footer: {
