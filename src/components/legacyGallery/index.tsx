@@ -3,6 +3,7 @@ import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 import { legacyProjects } from '../../data/legacyProjects';
 import { useMessages } from '../../i18n';
+import { abreNoLightbox, linkDaImagem } from '../lightbox/abrir';
 import { revelar } from '../reveal';
 
 const ImageLightbox = lazy(() => import('../lightbox'));
@@ -29,16 +30,12 @@ export default function LegacyGallery() {
         className={`grid grid-cols-4 gap-4 max-xl:grid-cols-3 max-md:grid-cols-2 ${showAll ? 'lista-rolavel' : ''}`}
       >
         {(showAll ? legacyProjects : legacyProjects.slice(0, VISIVEIS)).map((port, key) => (
-          <button
+          <a
             key={port.slug}
-            type="button"
-            {...revelar(
-              'up',
-              key % 4,
-              'group cursor-zoom-in overflow-hidden border-0 bg-transparent p-0 leading-[0]',
-            )}
+            {...linkDaImagem(port.imageLarge)}
+            {...revelar('up', key % 4, 'group cursor-zoom-in overflow-hidden leading-[0]')}
             aria-label={legacy.enlarge(port.title)}
-            onClick={() => setIndex(key)}
+            onClick={abreNoLightbox(() => setIndex(key))}
           >
             <img
               src={port.image}
@@ -49,11 +46,12 @@ export default function LegacyGallery() {
               decoding="async"
               className="mx-auto block h-auto w-full transition-transform duration-500 group-hover:scale-105"
             />
-          </button>
+          </a>
         ))}
       </div>
 
-      <div {...revelar('up', 6, 'mt-8')}>
+      {/* precisa-js: sem JavaScript o botao nao faz nada e some (ver o <noscript> em root.tsx) */}
+      <div {...revelar('up', 6, 'precisa-js mt-8')}>
         <button
           type="button"
           className="inline-flex items-center gap-2 rounded-[30px] border border-brand/30 bg-brand/10 px-8 py-[0.8rem] text-base font-semibold text-portfolio transition hover:-translate-y-0.5 hover:border-brand hover:bg-brand/25 hover:text-white [&_svg]:m-2.5"

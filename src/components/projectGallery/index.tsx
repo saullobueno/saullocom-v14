@@ -3,6 +3,7 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 import { LARGURA_MINI, miniaturaDe } from '../../data/miniaturas';
 import { useMessages } from '../../i18n';
+import { abreNoLightbox, linkDaImagem } from '../lightbox/abrir';
 import { revelar } from '../reveal';
 
 interface ProjectGalleryProps {
@@ -11,8 +12,9 @@ interface ProjectGalleryProps {
   onOpenImage: (index: number) => void;
 }
 
+// precisa-js: sem JavaScript as setas nao fazem nada e somem (ver o <noscript> em root.tsx)
 const navButton =
-  'flex w-8 shrink-0 items-center justify-center rounded-lg bg-white/6 p-0 text-white transition hover:bg-brand/25 [&_svg]:pointer-events-none [&_svg]:shrink-0';
+  'precisa-js flex w-8 shrink-0 items-center justify-center rounded-lg bg-white/6 p-0 text-white transition hover:bg-brand/25 [&_svg]:pointer-events-none [&_svg]:shrink-0';
 
 export default function ProjectGallery({ images, title, onOpenImage }: ProjectGalleryProps) {
   const { gallery } = useMessages();
@@ -32,10 +34,10 @@ export default function ProjectGallery({ images, title, onOpenImage }: ProjectGa
 
   return (
     <div {...revelar('left', 0, 'flex flex-col gap-3 [grid-area:gallery]')}>
-      <button
-        type="button"
-        className="group block w-full cursor-zoom-in overflow-hidden rounded-xl bg-surface p-0 leading-[0]"
-        onClick={() => onOpenImage(0)}
+      <a
+        {...linkDaImagem(hero)}
+        className="group block w-full cursor-zoom-in overflow-hidden rounded-xl bg-surface leading-[0]"
+        onClick={abreNoLightbox(() => onOpenImage(0))}
         aria-label={gallery.enlargeMain(title)}
       >
         <img
@@ -46,7 +48,7 @@ export default function ProjectGallery({ images, title, onOpenImage }: ProjectGa
           loading="lazy"
           className="foto-principal block aspect-[16/10] h-auto w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
         />
-      </button>
+      </a>
 
       {thumbnails.length > 0 && (
         <div className="miniaturas flex items-stretch gap-2">
@@ -66,12 +68,12 @@ export default function ProjectGallery({ images, title, onOpenImage }: ProjectGa
             ref={trackRef}
           >
             {thumbnails.map((src, i) => (
-              <button
+              <a
                 key={src}
-                type="button"
+                {...linkDaImagem(src)}
                 data-thumb
-                className="shrink-0 grow-0 basis-[calc((100%-1.2rem)/3)] cursor-zoom-in snap-start overflow-hidden rounded-lg border border-white/12 bg-surface p-0 leading-[0] transition hover:-translate-y-0.5 hover:border-brand max-sm:basis-[calc((100%-0.6rem)/2)]"
-                onClick={() => onOpenImage(i + 1)}
+                className="shrink-0 grow-0 basis-[calc((100%-1.2rem)/3)] cursor-zoom-in snap-start overflow-hidden rounded-lg border border-white/12 bg-surface leading-[0] transition hover:-translate-y-0.5 hover:border-brand max-sm:basis-[calc((100%-0.6rem)/2)]"
+                onClick={abreNoLightbox(() => onOpenImage(i + 1))}
                 aria-label={gallery.enlargeCapture(i + 2, title)}
               >
                 <img
@@ -80,7 +82,7 @@ export default function ProjectGallery({ images, title, onOpenImage }: ProjectGa
                   loading="lazy"
                   className="block aspect-[16/10] w-full object-cover"
                 />
-              </button>
+              </a>
             ))}
           </div>
 

@@ -13,6 +13,29 @@ test.describe('sem JavaScript', () => {
     await expect(page.locator('#contact')).toBeInViewport();
   });
 
+  test('as capturas sao links para a imagem cheia e os controles sem uso somem', async ({
+    page,
+  }) => {
+    await page.goto('/');
+    const principal = page.getByRole('link', { name: /Ampliar imagem principal de Forge/ });
+    await expect(principal).toHaveAttribute('href', /\.avif$/);
+    await expect(principal).toHaveAttribute('target', '_blank');
+    await expect(page.getByRole('link', { name: /Ampliar captura 2 de Forge/ })).toHaveAttribute(
+      'href',
+      /\.avif$/,
+    );
+    await expect(page.getByRole('link', { name: /^Ampliar projeto/ }).first()).toHaveAttribute(
+      'href',
+      /portfolio-web-.+-g-.+\.avif$/,
+    );
+    // setas da galeria e "ver todos" dependem de script: nao aparecem
+    await expect(page.locator('.precisa-js:visible')).toHaveCount(0);
+
+    await principal.scrollIntoViewIfNeeded();
+    const [aba] = await Promise.all([page.waitForEvent('popup'), principal.click()]);
+    expect(aba.url()).toMatch(/\.avif$/);
+  });
+
   test('o seletor de idioma funciona (details nativo)', async ({ page }) => {
     await page.goto('/');
     await page.getByLabel('Idioma').click();
@@ -23,8 +46,6 @@ test.describe('sem JavaScript', () => {
 });
 
 test.describe('com JavaScript', () => {
-  test.use({ reducedMotion: 'no-preference' });
-
   test('o bloco noscript nao muda nada: a barra segue escondida no topo, sem avisos', async ({
     page,
   }) => {
@@ -35,5 +56,25 @@ test.describe('com JavaScript', () => {
     await page.goto('/', { waitUntil: 'networkidle' });
     await expect(page.getByRole('navigation', { name: 'Navegação principal' })).toBeHidden();
     expect(avisos).toEqual([]);
+  });
+
+  test('imagem ampliavel: clique abre o lightbox; Ctrl+clique abre a imagem em outra aba', async ({
+    page,
+    context,
+  }) => {
+    await page.goto('/', { waitUntil: 'networkidle' });
+    const principal = page.getByRole('link', { name: /Ampliar imagem principal de Forge/ });
+    await principal.scrollIntoViewIfNeeded();
+    await principal.click();
+    await expect(page.getByRole('dialog')).toBeVisible();
+    await page.keyboard.press('Escape');
+    await expect(page.getByRole('dialog')).toBeHidden();
+
+    const [aba] = await Promise.all([
+      context.waitForEvent('page'),
+      principal.click({ modifiers: ['Control'] }),
+    ]);
+    expect(aba.url()).toMatch(/\.avif$/);
+    await expect(page.getByRole('dialog')).toBeHidden();
   });
 });

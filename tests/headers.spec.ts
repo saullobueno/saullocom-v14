@@ -47,14 +47,14 @@ test('CSP do vercel.json nao bloqueia recursos nem os lightboxes', async ({ page
   });
 
   // lightbox dos projetos em destaque
-  const destaque = page.getByRole('button', { name: /Ampliar imagem principal de Forge/ });
+  const destaque = page.getByRole('link', { name: /Ampliar imagem principal de Forge/ });
   await destaque.scrollIntoViewIfNeeded();
   await destaque.click();
   await expect(page.getByRole('dialog')).toBeVisible();
   await page.keyboard.press('Escape');
 
   // lightbox dos projetos legados
-  const legado = page.getByRole('button', { name: /^Ampliar projeto/ }).first();
+  const legado = page.getByRole('link', { name: /^Ampliar projeto/ }).first();
   await legado.scrollIntoViewIfNeeded();
   await legado.click();
   await expect(page.getByRole('dialog')).toBeVisible();
