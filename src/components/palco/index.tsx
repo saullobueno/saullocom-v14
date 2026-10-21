@@ -168,6 +168,7 @@ export default function Palco({ children }: { children: ReactNode }) {
       ligado = false;
       registrarControle(null);
       raiz.removeAttribute('data-palco');
+      raiz.removeAttribute('data-pronto');
       raiz.removeAttribute('data-rolou');
       raiz.style.removeProperty('--painel');
       alvos.forEach(limpaCena);
@@ -183,6 +184,8 @@ export default function Palco({ children }: { children: ReactNode }) {
     const liga = () => {
       if (reduz.matches || baixa.matches) {
         desliga();
+        // o atributo pode ter vindo do script do <head> (antes de a tela mudar): sem ouvintes, sem palco
+        raiz.removeAttribute('data-palco');
         return;
       }
       if (ligado) return;
@@ -203,6 +206,8 @@ export default function Palco({ children }: { children: ReactNode }) {
       aplica();
       agendaAjuste();
       void document.fonts?.ready.then(agendaAjuste);
+      // ouvintes registrados: a rolagem responde (some a barra de carregamento, entra a dica)
+      raiz.setAttribute('data-pronto', '');
     };
 
     liga();

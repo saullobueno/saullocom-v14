@@ -43,7 +43,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
           dangerouslySetInnerHTML={{
             __html:
               "if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&matchMedia('(min-height: 500px)').matches)document.documentElement.setAttribute('data-palco','');" +
-              `try{if(sessionStorage.getItem('${CHAVE_DESEMPENHO}')==='leve')document.documentElement.setAttribute('data-leve','')}catch(e){}`,
+              `try{if(sessionStorage.getItem('${CHAVE_DESEMPENHO}')==='leve')document.documentElement.setAttribute('data-leve','')}catch(e){}` +
+              // enquanto o palco nao esta pronto a rolagem fica travada: o overflow:hidden (index.css) barra
+              // roda e toque, e aqui as teclas (o Chrome rola por teclado mesmo com overflow:hidden)
+              "(function(){var r=document.documentElement,t={ArrowDown:1,ArrowUp:1,PageDown:1,PageUp:1,Home:1,End:1,' ':1};addEventListener('keydown',function(e){if(r.hasAttribute('data-palco')&&!r.hasAttribute('data-pronto')&&t[e.key]&&(e.target===document.body||e.target===r))e.preventDefault()})})();" +
+              // se o React nao chegar (script bloqueado ou com erro), o palco desliga e a pagina vira um fluxo comum
+              "setTimeout(function(){var r=document.documentElement;if(!r.hasAttribute('data-pronto'))r.removeAttribute('data-palco')},25000)",
           }}
         />
         {/* sem JavaScript nada revela a barra de menu (data-visivel, ver Nav): ela fica sempre visivel,

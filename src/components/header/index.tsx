@@ -3,6 +3,7 @@ import { Fragment } from 'react';
 import logo from '@/assets/logo-vertical.png';
 import imageHome from '@/assets/image-home.avif';
 import { useMessages } from '../../i18n';
+import DicaDeRolagem from '../dicaDeRolagem';
 
 const display = 'm-0 py-4 text-center text-white leading-[80%] font-bold';
 
@@ -39,6 +40,7 @@ export default function Header() {
             height="321"
             className="brightness-[500%] max-md:mt-[100px] max-md:max-h-[200px] max-md:w-auto"
           />
+          <DicaDeRolagem />
         </div>
         <div className="mt-[60px] text-center">
           <p className="m-0 text-center text-[1.2rem] leading-[180%] max-md:text-[0.8rem] max-md:leading-[120%]">
