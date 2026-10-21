@@ -332,6 +332,21 @@ html[data-palco] .ponto:focus-visible::after {
   }
 }
 
+/* Alto contraste (temas de contraste do Windows): o navegador troca as cores e o painel deixa de
+   escurecer o hero, cujo texto passaria por tras do conteudo da cena. Com o painel aberto, o hero
+   some; no topo (sem painel) ele continua aparecendo. */
+@media (forced-colors: active) {
+  html[data-palco][data-rolou] .hero-conteudo {
+    visibility: hidden;
+  }
+}
+
+/* Maquina lenta (componente Desempenho): sem a animacao de cor do hero, que e o que mais pesa
+   quando nao ha GPU. A imagem e as cores originais continuam. */
+html[data-leve] #top {
+  animation: none;
+}
+
 /* Hero fixo, do tamanho da tela; o conteudo passa na frente dele */
 html[data-palco] #top {
   position: fixed;

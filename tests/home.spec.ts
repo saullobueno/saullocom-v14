@@ -1,5 +1,6 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
+import { esperaHidratar } from './hidratacao';
 
 test('estrutura basica e SEO', async ({ page }) => {
   await page.goto('/');
@@ -35,8 +36,9 @@ test('acessibilidade WCAG A/AA (axe)', async ({ page }) => {
 
 test('lightbox abre ao clicar na imagem de um projeto', async ({ page }) => {
   await page.goto('/');
-  const imagem = page.getByRole('button', { name: /Ampliar imagem principal de Forge/ });
+  const imagem = page.getByRole('link', { name: /Ampliar imagem principal de Forge/ });
   await imagem.scrollIntoViewIfNeeded();
+  await esperaHidratar(imagem);
   await imagem.click();
   await expect(page.getByRole('dialog')).toBeVisible();
   await page.keyboard.press('Escape');

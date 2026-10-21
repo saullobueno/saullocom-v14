@@ -18,6 +18,9 @@ async function girarRoda(page: Page, delta: number) {
 async function abrir(page: Page, caminho = '/') {
   await page.goto(caminho, { waitUntil: 'networkidle' });
   await expect(page.locator('html')).toHaveAttribute('data-palco', '');
+  // o atributo vem de um script do <head>, antes de o React hidratar; os pontos de cena so existem
+  // depois que o Palco registrou os ouvintes de roda e teclado (e o gesto seguinte nao se perde)
+  await expect(page.locator('.pontos .ponto').first()).toBeAttached();
   await page.mouse.move(300, 300);
 }
 
@@ -284,6 +287,22 @@ test.describe('palco (movimento normal)', () => {
     await page.goto('/', { waitUntil: 'networkidle' });
     await expect(page.locator('html')).not.toHaveAttribute('data-palco', '');
     await expect(page.getByRole('heading', { name: 'SOBRE' })).toBeVisible();
+  });
+});
+
+test.describe('palco em alto contraste (forced-colors)', () => {
+  test.use({ reducedMotion: 'no-preference', forcedColors: 'active' });
+
+  test('o texto do hero some quando uma cena abre e volta no topo', async ({ page }) => {
+    await abrir(page);
+    const hero = page.locator('.hero-conteudo');
+    const visibilidade = () => hero.evaluate((el) => getComputedStyle(el).visibility);
+    expect(await visibilidade()).toBe('visible');
+    await girarRoda(page, 40);
+    expect(await visibilidade()).toBe('hidden');
+    await page.keyboard.press('Home');
+    await page.waitForTimeout(TRANSICAO);
+    expect(await visibilidade()).toBe('visible');
   });
 });
 
