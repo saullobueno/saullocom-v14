@@ -12,7 +12,7 @@ concurrency:
 jobs:
   qualidade:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v7
 
@@ -27,7 +27,9 @@ jobs:
       - run: npm run typecheck
       - run: npm run build
 
-      # Os testes usam o Chrome ja instalado no runner (channel: 'chrome')
+      # Chrome: ja instalado no runner (channel: 'chrome'). Firefox: baixado pelo Playwright
+      # (o site tem comportamento proprio sem GPU e a rolagem por cenas depende do navegador)
+      - run: npx playwright install --with-deps firefox
       - run: npm test
 
       - uses: actions/upload-artifact@v7

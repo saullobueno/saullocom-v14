@@ -33,7 +33,10 @@ npm run build     # build de produção com HTML pré-renderizado (SSG) em build
 npm run preview   # serve build/client em http://localhost:4173
 npm run lint      # ESLint
 npm run format     # Prettier
-npm test           # testes e2e (Playwright + axe): exige npm run build antes
+npm test           # testes e2e (Playwright + axe), Chrome e depois Firefox: exige npm run build antes
+npx playwright install firefox   # uma vez por maquina, para os testes no Firefox
+npm test -- --project=chrome     # so no Chrome
+npm test -- --project=firefox --no-deps   # so no Firefox
 ```
 
 ## Estrutura
