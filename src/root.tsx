@@ -13,6 +13,7 @@ import robotoLatin from '@fontsource-variable/roboto/files/roboto-latin-wght-nor
 
 import imageHome from './assets/image-home.avif';
 import WebAnalytics from './components/analytics';
+import Desempenho, { CHAVE_DESEMPENHO } from './components/desempenho';
 import { idiomaDe, locales } from './i18n/locales';
 import type { Route } from './+types/root';
 import './index.css';
@@ -36,11 +37,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        {/* liga o modo palco antes da primeira pintura (so com JS e sem preferencia por menos movimento) */}
+        {/* antes da primeira pintura: liga o modo palco (so com JS, sem preferencia por menos movimento
+            e com tela alta) e reaplica o modo leve que o componente Desempenho decidiu nesta sessao */}
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&matchMedia('(min-height: 500px)').matches)document.documentElement.setAttribute('data-palco','')",
+              "if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&matchMedia('(min-height: 500px)').matches)document.documentElement.setAttribute('data-palco','');" +
+              `try{if(sessionStorage.getItem('${CHAVE_DESEMPENHO}')==='leve')document.documentElement.setAttribute('data-leve','')}catch(e){}`,
           }}
         />
         <Meta />
@@ -60,6 +63,7 @@ export default function App() {
     <>
       <Outlet />
       <WebAnalytics />
+      <Desempenho />
     </>
   );
 }

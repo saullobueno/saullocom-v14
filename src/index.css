@@ -332,6 +332,12 @@ html[data-palco] .ponto:focus-visible::after {
   }
 }
 
+/* Maquina lenta (componente Desempenho): sem a animacao de cor do hero, que e o que mais pesa
+   quando nao ha GPU. A imagem e as cores originais continuam. */
+html[data-leve] #top {
+  animation: none;
+}
+
 /* Hero fixo, do tamanho da tela; o conteudo passa na frente dele */
 html[data-palco] #top {
   position: fixed;
