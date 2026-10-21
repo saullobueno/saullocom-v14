@@ -1,13 +1,17 @@
+import { useMessages } from '../../i18n';
+
 // Indicador abaixo da logo do hero, no mesmo lugar para duas situacoes (ver .rolar-* em index.css):
 //  - ate o site ficar pronto (palco ainda sem ouvintes): spinner, o carregamento de verdade;
-//  - depois: mouse com a rodinha descendo e uma seta, a dica para rolar. Some quando uma cena abre.
+//  - depois: mouse com a rodinha descendo, uma seta e a legenda "Role a pagina". Some quando uma
+//    cena abre.
 // Decorativo: o menu e os pontos de cena ja dao o caminho para quem usa leitor de tela. O fundo
 // escuro suave garante contraste sobre a foto, sem blur (que pesaria sem GPU).
 export default function DicaDeRolagem() {
+  const { hero } = useMessages();
   return (
     <div
       aria-hidden="true"
-      className="rolar-dica mx-auto mt-14 grid w-fit place-items-center rounded-full bg-black/25 px-3 py-2.5 text-white max-md:mt-5 max-md:px-2.5 max-md:py-2"
+      className="rolar-dica mx-auto mt-14 grid w-fit place-items-center rounded-3xl bg-black/25 px-4 py-3 text-white max-md:mt-5 max-md:px-3 max-md:py-2.5"
     >
       <svg
         className="rolar-carregando [grid-area:1/1]"
@@ -49,6 +53,9 @@ export default function DicaDeRolagem() {
         >
           <path d="M2 2l7 6 7-6" />
         </svg>
+        <span className="rolar-legenda mt-1 text-xs leading-none font-medium tracking-wide whitespace-nowrap [text-shadow:0_1px_3px_rgb(0_0_0/0.7)] max-md:mt-0.5 max-md:text-[0.68rem]">
+          {hero.scrollHint}
+        </span>
       </div>
     </div>
   );

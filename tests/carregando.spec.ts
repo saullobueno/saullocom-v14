@@ -31,12 +31,20 @@ test.describe('carregando e dica de rolagem (modo palco)', () => {
     await expect.poll(() => estilo(page, '.rolar-icone', 'opacity')).toBe('1');
     expect(await estilo(page, '.rolar-carregando', 'visibility')).toBe('hidden');
     expect(await estilo(page, '.carregando', 'display')).toBe('none');
+    await expect(page.locator('.rolar-legenda')).toHaveText('Role a página');
+    await expect(page.locator('.rolar-legenda')).toBeVisible();
     const abaixoDaLogoComFolga = await page.evaluate(() => {
       const logo = document.querySelector('.hero-conteudo img')!.getBoundingClientRect();
       const d = document.querySelector('.rolar-dica')!.getBoundingClientRect();
       return d.top - logo.bottom >= 40 && d.left < logo.right && d.right > logo.left;
     });
     expect(abaixoDaLogoComFolga).toBe(true);
+  });
+
+  test('a legenda acompanha o idioma da pagina', async ({ page }) => {
+    await page.goto('/en', { waitUntil: 'networkidle' });
+    await expect(page.locator('html')).toHaveAttribute('data-pronto', '');
+    await expect(page.locator('.rolar-legenda')).toHaveText('Scroll down');
   });
 
   test('abrir uma cena esconde a dica', async ({ page }) => {
@@ -55,6 +63,7 @@ test.describe('carregando e dica de rolagem (modo palco)', () => {
     expect(await estilo(page, '.carregando', 'display')).toBe('block');
     expect(await estilo(page, '.rolar-carregando', 'visibility')).toBe('visible');
     expect(await estilo(page, '.rolar-icone', 'visibility')).toBe('hidden');
+    expect(await estilo(page, '.rolar-legenda', 'visibility')).toBe('hidden');
 
     await page.mouse.move(300, 300);
     await page.mouse.wheel(0, 1500);
@@ -97,7 +106,7 @@ test.describe('carregando e dica de rolagem (modo palco)', () => {
     await expect(page.locator('html')).not.toHaveAttribute('data-palco', '');
     // texto visivel (sem palco nada fica escondido) e rolagem livre
     await expect(page.locator('#about-title')).toBeVisible();
-    await page.evaluate(() => window.scrollTo(0, 1500));
+    await page.evaluate(() => window.scrollTo({ top: 1500, behavior: 'instant' }));
     expect(await scrollY(page)).toBeGreaterThan(1000);
   });
 
