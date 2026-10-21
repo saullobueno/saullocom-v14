@@ -18,6 +18,9 @@ async function girarRoda(page: Page, delta: number) {
 async function abrir(page: Page, caminho = '/') {
   await page.goto(caminho, { waitUntil: 'networkidle' });
   await expect(page.locator('html')).toHaveAttribute('data-palco', '');
+  // o atributo vem de um script do <head>, antes de o React hidratar; os pontos de cena so existem
+  // depois que o Palco registrou os ouvintes de roda e teclado (e o gesto seguinte nao se perde)
+  await expect(page.locator('.pontos .ponto').first()).toBeAttached();
   await page.mouse.move(300, 300);
 }
 

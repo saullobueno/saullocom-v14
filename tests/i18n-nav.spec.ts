@@ -150,8 +150,10 @@ test.describe('barra de navegacao aparece ao rolar', () => {
 
   test('o primeiro Tab revela a barra no topo e o foco chega nela', async ({ page }) => {
     await page.goto('/', { waitUntil: 'networkidle' });
-    // data-palco so aparece depois da hidratacao, quando o atalho do Tab ja esta registrado
+    // data-palco vem de um script do <head>; os pontos de cena so existem depois da hidratacao,
+    // quando o atalho do Tab ja esta registrado
     await expect(page.locator('html')).toHaveAttribute('data-palco', '');
+    await expect(page.locator('.pontos .ponto').first()).toBeAttached();
     await page.keyboard.press('Tab'); // link "pular para o conteudo"
     await expect(page.getByRole('navigation', { name: 'Navegação principal' })).toBeVisible();
     await page.keyboard.press('Tab'); // logo da barra

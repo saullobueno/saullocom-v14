@@ -49,10 +49,12 @@ test.describe('desempenho adaptativo', () => {
     await fingeQuadros(page, 'lentoComCena');
     await page.goto('/', { waitUntil: 'networkidle' });
     await expect(page.locator('html')).toHaveAttribute('data-palco', '');
+    await expect(page.locator('.pontos .ponto').first()).toBeAttached();
     await page.waitForTimeout(3000); // a primeira medida (no hero) termina sem desligar nada
     await expect(page.locator('html')).not.toHaveAttribute('data-leve', '');
     await page.keyboard.press('PageDown');
-    await expect(page.locator('html')).toHaveAttribute('data-leve', '', { timeout: 12_000 });
+    // folga grande: o Firefox sem GPU leva 15 a 25 s so para esta pagina (a medida em si leva ~4 s)
+    await expect(page.locator('html')).toHaveAttribute('data-leve', '', { timeout: 30_000 });
   });
 
   test('aba em segundo plano nao conta como maquina lenta', async ({ page }) => {
