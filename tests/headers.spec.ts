@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { expect, test } from '@playwright/test';
+import { esperaHidratar } from './hidratacao';
 
 // Aplica os cabecalhos de vercel.json (como a Vercel faria) e garante que a CSP nao bloqueia nada.
 const config = JSON.parse(readFileSync('vercel.json', 'utf8')) as {
@@ -49,6 +50,7 @@ test('CSP do vercel.json nao bloqueia recursos nem os lightboxes', async ({ page
   // lightbox dos projetos em destaque
   const destaque = page.getByRole('link', { name: /Ampliar imagem principal de Forge/ });
   await destaque.scrollIntoViewIfNeeded();
+  await esperaHidratar(destaque);
   await destaque.click();
   await expect(page.getByRole('dialog')).toBeVisible();
   await page.keyboard.press('Escape');
@@ -56,6 +58,7 @@ test('CSP do vercel.json nao bloqueia recursos nem os lightboxes', async ({ page
   // lightbox dos projetos legados
   const legado = page.getByRole('link', { name: /^Ampliar projeto/ }).first();
   await legado.scrollIntoViewIfNeeded();
+  await esperaHidratar(legado);
   await legado.click();
   await expect(page.getByRole('dialog')).toBeVisible();
 

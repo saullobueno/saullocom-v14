@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { esperaHidratar } from './hidratacao';
 
 // Sem JavaScript (bloqueador de scripts, politica da empresa...) o site e uma pagina comum:
 // conteudo, menu e idioma continuam funcionando; so some o que depende de script.
@@ -65,6 +66,7 @@ test.describe('com JavaScript', () => {
     await page.goto('/', { waitUntil: 'networkidle' });
     const principal = page.getByRole('link', { name: /Ampliar imagem principal de Forge/ });
     await principal.scrollIntoViewIfNeeded();
+    await esperaHidratar(principal);
     await principal.click();
     await expect(page.getByRole('dialog')).toBeVisible();
     await page.keyboard.press('Escape');
