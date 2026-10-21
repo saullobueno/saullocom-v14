@@ -46,6 +46,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
               `try{if(sessionStorage.getItem('${CHAVE_DESEMPENHO}')==='leve')document.documentElement.setAttribute('data-leve','')}catch(e){}`,
           }}
         />
+        {/* sem JavaScript nada revela a barra de menu (data-visivel, ver Nav): ela fica sempre visivel,
+            e somem os controles que so funcionam com JavaScript (.precisa-js). O "html" na frente da
+            ao seletor mais peso que o .nav-bar do CSS, que chega depois deste bloco. */}
+        <noscript>
+          <style>
+            {'html .nav-bar{translate:0 0;visibility:visible}.precisa-js{display:none}'}
+          </style>
+        </noscript>
         <Meta />
         <Links />
       </head>
