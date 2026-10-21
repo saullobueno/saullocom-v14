@@ -290,6 +290,22 @@ test.describe('palco (movimento normal)', () => {
   });
 });
 
+test.describe('palco em alto contraste (forced-colors)', () => {
+  test.use({ reducedMotion: 'no-preference', forcedColors: 'active' });
+
+  test('o texto do hero some quando uma cena abre e volta no topo', async ({ page }) => {
+    await abrir(page);
+    const hero = page.locator('.hero-conteudo');
+    const visibilidade = () => hero.evaluate((el) => getComputedStyle(el).visibility);
+    expect(await visibilidade()).toBe('visible');
+    await girarRoda(page, 40);
+    expect(await visibilidade()).toBe('hidden');
+    await page.keyboard.press('Home');
+    await page.waitForTimeout(TRANSICAO);
+    expect(await visibilidade()).toBe('visible');
+  });
+});
+
 test.describe('sem palco (movimento reduzido)', () => {
   test.use({ reducedMotion: 'reduce' });
 
