@@ -19,8 +19,8 @@ export default function DicaDeRolagem() {
       <div className="grid place-items-center rounded-full bg-black/15 px-3 py-2.5 text-white max-md:px-2.5 max-md:py-2">
         <svg
           className="rolar-carregando [grid-area:1/1]"
-          width="34"
-          height="34"
+          width="30"
+          height="30"
           viewBox="0 0 34 34"
           fill="none"
           stroke="currentColor"
@@ -33,9 +33,9 @@ export default function DicaDeRolagem() {
 
         <div className="rolar-icone flex flex-col items-center gap-1.5 [grid-area:1/1] max-md:gap-1">
           <svg
-            className="max-md:h-[38px] max-md:w-6"
-            width="30"
-            height="48"
+            className="max-md:h-[34px] max-md:w-[21px]"
+            width="26"
+            height="42"
             viewBox="0 0 30 48"
             fill="none"
             stroke="currentColor"
@@ -52,9 +52,9 @@ export default function DicaDeRolagem() {
             />
           </svg>
           <svg
-            className="rolar-seta max-md:h-2.5 max-md:w-4"
-            width="20"
-            height="12"
+            className="rolar-seta max-md:h-[9px] max-md:w-3.5"
+            width="18"
+            height="11"
             viewBox="0 0 18 10"
             fill="none"
             stroke="currentColor"
@@ -67,7 +67,7 @@ export default function DicaDeRolagem() {
         </div>
       </div>
 
-      <span className="rolar-legenda text-[0.68rem] leading-none font-medium tracking-wide whitespace-nowrap text-white [text-shadow:0_1px_3px_rgb(0_0_0/0.85)] max-md:text-[0.62rem]">
+      <span className="rolar-legenda text-[0.68rem] leading-none font-normal tracking-wide whitespace-nowrap text-white [text-shadow:0_1px_3px_rgb(0_0_0/0.85)] max-md:text-[0.62rem]">
         {hero.scrollHint}
       </span>
     </div>
