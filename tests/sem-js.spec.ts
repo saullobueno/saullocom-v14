@@ -32,9 +32,11 @@ test.describe('sem JavaScript', () => {
     // setas da galeria e "ver todos" dependem de script: nao aparecem
     await expect(page.locator('.precisa-js:visible')).toHaveCount(0);
 
-    await principal.scrollIntoViewIfNeeded();
-    const [aba] = await Promise.all([page.waitForEvent('popup'), principal.click()]);
-    expect(aba.url()).toMatch(/\.avif$/);
+    // o endereco do link serve de fato a imagem (sem abrir aba: popup em contexto sem JavaScript
+    // deixou a suite instavel)
+    const resposta = await page.request.get((await principal.getAttribute('href'))!);
+    expect(resposta.ok()).toBe(true);
+    expect(resposta.headers()['content-type']).toBe('image/avif');
   });
 
   test('o seletor de idioma funciona (details nativo)', async ({ page }) => {

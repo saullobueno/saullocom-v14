@@ -385,7 +385,8 @@ html[data-palco]:not([data-pronto]) .carregando {
 }
 
 .rolar-carregando,
-.rolar-icone {
+.rolar-icone,
+.rolar-legenda {
   transition:
     opacity 0.5s ease,
     visibility 0s linear 0s;
@@ -401,7 +402,8 @@ html[data-palco]:not([data-pronto]) .rolar-carregando {
   visibility: visible;
 }
 
-html[data-palco]:not([data-pronto]) .rolar-icone {
+html[data-palco]:not([data-pronto]) .rolar-icone,
+html[data-palco]:not([data-pronto]) .rolar-legenda {
   opacity: 0;
   visibility: hidden;
 }
@@ -758,6 +760,10 @@ html[data-palco] .nav-bar {
   text-shadow: 0 1px 6px rgb(0 0 0 / 0.7);
 }
 
-html {
+/* Rolagem animada so na pagina comum (ancoras do menu). No palco quem rola e o Palco, que pede
+   'smooth' ou 'instant' em cada chamada; com smooth global, a restauracao da posicao ao recarregar
+   (React Router) virava uma rolagem animada que o palco acompanhava cena por cena, acendendo cenas
+   intermediarias de relance. */
+html:not([data-palco]) {
   scroll-behavior: smooth;
 }

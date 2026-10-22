@@ -33,6 +33,13 @@ test.describe('carregando e dica de rolagem (modo palco)', () => {
     expect(await estilo(page, '.carregando', 'display')).toBe('none');
     await expect(page.locator('.rolar-legenda')).toHaveText('Role a página');
     await expect(page.locator('.rolar-legenda')).toBeVisible();
+    // a legenda fica fora e abaixo do box escuro do icone
+    const legendaFora = await page.evaluate(() => {
+      const box = document.querySelector('.rolar-dica > div')!.getBoundingClientRect();
+      const legenda = document.querySelector('.rolar-legenda')!.getBoundingClientRect();
+      return legenda.top >= box.bottom && legenda.height > 0;
+    });
+    expect(legendaFora).toBe(true);
     const abaixoDaLogoComFolga = await page.evaluate(() => {
       const logo = document.querySelector('.hero-conteudo img')!.getBoundingClientRect();
       const d = document.querySelector('.rolar-dica')!.getBoundingClientRect();
@@ -76,7 +83,10 @@ test.describe('carregando e dica de rolagem (modo palco)', () => {
     page,
   }) => {
     await segurarReact(page, 3000);
-    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    // 'commit': volta assim que o HTML chega. Com 'domcontentloaded' o goto so volta depois de o
+    // script do React (segurado) executar, e a hidratacao poderia terminar antes da verificacao.
+    await page.goto('/', { waitUntil: 'commit' });
+    await expect(page.locator('html')).toHaveAttribute('data-palco', '');
     await expect(page.locator('html')).not.toHaveAttribute('data-pronto', '');
     await page.mouse.move(300, 300);
     // visitante impaciente: duas rolagens e uma tecla durante a espera
