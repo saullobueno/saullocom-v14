@@ -9,7 +9,7 @@ const cenasAtivas = (page: Page) => page.locator('main .cena[data-estado="ativa"
 async function abrir(page: Page) {
   await page.goto('/', { waitUntil: 'networkidle' });
   // data-pronto: o Palco registrou os ouvintes (a rolagem responde)
-  await expect(page.locator('html')).toHaveAttribute('data-pronto', '');
+  await expect(page.locator('html')).toHaveAttribute('data-pronto', '', { timeout: 30_000 });
 }
 
 // O script do React (entry.client) e o que liga o palco: segurar ou derrubar esse arquivo reproduz

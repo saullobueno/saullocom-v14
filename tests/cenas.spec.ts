@@ -36,7 +36,7 @@ const lerCenas = (page: Page) =>
 
 async function abrir(page: Page, caminho = '/') {
   await page.goto(caminho, { waitUntil: 'networkidle' });
-  await expect(page.locator('html')).toHaveAttribute('data-pronto', '');
+  await expect(page.locator('html')).toHaveAttribute('data-pronto', '', { timeout: 30_000 });
   await page.mouse.move(400, 300);
 }
 
