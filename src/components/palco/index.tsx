@@ -56,17 +56,37 @@ export default function Palco({ children }: { children: ReactNode }) {
       if (caixa instanceof HTMLElement && caixa.classList.contains('cena-caixa')) marcaMais(caixa);
     };
 
+    const estadoDe = (i: number) => (i < atual ? 'antes' : i > atual ? 'depois' : 'ativa');
+
+    // Cena recem-revelada (saindo de content-visibility: hidden): o estilo dela pode estar
+    // desatualizado (de antes do CSS chegar, ou de quando estava ativa) e o navegador animaria dessa
+    // posicao antiga ate a certa, mostrando o conteudo de relance (ex.: Habilidades piscando ao ir
+    // do hero para Sobre). Entao ela nasce sem transicoes (data-revelando) e, se for a ativa, num
+    // estado neutro; dois quadros depois vale o estado de verdade, ja com a entrada animada.
+    const revela = (alvo: HTMLElement, i: number) => {
+      alvo.setAttribute('data-revelando', '');
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => {
+          if (!ligado) return;
+          alvo.removeAttribute('data-revelando');
+          alvo.dataset.estado = estadoDe(i);
+        }),
+      );
+    };
+
     const aplica = () => {
       alvos.forEach((alvo, i) => {
         if (alvo.classList.contains('cena-hero')) return;
-        const estado = i < atual ? 'antes' : i > atual ? 'depois' : 'ativa';
+        const estado = estadoDe(i);
+        // so a cena atual e as vizinhas sao renderizadas (e carregam suas imagens)
+        const perto = Math.abs(i - atual) <= 1;
+        const revelada = perto && !alvo.hasAttribute('data-perto');
         // cena que volta a ser a ativa comeca do topo, nao de onde a rolagem interna parou
         if (estado === 'ativa' && alvo.dataset.estado && alvo.dataset.estado !== 'ativa') {
           alvo.querySelector<HTMLElement>('.cena-caixa')?.scrollTo({ top: 0, behavior: 'instant' });
         }
-        alvo.dataset.estado = estado;
-        // so a cena atual e as vizinhas sao renderizadas (e carregam suas imagens)
-        const perto = Math.abs(i - atual) <= 1;
+        if (revelada) revela(alvo, i);
+        alvo.dataset.estado = revelada && estado === 'ativa' ? 'depois' : estado;
         alvo.toggleAttribute('data-perto', perto);
         // celular e tablet: a fonte nao encolhe, o que nao couber rola por dentro
         if (perto && !('ajustada' in alvo.dataset)) ajustaCena(alvo, !compacta.matches);

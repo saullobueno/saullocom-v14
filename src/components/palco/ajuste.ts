@@ -41,6 +41,7 @@ export function ajustaCena(alvo: HTMLElement, encolhe: boolean) {
 export function limpaCena(alvo: HTMLElement) {
   alvo.removeAttribute('data-estado');
   alvo.removeAttribute('data-perto');
+  alvo.removeAttribute('data-revelando');
   delete alvo.dataset.ajustada;
   const caixa = caixaDe(alvo);
   if (!caixa) return;
