@@ -611,6 +611,13 @@ html[data-palco] .cena:not([data-perto]) .cena-palco {
   content-visibility: hidden;
 }
 
+/* Cena recem-revelada (Palco, revela()): sem transicao ate o navegador desenha-la pela primeira vez.
+   O !important e de proposito: precisa vencer toda regra de transicao das cenas e dos rv-*. */
+html[data-palco] .cena[data-revelando] .cena-palco,
+html[data-palco] .cena[data-revelando] .cena-palco * {
+  transition: none !important;
+}
+
 html[data-palco] .cena[data-estado='ativa'] .cena-caixa {
   opacity: 1;
   pointer-events: auto;

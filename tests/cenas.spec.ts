@@ -89,6 +89,85 @@ test.describe('passagem de cenas', () => {
   });
 });
 
+// Registra cada transicao de opacidade que comeca numa caixa de cena, com a opacidade que ela tinha
+// naquele momento. (Nao da para medir pelo valor calculado: em cena com content-visibility: hidden
+// o getComputedStyle devolve o valor antigo.)
+async function registrarTransicoes(page: Page) {
+  await page.addInitScript(() => {
+    const w = window as unknown as { __tr: { cena: number; estado: string; opacidade: number }[] };
+    w.__tr = [];
+    document.addEventListener(
+      'transitionrun',
+      (e) => {
+        const caixa = e.target as HTMLElement;
+        if (!caixa.classList?.contains('cena-caixa') || e.propertyName !== 'opacity') return;
+        const cena = caixa.closest<HTMLElement>('.cena')!;
+        w.__tr.push({
+          cena: [...document.querySelectorAll('main .cena')].indexOf(cena),
+          estado: cena.dataset.estado ?? '',
+          opacidade: parseFloat(getComputedStyle(caixa).opacity),
+        });
+      },
+      true,
+    );
+  });
+}
+const zerarTransicoes = (page: Page) =>
+  page.evaluate(() => ((window as unknown as { __tr: unknown[] }).__tr = []));
+const lerTransicoes = (page: Page) =>
+  page.evaluate(
+    () =>
+      (window as unknown as { __tr: { cena: number; estado: string; opacidade: number }[] }).__tr,
+  );
+
+test.describe('cenas vizinhas reveladas nao piscam', () => {
+  test.use({ reducedMotion: 'no-preference' });
+
+  // Cenas longe da atual ficam com content-visibility: hidden e o estilo delas congela como estava
+  // (opaco, se estavam ativas). Ao virar vizinha, o navegador animava dessa opacidade antiga ate 0 e o
+  // conteudo aparecia de relance (ex.: Habilidades piscando ao ir do hero para Sobre no servidor de
+  // desenvolvimento, onde o CSS chega depois da primeira pintura). Uma vizinha revelada nao pode
+  // animar a partir de opaco.
+  test('saltar para longe e voltar a uma vizinha: so a cena de destino anima', async ({ page }) => {
+    await registrarTransicoes(page);
+    await abrir(page);
+    await page.mouse.wheel(0, 100); // Sobre (cena 0)
+    await page.waitForTimeout(TRANSICAO + 500);
+    await page.mouse.wheel(0, 100); // Habilidades (cena 1)
+    await page.waitForTimeout(TRANSICAO + 500);
+    await page.locator('.pontos .ponto').nth(7).click(); // salta para a cena 6: Habilidades fica
+    await page.waitForTimeout(TRANSICAO + 700); //          oculta com o estilo de "ativa"
+    await zerarTransicoes(page);
+    await page.locator('.pontos .ponto').nth(1).click(); // volta a Sobre: Habilidades e vizinha
+    await page.waitForTimeout(TRANSICAO + 700);
+    const transicoes = await lerTransicoes(page);
+    const piscando = transicoes.filter((t) => t.estado !== 'ativa' && t.opacidade > 0.05);
+    expect(piscando, 'cena revelada animando a partir de opaco').toEqual([]);
+    expect(transicoes.some((t) => t.cena === 0 && t.estado === 'ativa')).toBe(true);
+  });
+
+  test('descer e subir um gesto por vez: so a cena que sai e a que entra animam', async ({
+    page,
+  }) => {
+    await registrarTransicoes(page);
+    await abrir(page);
+    const passos = [1, 1, 1, -1, -1, -1];
+    for (const sentido of passos) {
+      await zerarTransicoes(page);
+      await page.mouse.wheel(0, 100 * sentido);
+      await page.waitForTimeout(TRANSICAO + 300);
+      const ativa = await page.evaluate(() =>
+        [...document.querySelectorAll('main .cena')].findIndex(
+          (c) => (c as HTMLElement).dataset.estado === 'ativa',
+        ),
+      );
+      const transicoes = await lerTransicoes(page);
+      const intrusas = transicoes.filter((t) => t.opacidade > 0.05 && Math.abs(t.cena - ativa) > 1);
+      expect(intrusas, `passo ${sentido > 0 ? 'para baixo' : 'para cima'}`).toEqual([]);
+    }
+  });
+});
+
 test.describe('hero em telas comuns de notebook', () => {
   test.use({ reducedMotion: 'no-preference' });
 
