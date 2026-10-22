@@ -35,33 +35,38 @@ export default function Header() {
         }}
       />
       <div className="hero-conteudo relative z-10 flex h-full w-full max-w-[1280px] shrink items-center justify-around px-8 text-white max-md:flex-col max-md:justify-around max-md:px-0">
-        <div>
-          <img
-            src={logo}
-            alt="Saullo.com"
-            width="200"
-            height="321"
-            className="brightness-[500%] max-md:mt-[100px] max-md:max-h-[200px] max-md:w-auto"
-          />
-          <DicaDeRolagem />
-        </div>
-        <div className="mt-[60px] text-center">
-          <p className="m-0 text-center text-[1.2rem] leading-[180%] max-md:text-[0.8rem] max-md:leading-[120%]">
-            {hero.greeting}
-          </p>
-          <h1 className="sr-only">{hero.h1}</h1>
-          <div
-            className={`${display} block text-[min(10rem,calc((100svh_-_260px)/4))] max-md:hidden`}
-            aria-hidden="true"
-          >
-            <Linhas linhas={hero.verticalWords} />
+        {/* Desktop: as duas colunas ficam num bloco do tamanho do texto, e o indicador de rolagem
+            cola na base da coluna da logo, alinhado com a ultima linha do texto. No celular
+            (contents) a estrutura e a de antes e o indicador fica logo abaixo da logo. */}
+        <div className="flex w-full items-stretch justify-around max-md:contents">
+          <div className="md:relative md:flex md:items-center md:justify-center">
+            <img
+              src={logo}
+              alt="Saullo.com"
+              width="200"
+              height="321"
+              className="brightness-[500%] max-md:mt-[100px] max-md:max-h-[200px] max-md:w-auto"
+            />
+            <DicaDeRolagem />
           </div>
-          <div className={`${display} hidden text-[2rem] max-md:block`} aria-hidden="true">
-            <Linhas linhas={hero.horizontalLines} />
+          <div className="mt-[60px] text-center">
+            <p className="m-0 text-center text-[1.2rem] leading-[180%] max-md:text-[0.8rem] max-md:leading-[120%]">
+              {hero.greeting}
+            </p>
+            <h1 className="sr-only">{hero.h1}</h1>
+            <div
+              className={`${display} block text-[min(10rem,calc((100svh_-_260px)/4))] max-md:hidden`}
+              aria-hidden="true"
+            >
+              <Linhas linhas={hero.verticalWords} />
+            </div>
+            <div className={`${display} hidden text-[2rem] max-md:block`} aria-hidden="true">
+              <Linhas linhas={hero.horizontalLines} />
+            </div>
+            <p className="m-0 text-center text-[1.2rem] leading-[180%] max-md:text-[0.8rem] max-md:leading-[120%]">
+              {hero.tagline}
+            </p>
           </div>
-          <p className="m-0 text-center text-[1.2rem] leading-[180%] max-md:text-[0.8rem] max-md:leading-[120%]">
-            {hero.tagline}
-          </p>
         </div>
       </div>
     </div>

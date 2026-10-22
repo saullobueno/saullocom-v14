@@ -1,6 +1,7 @@
 import { useMessages } from '../../i18n';
 
-// Indicador abaixo da logo do hero (ver .rolar-* em index.css). Dentro do box escuro, no mesmo lugar
+// Indicador abaixo da logo do hero (ver .rolar-* em index.css). No desktop fica na base da coluna da
+// logo (alinhado com a ultima linha do texto); no celular, logo abaixo da logo. Dentro do box escuro, no mesmo lugar
 // para duas situacoes:
 //  - ate o site ficar pronto (palco ainda sem ouvintes): spinner, o carregamento de verdade;
 //  - depois: mouse com a rodinha descendo e uma seta, a dica para rolar.
@@ -13,9 +14,9 @@ export default function DicaDeRolagem() {
   return (
     <div
       aria-hidden="true"
-      className="rolar-dica mx-auto mt-14 flex w-fit flex-col items-center gap-2 max-md:mt-5 max-md:gap-1.5"
+      className="rolar-dica mx-auto flex w-fit flex-col items-center gap-2 max-md:mt-5 max-md:gap-1.5 md:absolute md:bottom-0 md:left-1/2 md:-translate-x-1/2"
     >
-      <div className="grid place-items-center rounded-full bg-black/25 px-3 py-2.5 text-white max-md:px-2.5 max-md:py-2">
+      <div className="grid place-items-center rounded-full bg-black/15 px-3 py-2.5 text-white max-md:px-2.5 max-md:py-2">
         <svg
           className="rolar-carregando [grid-area:1/1]"
           width="34"
