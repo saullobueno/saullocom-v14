@@ -33,6 +33,7 @@ export const en: Messages = {
     verticalWords: ['FULL', 'STACK', 'DEVEL', 'OPER'],
     horizontalLines: ['FULL STACK', 'DEVELOPER'],
     tagline: 'React • Node.js • UI/UX Design • React Native',
+    scrollHint: 'Scroll down',
   },
 
   about: {

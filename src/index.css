@@ -332,6 +332,146 @@ html[data-palco] .ponto:focus-visible::after {
   }
 }
 
+/* Carregando (so no modo palco, ate o Palco ficar pronto: data-pronto). Antes disso a pagina e o hero
+   sem resposta a rolagem (de ~3 s a ~12 s em celular lento, ate o React hidratar). Tres coisas:
+   1) a rolagem fica travada: sem o limitador de uma cena por gesto, a pagina rolaria varias cenas
+      sozinha e o palco "pousaria" la na hora de ligar;
+   2) o spinner (DicaDeRolagem) ocupa o lugar do icone de rolagem;
+   3) a barra fina no topo acompanha, como carregamento "de fundo".
+   Se o React nunca chegar, o script do <head> (root.tsx) desliga o palco depois de 25 s e a pagina
+   vira um fluxo comum de secoes. */
+html[data-palco]:not([data-pronto]) {
+  overflow: hidden;
+}
+
+.carregando {
+  display: none;
+}
+
+html[data-palco]:not([data-pronto]) .carregando {
+  display: block;
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 70;
+  height: 4px;
+  overflow: hidden;
+  background: rgb(255 255 255 / 0.25);
+  pointer-events: none;
+}
+
+.carregando::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, var(--color-badge) 35%, #fff 65%, transparent);
+  animation: carregando-varre 1.4s ease-in-out infinite;
+}
+
+@keyframes carregando-varre {
+  from {
+    translate: -100% 0;
+  }
+  to {
+    translate: 250% 0;
+  }
+}
+
+/* Dica de rolagem do hero (DicaDeRolagem): o spinner e o icone de rolagem dividem o mesmo lugar. No
+   palco o spinner aparece ate o site ficar pronto e da lugar ao icone, que some quando uma cena
+   abre; sem palco (menos movimento, sem JS) so ha o icone, parado se o sistema pede menos movimento. */
+.rolar-dica {
+  transition: opacity 0.6s ease;
+}
+
+.rolar-carregando,
+.rolar-icone,
+.rolar-legenda {
+  transition:
+    opacity 0.5s ease,
+    visibility 0s linear 0s;
+}
+
+.rolar-carregando {
+  opacity: 0;
+  visibility: hidden;
+}
+
+html[data-palco]:not([data-pronto]) .rolar-carregando {
+  opacity: 1;
+  visibility: visible;
+}
+
+html[data-palco]:not([data-pronto]) .rolar-icone,
+html[data-palco]:not([data-pronto]) .rolar-legenda {
+  opacity: 0;
+  visibility: hidden;
+}
+
+html[data-rolou] .rolar-dica {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.6s ease,
+    visibility 0s linear 0.6s;
+}
+
+/* telas baixas (celular pequeno): nao ha espaco entre a logo e o texto do hero; la fica so a barra
+   do topo */
+@media (height < 700px) {
+  .rolar-dica {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rolar-carregando {
+    animation: rolar-gira 0.9s linear infinite;
+  }
+
+  .rolar-roda {
+    animation: rolar-roda 1.8s ease-in-out infinite;
+  }
+
+  .rolar-seta {
+    animation: rolar-seta 1.8s ease-in-out infinite;
+  }
+}
+
+@keyframes rolar-gira {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rolar-roda {
+  0%,
+  20% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  70% {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+}
+
+@keyframes rolar-seta {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateY(4px);
+    opacity: 1;
+  }
+}
+
 /* Alto contraste (temas de contraste do Windows): o navegador troca as cores e o painel deixa de
    escurecer o hero, cujo texto passaria por tras do conteudo da cena. Com o painel aberto, o hero
    some; no topo (sem painel) ele continua aparecendo. */
@@ -620,6 +760,10 @@ html[data-palco] .nav-bar {
   text-shadow: 0 1px 6px rgb(0 0 0 / 0.7);
 }
 
-html {
+/* Rolagem animada so na pagina comum (ancoras do menu). No palco quem rola e o Palco, que pede
+   'smooth' ou 'instant' em cada chamada; com smooth global, a restauracao da posicao ao recarregar
+   (React Router) virava uma rolagem animada que o palco acompanhava cena por cena, acendendo cenas
+   intermediarias de relance. */
+html:not([data-palco]) {
   scroll-behavior: smooth;
 }

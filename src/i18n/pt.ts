@@ -34,6 +34,7 @@ export const pt = {
     verticalWords: ['DESEN', 'VOLVE', 'DOR', 'FULL', 'STACK'],
     horizontalLines: ['DESENVOLVEDOR', 'FULL STACK'],
     tagline: 'React • Node.js • UI/UX Design • React Native',
+    scrollHint: 'Role a página',
   },
 
   about: {

@@ -1,5 +1,6 @@
 import type { FeaturedProject } from '../../data/featuredProjects';
 import { LocaleProvider, useMessages, type Locale, type Messages } from '../../i18n';
+import Carregando from '../carregando';
 import Footer from '../footer';
 import Header from '../header';
 import Nav from '../nav';
@@ -14,6 +15,7 @@ function Pagina({ projects }: { projects: FeaturedProject[] }) {
   const { footer } = useMessages();
   return (
     <>
+      <Carregando />
       <Nav />
       <Header />
 
