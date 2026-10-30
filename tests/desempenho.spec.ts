@@ -35,6 +35,16 @@ test.describe('desempenho adaptativo', () => {
     await expect(page.locator('html')).toHaveAttribute('data-leve', '');
   });
 
+  test('modo leve gravado ha muito tempo expira e a animacao volta', async ({ page }) => {
+    await fingeQuadros(page, 'rapido');
+    await page.addInitScript(() =>
+      sessionStorage.setItem('desempenho', String(Date.now() - 10 * 60 * 1000)),
+    );
+    await page.goto('/', { waitUntil: 'networkidle' });
+    await expect(page.locator('html')).not.toHaveAttribute('data-leve', '');
+    expect(await animacaoDoHero(page)).toBe('hue-rotate');
+  });
+
   test('maquina normal: a animacao de cor continua', async ({ page }) => {
     await fingeQuadros(page, 'rapido');
     await page.goto('/', { waitUntil: 'networkidle' });

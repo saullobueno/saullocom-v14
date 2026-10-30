@@ -10,6 +10,10 @@ const ASSENTAR_MS = 600;
 const ENTRADA_DA_CENA_MS = 2200;
 
 export const CHAVE_DESEMPENHO = 'desempenho';
+// O modo leve gravado expira: uma medida ruim passageira (aba pesada, JavaScript ou renderizacao
+// desligados num teste) nao pode manter a animacao desligada para sempre. Depois disso a pagina
+// mede de novo.
+export const VALIDADE_LEVE_MS = 5 * 60 * 1000;
 
 const pausa = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -66,7 +70,7 @@ async function amostra() {
 // A animacao de cor do hero fica para todo mundo; so e desligada (html[data-leve], ver index.css)
 // onde o desenho nao acompanha, tipicamente sem GPU. Mede ao carregar e de novo na primeira vez
 // que uma cena abre, porque ai entra o painel com blur por cima e o custo sobe. A decisao vale
-// para a sessao (o script do <head> em root.tsx a reaplica antes da primeira pintura).
+// por VALIDADE_LEVE_MS (o script do <head> em root.tsx a reaplica antes da primeira pintura).
 export default function Desempenho() {
   useEffect(() => {
     const raiz = document.documentElement;
@@ -80,7 +84,7 @@ export default function Desempenho() {
     const ativaModoLeve = () => {
       raiz.setAttribute('data-leve', '');
       try {
-        sessionStorage.setItem(CHAVE_DESEMPENHO, 'leve');
+        sessionStorage.setItem(CHAVE_DESEMPENHO, String(Date.now()));
       } catch {
         // armazenamento bloqueado: vale so para esta pagina
       }

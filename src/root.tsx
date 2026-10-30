@@ -13,7 +13,7 @@ import robotoLatin from '@fontsource-variable/roboto/files/roboto-latin-wght-nor
 
 import imageHome from './assets/image-home.avif';
 import WebAnalytics from './components/analytics';
-import Desempenho, { CHAVE_DESEMPENHO } from './components/desempenho';
+import Desempenho, { CHAVE_DESEMPENHO, VALIDADE_LEVE_MS } from './components/desempenho';
 import { idiomaDe, locales } from './i18n/locales';
 import type { Route } from './+types/root';
 import './index.css';
@@ -38,12 +38,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         {/* antes da primeira pintura: liga o modo palco (so com JS, sem preferencia por menos movimento
-            e com tela alta) e reaplica o modo leve que o componente Desempenho decidiu nesta sessao */}
+            e com tela alta) e reaplica o modo leve que o componente Desempenho decidiu ha pouco (expira, ver VALIDADE_LEVE_MS) */}
         <script
           dangerouslySetInnerHTML={{
             __html:
               "if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&matchMedia('(min-height: 500px)').matches)document.documentElement.setAttribute('data-palco','');" +
-              `try{if(sessionStorage.getItem('${CHAVE_DESEMPENHO}')==='leve')document.documentElement.setAttribute('data-leve','')}catch(e){}` +
+              `try{if(Date.now()-Number(sessionStorage.getItem('${CHAVE_DESEMPENHO}'))<${VALIDADE_LEVE_MS})document.documentElement.setAttribute('data-leve','')}catch(e){}` +
               // enquanto o palco nao esta pronto a rolagem fica travada: o overflow:hidden (index.css) barra
               // roda e toque, e aqui as teclas (o Chrome rola por teclado mesmo com overflow:hidden)
               "(function(){var r=document.documentElement,t={ArrowDown:1,ArrowUp:1,PageDown:1,PageUp:1,Home:1,End:1,' ':1};addEventListener('keydown',function(e){if(r.hasAttribute('data-palco')&&!r.hasAttribute('data-pronto')&&t[e.key]&&(e.target===document.body||e.target===r))e.preventDefault()})})();" +
